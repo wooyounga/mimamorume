@@ -1,0 +1,66 @@
+.nav{
+    position: relative;
+}
+
+.logo{
+    margin: 10px 80px;
+    vertical-align: middle;
+}
+
+.pull-right{
+    margin-right: 30px !important;
+}
+
+.zeta-wrap{
+    display: inline;
+    width: 100%;
+    margin-left: 10%;
+    height: 50px;
+    position: absolute;
+}
+
+.zeta-menu {
+    position: absolute;
+    display: inline;
+    text-align: center;
+    width: 500px;
+}
+.zeta-menu li {
+    display: inline-block;
+    list-style:none;
+    position: relative;
+    width: 130px;
+    height: 50px;
+    font-size: 18px;
+}
+.zeta-menu li:hover {
+    background: skyblue;
+}
+.zeta-menu li:hover>a {
+    color: white;
+}
+.zeta-menu a {
+    color: skyblue;
+    display: block;
+    padding: 10px 10px;
+    text-decoration: none;
+}
+.zeta-menu ul {
+    background: skyblue;
+    display: none;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    width: 130px;
+    text-align: center;
+}
+
+.zeta-menu ul li:hover {
+    background: white;
+}
+.zeta-menu ul li:hover a {
+    color: black;
+}
+.zeta-menu ul a {
+    color: black;
+}

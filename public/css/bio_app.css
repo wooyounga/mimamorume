@@ -1,0 +1,18 @@
+.body{
+    padding: 5%;
+}
+
+.link_wrap{
+    margin-top: 10%;
+}
+
+.wrap{
+    margin-top: 5%;
+}
+
+li{
+    display: inline-block;
+    list-style:none;
+    position: relative;
+    text-align: center;
+}
