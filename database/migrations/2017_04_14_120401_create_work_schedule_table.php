@@ -16,7 +16,7 @@ class CreateWorkScheduleTable extends Migration
         Schema::create('work_schedule', function (Blueprint $table) {
             $table->increments('num');
             $table->string('sitterId');
-            $table->string('targetNum');
+            $table->integer('targetNum');
             $table->date('workDate');
             $table->timestamps();
         });

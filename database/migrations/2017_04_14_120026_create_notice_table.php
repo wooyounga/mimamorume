@@ -15,7 +15,7 @@ class CreateNoticeTable extends Migration
     {
         Schema::create('notice', function (Blueprint $table) {
             $table->increments('num');
-            $table->string('targetNum');
+            $table->integer('targetNum');
             $table->string('addresseeId');
             $table->string('noticeKind');
             $table->string('noticeContent');

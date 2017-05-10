@@ -17,7 +17,7 @@ class CreateGpsDataTable extends Migration
             $table->increments('num');
             $table->string('latitude');
             $table->string('longitude');
-            $table->string('targetNum');
+            $table->integer('targetNum');
             $table->timestamps();
         });
     }

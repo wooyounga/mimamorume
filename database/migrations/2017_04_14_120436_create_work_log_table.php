@@ -16,7 +16,7 @@ class CreateWorkLogTable extends Migration
         Schema::create('work_log', function (Blueprint $table) {
             $table->increments('num');
             $table->string('sitterId');
-            $table->string('targetNum');
+            $table->integer('targetNum');
             $table->date('medicineSchedule');
             $table->date('workDate');
             $table->timestamps();

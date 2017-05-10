@@ -15,7 +15,7 @@ class CreateCareTable extends Migration
     {
         Schema::create('care', function (Blueprint $table) {
             $table->string('sitterId');
-            $table->string('targetNum');
+            $table->integer('targetNum');
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ class CreateWorkContentTable extends Migration
     {
         Schema::create('work_content', function (Blueprint $table) {
             $table->increments('num');
-            $table->string('logNum');
+            $table->integer('logNum');
             $table->string('contentType');
             $table->string('content');
             $table->timestamps();

@@ -16,7 +16,7 @@ class CreateVitalDataTable extends Migration
         Schema::create('vital_data', function (Blueprint $table) {
             $table->increments('num');
             $table->string('dataType');
-            $table->string('targetNum');
+            $table->integer('targetNum');
             $table->string('value');
             $table->timestamps();
         });

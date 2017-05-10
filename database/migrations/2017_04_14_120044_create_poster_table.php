@@ -15,7 +15,7 @@ class CreatePosterTable extends Migration
     {
         Schema::create('poster', function (Blueprint $table) {
             $table->increments('num');
-            $table->string('targetNum');
+            $table->integer('targetNum');
             $table->string('snapshotName');
             $table->string('content');
             $table->timestamps();

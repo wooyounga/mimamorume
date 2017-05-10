@@ -18,8 +18,8 @@ class CreateSnapshotTable extends Migration
             $table->string('snapshotType');
             $table->string('snapshotName');
             $table->string('uploadName');
-            $table->string('cameraNum');
-            $table->string('targetNum');
+            $table->integer('cameraNum');
+            $table->integer('targetNum');
             $table->timestamps();
         });
     }

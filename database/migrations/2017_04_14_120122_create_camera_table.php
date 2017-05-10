@@ -15,7 +15,7 @@ class CreateCameraTable extends Migration
     {
         Schema::create('camera', function (Blueprint $table) {
             $table->increments('num');
-            $table->string('targetNum');
+            $table->integer('targetNum');
             $table->timestamps();
         });
     }
