@@ -93,7 +93,8 @@
                             </li>
                         </ul>
                     </div>
-                    <ul class="nav navbar-nav pull-right">
+                    <div class="pull-right">
+                        <ul class="nav navbar-nav">
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -110,23 +111,22 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                              </ul>
-                         </li>
-                    </ul>
-                    <ul class="nav navbar-nav pull-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                종이미지
-                                {{--<img >--}}
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown pull-right">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <img src="{{ URL::to('/') }}/images/notice_list.png" width="20" height="20">
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
 
-                            </ul>
-                        </li>
-                    </ul>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                     @endif
             </div>
-
     </nav>
     @yield('content')
 </div>
