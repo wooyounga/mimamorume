@@ -110,3 +110,8 @@ li{
         width: 100%;
     }
 }
+
+.monitor_image div{
+    float: left;
+    margin: 20px 130px;
+}

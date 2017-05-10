@@ -117,7 +117,7 @@
                         <ul class="nav navbar-nav">
                             <li class="dropdown pull-right">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <img src="{{ URL::to('/') }}/images/notice_list.png" width="20" height="20">
+                                    <img src="{{ URL::to('/') }}/images/notice_list.png" width="15" height="20">
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
 

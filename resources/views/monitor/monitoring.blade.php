@@ -11,12 +11,14 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script>
-    $(document).ready(function(){
-        $ ( " .img1 " ). ionZoom ({
-            visibleControls: false
-        });
-        $(".img1").ionZoom("close");
-    });
+
+    function hover(element, url) {
+        /*var id = document.getElementById()*/
+        element.setAttribute('src',url+'_mouseover.png');
+    }
+    function unhover(element, url) {
+        element.setAttribute('src', url+'.png');
+    }
 </script>
 @section('content')
     <div class="body">
@@ -24,12 +26,21 @@
             <a href="{{URL::to('/home')}}">Home</a> > <a href="{{URL::to('/monitoring')}}"><b>모니터링</b></a>
         </div>
         <div class="wrap">
-            <div>
-                <ul class="thumbnails">
-                    {{--<li class="span4">
-                        <a href="{{ URL::to('/') }}/images/main/main_service_image_03.png" class="img1" rel="thumbnail"><img src="{{ URL::to('/') }}/images/main/main_service_image_03.png"></a>
-                    </li>--}}
-                </ul>
+            <div class="monitor_image">
+                <div>
+                    <a href="/snapshot">
+                        <img id="img01" src="{{ URL::to('/') }}/images/monitor/snapshot_button.png"
+                         onmouseover="hover(this,'{{ URL::to('/') }}/images/monitor/snapshot_button');"
+                         onmouseout="unhover(this, '{{ URL::to('/') }}/images/monitor/snapshot_button')">
+                    </a>
+                </div>
+                <div>
+                    <a href="/chart">
+                        <img src="{{ URL::to('/') }}/images/monitor/stats_button.png"
+                         onmouseover="hover(this,'{{ URL::to('/') }}/images/monitor/stats_button');"
+                         onmouseout="unhover(this, '{{ URL::to('/') }}/images/monitor/stats_button')">
+                    </a>
+                </div>
             </div>
         </div>
     </div>
