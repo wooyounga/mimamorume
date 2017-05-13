@@ -1,5 +1,38 @@
 @extends('layouts.app')
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<!-- jquery 가 필요합니다. -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.min.js"></script>
+
+<!-- roadzip.min.js -->
+<!-- roadzip.min.js 을 이용하려면 jquery ui 가 필요합니다. -->
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.min.css" />
+
+<!-- 구버전 IE 에 placeholder 지원 : https://code.google.com/p/jqueryplaceholder/ -->
+
+<!-- ssl 대응 됩니다. cdn 이용하듯 서버에 저장하지 말고 그대로 링크하세요.
+    예고 없이 스크립트가 변경될 수 있으며, 저장할 경우 호환되지 않을 수 있습니다.
+    이곳에 적혀 있는 이용방법대로만 이용해주세요. -->
+<link rel="stylesheet" href="//xenosi.de/load/roadzip/roadzip.css" />
+<script src="//xenosi.de/load/roadzip/roadzip.min.js"></script>
+
+<script>
+    $(function() {
+        $('input.XenoFindZip').each(XenoZipFinder); // input 에 검색스크립트 연결
+    });
+</script>
+<!-- / roadzip.min.js -->
+
+<!-- roadzip.mobile.min.js -->
+<!-- roadzip.mobile.min.js 을 이용하려면 select2 가 필요합니다. http://ivaynberg.github.io/select2/ -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.min.js"></script>
+
+<!-- ssl 대응 됩니다. cdn 이용하듯 서버에 저장하지 말고 그대로 링크하세요.
+    예고 없이 스크립트가 변경될 수 있으며, 저장할 경우 호환되지 않을 수 있습니다.
+    이곳에 적혀 있는 이용방법대로만 이용해주세요. -->
+<script src="//xenosi.de/load/roadzip/roadzip.mobile.min.js"></script>
 <script>
     $(document).ready(function(){
         $('#information').change(function(){
@@ -144,10 +177,22 @@
                                 </div>
                             </div>
                             <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                                <label for="epost" class="col-md-4 control-label">우편번호</label>
+                                <div class="col-md-6">
+                                    <input id="epost" type="text" class="form-control" name="zip" readonly>
+                                    @if ($errors->has('epost'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('epost') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
                                 <label for="address" class="col-md-4 control-label">주소</label>
 
                                 <div class="col-md-6">
-                                    <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required autofocus>
+                                    <input type="text" id="address" class="XenoFindZip form-control" name="ad" placeholder="엔터를 누르면 검색됩니다." data-z="zip" data-a="ad" data-r="adr" data-e="ade" data-n="n">
+                                    <span class="XenoFindZipLabel"></span>
 
                                     @if ($errors->has('address'))
                                         <span class="help-block">
@@ -160,7 +205,7 @@
                                 <label for="restAddress" class="col-md-4 control-label">나머지 주소</label>
 
                                 <div class="col-md-6">
-                                    <input id="restAddress" type="text" class="form-control" name="restAddress" value="{{ old('restAddress') }}" required autofocus>
+                                    <input id="restAddress" type="text" class="form-control" name="adr" value="{{ old('restAddress') }}" required autofocus>
 
                                     @if ($errors->has('restAddress'))
                                         <span class="help-block">

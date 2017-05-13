@@ -107,11 +107,13 @@
                         </td>
                     </tr>
                 </table>
-                <label for="title" class="col-sm-2 control-label">제목</label>
-                <input type="text" id="title" class="form-control">
-                <label for="content" class="col-sm-2 control-label">내용</label>
-                <textarea class="form-control" id="content" rows="20"></textarea>
-                <button type="submit" class="btn btn-default pull-right" style="margin-top:10px;">작성</button>
+                <div class="matchForm">
+                    <label for="title" class="col-sm-2 control-label">제목</label>
+                    <input type="text" id="title" class="form-control">
+                    <label for="content" class="col-sm-2 control-label">내용</label>
+                    <textarea class="form-control" id="content" rows="20"></textarea>
+                    <button type="submit" class="btn btn-default pull-right" style="margin-top:10px;">작성</button>
+                </div>
             </form>
         </div>
     </div>

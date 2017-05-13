@@ -14,10 +14,10 @@
 
     function hover(element, url) {
         /*var id = document.getElementById()*/
-        element.setAttribute('src',url+'_mouseover.png');
+        element.setAttribute('src','{{ URL::to('/') }}/images/monitor'+url+'_mouseover.png');
     }
     function unhover(element, url) {
-        element.setAttribute('src', url+'.png');
+        element.setAttribute('src', '{{ URL::to('/') }}/images/monitor'+url+'.png');
     }
 </script>
 @section('content')
@@ -30,15 +30,13 @@
                 <div>
                     <a href="/snapshot">
                         <img id="img01" src="{{ URL::to('/') }}/images/monitor/snapshot_button.png"
-                         onmouseover="hover(this,'{{ URL::to('/') }}/images/monitor/snapshot_button');"
-                         onmouseout="unhover(this, '{{ URL::to('/') }}/images/monitor/snapshot_button')">
+                         onmouseover="hover(this,'/snapshot_button');" onmouseout="unhover(this, '/snapshot_button')">
                     </a>
                 </div>
                 <div>
                     <a href="/chart">
                         <img src="{{ URL::to('/') }}/images/monitor/stats_button.png"
-                         onmouseover="hover(this,'{{ URL::to('/') }}/images/monitor/stats_button');"
-                         onmouseout="unhover(this, '{{ URL::to('/') }}/images/monitor/stats_button')">
+                         onmouseover="hover(this,'/stats_button');" onmouseout="unhover(this, '/stats_button')">
                     </a>
                 </div>
             </div>

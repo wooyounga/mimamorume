@@ -115,3 +115,8 @@ li{
     float: left;
     margin: 20px 130px;
 }
+
+.thumbnail_list img{
+    display: inline-block;
+}
+
