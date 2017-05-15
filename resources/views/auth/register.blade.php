@@ -33,7 +33,6 @@
     예고 없이 스크립트가 변경될 수 있으며, 저장할 경우 호환되지 않을 수 있습니다.
     이곳에 적혀 있는 이용방법대로만 이용해주세요. -->
 <script src="//xenosi.de/load/roadzip/roadzip.mobile.min.js"></script>
-
 <script>
     $(document).ready(function(){
         var ceri_no = 1;
@@ -52,13 +51,13 @@
             }
         });
         $('.certified_check').change(function(){
-           if($('input[type=radio][name=certified_check]:checked').val() == 'yes'){
-               $('.cer').css('display','');
-               $('.certified_btn').css('display','');
-           } else {
-               $('.cer').css('display','none');
-               $('.certified_btn').css('display','none');
-           }
+            if($('input[type=radio][name=certified_check]:checked').val() == 'yes'){
+                $('.cer').css('display','');
+                $('.certified_btn').css('display','');
+            } else {
+                $('.cer').css('display','none');
+                $('.certified_btn').css('display','none');
+            }
         });
         $('.certified_btn').click(function(){
             ceri = '<div>';
@@ -88,9 +87,9 @@
             ceri+= '</div>';
             ceri+= '</div>';
 
-           $('.cer').append(ceri);
+            $('.cer').append(ceri);
 
-           ceri_no++;
+            ceri_no++;
         });
         $(document).on("click", "span.close", function(){
             $(this).parent().remove();
@@ -103,7 +102,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Register</div>
+                    <div class="panel-heading">회원가입</div>
                     <div class="panel-body">
                         <form class="form-horizontal" name="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                             {{ csrf_field() }}
@@ -208,6 +207,19 @@
                                     @if ($errors->has('phone'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group{{ $errors->has('cellphone') ? ' has-error' : '' }}">
+                                <label for="cellphone" class="col-md-4 control-label">휴대폰번호</label>
+
+                                <div class="col-md-6">
+                                    <input id="cellphone" type="text" class="form-control" name="cellphone" value="{{ old('cellphone') }}" required autofocus>
+
+                                    @if ($errors->has('cellphone'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('cellphone') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -326,7 +338,7 @@
                                     <label for="target_no" class="col-md-4 control-label">고유넘버</label>
 
                                     <div class="col-md-6">
-                                        <input id="target_no" type="text" class="form-control" name="target_no" value="{{ old('target_no') }}" required autofocus>
+                                        <input id="target_no" type="text" class="form-control" name="target_no" value="{{ old('target_no') }}" required autofocus readonly>
 
                                         @if ($errors->has('target_no'))
                                             <span class="help-block">
@@ -375,6 +387,14 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">프로필 사진</label>
+
+                                    <div class="col-md-6">
+                                        <img src="" style="margin-bottom: 20px; width:100px; height: 130px;" class="img-thumbnail" onerror="javascript:this.src=''">
+                                        <input type="file" value="사진 업로드">
+                                    </div>
+                                </div>
                                 <div class="form-group{{ $errors->has('target_phone') ? ' has-error' : '' }}">
                                     <label for="target_phone" class="col-md-4 control-label">전화번호</label>
 
@@ -388,7 +408,19 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="form-group{{ $errors->has('target_cellphone') ? ' has-error' : '' }}">
+                                    <label for="cellphone" class="col-md-4 control-label">휴대폰번호</label>
 
+                                    <div class="col-md-6">
+                                        <input id="target_cellphone" type="text" class="form-control" name="target_cellphone" value="{{ old('target_cellphone') }}" required autofocus>
+
+                                        @if ($errors->has('target_cellphone'))
+                                            <span class="help-block">
+                                        <strong>{{ $errors->first('target_cellphone') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+                                </div>
                                 <div class="form-group{{ $errors->has('target_epost') ? ' has-error' : '' }}">
                                     <label for="target_epost" class="col-md-4 control-label">우편번호</label>
                                     <div class="col-md-6">
