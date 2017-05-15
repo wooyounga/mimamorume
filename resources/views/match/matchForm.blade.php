@@ -10,6 +10,7 @@
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="{{URL::to('/')}}/js/matchForm.js"></script>
 <script>
     function formConfirm(url){
         if(confirm("지금 나가시면 작성 중인 내용은 전부 삭제 됩니다. 정말로 나가시겠습니까?")){
@@ -27,23 +28,7 @@
                 <div class="navbar" style="border: 2px solid skyblue">
                     <div class="navbar-inner">
                         <ul id="address_si" class=" nav">
-                            <li><a href="#" onclick="address('.seoul')">서울</a></li>
-                            <li><a href="#" onclick="address('.busan')">부산</a></li>
-                            <li><a href="#" onclick="address('.daegu')">대구</a></li>
-                            <li><a href="#" onclick="address('.incheon')">인천</a></li>
-                            <li><a href="#" onclick="address('.gwangju')">광주</a></li>
-                            <li><a href="#" onclick="address('.daejeon')">대전</a></li>
-                            <li><a href="#" onclick="address('.ulsan')">울산</a></li>
-                            <li><a href="#" onclick="address('.sejong')">세종</a></li>
-                            <li><a href="#" onclick="address('.gg')">경기</a></li>
-                            <li><a href="#" onclick="address('.gyeongnam')">경남</a></li>
-                            <li><a href="#" onclick="address('.gb')">경북</a></li>
-                            <li><a href="#" onclick="address('.chungnam')">충남</a></li>
-                            <li><a href="#" onclick="address('.chungbuk')">충북</a></li>
-                            <li><a href="#" onclick="address('.jeonnam')">전남</a></li>
-                            <li><a href="#" onclick="address('.jeonbuk')">전북</a></li>
-                            <li><a href="#" onclick="address('.gangwon')">강원</a></li>
-                            <li><a href="#" onclick="address('.jeju')">제주</a></li>
+                          <!-- 매칭 지역명을 Append 시킬 공간-->
                         </ul>
                     </div>
                 </div>

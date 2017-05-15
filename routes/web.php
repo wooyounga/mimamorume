@@ -33,3 +33,7 @@ Route::get('/task', 'TaskController@index');
 
 Route::resource('match','MatchController');
 Route::resource('task','TaskController');
+
+Route::get('/matchAddressDb', function(){
+  return view('match.matchAddressDb');
+});
