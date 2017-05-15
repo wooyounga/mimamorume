@@ -161,9 +161,9 @@
     </div>
         <div class="main_service" id="service_01">
             <div class="top"><a href="#film_roll"><img src="{{ URL::to('/') }}/images/main/main_top_image.png" class="main_top"></a></div>
-            <div id="main_service_01"><img src="{{ URL::to('/') }}/images/main/main_service_01.png" class="main_service"></div>
-            <div id="main_service_02"><img src="{{ URL::to('/') }}/images/main/main_service_02.png" class="main_service"></div>
-            <div id="main_service_03"><img src="{{ URL::to('/') }}/images/main/main_service_03.png" class="main_service"></div>
+            <div id="main_service_01"><img src="{{ URL::to('/') }}/images/main/main_service_01.png" class="main_service_image"></div>
+            <div id="main_service_02"><img src="{{ URL::to('/') }}/images/main/main_service_02.png" class="main_service_image"></div>
+            <div id="main_service_03"><img src="{{ URL::to('/') }}/images/main/main_service_03.png" class="main_service_image"></div>
         </div>
     </body>
 </html>

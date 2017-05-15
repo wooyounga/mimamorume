@@ -14,13 +14,8 @@ class UserSeeder extends Seeder
         $users = [
             [
                 'name' => '사용자1',
-                'email' => 'user1@myhost.com',
-                'password' => bcrypt('secret'),
-            ],
-            [
-                'name' => '사용자2',
-                'email' => 'user2@myhost.com',
-                'password' => bcrypt('secret'),
+                'id' => 'user1@myhost.com',
+                'pw' => bcrypt('secret'),
             ],
         ];
 

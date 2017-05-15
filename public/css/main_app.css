@@ -158,12 +158,14 @@ html, body {
     font-family: 'nbg';
 }
 
-.main_service{
+.main_service_image{
     width: 100%;
+    height: auto;
+    overflow: hidden;
 }
 
 .top{
-    width: 100%;
+    width: 10%;
     position: fixed;
     display: inline-block;
     bottom:5%;
