@@ -57,15 +57,15 @@
                         <span><label for="age_unrelated">연령무관</label><input type="checkbox" id="age_unrelated" name="age" value="연령무관"></span>
                     </td>
                     <td>
-                        <span><label for="no">장애없음</label><input type="checkbox" id="no" name="disability" value="장애없음"></span>
-                        <span><label for="physical">지체장애</label><input type="checkbox" id="physical" name="disability" value="지체장애"></span>
-                        <span><label for="sense">시각장애</label><input type="checkbox" id="sense" name="disability" value="시각장애"></span>
-                        <span><label for="hearing">청각장애</label><input type="checkbox" id="hearing" name="disability" value="청각장애"></span>
-                        <span><label for="speech">언어장애</label><input type="checkbox" id="speech" name="disability" value="언어장애"></span>
-                        <span><label for="facial">안면장애</label><input type="checkbox" id="facial" name="disability" value="안면장애"></span>
-                        <span><label for="brain">뇌병변장애</label><input type="checkbox" id="brain" name="disability" value="뇌병변장애"></span>
-                        <span><label for="mental">지적장애</label><input type="checkbox" id="mental" name="disability" value="지적장애"></span>
-                        <span><label for="autism">자폐성장애</label><input type="checkbox" id="autism" name="disability" value="자폐성장애"></span>
+                        <span><label for="no">장애없음</label><input type="checkbox" id="no" name="disability[]" value="장애없음"></span>
+                        <span><label for="physical">지체장애</label><input type="checkbox" id="physical" name="disability[]" value="지체장애"></span>
+                        <span><label for="sense">시각장애</label><input type="checkbox" id="sense" name="disability[]" value="시각장애"></span>
+                        <span><label for="hearing">청각장애</label><input type="checkbox" id="hearing" name="disability[]" value="청각장애"></span>
+                        <span><label for="speech">언어장애</label><input type="checkbox" id="speech" name="disability[]" value="언어장애"></span>
+                        <span><label for="facial">안면장애</label><input type="checkbox" id="facial" name="disability[]" value="안면장애"></span>
+                        <span><label for="brain">뇌병변장애</label><input type="checkbox" id="brain" name="disability[]" value="뇌병변장애"></span>
+                        <span><label for="mental">지적장애</label><input type="checkbox" id="mental" name="disability[]" value="지적장애"></span>
+                        <span><label for="autism">자폐성장애</label><input type="checkbox" id="autism" name="disability[]" value="자폐성장애"></span>
                         <span><label for="disability_unrelated">장애무관</label><input type="checkbox" id="disability_unrelated" name="disability" value="장애무관"></span>
                     </td>
                     <td>

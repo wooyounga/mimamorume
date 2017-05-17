@@ -27,6 +27,7 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
+
     public function redirectPath(){
         if(property_exists($this, 'redirectPath')){
             //return $this->redirectPath;

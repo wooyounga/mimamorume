@@ -174,7 +174,7 @@
                                 <label for="age" class="col-md-4 control-label">나이</label>
 
                                 <div class="col-md-6">
-                                    <input id="age" type="email" class="form-control" name="age" value="{{ old('age') }}" required>
+                                    <input id="age" type="text" class="form-control" name="age" value="{{ old('age') }}" required>
 
                                     @if ($errors->has('age'))
                                         <span class="help-block">
