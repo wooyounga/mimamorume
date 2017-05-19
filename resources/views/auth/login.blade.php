@@ -24,15 +24,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">비밀번호</label>
+                        <div class="form-group{{ $errors->has('pw') ? ' has-error' : '' }}">
+                            <label for="pw" class="col-md-4 control-label">비밀번호</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="pw" type="password" class="form-control" name="pw" required>
 
-                                @if ($errors->has('password'))
+                                @if ($errors->has('pw'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong>{{ $errors->first('pw') }}</strong>
                                     </span>
                                 @endif
                             </div>
