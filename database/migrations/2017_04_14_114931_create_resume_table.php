@@ -15,12 +15,14 @@ class CreateResumeTable extends Migration
     {
         Schema::create('resume', function (Blueprint $table) {
             $table->increments('num');
-            $table->string('sitterId');
-            $table->string('lisence');
-            $table->string('center');
-            $table->string('career');
-            $table->string('profileImage');
+            $table->string('sitter_id', 20);
+            $table->string('lisence', 20);
+            $table->string('center', 20);
+            $table->string('career', 50)->nullable();
+            $table->string('profile_image', 20);
             $table->timestamps();
+
+            $table->foreign('sitter_id')->references('id')->on('user');
         });
     }
 

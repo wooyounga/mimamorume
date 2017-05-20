@@ -15,10 +15,12 @@ class CreateVitalDataTable extends Migration
     {
         Schema::create('vital_data', function (Blueprint $table) {
             $table->increments('num');
-            $table->string('dataType');
-            $table->integer('targetNum');
-            $table->string('value');
+            $table->string('data_type', 20);
+            $table->integer('target_num')->unsigned();
+            $table->string('value', 30);
             $table->timestamps();
+
+            $table->foreign('target_num')->references('num')->on('target');
         });
     }
 

@@ -14,9 +14,12 @@ class CreateCareTable extends Migration
     public function up()
     {
         Schema::create('care', function (Blueprint $table) {
-            $table->string('sitterId');
-            $table->integer('targetNum');
+            $table->string('sitter_id', 20);
+            $table->integer('target_num')->unsigned();
             $table->timestamps();
+
+            $table->foreign('sitter_id')->references('id')->on('user');
+            $table->foreign('target_num')->references('num')->on('target');
         });
     }
 

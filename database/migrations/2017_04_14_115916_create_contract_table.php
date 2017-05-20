@@ -14,10 +14,13 @@ class CreateContractTable extends Migration
     public function up()
     {
         Schema::create('contract', function (Blueprint $table) {
-            $table->string('familyId');
-            $table->string('sitterId');
-            $table->string('term');
+            $table->string('family_id', 20);
+            $table->string('sitter_id', 20);
+            $table->date('term');
             $table->timestamps();
+
+            $table->foreign('family_id')->references('id')->on('user');
+            $table->foreign('sitter_id')->references('id')->on('user');
         });
     }
 
