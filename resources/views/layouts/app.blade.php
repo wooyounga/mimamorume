@@ -110,7 +110,15 @@
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
-                                    </li>
+                                    </li>{{--
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            로그아웃
+                                        </a>
+                                    </li>--}}
+
                                 </ul>
                             </li>
                         </ul>
