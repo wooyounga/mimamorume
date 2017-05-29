@@ -15,18 +15,46 @@
         <div class="pro">
 
         </div>
-        <div class="individual_01">
+        <div class="resume">
+            <span class="individual">
+                <h3>주소</h3>
+                {{$user[0]->adressCity}}
+                {{$user[0]->adressGu}}
+                {{$user[0]->adressDong}}
+                <br>
+                {{$user[0]->adressRest}}
+            </span>
+            <br>
+            <span class="individual">
+                <h3>연락처</h3>
+                {{$user[0]->telephone}}
+                <br>
+                {{$user[0]->cellphone}}
+            </span>
+            @if($user[0]->userType == '보호사')
+                <span class="individual">
+                    보호사
+                </span>
+                <span class="individual">
+                    <h3>자격증</h3>
+                    {{$etc[0]->licenseKind}}
+                    {{$etc[0]->licenseGrade}}
+                    <br>
+                    <h3>발급처</h3>
+                    {{$etc[0]->institution}}
+                </span>
+                <span class="individual">
+                    <h3>소속</h3>
+                    {{$etc[0]->center}}
+                </span>
+            @else
+                <span class="individual">
+                    보호자
+                </span>
+                <span class="individual">
 
-        </div>
-        <br>
-        <div class="individual_02">
-
-        </div>
-        <div class="individual_03">
-
-        </div>
-        <div class="individual_04">
-
+                </span>
+            @endif
         </div>
         <a href="{{route('individual.create')}}">
             <button class="btn btn-default">

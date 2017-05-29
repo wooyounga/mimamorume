@@ -91,11 +91,7 @@ return [
     |
     */
 
-/*<<<<<<< HEAD
-    'passwords' => [
-=======
     'pw' => [
->>>>>>> e6c5d573cba3d1c9e9b049f143b64d585ba09640
         'user' => [
             'provider' => 'user',
             'table' => 'password_resets',
@@ -103,4 +99,4 @@ return [
         ],
     ],
 
-];*/
+];
