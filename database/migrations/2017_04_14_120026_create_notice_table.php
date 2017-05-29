@@ -15,11 +15,14 @@ class CreateNoticeTable extends Migration
     {
         Schema::create('notice', function (Blueprint $table) {
             $table->increments('num');
-            $table->integer('targetNum');
-            $table->string('addresseeId');
-            $table->string('noticeKind');
-            $table->string('noticeContent');
+            $table->integer('target_num')->unsigned();
+            $table->string('addressee_id', 20);
+            $table->string('notice_kind', 10);
+            $table->string('notice_content', 100);
             $table->timestamps();
+
+            $table->foreign('target_num')->references('num')->on('target');
+            $table->foreign('addressee_id')->references('id')->on('user');
         });
     }
 

@@ -15,10 +15,13 @@ class CreateWorkScheduleTable extends Migration
     {
         Schema::create('work_schedule', function (Blueprint $table) {
             $table->increments('num');
-            $table->string('sitterId');
-            $table->integer('targetNum');
-            $table->date('workDate');
+            $table->string('sitter_id', 20);
+            $table->integer('target_num')->unsigned();
+            $table->date('work_date');
             $table->timestamps();
+
+            $table->foreign('sitter_id')->references('id')->on('user');
+            $table->foreign('target_num')->references('num')->on('target');
         });
     }
 

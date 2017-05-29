@@ -14,12 +14,14 @@ class CreateLicenseTable extends Migration
     public function up()
     {
         Schema::create('license', function (Blueprint $table) {
-            $table->string('licenseNum')->unique()->primary();
-            $table->string('sitterId');
-            $table->string('licenseKind');
-            $table->string('licenseGrade');
-            $table->string('institution');
+            $table->string('license_num', 20)->unique()->primary();
+            $table->string('sitter_id', 20);
+            $table->string('license_kind', 20);
+            $table->string('license_grade', 10);
+            $table->string('institution', 50);
             $table->timestamps();
+
+            $table->foreign('sitter_id')->references('id')->on('user');
         });
     }
 

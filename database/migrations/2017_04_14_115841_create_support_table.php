@@ -14,9 +14,12 @@ class CreateSupportTable extends Migration
     public function up()
     {
         Schema::create('support', function (Blueprint $table) {
-            $table->string('familyId');
-            $table->integer('targetNum');
+            $table->string('family_id', 20);
+            $table->integer('target_num')->unsigned();
             $table->timestamps();
+
+            $table->foreign('family_id')->references('id')->on('user');
+            $table->foreign('target_num')->references('num')->on('target');
         });
     }
 

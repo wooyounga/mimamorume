@@ -14,19 +14,19 @@ class CreateUserTable extends Migration
     public function up()
     {
         Schema::create('user', function (Blueprint $table) {
-            $table->string('id')->unique()->primary();
-            $table->string('userType');
-            $table->string('pw');
-            $table->string('name');
-            $table->string('age');
-            $table->string('gender');
-            $table->string('email')->unique();
-            $table->string('telephone')->unique();
-            $table->string('cellphone')->unique();
-            $table->string('adressCity');
-            $table->string('adressGu');
-            $table->string('adressDong');
-            $table->string('adressRest');
+            $table->string('id', 20)->unique()->primary();
+            $table->string('user_type', 10);
+            $table->string('pw', 20);
+            $table->string('name', 20);
+            $table->integer('age');
+            $table->string('gender', 10);
+            $table->string('email', 20)->unique();
+            $table->string('telephone', 20)->unique();
+            $table->string('cellphone', 20)->unique();
+            $table->string('adress_city', 10);
+            $table->string('adress_gu', 10);
+            $table->string('adress_dong', 10);
+            $table->string('adress_rest', 30);
             $table->timestamps();
         });
     }

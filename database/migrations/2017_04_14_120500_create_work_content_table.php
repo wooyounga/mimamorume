@@ -15,10 +15,12 @@ class CreateWorkContentTable extends Migration
     {
         Schema::create('work_content', function (Blueprint $table) {
             $table->increments('num');
-            $table->integer('logNum');
-            $table->string('contentType');
-            $table->string('content');
+            $table->integer('log_num')->unsigned();
+            $table->string('content_type', 20);
+            $table->string('content', 100);
             $table->timestamps();
+
+            $table->foreign('log_num')->references('num')->on('work_log');
         });
     }
 

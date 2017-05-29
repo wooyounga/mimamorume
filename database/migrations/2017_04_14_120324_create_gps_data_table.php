@@ -15,10 +15,12 @@ class CreateGpsDataTable extends Migration
     {
         Schema::create('gps_data', function (Blueprint $table) {
             $table->increments('num');
-            $table->string('latitude');
-            $table->string('longitude');
-            $table->integer('targetNum');
+            $table->string('latitude', 20);
+            $table->string('longitude', 20);
+            $table->integer('target_num')->unsigned();
             $table->timestamps();
+
+            $table->foreign('target_num')->references('num')->on('target');
         });
     }
 

@@ -15,11 +15,14 @@ class CreateWorkLogTable extends Migration
     {
         Schema::create('work_log', function (Blueprint $table) {
             $table->increments('num');
-            $table->string('sitterId');
-            $table->integer('targetNum');
-            $table->date('medicineSchedule');
-            $table->date('workDate');
+            $table->string('sitter_id', 20);
+            $table->integer('target_num')->unsigned();
+            $table->date('medicine_schedule')->nullable();
+            $table->date('work_date');
             $table->timestamps();
+
+            $table->foreign('sitter_id')->references('id')->on('user');
+            $table->foreign('target_num')->references('num')->on('target');
         });
     }
 

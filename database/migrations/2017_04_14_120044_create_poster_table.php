@@ -15,10 +15,12 @@ class CreatePosterTable extends Migration
     {
         Schema::create('poster', function (Blueprint $table) {
             $table->increments('num');
-            $table->integer('targetNum');
-            $table->string('snapshotName');
-            $table->string('content');
+            $table->integer('target_num')->unsigned();
+            $table->string('snapshot_name', 30);
+            $table->string('content', 100)->nullable();
             $table->timestamps();
+
+            $table->foreign('target_num')->references('num')->on('target');
         });
     }
 
