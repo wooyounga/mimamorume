@@ -11,11 +11,12 @@
 |
 */
 
+// 최초 접속했을 때의 메인페이지
 Route::get('/', 'WelcomeController@index');
 
+// 회원 로그인과 관련된 라우트를 생성하는 도우미 파사드
+// 로그인, 비밀번호 찾기, 비밀번호 리셋, 회원가입 컨트롤러 등
 Auth::routes();
-
-Route::auth();
 
 Route::get('/home', 'HomeController@index');
 

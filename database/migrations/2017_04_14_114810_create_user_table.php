@@ -23,10 +23,9 @@ class CreateUserTable extends Migration
             $table->string('email', 20)->unique();
             $table->string('telephone', 20)->unique();
             $table->string('cellphone', 20)->unique();
-            $table->string('adress_city', 10);
-            $table->string('adress_gu', 10);
-            $table->string('adress_dong', 10);
-            $table->string('adress_rest', 30);
+            $table->string('zip_code', 10);
+            $table->string('main_adress', 50);
+            $table->string('rest_adress', 50);
             $table->timestamps();
         });
     }
