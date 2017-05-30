@@ -4,35 +4,55 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.min.js"></script>
 
-<!-- roadzip.min.js -->
-<!-- roadzip.min.js 을 이용하려면 jquery ui 가 필요합니다. -->
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.min.css" />
-
-<!-- 구버전 IE 에 placeholder 지원 : https://code.google.com/p/jqueryplaceholder/ -->
-
-<!-- ssl 대응 됩니다. cdn 이용하듯 서버에 저장하지 말고 그대로 링크하세요.
-    예고 없이 스크립트가 변경될 수 있으며, 저장할 경우 호환되지 않을 수 있습니다.
-    이곳에 적혀 있는 이용방법대로만 이용해주세요. -->
-<link rel="stylesheet" href="//xenosi.de/load/roadzip/roadzip.css" />
-<script src="//xenosi.de/load/roadzip/roadzip.min.js"></script>
+<!-- 우편번호 찾기 -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <script>
-    $(function() {
-        $('input.XenoFindZip').each(XenoZipFinder); // input 에 검색스크립트 연결
-    });
+
+    function execDaumPostCode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullAddr = ''; // 최종 주소 변수
+                var extraAddr = ''; // 조합형 주소 변수
+
+                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    fullAddr = data.roadAddress;
+
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    fullAddr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+                if(data.userSelectedType === 'R'){
+                    //법정동명이 있을 경우 추가한다.
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있을 경우 추가한다.
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('postCode').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('roadAddress').value = fullAddr;
+
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById('detailAddress').focus();
+            }
+        }).open();
+
+    }
+
 </script>
-<!-- / roadzip.min.js -->
-
-<!-- roadzip.mobile.min.js -->
-<!-- roadzip.mobile.min.js 을 이용하려면 select2 가 필요합니다. http://ivaynberg.github.io/select2/ -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.min.css" />
-<script src="//cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.min.js"></script>
-
-<!-- ssl 대응 됩니다. cdn 이용하듯 서버에 저장하지 말고 그대로 링크하세요.
-    예고 없이 스크립트가 변경될 수 있으며, 저장할 경우 호환되지 않을 수 있습니다.
-    이곳에 적혀 있는 이용방법대로만 이용해주세요. -->
-<script src="//xenosi.de/load/roadzip/roadzip.mobile.min.js"></script>
 <script>
     $(document).ready(function(){
         var ceri_no = 1;
@@ -93,11 +113,14 @@
         });
         $(document).on("click", "span.close", function(){
             $(this).parent().remove();
+            ceri_no--;
         });
 
     });
 </script>
 @section('content')
+
+
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -244,45 +267,45 @@
                                     @endif
                                 </div>
                             </div>
+<<<<<<< HEAD
 
                             <div class="form-group{{ $errors->has('epost') ? ' has-error' : '' }}">
                                 <label for="epost" class="col-md-4 control-label">우편번호</label>
+=======
+                            <div class="form-group{{ $errors->has('postCode') ? ' has-error' : '' }}">
+                                <label for="postCode" class="col-md-4 control-label">우편번호</label>
+>>>>>>> 8316a3d7018b7a0f1495dd75b6a0de14178ab48b
                                 <div class="col-md-6">
-                                    <input id="epost" type="text" class="form-control" name="zip" readonly>
-                                    @if ($errors->has('epost'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('epost') }}</strong>
-                                    </span>
-                                    @endif
+                                    <input id="postCode" type="text" class="form-control" style="width: 130px; float: left;" name="postCode" readonly>
+                                    &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-default" value="우편번호 찾기" onClick="execDaumPostCode()"><br/>
                                 </div>
                             </div>
+<<<<<<< HEAD
 
                             <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
                                 <label for="address" class="col-md-4 control-label">주소</label>
+=======
+                            <div class="form-group{{ $errors->has('roadAddress') ? ' has-error' : '' }}">
+                                <label for="roadAddress" class="col-md-4 control-label">주소</label>
+>>>>>>> 8316a3d7018b7a0f1495dd75b6a0de14178ab48b
 
                                 <div class="col-md-6">
-                                    <input type="text" id="address" class="XenoFindZip form-control" name="ad" placeholder="엔터를 누르면 검색됩니다." data-z="zip" data-a="ad" data-r="adr">
-                                    <span class="XenoFindZipLabel"></span>
+                                    <input type="text" id="roadAddress" class="form-control" name="roadAddress" readonly>
 
-                                    @if ($errors->has('address'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('address') }}</strong>
-                                    </span>
-                                    @endif
                                 </div>
                             </div>
+<<<<<<< HEAD
 
                             <div class="form-group{{ $errors->has('restAddress') ? ' has-error' : '' }}">
                                 <label for="restAddress" class="col-md-4 control-label">나머지 주소</label>
+=======
+                            <div class="form-group{{ $errors->has('detailAddress') ? ' has-error' : '' }}">
+                                <label for="detailAddress" class="col-md-4 control-label">나머지 주소</label>
+>>>>>>> 8316a3d7018b7a0f1495dd75b6a0de14178ab48b
 
                                 <div class="col-md-6">
-                                    <input id="restAddress" type="text" class="form-control" name="adr" value="{{ old('restAddress') }}" required autofocus>
+                                    <input id="detailAddress" type="text" class="form-control" name="adr" value="{{ old('detailAddress') }}" required autofocus>
 
-                                    @if ($errors->has('restAddress'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('restAddress') }}</strong>
-                                    </span>
-                                    @endif
                                 </div>
                             </div>
 

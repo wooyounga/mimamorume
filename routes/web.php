@@ -30,10 +30,13 @@ Route::get('/monitoring', 'MonitoringController@index');
 
 Route::get('/snapshot', 'SnapShotController@index');
 
+Route::get('/individual','IndividualController@index');
+
 Route::get('/task', 'TaskController@index');
 
 Route::resource('match','MatchController');
 Route::resource('task','TaskController');
+Route::resource('individual','IndividualController');
 
 Route::get('/matchAddressDb', function(){
   return view('match.matchAddressDb');

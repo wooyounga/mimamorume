@@ -1,0 +1,10 @@
+.resume{
+    margin: auto;
+    text-align: center;
+}
+.individual{
+    margin:0;
+    width: 500px !important;
+    padding: 50px;
+    background-color: #666666;
+}
