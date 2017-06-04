@@ -24,12 +24,14 @@
                     <td>근무날짜</td>
                 </tr>
                 {{--@foreach($projects as $proj)--}}
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                @foreach($log as $l)
+                    <tr>
+                        <td><a href="{{route('logSpec.show',[$l->num])}}">{{$l->num}}</a></td>
+                        <td><a href="{{route('logSpec.show',[$l->num])}}">{{$l->content}}</a></td>
+                        <td>{{$l->sitterId}}</td>
+                        <td>{{$l->workDate}}</td>
+                    </tr>
+                @endforeach
                 {{--@endforeach--}}
                 <tr>
                     <td colspan="5"><a class="btn btn-default pull-right" href="{{route('task.create')}}">등록</a></td>

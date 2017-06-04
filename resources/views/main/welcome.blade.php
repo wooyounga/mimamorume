@@ -5,7 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>@yield('title','MIMAMORUME')</title>
+
         <script src="{{ URL::to('/') }}/js/jquery.film_roll.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment-with-locales.min.js"></script>
@@ -22,7 +23,24 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link href="{{ URL::to('/') }}/css/main_app.css" rel="stylesheet" type="text/css">
     <script>
-        $(document).ready(function(){
+        $(document).ready(function()
+        {
+            var slider_width = $('.main_menu').width();//get width automaticly
+            $('#main_btn').click(function() {
+
+                if($(this).css("margin-right") == slider_width+"px" && !$(this).is(':animated')) {
+                    $('.main_menu,#main_btn').animate({"margin-right": '-='+slider_width});
+                    //$('#main_menu_div').css('visibility','hidden');
+                    setTimeout(function(){
+                        $('#main_menu_div').css('visibility','hidden');
+                    },400);
+                } else {
+                    if(!$(this).is(':animated')){//perevent double click to double margin
+                        $('#main_menu_div').css('visibility','visible');
+                        $('.main_menu,#main_btn').animate({"margin-right": '+='+slider_width});
+                    }
+                }
+            });
             $(function() {
                 fr = new FilmRoll({
                     container: '#film_roll',
@@ -45,7 +63,6 @@
                         $('.top').fadeOut();
                     }
                 });
-
                 // scroll body to 0px on click
                 $('#back-top a').click(function () {
                     $('body,html').animate({
@@ -55,58 +72,8 @@
                 });
             })
         });
-        $(document).ready(function()
-        {
-            var slider_width = $('.main_menu').width();//get width automaticly
-            $('#main_btn').click(function() {
-
-                if($(this).css("margin-right") == slider_width+"px" && !$(this).is(':animated')) {
-                    $('.main_menu,#main_btn').animate({"margin-right": '-='+slider_width});
-                    //$('#main_menu_div').css('visibility','hidden');
-                    setTimeout(function(){
-                        $('#main_menu_div').css('visibility','hidden');
-                    },400);
-                } else {
-                    if(!$(this).is(':animated')){//perevent double click to double margin
-                        $('#main_menu_div').css('visibility','visible');
-                        $('.main_menu,#main_btn').animate({"margin-right": '+='+slider_width});
-
-                    }
-
-                }
-            });
-        });
 
     </script>
-{{--    <script>
-        var image_arr = new Array(
-            "{{ URL::to('/') }}/images/main/main_image_01.png",
-            "{{ URL::to('/') }}/images/main/main_image_02.png"
-        );
-
-        var image_num = 0;
-
-        showImage = function(img_btn){
-            if(image_arr.length==0){
-                return;
-            }
-            if(img_btn == 'left'){
-                image_num=image_num-1;
-                if(image_num<0){
-                    image_num=image_arr.length-1;
-                }
-            }else if(img_btn == 'right'){
-                image_num=image_num+1;
-                if(image_num>(image_arr.length-1)){
-                    image_num = 0;
-                }
-            }else{
-                image_num = 0;
-            }
-            var img_box = document.getElementById('img_box');
-            img_box.src = image_arr[image_num];
-        }
-    </script>--}}
     </head>
     <body>
     <div class="nav">
@@ -128,13 +95,6 @@
             @endif
         </div>
     </div>
-{{--    <div>
-        <a onclick="showImage('left')"><div class="main_img_btn main_img_btn_left"><font color="white"><b><</b></font></div></a>
-        <div class="main_image">
-            <img src="{{ URL::to('/') }}/images/main/main_image_01.png" id="img_box" style="width:100%;">
-        </div>
-        <a onclick="showImage('right')"><div class="main_img_btn main_img_btn_right" ><font color="white"><b>></b></font></div></a>
-    </div>--}}
     <div style="width: 100%; height: 100%; position: relative;">
 
         <div id="film_roll" style="width: 100%;  height: 100%; position: absolute">

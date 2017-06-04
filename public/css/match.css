@@ -23,12 +23,3 @@
     font-size: 18px;
     text-align: center;
 }
-
-.matchForm{
-    border-radius:30px;
-    background-color: #a4aaae;
-}
-
-.matchForm input {
-    width: 80%  ;
-}

@@ -17,6 +17,8 @@ Auth::routes();
 
 Route::auth();
 
+Route::get('/login', 'LoginController@index');
+
 Route::get('/home', 'HomeController@index');
 
 Route::get('/match', 'MatchController@index');
@@ -34,6 +36,7 @@ Route::get('/individual','IndividualController@index');
 Route::get('/task', 'TaskController@index');
 
 Route::resource('match','MatchController');
+Route::resource('logSpec','logSpecController');
 Route::resource('task','TaskController');
 Route::resource('individual','IndividualController');
 

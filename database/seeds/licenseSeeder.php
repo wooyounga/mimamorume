@@ -18,5 +18,12 @@ class licenseSeeder extends Seeder
             'licenseGrade' => '1급',
             'institution' => '응애학회'
         ]);
+        DB::table('license')->insert([
+            'licenseNum' => '2',
+            'sitterId' => 'user1',
+            'licenseKind' => '아재개그자격증',
+            'licenseGrade' => '1급',
+            'institution' => '아재학회'
+        ]);
     }
 }

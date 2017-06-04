@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">로그인</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ Route('/login') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('id') ? ' has-error' : '' }}">
@@ -23,7 +23,11 @@
                                 @endif
                             </div>
                         </div>
-
+                        @if(Session::has('idmessage'))
+                            <div class="alert alert-info">
+                                {{Session::get('idmessage')}}
+                            </div>
+                        @endif
                         <div class="form-group{{ $errors->has('pw') ? ' has-error' : '' }}">
                             <label for="pw" class="col-md-4 control-label">비밀번호</label>
 
@@ -37,7 +41,11 @@
                                 @endif
                             </div>
                         </div>
-
+                        @if(Session::has('pwmessage'))
+                            <div class="alert alert-info">
+                                {{Session::get('pwmessage')}}
+                            </div>
+                        @endif
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">

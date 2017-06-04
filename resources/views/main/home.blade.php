@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    MIMAMORUME
+@endsection
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <!-- Latest compiled and minified CSS -->

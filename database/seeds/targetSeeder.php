@@ -14,7 +14,7 @@ class targetSeeder extends Seeder
         DB::table('target')->insert([
             'num'=>null,
             'name'=>'감나무',
-            'profileImage'=>'/image/profile/1.jpg',
+            'profileImage'=>'/images/profileImage/1.jpg',
             'age'=>'70',
             'gender'=>'남',
             'telephone'=>'0535555555',
@@ -26,7 +26,7 @@ class targetSeeder extends Seeder
             'latitude'=>'35',
             'longitude'=>'35',
             'disabilityMain'=>'없음',
-            'disabilityShb'=>'없음',
+            'disabilitySub'=>'없음',
             'comment'=>'응애',
         ]);
     }

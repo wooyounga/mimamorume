@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    구인구직
+@endsection
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <link rel="stylesheet" href="{{URL::to('/')}}/css/match.css">
@@ -11,7 +14,45 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="{{URL::to('/')}}/js/match.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 @section('content')
+<script>
+    function execDaumPostCode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullAddr = ''; // 최종 주소 변수
+                var extraAddr = ''; // 조합형 주소 변수
+
+                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    fullAddr = data.roadAddress;
+
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    fullAddr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+                if(data.userSelectedType === 'R'){
+                    //법정동명이 있을 경우 추가한다.
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있을 경우 추가한다.
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                }
+                document.getElementById('roadAddress').value = fullAddr;
+            }
+        }).open();
+    }
+</script>
 <div class="body">
     <div>
         <a href="{{URL::to('/home')}}">Home</a> > <a href="{{URL::to('/match')}}">매칭</a> > <a href="{{URL::to('/match')}}"><b>구인</b></a>
@@ -19,24 +60,24 @@
     <div class="test1">
     </div>
     <div class="wrap">
-                <form>
-                    <div class="navbar" style="border: 2px solid skyblue">
-                        <div class="navbar-inner">
-                    <ul id="address_si" class=" nav">
-                      <!-- 매칭 지역명을 Append 시킬 공간-->
-                    </ul>
-                 </div>
+    <form>
+        {{--<div class="navbar" style="border: 2px solid skyblue">
+            <div class="navbar-inner">
+                <ul id="address_si" class=" nav">
+                    <!-- 매칭 지역명을 Append 시킬 공간-->
+                </ul>
             </div>
-            <table class="search table">
-                <tr>
+        </div>--}}
+        <table class="search table">
+               <tr>
                     <td>구분</td>
                     <td>성별</td>
                     <td>나이</td>
                     <td>장애</td>
                     <td>근무기간</td>
                     <td>근무시간</td>
-                </tr>
-                <tr>
+               </tr>
+               <tr>
                     <td>
                         <span><label for="care">보호사</label><input type="radio" id="care" name="subject" value="보호사"></span>
                         <span><label for="recipient">대상자</label><input type="radio" id="recipient" name="subject" value="대상자"></span>
@@ -84,6 +125,14 @@
                         <span><label for="6less">6개월 미만</label><input type="checkbox" id="6less" name="period" value="6개월미만"></span>
                         <span><label for="12less">1년 미만</label><input type="checkbox" id="12less" name="period" value="1년미만"></span>
                         <span><label for="12more">1년 이상</label><input type="checkbox" id="12more" name="period" value="1년이상"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        <div class="form-inline pull-right">
+                            <input type="text" id="roadAddress" class="form-control" name="roadAddress" value="" readonly>
+                            <input type="button" class="btn btn-default" value="동 검색" onClick="execDaumPostCode()"><br/>
+                        </div>
                     </td>
                 </tr>
                 <tr>

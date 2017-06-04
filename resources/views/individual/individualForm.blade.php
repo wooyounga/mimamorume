@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    개인정보 수정
+@endsection
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
@@ -11,58 +14,109 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 @section('content')
+    <!-- 우편번호 찾기 -->
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <script>
-        $('.certified_btn').click(function(){
-            ceri = '<div>';
-            ceri+= '<span class="close" style="right: 16%; position: absolute;">X</span>';
-            ceri+= '<div class="form-group">';
-            ceri+= '<label for="certified_'+ceri_no+'" class="col-md-4 control-label">자격증명</label>';
-            ceri+= '<div class="col-md-6">';
-            ceri+= '<input id="certified" type="text" class="form-control" name="certified_'+ceri_no+'" value="" required autofocus>';
-            ceri+= '@if ($errors->has("certified_'+ceri_no+'"))';
-            ceri+= '<span class="help-block">';
-            ceri+= '<strong>{{ $errors->first("certified_'+ceri_no+'") }}</strong>';
-            ceri+= '</span>';
-            ceri+= '@endif';
-            ceri+= '</div>';
-            ceri+= '</div>';
-            ceri+= '<div class="form-group">';
-            ceri+= '<label for="certified_no_'+ceri_no+'" class="col-md-4 control-label">자격증 번호</label>';
-            ceri+= '<div class="col-md-6">';
-            ceri+= '<input id="certified_no_'+ceri_no+'" type="text" class="form-control" name="certified_no_'+ceri_no+'" value="" required autofocus>';
-            ceri+= '@if ($errors->has("certified_no_'+ceri_no+'"))';
-            ceri+= '<span class="help-block">';
-            ceri+= '<strong>{{ $errors->first("certified_no_'+ceri_no+'") }}</strong>';
-            ceri+= '</span>';
-            ceri+= '@endif';
-            ceri+= '</div>';
+        function execDaumPostCode() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-            ceri+= '</div>';
-            ceri+= '</div>';
+                    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                    var fullAddr = ''; // 최종 주소 변수
+                    var extraAddr = ''; // 조합형 주소 변수
 
-            $('.cer').append(ceri);
+                    // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                    if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                        fullAddr = data.roadAddress;
 
-            ceri_no++;
-        });
-        $(document).on("click", "span.close", function(){
-            $(this).parent().remove();
+                    } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                        fullAddr = data.jibunAddress;
+                    }
+
+                    // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+                    if(data.userSelectedType === 'R'){
+                        //법정동명이 있을 경우 추가한다.
+                        if(data.bname !== ''){
+                            extraAddr += data.bname;
+                        }
+                        // 건물명이 있을 경우 추가한다.
+                        if(data.buildingName !== ''){
+                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        }
+                        // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                        fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                    }
+
+                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    document.getElementById('postCode').value = data.zonecode; //5자리 새우편번호 사용
+                    document.getElementById('roadAddress').value = fullAddr;
+
+                    // 커서를 상세주소 필드로 이동한다.
+                    document.getElementById('detailAddress').focus();
+                }
+            }).open();
+        }
+    </script>
+    <script>
+        $(function(){
+
+            <?php $cer_no = 0; ?>
+            var ceri = '';
+
+            $('.certified_check').on('change',function(){
+                if($('input[type=radio][name=certified_check]:checked').val() == 'yes'){//자격증이 있을 경우
+                    $('.cer').css('display','');//자격증 입력폼을 보여줌
+                    $('.certified_btn').css('display','');
+                } else {
+                    $('.cer').css('display','none');//아닐 경우 자격증 입력폼을 숨김
+                    $('.certified_btn').css('display','none');
+                }
+            });
+
+            $('.certified_btn').click(function(){//자격증 추가 버튼을 누를 시 입력폼 추가
+                ceri = '<div>';
+                ceri+= '<span class="close" style="right: 15%; position: absolute;">X</span>';
+                ceri+= '<div class="form-group">';
+                ceri+= '<label for="certified_<?= $cer_no?>" class="col-md-4 control-label">자격증명</label>';
+                ceri+= '<div class="col-md-6">';
+                ceri+= '<input id="certified" type="text" class="form-control" name="certified_<?= $cer_no?>" value="" required autofocus>';
+                ceri+= '</div>';
+                ceri+= '</div>';
+                ceri+= '<div class="form-group">';
+                ceri+= '<label for="certified_no_<?= $cer_no?>" class="col-md-4 control-label">자격증 등급</label>';
+                ceri+= '<div class="col-md-6">';
+                ceri+= '<input id="certified_no_<?= $cer_no?>" type="text" class="form-control" name="certified_no_<?= $cer_no?>" value="" required autofocus>';
+                ceri+= '</div>';
+                ceri+= '</div>';
+                ceri+= '</div>';
+
+                $('.cer').append(ceri);
+
+                <?php $cer_no++?>
+            });
+            $(document).on("click", "span.close", function(){//x버튼을 누를시 삭제
+                $(this).parent().remove();
+                <?php $cer_no--?>
+            });
         });
     </script>
     <div class="body">
-        <form class="form-horizontal" name="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+        <form class="form-horizontal" name="form-horizontal" role="form" method="POST" action="{{ route('individual.update',[$user[0]->id]) }}">
             {{ csrf_field() }}
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                 <label for="name" class="col-md-4 control-label">이름</label>
 
                 <div class="col-md-6">
-                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                    <input id="name" type="text" class="form-control" name="name" value="{{ $user[0]->name }}" required autofocus>
                 </div>
             </div>
             <div class="form-group{{ $errors->has('id') ? ' has-error' : '' }}">
                 <label for="id" class="col-md-4 control-label">아이디</label>
 
                 <div class="col-md-6">
-                    <input id="id" type="text" class="form-control" name="id" value="{{ old('id') }}" required autofocus>
+                    <input id="id" type="text" class="form-control" name="id" value="{{ $user[0]->id }}" readonly>
                 </div>
             </div>
 
@@ -84,94 +138,124 @@
                 <label for="age" class="col-md-4 control-label">나이</label>
 
                 <div class="col-md-6">
-                    <input id="age" type="text" class="form-control" name="age" value="{{ old('age') }}" required>
+                    <input id="age" type="text" class="form-control" name="age" value="{{ $user[0]->age }}" required autofocus>
                 </div>
             </div>
+            @if($user[0]->gender == '남')
+                <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
+                    <label for="gender" class="col-md-4 control-label">성별</label>
 
-            <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-                <label for="gender" class="col-md-4 control-label">성별</label>
-
-                <div class="col-md-6">
-                    <label for="man">남</label><input id="man" type="radio" name="gender" required autofocus>
-                    <label for="woman">여</label><input id="woman" type="radio" name="gender" required autofocus>
+                    <div class="col-md-6">
+                        <label for="man">남</label><input id="man" type="radio" name="gender" value="남" checked>
+                        <label for="woman">여</label><input id="woman" type="radio" name="gender" value="여">
+                    </div>
                 </div>
-            </div>
+            @else
+                <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
+                    <label for="gender" class="col-md-4 control-label">성별</label>
+
+                    <div class="col-md-6">
+                        <label for="man">남</label><input id="man" type="radio" name="gender" value="남">
+                        <label for="woman">여</label><input id="woman" type="radio" name="gender" value="여" checked>
+                    </div>
+                </div>
+            @endif
             <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                 <label for="phone" class="col-md-4 control-label">전화번호</label>
 
                 <div class="col-md-6">
-                    <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" required autofocus>
+                    <input id="phone" type="text" class="form-control" name="phone" value="{{ $user[0]->telephone }}" required autofocus>
                 </div>
             </div>
             <div class="form-group{{ $errors->has('cellphone') ? ' has-error' : '' }}">
                 <label for="cellphone" class="col-md-4 control-label">휴대폰번호</label>
 
                 <div class="col-md-6">
-                    <input id="cellphone" type="text" class="form-control" name="cellphone" value="{{ old('cellphone') }}" required autofocus>
+                    <input id="cellphone" type="text" class="form-control" name="cellphone" value="{{ $user[0]->cellphone }}" required autofocus>
                 </div>
             </div>
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                 <label for="email" class="col-md-4 control-label">이메일</label>
 
                 <div class="col-md-6">
-                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                    <input id="email" type="email" class="form-control" name="email" value="{{ $user[0]->email }}" required>
                 </div>
             </div>
-            <div class="form-group{{ $errors->has('epost') ? ' has-error' : '' }}">
-                <label for="epost" class="col-md-4 control-label">우편번호</label>
+            <div class="form-group{{ $errors->has('postCode') ? ' has-error' : '' }}">
+                <label for="postCode" class="col-md-4 control-label">우편번호</label>
                 <div class="col-md-6">
-                    <input id="epost" type="text" class="form-control" name="zip" readonly>
+                    <input id="postCode" type="text" class="form-control" style="width: 130px; float: left;" name="postCode" readonly>
+                    &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-default" value="우편번호 찾기" onClick="execDaumPostCode()"><br/>
                 </div>
             </div>
-            <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                <label for="address" class="col-md-4 control-label">주소</label>
-
-                <div class="col-md-6">
-                    <input type="text" id="address" class="XenoFindZip form-control" name="ad" placeholder="엔터를 누르면 검색됩니다." data-z="zip" data-a="ad" data-r="adr">
-                    <span class="XenoFindZipLabel"></span>
-                </div>
-            </div>
-            <div class="form-group{{ $errors->has('restAddress') ? ' has-error' : '' }}">
-                <label for="restAddress" class="col-md-4 control-label">나머지 주소</label>
+            <div class="form-group{{ $errors->has('roadAddress') ? ' has-error' : '' }}">
+                <label for="roadAddress" class="col-md-4 control-label">주소</label>
 
                 <div class="col-md-6">
-                    <input id="restAddress" type="text" class="form-control" name="adr" value="{{ old('restAddress') }}" required autofocus>
+                    <input type="text" id="roadAddress" class="form-control" name="roadAddress" value="{{$user[0]->adressCity}} {{$user[0]->adressGu}} {{$user[0]->adressDong}}" readonly>
+
                 </div>
             </div>
-            <div class="care_div" style="display: none;">
-                <div class="form-group{{ $errors->has('certified') ? ' has-error' : '' }}">
-                    <label for="certified_yes" class="col-md-4 control-label">자격증 여부</label>
+            <div class="form-group{{ $errors->has('detailAddress') ? ' has-error' : '' }}">
+                <label for="detailAddress" class="col-md-4 control-label">나머지 주소</label>
 
-                    <div class="col-md-6">
-                        <label for="certified_yes">있음</label><input id="certified_yes" type="radio" class="certified_check" name="certified_check" value="yes" required autofocus>
-                        <label for="certified_no">없음</label><input id="certified_no" type="radio" class="certified_check" name="certified_check" value="no" required autofocus>
-                    </div>
+                <div class="col-md-6">
+                    <input id="detailAddress" type="text" class="form-control" name="adr" value="{{ $user[0]->adressRest }}" required autofocus>
+
                 </div>
-                <div class="form-group{{ $errors->has('belong') ? ' has-error' : '' }}">
-                    <label for="belong" class="col-md-4 control-label">소속</label>
-
-                    <div class="col-md-6">
-                        <input id="belong" type="text" class="form-control" name="belong" value="{{ old('belong') }}" required autofocus>
-                    </div>
-                </div>
-                <div class="cer" style="display: none;">
-                    <div class="form-group">
-                        <label for="certified_0" class="col-md-4 control-label">자격증명</label>
-
+            </div>
+            @if($user[0]->userType=='보호사')
+            <div class="care_div">
+                @if($etc[0]->lisence == 'yes')
+                    <div class="form-group{{ $errors->has('certified') ? ' has-error' : '' }}">
+                        <label for="certified_yes" class="col-md-4 control-label">자격증 여부</label>
                         <div class="col-md-6">
-                            <input id="certified" type="text" class="form-control" name="certified_0" value="" required autofocus>
+                            <label for="certified_yes">있음</label><input id="certified_yes" type="radio" class="certified_check" name="certified_check" value="yes" checked>
+                            <label for="certified_no">없음</label><input id="certified_no" type="radio" class="certified_check" name="certified_check" value="no" >
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="certified_no_0" class="col-md-4 control-label">자격증 번호</label>
-
+                    <div class="form-group{{ $errors->has('belong') ? ' has-error' : '' }}">
+                        <label for="belong" class="col-md-4 control-label">소속</label>
                         <div class="col-md-6">
-                            <input id="certified_no_0" type="text" class="form-control" name="certified_no_0" value="" required autofocus>
+                            <input id="belong" type="text" class="form-control" name="belong" value="{{ $etc[0]->center }}" required autofocus>
                         </div>
                     </div>
-                </div>
+                    <div class="cer">
+                        @foreach($etc as $e)
+                            <div class="form-group">
+                                <label for="certified_<?= $cer_no?>" class="col-md-4 control-label">자격증명</label>
+                                <div class="col-md-6">
+                                    <input id="certified" type="text" class="form-control" name="certified_no_<?= $cer_no?>" value="{{$e->licenseKind}}" required autofocus>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="certified_no_<?= $cer_no?>" class="col-md-4 control-label">자격증 등급</label>
+                                <div class="col-md-6">
+                                    <input id="certified_no_<?= $cer_no?>" type="text" class="form-control" name="certified_no_<?= $cer_no?>" value="{{$e->licenseGrade}}" required autofocus>
+                                </div>
+                            </div>
+                            <?php $cer_no++;?>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="form-group{{ $erSrors->has('certified') ? ' has-error' : '' }}">
+                        <label for="certified_yes" class="col-md-4 control-label">자격증 여부</label>
+                        <div class="col-md-6">
+                            <label for="certified_yes">있음</label><input id="certified_yes" type="radio" class="certified_check" name="certified_check" value="yes">
+                            <label for="certified_no">없음</label><input id="certified_no" type="radio" class="certified_check" name="certified_check" value="no" checked>
+                        </div>
+                    </div>
+                    <div class="form-group{{ $errors->has('belong') ? ' has-error' : '' }}">
+                        <label for="belong" class="col-md-4 control-label">소속</label>
+                        <div class="col-md-6">
+                            <input id="belong" type="text" class="form-control" name="belong" value="{{ $etc[0]->center }}" required autofocus>
+                        </div>
+                    </div>
+                @endif
             </div>
-            <div class="nok_div" style="display: none;">
+
+            @else
+            <div class="nok_div">
                 <br/><hr/><br/>
                 <h4 style="text-align: center;">대상자 정보</h4><br/>
                 <div class="form-group{{ $errors->has('no') ? ' has-error' : '' }}">
@@ -248,7 +332,6 @@
                 </div>
                 <div class="form-group{{ $errors->has('disability') ? ' has-error' : '' }}">
                     <label for="disability" class="col-md-4 control-label">장애 종류(주)</label>
-
                     <div class="col-md-6">
                         <select id="disability" class="form-control" name="disability" required autofocus>
                             <option value="장애없음">장애없음</option>
@@ -278,14 +361,16 @@
                     </div>
                 </div>
             </div>
-
+            @endif
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
-                    <a class="btn btn-primary certified_btn" style="display: none;">
-                        자격증 추가
-                    </a>
+                    @if($user[0]->userType == '보호사')
+                        <a class="btn btn-primary certified_btn">
+                            자격증 추가
+                        </a>
+                    @endif
                     <button type="submit" class="btn btn-primary">
-                        회원가입
+                        수정
                     </button>
                 </div>
             </div>

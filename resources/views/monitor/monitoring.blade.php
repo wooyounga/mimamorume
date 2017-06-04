@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    MIMAMORUME
+@endsection
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <link rel="stylesheet" href="{{URL::to('/')}}/css/monitoring_app.css">
@@ -14,10 +17,10 @@
 
     function hover(element, url) {
         /*var id = document.getElementById()*/
-        element.setAttribute('src','{{ URL::to('/') }}/images/monitor'+url+'_mouseover.png');
+        element.setAttribute('src','{{ URL::to('/') }}/images/monitor'+url+'_mouseover.png');//이미지 주소 변경
     }
     function unhover(element, url) {
-        element.setAttribute('src', '{{ URL::to('/') }}/images/monitor'+url+'.png');
+        element.setAttribute('src', '{{ URL::to('/') }}/images/monitor'+url+'.png'); //이미지 주소 변경
     }
 </script>
 @section('content')

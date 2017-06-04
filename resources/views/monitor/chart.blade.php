@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    건강차트
+@endsection
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <link rel="stylesheet" href="{{URL::to('/')}}/css/monitoring_app.css">
