@@ -100,11 +100,11 @@
         var ceri_no = 1;
         var ceri = '';
 
-        $('#information').change(function(){
-            if ($('#information').val()=="care") {
+        $('#user_type').change(function(){
+            if ($('#user_type').val()=="care") {
                 $(".nok_div").hide();
                 $(".care_div").show();
-            } else if ($('#information').val()=="nok") {
+            } else if ($('#user_type').val()=="nok") {
                 $(".care_div").hide();
                 $(".nok_div").show();
             } else {
@@ -172,35 +172,23 @@
                         <form class="form-horizontal" name="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                             {{ csrf_field() }}
 
-                            <div class="form-group{{ $errors->has('information') ? ' has-error' : '' }}">
-                                <label for="information" class="col-md-4 control-label">회원 구분</label>
+                            <div class="form-group{{ $errors->has('user_type') ? ' has-error' : '' }}">
+                                <label for="user_type" class="col-md-4 control-label">회원 구분</label>
 
                                 <div class="col-md-6">
-                                    <select id="information" class="form-control" name="information">
+                                    <select id="user_type" class="form-control" name="user_type">
                                         <option value="">선택</option>
-                                        <option value="care">보호사</option>
+                                        <option value="care">요양보호사</option>
                                         <option value="nok">보호자</option>
                                     </select>
-                                    @if ($errors->has('information'))
+                                    @if ($errors->has('user_type'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('information') }}</strong>
+                                        <strong>{{ $errors->first('user_type') }}</strong>
                                     </span>
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">이름</label>
 
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                    @if ($errors->has('name'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
                             <div class="form-group{{ $errors->has('id') ? ' has-error' : '' }}">
                                 <label for="id" class="col-md-4 control-label">아이디</label>
 
@@ -228,6 +216,7 @@
                                     @endif
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label for="pw-confirm" class="col-md-4 control-label">비밀번호 확인</label>
 
@@ -235,6 +224,21 @@
                                     <input id="pw-confirm" type="password" class="form-control" name="pw_confirmation" required>
                                 </div>
                             </div>
+
+                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                <label for="name" class="col-md-4 control-label">이름</label>
+
+                                <div class="col-md-6">
+                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+
+                                    @if ($errors->has('name'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
                             <div class="form-group{{ $errors->has('age') ? ' has-error' : '' }}">
                                 <label for="age" class="col-md-4 control-label">나이</label>
 
@@ -263,19 +267,21 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-                                <label for="phone" class="col-md-4 control-label">전화번호</label>
+
+                            <div class="form-group{{ $errors->has('telephone') ? ' has-error' : '' }}">
+                                <label for="telephone" class="col-md-4 control-label">전화번호</label>
 
                                 <div class="col-md-6">
-                                    <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" required autofocus>
+                                    <input id="telephone" type="text" class="form-control" name="phone" value="{{ old('telephone') }}" required autofocus>
 
-                                    @if ($errors->has('phone'))
+                                    @if ($errors->has('telephone'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('phone') }}</strong>
+                                        <strong>{{ $errors->first('telephone') }}</strong>
                                     </span>
                                     @endif
                                 </div>
                             </div>
+
                             <div class="form-group{{ $errors->has('cellphone') ? ' has-error' : '' }}">
                                 <label for="cellphone" class="col-md-4 control-label">휴대폰번호</label>
 
@@ -289,6 +295,7 @@
                                     @endif
                                 </div>
                             </div>
+
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label for="email" class="col-md-4 control-label">이메일</label>
 
@@ -302,6 +309,9 @@
                                     @endif
                                 </div>
                             </div>
+
+                            <div class="form-group{{ $errors->has('epost') ? ' has-error' : '' }}">
+                                <label for="epost" class="col-md-4 control-label">우편번호</label>
                             <div class="form-group{{ $errors->has('postCode') ? ' has-error' : '' }}">
                                 <label for="postCode" class="col-md-4 control-label">우편번호</label>
                                 <div class="col-md-6">
@@ -309,6 +319,9 @@
                                     &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-default" value="우편번호 찾기" onClick="execDaumPostCode()"><br/>
                                 </div>
                             </div>
+
+                            <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                                <label for="address" class="col-md-4 control-label">주소</label>
                             <div class="form-group{{ $errors->has('roadAddress') ? ' has-error' : '' }}">
                                 <label for="roadAddress" class="col-md-4 control-label">주소</label>
 
@@ -317,6 +330,9 @@
 
                                 </div>
                             </div>
+
+                            <div class="form-group{{ $errors->has('restAddress') ? ' has-error' : '' }}">
+                                <label for="restAddress" class="col-md-4 control-label">나머지 주소</label>
                             <div class="form-group{{ $errors->has('detailAddress') ? ' has-error' : '' }}">
                                 <label for="detailAddress" class="col-md-4 control-label">나머지 주소</label>
 
@@ -325,6 +341,7 @@
 
                                 </div>
                             </div>
+
                             <div class="care_div" style="display: none;">
                                 <div class="form-group{{ $errors->has('certified') ? ' has-error' : '' }}">
                                     <label for="certified_yes" class="col-md-4 control-label">자격증 여부</label>

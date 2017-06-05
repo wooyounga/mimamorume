@@ -4,9 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title>@yield('title','MIMAMORUME')</title>
-
         <script src="{{ URL::to('/') }}/js/jquery.film_roll.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment-with-locales.min.js"></script>
@@ -83,16 +81,16 @@
                     <img src="{{ URL::to('/') }}/images/main_logo.png" width="80" height="30">
                 </a>
             </div>
-            @if (Route::has('login'))
+            {{--@if (Route::has('login'))--}}
                 <div class="top-right links">
-                    @if (Auth::check())
+                    @if (Session::get('id'))
                         <a href="{{ url('/home') }}" class="btn btn-warning" role="button">Home</a>
                     @else
                         <a href="{{ url('/login') }}" class="btn btn-warning" role="button">Login</a>
                         <a href="{{ url('/register') }}" class="btn btn-warning" role="button">Join</a>
                     @endif
                 </div>
-            @endif
+            {{--@endif--}}
         </div>
     </div>
     <div style="width: 100%; height: 100%; position: relative;">

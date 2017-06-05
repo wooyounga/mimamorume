@@ -43,73 +43,75 @@
                 <a class="logo pull-left" href="{{ url('/') }}">
                     <img src="{{ URL::to('/') }}/images/main_logo.png" width="80" height="30">
                 </a>
-                    @if (Auth::guest())
+                    @if (Session::get('id'))
+                        <div class="zeta-wrap">
+                            <ul class="zeta-menu center-block">
+                                <li>
+                                    <a href="{{ url('/match') }}"><b>Contract</b></a>
+                                </li>
+                                <li>
+                                    <a href="/monitoring"><b>Monitoring</b></a>
+                                    <ul>
+                                        <li><a href="/snapshot">Snapshot</a></li>
+                                        <li><a href="/chart">Chart</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="/task"><b>Task</b></a>
+                                    <ul>
+                                        <li><a href="/task">Shift</a></li>
+                                        <li><a href="/logSpec">LogSpec</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pull-right">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        {{ Session::get('id') }} <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="{{ url('/individual') }}">
+                                                내 정보
+                                            </a>
+                                            <a href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                                                 document.getElementById('logout-form').submit();">
+                                                로그아웃
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </li>{{--
+                                            <li>
+                                                <a href="{{ route('logout') }}"
+                                                   onclick="event.preventDefault();
+                                                                 document.getElementById('logout-form').submit();">
+                                                    로그아웃
+                                                </a>
+                                            </li>--}}
+
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown pull-right">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        <img src="{{ URL::to('/') }}/images/notice_list.png" width="15" height="20">
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    @else
                         <div class="pull-right links" style="margin-top: 8px;">
                             <a href="{{ url('/login') }}" class="btn btn-warning" role="button">Login</a>
                             <a href="{{ url('/register') }}" class="btn btn-warning" role="button">Join</a>
                         </div>
-                    @else
-                        <div class="zeta-wrap">
-                        <ul class="zeta-menu center-block">
-                            <li>
-                                <a href="{{ url('/match') }}"><b>Contract</b></a>
-                            </li>
-                            <li>
-                                <a href="/monitoring"><b>Monitoring</b></a>
-                                <ul>
-                                    <li><a href="/snapshot">Snapshot</a></li>
-                                    <li><a href="/chart">Chart</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="/task"><b>Task</b></a>
-                                <ul>
-                                    <li><a href="/task">Shift</a></li>
-                                    <li><a href="/logSpec">LogSpec</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="pull-right">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                            로그아웃
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>{{--
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                            로그아웃
-                                        </a>
-                                    </li>--}}
-
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown pull-right">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <img src="{{ URL::to('/') }}/images/notice_list.png" width="15" height="20">
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
                     @endif
             </div>
     </nav>
