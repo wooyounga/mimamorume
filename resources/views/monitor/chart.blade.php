@@ -19,7 +19,7 @@
             <a href="{{URL::to('/home')}}">Home</a> > <a href="{{URL::to('/monitoring')}}">모니터링</a> > <a href="{{URL::to('/chart')}}"><b>통계</b></a>
         </div>
         <div class="wrap">
-
+            {{$pulseData}}
         </div>
     </div>
 @endsection

@@ -8,6 +8,7 @@ class ChartController extends Controller
 {
     public function __construct()
     {
+
         $this->middleware('web');
     }
 
@@ -16,8 +17,10 @@ class ChartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('monitor.chart');
+
+    public function index(Request $request) {
+        $pulseData = $request->input('sensorVal');
+
+        return view('monitor.chart')->with('pulseData', $pulseData);
     }
 }
