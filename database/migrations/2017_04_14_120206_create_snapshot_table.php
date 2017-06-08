@@ -19,11 +19,9 @@ class CreateSnapshotTable extends Migration
             $table->string('snapshot_name', 30);
             $table->string('upload_name', 30);
             $table->integer('camera_num')->unsigned();
-            $table->integer('target_num')->unsigned();
             $table->timestamps();
 
             $table->foreign('camera_num')->references('num')->on('camera');
-            $table->foreign('target_num')->references('num')->on('target');
         });
     }
 

@@ -15,11 +15,14 @@ class CreateMedicineScheduleTable extends Migration
      {
          Schema::create('medicine_schedule', function (Blueprint $table) {
              $table->increments('num');
+             $table->integer('log_num')->unsigned();
              $table->string('medicine_name', 20);
              $table->date('start_date');
              $table->date('end_date');
              $table->date('time');
              $table->timestamps();
+
+             $table->foreign('log_num')->references('num')->on('work_log');
          });
      }
 
