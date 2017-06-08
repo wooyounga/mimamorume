@@ -17,3 +17,9 @@ a:visited{
     text-decoration: none;
     color: black;
 }
+.logSpec_content{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 200px;
+}

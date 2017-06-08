@@ -19,7 +19,7 @@ class CreateResumeTable extends Migration
             $table->string('lisence', 20);
             $table->string('center', 20);
             $table->string('career', 50)->nullable();
-            $table->string('profile_image', 20);
+            $table->string('profile_image', 70);
             $table->timestamps();
 
             $table->foreign('sitter_id')->references('id')->on('user');

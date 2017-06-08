@@ -184,7 +184,7 @@
             <div class="form-group{{ $errors->has('postCode') ? ' has-error' : '' }}">
                 <label for="postCode" class="col-md-4 control-label">우편번호</label>
                 <div class="col-md-6">
-                    <input id="postCode" type="text" class="form-control" style="width: 130px; float: left;" name="postCode" readonly>
+                    <input id="postCode" type="text" class="form-control" value="{{$user[0]->zip_code}}" style="width: 130px; float: left;" name="postCode" readonly>
                     &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-default" value="우편번호 찾기" onClick="execDaumPostCode()"><br/>
                 </div>
             </div>
@@ -192,7 +192,7 @@
                 <label for="roadAddress" class="col-md-4 control-label">주소</label>
 
                 <div class="col-md-6">
-                    <input type="text" id="roadAddress" class="form-control" name="roadAddress" value="{{$user[0]->adressCity}} {{$user[0]->adressGu}} {{$user[0]->adressDong}}" readonly>
+                    <input type="text" id="roadAddress" class="form-control" name="roadAddress" value="{{$user[0]->main_address}}" readonly>
 
                 </div>
             </div>
@@ -200,11 +200,11 @@
                 <label for="detailAddress" class="col-md-4 control-label">나머지 주소</label>
 
                 <div class="col-md-6">
-                    <input id="detailAddress" type="text" class="form-control" name="adr" value="{{ $user[0]->adressRest }}" required autofocus>
+                    <input id="detailAddress" type="text" class="form-control" name="adr" value="{{ $user[0]->rest_address }}" required autofocus>
 
                 </div>
             </div>
-            @if($user[0]->userType=='보호사')
+            @if($user[0]->user_type=='보호사')
             <div class="care_div">
                 @if($etc[0]->lisence == 'yes')
                     <div class="form-group{{ $errors->has('certified') ? ' has-error' : '' }}">
@@ -225,13 +225,13 @@
                             <div class="form-group">
                                 <label for="certified_<?= $cer_no?>" class="col-md-4 control-label">자격증명</label>
                                 <div class="col-md-6">
-                                    <input id="certified" type="text" class="form-control" name="certified_no_<?= $cer_no?>" value="{{$e->licenseKind}}" required autofocus>
+                                    <input id="certified" type="text" class="form-control" name="certified_no_<?= $cer_no?>" value="{{$e->license_kind}}" required autofocus>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="certified_no_<?= $cer_no?>" class="col-md-4 control-label">자격증 등급</label>
                                 <div class="col-md-6">
-                                    <input id="certified_no_<?= $cer_no?>" type="text" class="form-control" name="certified_no_<?= $cer_no?>" value="{{$e->licenseGrade}}" required autofocus>
+                                    <input id="certified_no_<?= $cer_no?>" type="text" class="form-control" name="certified_no_<?= $cer_no?>" value="{{$e->license_grade}}" required autofocus>
                                 </div>
                             </div>
                             <?php $cer_no++;?>
@@ -364,7 +364,7 @@
             @endif
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
-                    @if($user[0]->userType == '보호사')
+                    @if($user[0]->user_type == '보호사')
                         <a class="btn btn-primary certified_btn">
                             자격증 추가
                         </a>

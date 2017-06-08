@@ -18,10 +18,13 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return view('task.task');
+        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
+
+        return view('task.task')->with('notice',$notice);
     }
 
     public function create(){
-        return view('task.logSpecForm');
+        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
+        return view('task.logSpecForm')->with('notice',$notice);
     }
 }

@@ -23,3 +23,11 @@
     font-size: 18px;
     text-align: center;
 }
+table a:link{
+    color: black !important;
+    text-decoration: none !important;
+}
+table a:visited{
+    color: black !important;
+    text-decoration: none !important;
+}

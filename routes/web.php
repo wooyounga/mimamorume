@@ -26,6 +26,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/match', 'MatchController@index');
 
+Route::resource('/matching', 'MatchController@matching');
+
 Route::get('/chart', 'ChartController@index');
 
 Route::get('/logSpec', 'LogSpecController@index');

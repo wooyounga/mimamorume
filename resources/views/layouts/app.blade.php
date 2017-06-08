@@ -84,15 +84,7 @@
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 {{ csrf_field() }}
                                             </form>
-                                        </li>{{--
-                                            <li>
-                                                <a href="{{ route('logout') }}"
-                                                   onclick="event.preventDefault();
-                                                                 document.getElementById('logout-form').submit();">
-                                                    로그아웃
-                                                </a>
-                                            </li>--}}
-
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -101,8 +93,17 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                         <img src="{{ URL::to('/') }}/images/notice_list.png" width="15" height="20">
                                     </a>
-                                    <ul class="dropdown-menu" role="menu">
-
+                                    <ul class="dropdown-menu" role="menu" style="width: 300px; text-align: center;">
+                                            <hr>
+                                        @if($notice == '[]')
+                                            <p>새로운 알림이 없습니다</p>
+                                            <hr>
+                                        @else
+                                            @foreach($notice as $n)
+                                                <a>{{$n->notice_content}}</a>
+                                                <hr>
+                                            @endforeach
+                                        @endif
                                     </ul>
                                 </li>
                             </ul>

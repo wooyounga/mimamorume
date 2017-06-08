@@ -16,7 +16,7 @@ class CreateUserTable extends Migration
         Schema::create('user', function (Blueprint $table) {
             $table->string('id', 20)->unique()->primary();
             $table->string('user_type', 10);
-            $table->string('pw', 20);
+            $table->string('pw', 70);
             $table->string('name', 20);
             $table->integer('age');
             $table->string('gender', 10);
@@ -24,8 +24,8 @@ class CreateUserTable extends Migration
             $table->string('telephone', 20)->unique();
             $table->string('cellphone', 20)->unique();
             $table->string('zip_code', 10);
-            $table->string('main_adress', 50);
-            $table->string('rest_adress', 50);
+            $table->string('main_address', 50);
+            $table->string('rest_address', 50);
             $table->timestamps();
         });
     }

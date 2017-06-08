@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Session;
 
 class IndividualController extends Controller
 {
@@ -19,31 +20,34 @@ class IndividualController extends Controller
      */
     public function index()
     {
-        $user = \DB::table('user')->where('id', 'user1')->get();
-        if($user[0]->userType == '보호사'){
+        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
+        $user = \DB::table('user')->where('id',Session::get('id'))->get();
+        if($user[0]->user_type == '보호사'){
             $etc = DB::table('resume')
-                ->join('user', 'resume.sitterId', '=', 'user.id')
+                ->join('user', 'resume.sitter_id', '=', 'user.id')
                 ->join('license', function ($join) {
-                    $join->on('resume.sitterId', '=', 'license.sitterId')->orOn('resume.lisence', '=', 'license.licenseNum');
+                    $join->on('resume.sitter_id', '=', 'license.sitter_id')->orOn('resume.lisence', '=', 'license.license_num');
                 })
                 ->select('user.*', 'resume.*','license.*')
                 ->get();
         }else{
-            $etc = DB::table('users')
-                ->join('target', 'users.id', '=', 'target.user_id')
-                ->select('users.*', 'target.*')
+            $etc = DB::table('user')
+                ->join('care', 'user.id', '=', 'care.sitter_id')
+                ->join('target','care.target_num', '=', 'target.num')
+                ->select('user.*', 'target.*')
                 ->get();
         }
-        return view('individual.individual')->with('user', $user)->with('etc',$etc);
+        return view('individual.individual')->with('user', $user)->with('etc',$etc)->with('notice',$notice);
     }
 
     public function create()
     {
+        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
         $user = \DB::table('user')->where('id', 'user1')->get();
-        if($user[0]->userType == '보호사'){
+        if($user[0]->user_type == '보호사'){
             $etc = DB::table('resume')
-                ->join('user', 'resume.sitterId', '=', 'user.id')
-                ->join('license', 'resume.sitterId', '=', 'license.sitterId')
+                ->join('user', 'resume.sitter_id', '=', 'user.id')
+                ->join('license', 'resume.sitter_id', '=', 'license.sitter_id')
                 ->select('user.*', 'resume.*','license.*')
                 ->get();
         }else{
@@ -52,11 +56,13 @@ class IndividualController extends Controller
                 ->select('user.*', 'target.*')
                 ->get();
         }
-        return view('individual.individualForm')->with('user', $user)->with('etc',$etc);
+        return view('individual.individualForm')->with('user', $user)->with('etc',$etc)->with('notice',$notice);
     }
 
     public function update(Request $request,$id){
-/*        $etc = DB::table('user')->findOrFail($id);
+/*
+        $notice = \DB::table('notice')->get();
+        $etc = DB::table('user')->findOrFail($id);
 
         $etc->update([
             'name' => $request->get('name'),

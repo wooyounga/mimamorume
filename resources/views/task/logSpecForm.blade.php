@@ -30,8 +30,8 @@
         <div class="wrap">
             <form>
                <select class="form-control pull-left" style="width: 20%; margin-bottom: 30px;">
-                   <option>집안일</option>
-                   <option>산책</option>
+                   <option>가사</option>
+                   <option>돌봄</option>
                    <option>기타</option>
                </select>
                <br>

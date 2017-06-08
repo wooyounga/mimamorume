@@ -17,8 +17,8 @@
 @section('content')
     <div class="body">
         <div class="pro">
-            <img src="{{ URL::to('/') }}/{{$etc[0]->profileImage}}">
-            <h3>{{$user[0]->name}}({{$user[0]->userType}})</h3>
+            <img src="{{ URL::to('/') }}/{{$etc[0]->profile_image}}">
+            <h3>{{$user[0]->name}}({{$user[0]->user_type}})</h3>
             <a href="{{route('individual.create',$user[0]->id)}}">
                 <button class="btn btn-default">
                     수정
@@ -28,11 +28,9 @@
         <div class="resume">
             <div class="individual">
                 <h3>주소</h3>
-                {{$user[0]->adressCity}}
-                {{$user[0]->adressGu}}
-                {{$user[0]->adressDong}}
+                {{$user[0]->main_address}}
                 <br>
-                {{$user[0]->adressRest}}
+                {{$user[0]->rest_address}}
             </div>
             <br>
             <div class="individual">
@@ -42,12 +40,12 @@
                 {{$user[0]->cellphone}}
             </div>
             <br>
-            @if($user[0]->userType == '보호사')
+            @if($user[0]->user_type == '보호사')
                 <div class="individual">
                     <h3>자격증</h3>
                     @foreach($etc as $e)
-                        {{$e->licenseKind}}
-                        {{$e->licenseGrade}}
+                        {{$e->license_kind}}
+                        {{$e->license_grade}}
                         <br>
                     @endforeach
                     <br>
@@ -63,12 +61,17 @@
                     {{$etc[0]->center}}
                 </div>
             @else
-                <div class="individual">
-                    보호자
-                </div>
-                <div class="individual">
+                @foreach($etc as $e)
+                    <div class="individual">
+                        <h3>대상자 정보</h3>
+                        <br><label>이름 : </label>{{$e->name}}
+                        <br><label>나이 : </label>{{$e->age}}
+                        <br><label>성별 : </label>{{$e->gender}}
+                    </div>
+                    <div class="individual">
 
-                </div>
+                    </div>
+                @endforeach
             @endif
             <br>
         </div>

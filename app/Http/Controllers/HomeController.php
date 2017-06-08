@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('main.home');
+        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
+
+        return view('main.home')->with('notice',$notice);
     }
 }

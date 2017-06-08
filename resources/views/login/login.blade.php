@@ -41,7 +41,6 @@
                                     alert(msg);
                                 }
                             </script>
-
                         @endif
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">

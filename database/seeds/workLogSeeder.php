@@ -13,10 +13,10 @@ class workLogSeeder extends Seeder
     {
         DB::table('work_log')->insert([
             'num'=>null,
-            'sitterId'=>'user1',
-            'targetNum'=>'1',
-            'medicineSchedule'=>'2017/07/08',
-            'workDate'=>'2017/05/04',
+            'sitter_id'=>'user1',
+            'target_num'=>'1',
+            'medicine_schedule_num'=>'1',
+            'work_date'=>'2017/05/04',
         ]);
     }
 }

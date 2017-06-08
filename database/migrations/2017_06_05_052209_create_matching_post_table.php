@@ -15,14 +15,16 @@ class CreateMatchingPostTable extends Migration
      {
          Schema::create('matching_post', function (Blueprint $table) {
              $table->increments('num');
+             $table->string('user_id', 30);
              $table->string('title', 30);
              $table->string('content');
-             $table->string('athor', 20);
+             $table->string('user_type', 20);
              $table->string('gender', 5);
              $table->string('age', 10);
              $table->string('disability', 20);
              $table->string('work_day', 20);
              $table->string('work_period', 20);
+             $table->string('view', 20);
              $table->timestamps();
          });
      }

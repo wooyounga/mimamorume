@@ -18,6 +18,7 @@ class MonitoringController extends Controller
      */
     public function index()
     {
-        return view('monitor.monitoring');
+        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
+        return view('monitor.monitoring')->with('notice',$notice);
     }
 }

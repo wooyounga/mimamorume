@@ -23,18 +23,24 @@
                     <td>작성자</td>
                     <td>근무날짜</td>
                 </tr>
-                {{--@foreach($projects as $proj)--}}
-                @foreach($log as $l)
+                @if($log == '[]')
                     <tr>
-                        <td><a href="{{route('logSpec.show',[$l->num])}}">{{$l->num}}</a></td>
-                        <td><a href="{{route('logSpec.show',[$l->num])}}">{{$l->content}}</a></td>
-                        <td>{{$l->sitterId}}</td>
-                        <td>{{$l->workDate}}</td>
+                        <td colspan="4" style="text-align: center; padding: 50px;">등록된 업무일지가 없습니다.</td>
                     </tr>
-                @endforeach
-                {{--@endforeach--}}
+                @else
+                    @foreach($log as $l)
+                        <tr>
+                            <td><a href="{{route('logSpec.show',[$l->num])}}">{{$l->num}}</a></td>
+                            <td><a href="{{route('logSpec.show',[$l->num])}}"><p class="logSpec_content">{{$l->content}}</p></a></td>
+                            <td>{{$l->sitter_id}}</td>
+                            <td>{{$l->work_date}}</td>
+                        </tr>
+                    @endforeach
+                @endif
                 <tr>
-                    <td colspan="5"><a class="btn btn-default pull-right" href="{{route('task.create')}}">등록</a></td>
+                    @if($user[0]->user_type == '보호사')
+                        <td colspan="5"><a class="btn btn-default pull-right" href="{{route('task.create')}}">등록</a></td>
+                    @endif
                 </tr>
                 <tr class="text-center">
                     <td colspan="5">

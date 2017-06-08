@@ -19,8 +19,9 @@ class ChartController extends Controller
      */
 
     public function index(Request $request) {
+        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
         $pulseData = $request->input('sensorVal');
 
-        return view('monitor.chart')->with('pulseData', $pulseData);
+        return view('monitor.chart')->with('pulseData', $pulseData)->with('notice',$notice);
     }
 }
