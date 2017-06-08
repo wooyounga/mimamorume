@@ -23,11 +23,14 @@
             }, function(){
                 $('ul:first',this).hide();
             });
+
+
         });
+        function showModal(num){
+            $('#'+num).modal('show');
+        };
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment-with-locales.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -37,6 +40,9 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 </head>
 <body>
+
+
+
 <div id="app">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="nav">
@@ -100,7 +106,7 @@
                                             <hr>
                                         @else
                                             @foreach($notice as $n)
-                                                <a>{{$n->notice_content}}</a>
+                                                <a onclick=showModal({{$n->num}}) class="notice">{{$n->notice_content}}</a>
                                                 <hr>
                                             @endforeach
                                         @endif
@@ -116,6 +122,54 @@
                     @endif
             </div>
     </nav>
+   @if(Session::get('id'))
+        @foreach($notice as $n)
+            <div id="{{$n->num}}" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">매칭 수락</h4>
+                        </div>
+                        <div class="modal-body">
+                                <b>※ 매칭신청을 요청한 사용자의 정보입니다.</b><br>
+                                <br><label>이름</label> {{$n->name}}
+                                <br><label>유형</label> {{$n->user_type}}
+                                <br><label>나이</label> {{$n->age}}
+                                <br><label>성별</label> {{$n->gender}}
+                                <br><label>연락처</label> {{$n->cellphone}}
+                                <br><label>연락처2</label> {{$n->telephone}}
+                            {{--@if($n->user_type == '보호사')
+                                @if($notice_etc[0]->lisence == 'yes')
+                                    @foreach($notice_etc as $ne)
+                                        <br><label>자격증명</label> {{$ne->license_kind}}{{$ne->license_grade}}
+                                        <br><label>발급처</label> {{$ne->institution}}
+                                    @endforeach
+                                @endif
+                            @else
+                                @if($notice_care != '[]')
+                                    @foreach($notice_care as $n)
+                                        <br><label>대상자넘버</label> {{$n->num}}
+                                        <br><label>대상자나이</label> {{$n->age}}
+                                        <br><label>대상자성별</label> {{$n->gender}}
+                                        <br><label>대상자장애</label> {{$n->disability_main}}
+                                        <br><label>대상자장애2</label> {{$n->disability_sub}}
+                                    @endforeach
+                                @endif
+                            @endif--}}
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-primary">수락</a>
+                            <a class="btn btn-danger">거절</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        @endforeach
+    @endif
     @yield('content')
 </div>
 

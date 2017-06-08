@@ -21,19 +21,31 @@ class MatchController extends Controller
     public function index()
     {
         $match = \DB::table('matching_post')->get();
-        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id',Session::get('id'))
+            ->get();
+
 
         return view('match.match')->with('match',$match)->with('notice',$notice);
     }
 
     public function create(){
-        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id',Session::get('id'))
+            ->get();
+
 
         return view('match.matchForm')->with('notice',$notice);
     }
 
     public function store(Request $request){
-        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id',Session::get('id'))
+            ->get();
+
 
         \DB::table('matching_post')->insert([
             'num' => null,
@@ -56,7 +68,11 @@ class MatchController extends Controller
     }
 
     public function show($num){
-        $notice = \DB::table('notice')->get();
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id',Session::get('id'))
+            ->get();
+
         $match = \DB::table('matching_post')->where('num',$num)->get();
 
         $view = $match[0]->view;
@@ -69,7 +85,11 @@ class MatchController extends Controller
     }
 
     public function matching($num){
-        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id',Session::get('id'))
+            ->get();
+
         $user = \DB::table('matching_post')->where('num',$num)->get();
         $user_id = $user[0]->user_id;
         $content = '매칭신청이 왔습니다. 발신자 : '.Session::get('id');

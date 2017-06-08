@@ -42,8 +42,14 @@ class LoginController extends Controller
             return redirect()->back()->with('alert', '비밀번호가 맞지 않습니다.');
         }
         if($check_id == true && $check_pw == true){
-            $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
             Session::set('id', $user_id);
+            $notice = \DB::table('notice')
+                ->join('user', 'notice.sender', '=', 'user.id')
+                ->where('notice.addressee_id',Session::get('id'))
+                ->get();
+
+
+
             return view('main.home')->with('notice',$notice);
         }
     }

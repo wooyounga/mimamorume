@@ -56,7 +56,7 @@
                 <img class="thumbnail" src="{{URL::to('/')}}/images/main_logo.png">
                 <img class="thumbnail" src="{{URL::to('/')}}/images/main/main_image_01.png">
             </div>
-            <div id="myModal" class="modal">
+            <div id="myModal" class="modal modal-cont">
                 <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
                 <img class="modal-content" id="img01">
                 <div id="caption"></div>

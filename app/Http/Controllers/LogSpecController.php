@@ -19,7 +19,11 @@ class LogSpecController extends Controller
      */
     public function index()
     {
-        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id',Session::get('id'))
+            ->get();
+
         $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
 
         if($user_type[0]->user_type == '보호사'){
@@ -61,7 +65,11 @@ class LogSpecController extends Controller
     }
 
     public function show($num){
-        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id',Session::get('id'))
+            ->get();
+
 
         $etc = \DB::table('work_log')
             ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
