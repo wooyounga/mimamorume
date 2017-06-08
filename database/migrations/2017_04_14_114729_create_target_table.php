@@ -22,8 +22,8 @@ class CreateTargetTable extends Migration
             $table->string('telephone', 20)->unique();
             $table->string('cellphone', 20)->unique();
             $table->string('zip_code', 10);
-            $table->string('main_adress', 50);
-            $table->string('rest_adress', 50);
+            $table->string('main_address', 50);
+            $table->string('rest_address', 50);
             $table->string('latitude', 20);
             $table->string('longitude', 20);
             $table->string('disability_main', 20)->nullable();
