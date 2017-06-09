@@ -74,6 +74,15 @@
     </script>
     </head>
     <body>
+    @if (session('alert'))
+        <script>
+            var msg = '{{Session::get('alert')}}';
+            var exist = '{{Session::has('alert')}}';
+            if(exist){
+                alert(msg);
+            }
+        </script>
+    @endif
     <div class="nav">
         <div class="flex-center position-ref full-height">
             <div>

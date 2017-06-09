@@ -14,7 +14,13 @@ class LoginController extends Controller
     }
 
     public function index(){
-        return view('login.login');
+        if(Session::get('id')){
+            $alert = '잘못된 접근입니다.';
+
+            return redirect('/home')->with('alert',$alert);
+        }else{
+            return view('login.login');
+        }
     }
 
     public function store(Request $request){
@@ -47,8 +53,6 @@ class LoginController extends Controller
                 ->join('user', 'notice.sender', '=', 'user.id')
                 ->where('notice.addressee_id',Session::get('id'))
                 ->get();
-
-
 
             return view('main.home')->with('notice',$notice);
         }

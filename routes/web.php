@@ -28,6 +28,14 @@ Route::get('/match', 'MatchController@index');
 
 Route::resource('/matching', 'MatchController@matching');
 
+Route::get('/matchYes/{num}/{date}', 'MatchController@matchYes');
+
+Route::get('/noticeDest/{num}', 'MatchController@noticeDest');
+
+Route::resource('/search', 'MatchController@search');
+
+Route::resource('/matchNo', 'MatchController@matchNo');
+
 Route::get('/chart', 'ChartController@index');
 
 Route::get('/logSpec', 'LogSpecController@index');

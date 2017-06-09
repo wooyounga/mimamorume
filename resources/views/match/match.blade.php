@@ -11,11 +11,21 @@
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
+
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="{{URL::to('/')}}/js/match.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 @section('content')
+    @if (session('alert'))
+        <script>
+            var msg = '{{Session::get('alert')}}';
+            var exist = '{{Session::has('alert')}}';
+            if(exist){
+                alert(msg);
+            }
+        </script>
+    @endif
 <script>
     function execDaumPostCode() {
         new daum.Postcode({
@@ -60,7 +70,8 @@
     <div class="test1">
     </div>
     <div class="wrap">
-    <form>
+    <form  class="form-horizeontal" role="form" method="post" action="{{URL::to('/search')}}">
+        {{csrf_field()}}
         {{--<div class="navbar" style="border: 2px solid skyblue">
             <div class="navbar-inner">
                 <ul id="address_si" class=" nav">
@@ -87,15 +98,15 @@
                         <span><input type="radio" id="woman" name="gander" value="여"><label for="woman">여</label></span>
                     </td>
                     <td>
-                        <span><input type="checkbox" id="10less" name="age" value="10대 미만"><label for="10less">10대 미만</label></span>
-                        <span><input type="checkbox" id="10" name="age" value="10대"><label for="10">10대</label></span>
-                        <span><input type="checkbox" id="20" name="age" value="20대"><label for="20">20대</label></span>
-                        <span><input type="checkbox" id="30" name="age" value="30대"><label for="30">30대</label></span>
-                        <span><input type="checkbox" id="40" name="age" value="40대"><label for="40">40대</label></span>
-                        <span><input type="checkbox" id="50" name="age" value="50대"><label for="50">50대</label></span>
-                        <span><input type="checkbox" id="60" name="age" value="60대"><label for="60">60대</label></span>
-                        <span><input type="checkbox" id="60more" name="age" value="60대 이상"><label for="60more">60대 이상</label></span>
-                        <span><input type="checkbox" id="age_unrelated" name="age" value="연령무관"><label for="age_unrelated">연령무관</label></span>
+                        <span><input type="checkbox" id="10less" name="age[]" value="10대 미만"><label for="10less">10대 미만</label></span>
+                        <span><input type="checkbox" id="10" name="age[]" value="10대"><label for="10">10대</label></span>
+                        <span><input type="checkbox" id="20" name="age[]" value="20대"><label for="20">20대</label></span>
+                        <span><input type="checkbox" id="30" name="age[]" value="30대"><label for="30">30대</label></span>
+                        <span><input type="checkbox" id="40" name="age[]" value="40대"><label for="40">40대</label></span>
+                        <span><input type="checkbox" id="50" name="age[]" value="50대"><label for="50">50대</label></span>
+                        <span><input type="checkbox" id="60" name="age[]" value="60대"><label for="60">60대</label></span>
+                        <span><input type="checkbox" id="60more" name="age[]" value="60대 이상"><label for="60more">60대 이상</label></span>
+                        <span><input type="checkbox" id="age_unrelated" name="age[]" value="연령무관"><label for="age_unrelated">연령무관</label></span>
                     </td>
                     <td>
                         <span><input type="checkbox" id="no" name="disability[]" value="장애없음"><label for="no">장애없음</label></span>
@@ -110,21 +121,21 @@
                         <span><input type="checkbox" id="disability_unrelated" name="disability[]" value="장애무관"><label for="disability_unrelated">장애무관</label></span>
                     </td>
                     <td>
-                        <span><input type="checkbox" id="mon" name="week" value="주 1회"><label for="mon">주 1회</label></span>
-                        <span><input type="checkbox" id="tues" name="week" value="주 2회"><label for="tues">주 2회</label></span>
-                        <span><input type="checkbox" id="wed" name="week" value="주 3회"><label for="wed">주 3회</label></span>
-                        <span><input type="checkbox" id="thu" name="week" value="주 4회"><label for="thu">주 4회</label></span>
-                        <span><input type="checkbox" id="fri" name="week" value="주 5회"><label for="fri">주 5회</label></span>
-                        <span><input type="checkbox" id="sat" name="week" value="주 6회"><label for="sat">주 6회</label></span>
-                        <span><input type="checkbox" id="sun" name="week" value="주 7회"><label for="sun">주 7회</label></span>
-                        <span><input type="checkbox" id="week_unrelated" name="week" value="추후협의"><label for="week_unrelated">추후협의</label></span>
+                        <span><input type="checkbox" id="mon" name="week[]" value="주 1회"><label for="mon">주 1회</label></span>
+                        <span><input type="checkbox" id="tues" name="week[]" value="주 2회"><label for="tues">주 2회</label></span>
+                        <span><input type="checkbox" id="wed" name="week[]" value="주 3회"><label for="wed">주 3회</label></span>
+                        <span><input type="checkbox" id="thu" name="week[]" value="주 4회"><label for="thu">주 4회</label></span>
+                        <span><input type="checkbox" id="fri" name="week[]" value="주 5회"><label for="fri">주 5회</label></span>
+                        <span><input type="checkbox" id="sat" name="week[]" value="주 6회"><label for="sat">주 6회</label></span>
+                        <span><input type="checkbox" id="sun" name="week[]" value="주 7회"><label for="sun">주 7회</label></span>
+                        <span><input type="checkbox" id="week_unrelated" name="week[]" value="추후협의"><label for="week_unrelated">추후협의</label></span>
                     </td>
                     <td>
-                        <span><input type="checkbox" id="1less" name="period" value="1개월미만"><label for="1less">1개월 미만</label></span>
-                        <span><input type="checkbox" id="3less" name="period" value="3개월미만"><label for="3less">3개월 미만</label></span>
-                        <span><input type="checkbox" id="6less" name="period" value="6개월미만"><label for="6less">6개월 미만</label></span>
-                        <span><input type="checkbox" id="12less" name="period" value="1년미만"><label for="12less">1년 미만</label></span>
-                        <span><input type="checkbox" id="12more" name="period" value="1년이상"><label for="12more">1년 이상</label></span>
+                        <span><input type="checkbox" id="1less" name="period[]" value="1개월미만"><label for="1less">1개월 미만</label></span>
+                        <span><input type="checkbox" id="3less" name="period[]" value="3개월미만"><label for="3less">3개월 미만</label></span>
+                        <span><input type="checkbox" id="6less" name="period[]" value="6개월미만"><label for="6less">6개월 미만</label></span>
+                        <span><input type="checkbox" id="12less" name="period[]" value="1년미만"><label for="12less">1년 미만</label></span>
+                        <span><input type="checkbox" id="12more" name="period[]" value="1년이상"><label for="12more">1년 이상</label></span>
                     </td>
                 </tr>
                 <tr>
@@ -138,8 +149,8 @@
                 <tr>
                     <td colspan="6">
                         <div class="form-inline pull-right">
-                            <input class="form-control" type="text">
-                            <input class="btn btn-default" type="submit" value="검색">
+                            <input class="form-control" name="searchInput" type="text">
+                            <button class="btn btn-default" type="submit">검색</button>
                         </div>
                     </td>
                 </tr>

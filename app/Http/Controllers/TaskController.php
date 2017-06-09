@@ -19,13 +19,19 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $notice = \DB::table('notice')
-            ->join('user', 'notice.sender', '=', 'user.id')
-            ->where('notice.addressee_id',Session::get('id'))
-            ->get();
+        if(Session::get('id')){
+            $notice = \DB::table('notice')
+                ->join('user', 'notice.sender', '=', 'user.id')
+                ->where('notice.addressee_id',Session::get('id'))
+                ->get();
 
 
-        return view('task.task')->with('notice',$notice);
+            return view('task.task')->with('notice',$notice);
+        }else{
+            $alert = '잘못된 접근입니다.';
+
+            return redirect('/')->with('alert',$alert);
+        }
     }
 
     public function create(){

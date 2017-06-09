@@ -23,12 +23,21 @@
     }
 </script>
 @section('content')
+    @if (session('alert'))
+        <script>
+            var msg = '{{Session::get('alert')}}';
+            var exist = '{{Session::has('alert')}}';
+            if(exist){
+                alert(msg);
+            }
+        </script>
+    @endif
     <div class="body">
         <div>
             <a href="{{URL::to('/home')}}">Home</a> > <a onclick="formConfirm('{{URL::to('/task')}}')">근무</a> > <a onclick="formConfirm('{{URL::to('/logSpec')}}')"><b>업무일지</b></a>
         </div>
         <div class="wrap">
-            <form>
+            <form >
                <select class="form-control pull-left" style="width: 20%; margin-bottom: 30px;">
                    <option>가사</option>
                    <option>돌봄</option>

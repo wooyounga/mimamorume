@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <!-- 부트스트랩 -->
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <!-- DatePicker -->
+    <script type="text/javascript" src="{{ asset('js/jquery.simple-dtpicker.js') }}"></script>
+    <link type="text/css" href="{{ asset('css/jquery.simple-dtpicker.css') }}" rel="stylesheet" />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -18,19 +29,40 @@
 
     <script>
         $(function(){
+            $('*[name=date]').change(function(){
+                $('#dateLog').val($('*[name=date]').val());
+            });
+
+
             $(".zeta-menu li").hover(function(){
                 $('ul:first',this).show();
             }, function(){
                 $('ul:first',this).hide();
             });
-
-
         });
         function showModal(num){
             $('#'+num).modal('show');
         };
-    </script>
 
+        function matchYesConfirm(url, num){
+            if(confirm("정말로 수락하겠습니까?")){
+               var log = $(num).val();
+                location.href=url+'/'+log;
+            }
+        }
+
+        function dest(url){
+            location.href=url;
+        }
+
+        function matchNoConfirm(url){
+            if(confirm("거절하시면 알림이 사라집니다. 정말로 거절하겠습니까?")){
+                location.href=url;
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment-with-locales.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -38,6 +70,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 
@@ -71,7 +104,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="pull-right">
+                        <div class="notice pull-right">
                             <ul class="nav navbar-nav">
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -106,8 +139,19 @@
                                             <hr>
                                         @else
                                             @foreach($notice as $n)
-                                                <a onclick=showModal({{$n->num}}) class="notice">{{$n->notice_content}}</a>
-                                                <hr>
+                                                @if($n->notice_kind == '매칭')
+                                                    <a onclick=showModal({{$n->num}}) class="notice">{{$n->notice_content}}</a>
+                                                    <a href="{{URL::to('/noticeDest',[$n->num])}}" class="close" style="margin: 0 5px;">X</a>
+                                                    <hr>
+                                                @elseif($n->notice_kind == '수락')
+                                                    {{$n->notice_content}}
+                                                    <a href="{{URL::to('/noticeDest',[$n->num])}}" class="close" style="margin: 0 5px;">X</a>
+                                                    <hr>
+                                                @else
+                                                    {{$n->notice_content}}
+                                                    <a href="{{URL::to('/noticeDest',[$n->num])}}" class="close" style="margin: 0 5px;">x</a>
+                                                    <hr>
+                                                @endif
                                             @endforeach
                                         @endif
                                     </ul>
@@ -159,21 +203,50 @@
                                     @endforeach
                                 @endif
                             @endif--}}
-                        </div>
+                        </div><br>
+                        <div style="margin-left: 15px;">
+                            <b>※계약 마지막 날을 선택해주세요</b><br><br>
+                            <div>
+                                {{--<input type="text" name="date">
+                                <script type="text/javascript">
+                                    $(function(){
+                                        $('*[name=date]').appendDtpicker({
+
+                                        });
+
+                                    });
+                                </script>--}}
+                                <input type="text" name="start{{$n->num}}" value="">
+                                <script type="text/javascript">
+                                    $(function(){
+                                        $('*[name=start{{$n->num}}]').appendDtpicker();
+                                    });
+                                </script>
+                                {{--<input type="text" id="date" class="date" name="date" value="">
+                                <script type="text/javascript">
+                                    $(function(){
+                                        $('*[name=date]').appendDtpicker({
+                                            /*"futureOnly": true,
+                                            "todayButton": false*/
+                                        });
+                                    });
+                                </script>--}}
+                            </div>
+                        </div><br>
                         <div class="modal-footer">
-                            <a class="btn btn-primary">수락</a>
-                            <a class="btn btn-danger">거절</a>
+                            <a onclick="matchYesConfirm('{{URL::to('/matchYes',[$n->num])}}','*[name=start{{$n->num}}]')" class="btn btn-primary">수락</a>
+                            <a onclick="matchNoConfirm('{{URL::to('/matchNo',[$n->num])}}')" class="btn btn-danger">거절</a>
                         </div>
                     </div>
-
                 </div>
             </div>
         @endforeach
-    @endif
+    @endif<div class="container">
+    </div>
     @yield('content')
 </div>
-
+{{--
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>--}}
 </body>
 </html>

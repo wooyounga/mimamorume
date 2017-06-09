@@ -20,28 +20,34 @@ class IndividualController extends Controller
      */
     public function index()
     {
-        $notice = \DB::table('notice')
-            ->join('user', 'notice.sender', '=', 'user.id')
-            ->where('notice.addressee_id',Session::get('id'))
-            ->get();
+        if(Session::get('id')){
+            $notice = \DB::table('notice')
+                ->join('user', 'notice.sender', '=', 'user.id')
+                ->where('notice.addressee_id',Session::get('id'))
+                ->get();
 
-        $user = \DB::table('user')->where('id',Session::get('id'))->get();
-        if($user[0]->user_type == '보호사'){
-            $etc = DB::table('resume')
-                ->join('user', 'resume.sitter_id', '=', 'user.id')
-                ->join('license', function ($join) {
-                    $join->on('resume.sitter_id', '=', 'license.sitter_id')->orOn('resume.lisence', '=', 'license.license_num');
-                })
-                ->select('user.*', 'resume.*','license.*')
-                ->get();
+            $user = \DB::table('user')->where('id',Session::get('id'))->get();
+            if($user[0]->user_type == '보호사'){
+                $etc = DB::table('resume')
+                    ->join('user', 'resume.sitter_id', '=', 'user.id')
+                    ->join('license', function ($join) {
+                        $join->on('resume.sitter_id', '=', 'license.sitter_id')->orOn('resume.lisence', '=', 'license.license_num');
+                    })
+                    ->select('user.*', 'resume.*','license.*')
+                    ->get();
+            }else{
+                $etc = DB::table('user')
+                    ->join('care', 'user.id', '=', 'care.sitter_id')
+                    ->join('target','care.target_num', '=', 'target.num')
+                    ->select('user.*', 'target.*')
+                    ->get();
+            }
+            return view('individual.individual')->with('user', $user)->with('etc',$etc)->with('notice',$notice);
         }else{
-            $etc = DB::table('user')
-                ->join('care', 'user.id', '=', 'care.sitter_id')
-                ->join('target','care.target_num', '=', 'target.num')
-                ->select('user.*', 'target.*')
-                ->get();
+            $alert = '잘못된 접근입니다.';
+
+            return redirect('/')->with('alert',$alert);
         }
-        return view('individual.individual')->with('user', $user)->with('etc',$etc)->with('notice',$notice);
     }
 
     public function create()

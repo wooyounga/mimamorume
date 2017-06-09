@@ -22,6 +22,15 @@
     }
 </script>
 @section('content')
+    @if (session('alert'))
+        <script>
+            var msg = '{{Session::get('alert')}}';
+            var exist = '{{Session::has('alert')}}';
+            if(exist){
+                alert(msg);
+            }
+        </script>
+    @endif
     <div class="body">
         <div>
             <a href="{{URL::to('/home')}}">Home</a> > <a onclick="formConfirm('{{URL::to('/match')}}')">매칭</a> > <a onclick="formConfirm('{{URL::to('/match')}}')"><b>구인</b></a>

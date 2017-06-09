@@ -35,6 +35,15 @@
     });
 </script>
 @section('content')
+    @if (session('alert'))
+        <script>
+            var msg = '{{Session::get('alert')}}';
+            var exist = '{{Session::has('alert')}}';
+            if(exist){
+                alert(msg);
+            }
+        </script>
+    @endif
     <div class="body">
         <div>
             <a href="{{URL::to('/home')}}">Home</a> > <a href="{{URL::to('/monitoring')}}">모니터링</a> > <a href="{{URL::to('/snapshot')}}"><b>스냅샷</b></a>
