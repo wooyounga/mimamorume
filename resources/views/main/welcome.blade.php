@@ -81,16 +81,14 @@
                     <img src="{{ URL::to('/') }}/images/main_logo.png" width="80" height="30">
                 </a>
             </div>
-            {{--@if (Route::has('login'))--}}
                 <div class="top-right links">
                     @if (Session::get('id'))
                         <a href="{{ url('/home') }}" class="btn btn-warning" role="button">Home</a>
                     @else
-                        <a href="{{ url('/login') }}" class="btn btn-warning" role="button">Login</a>
-                        <a href="{{ url('/register') }}" class="btn btn-warning" role="button">Join</a>
+                        <a href="{{ route('login.create') }}" class="btn btn-warning" role="button">Login</a>
+                        <a href="{{ route('join.create') }}" class="btn btn-warning" role="button">Join</a>
                     @endif
                 </div>
-            {{--@endif--}}
         </div>
     </div>
     <div style="width: 100%; height: 100%; position: relative;">

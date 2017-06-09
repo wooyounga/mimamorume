@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
+        $notice = \DB::table('notice')->where('addressee_id', Session::get('id'))->get();
 
         return view('main.home')->with('notice',$notice);
     }

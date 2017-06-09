@@ -73,17 +73,8 @@
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                            <a href="{{ url('/individual') }}">
-                                                내 정보
-                                            </a>
-                                            <a href="{{ route('logout') }}"
-                                               onclick="event.preventDefault();
-                                                                 document.getElementById('logout-form').submit();">
-                                                로그아웃
-                                            </a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                {{ csrf_field() }}
-                                            </form>
+                                            <a href="{{ url('/addinfo') }}">내 정보</a>
+                                            <a href="{{ route('login.destroy') }}">로그아웃</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -110,8 +101,8 @@
                         </div>
                     @else
                         <div class="pull-right links" style="margin-top: 8px;">
-                            <a href="{{ url('/login') }}" class="btn btn-warning" role="button">Login</a>
-                            <a href="{{ url('/register') }}" class="btn btn-warning" role="button">Join</a>
+                            <a href="{{ route('login.create') }}" class="btn btn-warning" role="button">Login</a>
+                            <a href="{{ route('join.create') }}" class="btn btn-warning" role="button">Join</a>
                         </div>
                     @endif
             </div>

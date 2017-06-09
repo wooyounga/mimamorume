@@ -14,14 +14,6 @@
 // 최초 접속했을 때의 메인페이지
 Route::get('/', 'WelcomeController@index');
 
-// 회원 로그인과 관련된 라우트를 생성하는 도우미 파사드
-// 로그인, 비밀번호 찾기, 비밀번호 리셋, 회원가입 컨트롤러 등
-Auth::routes();
-
-Route::auth();
-
-Route::get('/login', 'LoginController@index');
-
 Route::get('/home', 'HomeController@index');
 
 Route::get('/match', 'MatchController@index');
@@ -40,12 +32,41 @@ Route::get('/individual','IndividualController@index');
 
 Route::get('/task', 'TaskController@index');
 
+Route::get('/addinfo', 'AddInfoController@index');
+
 Route::resource('match','MatchController');
 Route::resource('logSpec','logSpecController');
 Route::resource('task','TaskController');
 Route::resource('individual','IndividualController');
-Route::resource('login','LoginController');
 
 Route::get('/matchAddressDb', function(){
   return view('match.matchAddressDb');
 });
+
+/* 회원가입 */
+Route::get('auth/join', [
+  'as' => 'join.create',
+  'uses' => 'JoinController@create',
+]);
+Route::post('auth/join', [
+  'as' => 'join.store',
+  'uses' => 'JoinController@store',
+]);
+Route::get('auth/confirm/{code}', [
+  'as' => 'join.confirm',
+  'uses' => 'JoinController@confirm',
+]);
+
+/* 로그인 */
+Route::get('auth/login', [
+  'as' => 'login.create',
+  'uses' => 'LoginController@create',
+]);
+Route::post('auth/login', [
+  'as' => 'login.store',
+  'uses' => 'LoginController@store',
+]);
+Route::get('auth/logout', [
+  'as' => 'login.destroy',
+  'uses' => 'LoginController@destroy',
+]);

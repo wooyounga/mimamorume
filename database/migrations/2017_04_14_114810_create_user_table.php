@@ -20,9 +20,9 @@ class CreateUserTable extends Migration
             $table->string('name', 20);
             $table->integer('age');
             $table->string('gender', 10);
-            $table->string('email', 20)->unique();
-            $table->string('telephone', 20)->unique();
-            $table->string('cellphone', 20)->unique();
+            $table->string('email', 30);
+            $table->string('telephone', 20);
+            $table->string('cellphone', 20);
             $table->string('zip_code', 10);
             $table->string('main_address', 50);
             $table->string('rest_address', 50);
