@@ -36,7 +36,7 @@
                 </tr>
                 <tr>
                     <td>작성시간</td>
-                    <td>{{$log[0]->work_date}}</td>
+                    <td>{{$log[0]->created_at}}</td>
                 </tr>
                 <tr>
                     <td>업무유형</td>

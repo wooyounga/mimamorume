@@ -19,7 +19,7 @@ class CreateMedicineScheduleTable extends Migration
              $table->string('medicine_name', 20);
              $table->date('start_date');
              $table->date('end_date');
-             $table->date('time');
+             $table->string('time');
              $table->timestamps();
 
              $table->foreign('log_num')->references('num')->on('work_log');

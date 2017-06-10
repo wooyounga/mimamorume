@@ -207,30 +207,14 @@
                         <div style="margin-left: 15px;">
                             <b>※계약 마지막 날을 선택해주세요</b><br><br>
                             <div>
-                                {{--<input type="text" name="date">
-                                <script type="text/javascript">
-                                    $(function(){
-                                        $('*[name=date]').appendDtpicker({
-
-                                        });
-
-                                    });
-                                </script>--}}
                                 <input type="text" name="start{{$n->num}}" value="">
                                 <script type="text/javascript">
                                     $(function(){
-                                        $('*[name=start{{$n->num}}]').appendDtpicker();
-                                    });
-                                </script>
-                                {{--<input type="text" id="date" class="date" name="date" value="">
-                                <script type="text/javascript">
-                                    $(function(){
-                                        $('*[name=date]').appendDtpicker({
-                                            /*"futureOnly": true,
-                                            "todayButton": false*/
+                                        $('*[name=start{{$n->num}}]').appendDtpicker({
+                                            "futureOnly": true
                                         });
                                     });
-                                </script>--}}
+                                </script>
                             </div>
                         </div><br>
                         <div class="modal-footer">

@@ -215,7 +215,7 @@ class MatchController extends Controller
         $address = $request->get('roadAddress');
         $search = $request->get('searchInput');
 
-        for($i = 0 ; $i < count($age) ; $i++){
+        /*for($i = 0 ; $i < count($age) ; $i++){
             $age_log = \DB::table('matching_post')->where('age',$age[$i])->get();
             $search_list[$i] = $age_log[0];
         }
@@ -247,7 +247,7 @@ class MatchController extends Controller
                 ->orWhere('user_type',$subject)
                 ->orWhere('content', 'like', '%' . $search . '%')
                 ->get();
-            $search_list[$search_count] = $search_log[0];
+            $search_list[$search_count] = $search_log[0];*/
 
        // $result = array_unique($input);
         

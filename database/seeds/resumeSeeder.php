@@ -13,7 +13,7 @@ class resumeSeeder extends Seeder
     {
         DB::table('resume')->insert([
             'sitter_id' => 'user1',
-            'lisence' => 'yes',
+            'license' => 'yes',
             'center' => '영진전문대',
             'career' => '1234',
             'profile_image' => '/images/profileImage/2.jpg',

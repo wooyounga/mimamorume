@@ -39,7 +39,11 @@ class TaskController extends Controller
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id',Session::get('id'))
             ->get();
+        $target = \DB::table('care')
+            ->join('target','care.target_num','=','target.num')
+            ->where('care.sitter_id',Session::get('id'))
+            ->get();
 
-        return view('task.logSpecForm')->with('notice',$notice);
+        return view('task.logSpecForm')->with('target',$target)->with('notice',$notice);
     }
 }

@@ -36,7 +36,7 @@
             <a href="{{URL::to('/home')}}">Home</a> > <a onclick="formConfirm('{{URL::to('/match')}}')">매칭</a> > <a onclick="formConfirm('{{URL::to('/match')}}')"><b>구인</b></a>
         </div>
         <div class="wrap">
-            <form  class="form-horizeontal" role="form" method="post" action="{{route('match.store')}}">
+            <form class="form-horizeontal" role="form" method="post" action="{{route('match.store')}}">
                 {{csrf_field()}}
                 <h4 style="color: #428bca;">※본인이 찾는 상대의 조건을 선택하는 곳입니다.</h4>
                 <table class="search table">
