@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 class InformationController extends Controller {
     /**
@@ -23,7 +23,7 @@ class InformationController extends Controller {
 
     public function addinfo() {
       $notice = \DB::table('notice')->where('addressee_id', Session::get('id'))->get();
-      $user = \DB::table('user')->where('id', Session::get('id'))->get();1903813
+      $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
       if($user[0]->user_type == '보호자') {
         return view('information.addinfo.target')->with('target', $target)->with('notice', $notice);

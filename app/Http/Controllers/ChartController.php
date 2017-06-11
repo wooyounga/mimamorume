@@ -3,11 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-use Session;
-=======
 use Illuminate\Support\Facades\Session;
->>>>>>> 4bddb4193ae8d200ad2247b19f048568db04a62a
 
 class ChartController extends Controller
 {
