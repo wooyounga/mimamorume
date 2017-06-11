@@ -24,15 +24,6 @@
                                 <input id="pw" type="password" class="form-control" name="pw" required>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : ''}}> 아이디 저장
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
                         @if (session('alert'))
                             <script>
                                 var msg = '{{Session::get('alert')}}';
@@ -47,10 +38,6 @@
                                 <button type="submit" class="btn btn-primary">
                                     로그인
                                 </button>
-{{--
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    패스워드를 잊으셨습니까?
-                                </a>--}}
                             </div>
                         </div>
                     </form>

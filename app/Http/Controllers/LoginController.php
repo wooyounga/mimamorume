@@ -13,11 +13,17 @@ class LoginController extends Controller
         $this->middleware('web');
     }
 
-    public function index(){
-        return view('login.login');
+    public function create() {
+        if(Session::get('id')){
+            $alert = '잘못된 접근입니다.';
+
+            return redirect('/home')->with('alert',$alert);
+        }else{
+            return view('user.login');
+        }
     }
 
-    public function store(Request $request){
+    public function store(Request $request) {
         $user = \DB::table('user')->get();
 
         $user_id = $request -> get('id');
@@ -26,7 +32,7 @@ class LoginController extends Controller
         $check_id = false;
         $check_pw = false;
 
-        for( $i = 0 ; $i< count($user) ; $i++){
+        for( $i = 0 ; $i< count($user) ; $i++) {
             if($user[$i]->id == $user_id){
                 $check_id = true;
                 if (Hash::check($user_pw, $user[$i]->pw)) {
@@ -42,9 +48,19 @@ class LoginController extends Controller
             return redirect()->back()->with('alert', '비밀번호가 맞지 않습니다.');
         }
         if($check_id == true && $check_pw == true){
-            $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
             Session::set('id', $user_id);
+            $notice = \DB::table('notice')
+                ->join('user', 'notice.sender', '=', 'user.id')
+                ->where('notice.addressee_id',Session::get('id'))
+                ->get();
+
             return view('main.home')->with('notice',$notice);
         }
+    }
+
+    public function destroy() {
+      Session::flush();
+
+      return redirect('/');
     }
 }

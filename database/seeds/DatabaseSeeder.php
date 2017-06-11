@@ -15,8 +15,9 @@ class DatabaseSeeder extends Seeder
         $this->call(licenseSeeder::class);
         $this->call(resumeSeeder::class);
         $this->call(targetSeeder::class);
-        $this->call(medicineSchedulSeeder::class);
         $this->call(workLogSeeder::class);
+        $this->call(medicineSchedulSeeder::class);
+
         $this->call(workContentSeeder::class);
     }
 }

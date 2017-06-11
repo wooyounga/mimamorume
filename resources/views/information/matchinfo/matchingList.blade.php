@@ -1,7 +1,5 @@
 @extends('layouts.app')
-@section('title')
-    MIMAMORUME
-@endsection
+
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <!-- Latest compiled and minified CSS -->
@@ -15,18 +13,19 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 
 @section('content')
-    @if (session('alert'))
-        <script>
-            var msg = '{{Session::get('alert')}}';
-            var exist = '{{Session::has('alert')}}';
-            if(exist){
-                alert(msg);
-            }
-        </script>
-    @endif
-{{--    <div class="container">
-        <hr>
-        <div id="calendar"></div>
-    </div>--}}
-    {{--http://www.bootply.com/rzNQTlDlFX--}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="panel-body">
+            <a href="{{ url('userinfo') }}" class="btn btn-info" role="button">회원 정보</a>
+            <a href="{{ url('addinfo') }}" class="btn btn-info" role="button">추가 정보</a>
+            <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">매칭 정보</a>
+          </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">구인구직 현황</div>
+
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

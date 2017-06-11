@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ChartController extends Controller
 {
@@ -19,6 +20,7 @@ class ChartController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+<<<<<<< HEAD
     public function index() {
         //if(Session::get('id')){
 
@@ -62,6 +64,24 @@ class ChartController extends Controller
         }
 
         return json_encode($dataArray);
+=======
+    public function index(Request $request) {
+        if(Session::get('id')){
+            $notice = \DB::table('notice')
+                ->join('user', 'notice.sender', '=', 'user.id')
+                ->where('notice.addressee_id',Session::get('id'))
+                ->get();
+
+
+            $pulseData = $request->input('sensorVal');
+
+            return view('monitor.chart')->with('pulseData', $pulseData)->with('notice',$notice);
+        }else{
+            $alert = '잘못된 접근입니다.';
+
+            return redirect('/')->with('alert',$alert);
+        }
+>>>>>>> a1c0c72e47a012000166d8c6ea240947196745fc
     }
 
 

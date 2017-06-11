@@ -11,31 +11,39 @@
 |
 */
 
-// 최초 접속했을 때의 메인페이지
+// 처음 보여지는 메인 페이지
 Route::get('/', 'WelcomeController@index');
 
-// 회원 로그인과 관련된 라우트를 생성하는 도우미 파사드
-// 로그인, 비밀번호 찾기, 비밀번호 리셋, 회원가입 컨트롤러 등
-Auth::routes();
-
-Route::auth();
-
-Route::get('/login', 'LoginController@index');
-
+// 로그인 후 첫 페이지
 Route::get('/home', 'HomeController@index');
 
+// 추가 정보 페이지
+Route::get('/addinfo', 'InformationController@addinfo');
+Route::get('/addinfo/update', 'InformationController@add_modify');
+Route::post('/addinfo/update', 'InformationController@add_update');
+
+// 구인구직 현황 페이지
+Route::get('/matchinfo', 'InformationController@matchinfo');
+
+// 회원 정보 페이지
+Route::get('/userinfo', 'InformationController@userinfo');
+Route::get('/userinfo/update', 'InformationController@user_modify');
+Route::post('/userinfo/update', 'InformationController@user_update');
+
+// 구인구직 서비스 라우트
 Route::get('/match', 'MatchController@index');
 
 Route::resource('/matching', 'MatchController@matching');
 
-Route::get('/chart', 'ChartController@index');
+Route::get('/matchYes/{num}/{date}', 'MatchController@matchYes');
 
-Route::get('/logSpec', 'LogSpecController@index');
+Route::get('/noticeDest/{num}', 'MatchController@noticeDest');
 
-Route::get('/monitoring', 'MonitoringController@index');
+Route::resource('/search', 'MatchController@search');
 
-Route::get('/snapshot', 'SnapShotController@index');
+Route::resource('/matchNo', 'MatchController@matchNo');
 
+<<<<<<< HEAD
 //d3.js AjaxRoute
 Route::get('/chartData', 'ChartController@jsonTransmit');
 
@@ -43,15 +51,47 @@ Route::get('/chartData', 'ChartController@jsonTransmit');
 Route::get('/chartBluetooth', 'ChartController@getBluetoothValue');
 
 Route::get('/individual','IndividualController@index');
+=======
+Route::get('/chart', 'ChartController@index');
+Route::get('/snapshot', 'SnapShotController@index');
+>>>>>>> a1c0c72e47a012000166d8c6ea240947196745fc
 
 Route::get('/task', 'TaskController@index');
 
+Route::get('/logSpec', 'LogSpecController@index');
+
+Route::get('/individual','IndividualController@index');
+
+Route::resource('/matching', 'MatchController@matching');
 Route::resource('match','MatchController');
 Route::resource('logSpec','logSpecController');
 Route::resource('task','TaskController');
 Route::resource('individual','IndividualController');
-Route::resource('login','LoginController');
 
-Route::get('/matchAddressDb', function(){
+Route::get('/matchAddressDb', function() {
   return view('match.matchAddressDb');
 });
+
+/* 회원가입 */
+Route::get('auth/join', [
+  'as' => 'join.create',
+  'uses' => 'JoinController@create',
+]);
+Route::post('auth/join', [
+  'as' => 'join.store',
+  'uses' => 'JoinController@store',
+]);
+
+/* 로그인 */
+Route::get('auth/login', [
+  'as' => 'login.create',
+  'uses' => 'LoginController@create',
+]);
+Route::post('auth/login', [
+  'as' => 'login.store',
+  'uses' => 'LoginController@store',
+]);
+Route::get('auth/logout', [
+  'as' => 'login.destroy',
+  'uses' => 'LoginController@destroy',
+]);

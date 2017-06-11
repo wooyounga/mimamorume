@@ -13,6 +13,7 @@ class medicineSchedulSeeder extends Seeder
     {
         DB::table('medicine_schedule')->insert([
             'num' => null,
+            'log_num' => 2,
             'medicine_name' => '애기약',
             'start_date' => '2017/06/01',
             'end_date' => '2017/06/20',
@@ -20,6 +21,7 @@ class medicineSchedulSeeder extends Seeder
         ]);
         DB::table('medicine_schedule')->insert([
             'num' => null,
+            'log_num' => 3,
             'medicine_name' => '감기약',
             'start_date' => '2017/06/01',
             'end_date' => '2017/06/20',
