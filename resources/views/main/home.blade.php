@@ -15,6 +15,15 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 
 @section('content')
+    @if (session('alert'))
+        <script>
+            var msg = '{{Session::get('alert')}}';
+            var exist = '{{Session::has('alert')}}';
+            if(exist){
+                alert(msg);
+            }
+        </script>
+    @endif
 {{--    <div class="container">
         <hr>
         <div id="calendar"></div>

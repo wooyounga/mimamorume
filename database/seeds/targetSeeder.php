@@ -28,5 +28,22 @@ class targetSeeder extends Seeder
             'disability_sub'=>'없음',
             'comment'=>'응애',
         ]);
+        DB::table('target')->insert([
+            'num'=>null,
+            'name'=>'응애빌런',
+            'profile_image'=>'/images/profileImage/1.jpg',
+            'age'=>'50',
+            'gender'=>'여',
+            'telephone'=>'0535544555',
+            'cellphone'=>'0109955999',
+            'zip_code'=>'153132',
+            'main_address' =>'아이언맨',
+            'rest_address' => '응애빌딩',
+            'latitude'=>'35',
+            'longitude'=>'35',
+            'disability_main'=>'없음',
+            'disability_sub'=>'없음',
+            'comment'=>'빌런임니다~~!',
+        ]);
     }
 }

@@ -1,10 +1,12 @@
 .nav{
     position: relative;
+    margin: auto 0;
 }
 
 .logo{
     margin: 10px 80px;
     vertical-align: middle;
+    position: relative;
 }
 
 .pull-right{
@@ -13,14 +15,13 @@
 
 .zeta-wrap{
     display: inline;
-    width: 100px;
-    margin-left: 10%;
+    margin: auto 0;
     height: 50px;
     position: absolute;
 }
 
 .zeta-menu {
-    position: absolute;
+    position: relative;
     display: inline;
     text-align: center;
     width: 500px;
@@ -63,4 +64,8 @@
 }
 .zeta-menu ul a {
     color: black;
+}
+.notice{
+    position: relative;
+    width: 160px;
 }

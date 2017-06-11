@@ -11,6 +11,15 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 @section('content')
+    @if (session('alert'))
+        <script>
+            var msg = '{{Session::get('alert')}}';
+            var exist = '{{Session::has('alert')}}';
+            if(exist){
+                alert(msg);
+            }
+        </script>
+    @endif
     <div class="body">
         <div>
             <a href="{{URL::to('/home')}}">Home</a> > <a href="{{URL::to('/task')}}">근무</a> > <a href="{{URL::to('/logSpec')}}"><b>업무일지</b></a>
@@ -27,7 +36,7 @@
                 </tr>
                 <tr>
                     <td>작성시간</td>
-                    <td>{{$log[0]->work_date}}</td>
+                    <td>{{$log[0]->created_at}}</td>
                 </tr>
                 <tr>
                     <td>업무유형</td>

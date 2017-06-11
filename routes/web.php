@@ -33,8 +33,21 @@ Route::post('/userinfo/update', 'InformationController@user_update');
 // 구인구직 서비스 라우트
 Route::get('/match', 'MatchController@index');
 
+<<<<<<< HEAD
 // 모니터링 서비스 라우트
 Route::get('/monitoring', 'MonitoringController@index');
+=======
+Route::resource('/matching', 'MatchController@matching');
+
+Route::get('/matchYes/{num}/{date}', 'MatchController@matchYes');
+
+Route::get('/noticeDest/{num}', 'MatchController@noticeDest');
+
+Route::resource('/search', 'MatchController@search');
+
+Route::resource('/matchNo', 'MatchController@matchNo');
+
+>>>>>>> 4bddb4193ae8d200ad2247b19f048568db04a62a
 Route::get('/chart', 'ChartController@index');
 Route::get('/snapshot', 'SnapShotController@index');
 

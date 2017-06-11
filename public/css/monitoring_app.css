@@ -26,7 +26,7 @@ li{
 #myImg:hover {opacity: 0.7;}
 
 /* The Modal (background) */
-.modal {
+.modal-cont .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -41,7 +41,7 @@ li{
 }
 
 /* Modal Content (Image) */
-.modal-content {
+.modal-cont .modal-content {
     margin: auto;
     display: block;
     width: 80%;
@@ -49,7 +49,7 @@ li{
 }
 
 /* Caption of Modal Image (Image Text) - Same Width as the Image */
-#caption {
+.modal-cont #caption {
     margin: auto;
     display: block;
     width: 80%;
@@ -61,7 +61,7 @@ li{
 }
 
 /* Add Animation - Zoom in the Modal */
-.modal-content, #caption {
+.modal-cont .modal-content, #caption {
     -webkit-animation-name: zoom;
     -webkit-animation-duration: 0.6s;
     animation-name: zoom;
@@ -78,7 +78,7 @@ li{
     to {transform:scale(1)}
 }
 
-.close {
+.modal-cont .close {
     position: absolute;
     top: 15px;
     right: 35px;
@@ -88,18 +88,18 @@ li{
     transition: 0.3s;
 }
 
-.thumbnail_list{
+.modal-cont .thumbnail_list{
     width: 100%;
     height: auto;
 }
 
-.thumbnail{
+.modal-cont .thumbnail{
     width: 300px;
     height: 200px;
 }
 
-.close:hover,
-.close:focus {
+.modal-cont .close:hover,
+.modal-cont .close:focus {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
