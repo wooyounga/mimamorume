@@ -16,12 +16,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+          <div class="panel-body">
+            <a href="{{ url('userinfo') }}" class="btn btn-info" role="button">회원 정보</a>
+            <a href="{{ url('addinfo') }}" class="btn btn-info" role="button">추가 정보</a>
+            <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">매칭 정보</a>
+          </div>
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">구인구직 현황</div>
 
-                <div class="panel-body">
-                    Family!
-                </div>
             </div>
         </div>
     </div>

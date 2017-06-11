@@ -11,35 +11,46 @@
 |
 */
 
-// 최초 접속했을 때의 메인페이지
+// 처음 보여지는 메인 페이지
 Route::get('/', 'WelcomeController@index');
 
+// 로그인 후 첫 페이지
 Route::get('/home', 'HomeController@index');
 
+// 추가 정보 페이지
+Route::get('/addinfo', 'InformationController@addinfo');
+Route::get('/addinfo/update', 'InformationController@add_modify');
+Route::post('/addinfo/update', 'InformationController@add_update');
+
+// 구인구직 현황 페이지
+Route::get('/matchinfo', 'InformationController@matchinfo');
+
+// 회원 정보 페이지
+Route::get('/userinfo', 'InformationController@userinfo');
+Route::get('/userinfo/update', 'InformationController@user_modify');
+Route::post('/userinfo/update', 'InformationController@user_update');
+
+// 구인구직 서비스 라우트
 Route::get('/match', 'MatchController@index');
 
-Route::resource('/matching', 'MatchController@matching');
-
-Route::get('/chart', 'ChartController@index');
-
-Route::get('/logSpec', 'LogSpecController@index');
-
+// 모니터링 서비스 라우트
 Route::get('/monitoring', 'MonitoringController@index');
-
+Route::get('/chart', 'ChartController@index');
 Route::get('/snapshot', 'SnapShotController@index');
-
-Route::get('/individual','IndividualController@index');
 
 Route::get('/task', 'TaskController@index');
 
-Route::get('/addinfo', 'AddInfoController@index');
+Route::get('/logSpec', 'LogSpecController@index');
 
+Route::get('/individual','IndividualController@index');
+
+Route::resource('/matching', 'MatchController@matching');
 Route::resource('match','MatchController');
 Route::resource('logSpec','logSpecController');
 Route::resource('task','TaskController');
 Route::resource('individual','IndividualController');
 
-Route::get('/matchAddressDb', function(){
+Route::get('/matchAddressDb', function() {
   return view('match.matchAddressDb');
 });
 
@@ -51,10 +62,6 @@ Route::get('auth/join', [
 Route::post('auth/join', [
   'as' => 'join.store',
   'uses' => 'JoinController@store',
-]);
-Route::get('auth/confirm/{code}', [
-  'as' => 'join.confirm',
-  'uses' => 'JoinController@confirm',
 ]);
 
 /* 로그인 */
