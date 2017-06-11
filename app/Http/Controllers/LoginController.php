@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
+use Session;
 
 class LoginController extends Controller
 {
@@ -13,7 +13,7 @@ class LoginController extends Controller
         $this->middleware('web');
     }
 
-    public function index(){
+    public function create() {
         if(Session::get('id')){
             $alert = '잘못된 접근입니다.';
 

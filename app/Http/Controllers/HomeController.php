@@ -24,9 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        $notice = \DB::table('notice')->where('addressee_id', Session::get('id'))->get();
-=======
         if(Session::get('id')){
             /*
         $notice_db = \DB::table('notice')
@@ -36,7 +33,6 @@ class HomeController extends Controller
                 ->join('user', 'notice.sender', '=', 'user.id')
                 ->where('notice.addressee_id',Session::get('id'))
                 ->get();
->>>>>>> 4bddb4193ae8d200ad2247b19f048568db04a62a
 
             /*$notice_cont = \DB::table('user')
                 ->join('resume', 'user.id', '=', 'resume.sitter_id')
