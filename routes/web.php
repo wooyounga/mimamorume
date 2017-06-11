@@ -43,7 +43,7 @@ Route::resource('/search', 'MatchController@search');
 
 Route::resource('/matchNo', 'MatchController@matchNo');
 
-<<<<<<< HEAD
+
 //d3.js AjaxRoute
 Route::get('/chartData', 'ChartController@jsonTransmit');
 
@@ -51,10 +51,10 @@ Route::get('/chartData', 'ChartController@jsonTransmit');
 Route::get('/chartBluetooth', 'ChartController@getBluetoothValue');
 
 Route::get('/individual','IndividualController@index');
-=======
+
 Route::get('/chart', 'ChartController@index');
 Route::get('/snapshot', 'SnapShotController@index');
->>>>>>> a1c0c72e47a012000166d8c6ea240947196745fc
+
 
 Route::get('/task', 'TaskController@index');
 
