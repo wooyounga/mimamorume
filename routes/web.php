@@ -36,6 +36,12 @@ Route::get('/monitoring', 'MonitoringController@index');
 
 Route::get('/snapshot', 'SnapShotController@index');
 
+//d3.js AjaxRoute
+Route::get('/chartData', 'ChartController@jsonTransmit');
+
+//chart value getRoute
+Route::get('/chartBluetooth', 'ChartController@getBluetoothValue');
+
 Route::get('/individual','IndividualController@index');
 
 Route::get('/task', 'TaskController@index');
