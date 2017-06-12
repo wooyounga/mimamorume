@@ -40,6 +40,18 @@
                 {{csrf_field()}}
                 <h4 style="color: #428bca;">※본인이 찾는 상대의 조건을 선택하는 곳입니다.</h4>
                 <table class="search table">
+                    @if($user[0]->user_type == '보호자')
+                        <tr>
+                            <td colspan="2">대상자 명</td>
+                            <td colspan="4">
+                                <select class="form-control" id="target_num" name="target_num">
+                                    @foreach($user as $t)
+                                        <option value="{{$t->num}}">{{$t->name}}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                        </tr>
+                    @endif
                     <tr>
                         <td>구분</td>
                         <td>성별</td>

@@ -30,44 +30,56 @@ class LogSpecController extends Controller
 
             if($user_type[0]->user_type == '보호사'){
                 $log_id = \DB::table('care')->where('sitter_id',Session::get('id'))->get();
+
                 if($log_id == '[]'){
-                    $log_user = Session::get('id');
+                    $log = '[]';
+                    $target_list = '없음';
+                    $activi = '없음';
                 }else{
-                    $log_user = $log_id[0]->sitter_id;
+                    $log = \DB::table('work_log')
+                        ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
+                        ->where('work_log.sitter_id','=',$log_id[0]->sitter_id)
+                        ->where('work_log.target_num','=',$log_id[0]->target_num)
+                        ->select('work_log.*', 'work_content.*')
+                        ->get();
+
+                    $target_list = \DB::table('care')
+                        ->join('target','care.target_num','=','target.num')
+                        ->where('sitter_id',Session::get('id'))
+                        ->get();
+                    $activi = $target_list[0]->num;
                 }
 
-                $log = \DB::table('work_log')
-                    ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
-                    ->where('work_log.sitter_id','=',$log_user)
-                    ->select('work_log.*', 'work_content.*')
-                    ->get();
             }else if($user_type[0]->user_type == '보호자'){
                 $log_id = \DB::table('contract')->where('family_id',Session::get('id'))->get();
+                $user_target = \DB::table('support')
+                    ->join('user','support.family_id','=','user.id')
+                    ->join('target','support.target_num','=','target.num')
+                    ->where('user.id',Session::get('id'))
+                    ->get();
+
                 if($log_id == '[]'){
-                    $log_user = Session::get('id');
-
-                    $log = \DB::table('work_log')
-                        ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
-                        ->where('work_log.sitter_id','=',$log_user)
-                        ->select('work_log.*', 'work_content.*')
-                        ->get();
+                    $log = '[]';
+                    $target_list = $user_target;
+                    $activi = $user_target[0]->num;
                 }else{
-                    //$log_user = $log_id[0]->family_id;
-                    $user_target = \DB::table('contract')
-                        ->join('support', 'contract.family_id', '=', 'support.family_id')
-                        ->where('contract.family_id',Session::get('id'))
-                        ->get();
-                    $target_num = $user_target[0]->target_num;
-
                     $log = \DB::table('work_log')
                         ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
-                        ->where('work_log.target_num',$target_num)
+                        ->where('work_log.sitter_id','=',$log_id[0]->sitter_id)
+                        ->where('work_log.target_num','=',$user_target[0]->target_num)
                         ->select('work_log.*', 'work_content.*')
                         ->get();
+
+                    $target_list = \DB::table('support')
+                        ->join('user','support.family_id','=','user.id')
+                        ->join('target','support.target_num','target.num')
+                        ->where('family_id',Session::get('id'))
+                        ->get();
+                    $activi = $user_target[0]->num;
                 }
             }
 
-            return view('task.logSpec')->with('log',$log)->with('user',$user_type)->with('notice',$notice);
+            return view('task.logSpec')->with('log',$log)->with('user',$user_type)->with('target',$target_list)->with('num',$activi)->with('notice',$notice);
         }else{
             $alert = '잘못된 접근입니다.';
 
@@ -134,20 +146,71 @@ class LogSpecController extends Controller
         ]);
 
         $log_id = \DB::table('care')->where('sitter_id',Session::get('id'))->get();
+
         if($log_id == '[]'){
-            $log_user = Session::get('id');
+            $log = '[]';
+            $target_list = '없음';
+            $activi = '없음';
         }else{
-            $log_user = $log_id[0]->sitter_id;
+            $log = \DB::table('work_log')
+                ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
+                ->where('work_log.sitter_id','=',$log_id[0]->sitter_id)
+                ->where('work_log.target_num','=',$log_id[0]->target_num)
+                ->select('work_log.*', 'work_content.*')
+                ->get();
+
+            $target_list = \DB::table('care')
+                ->join('target','care.target_num','=','target.num')
+                ->where('sitter_id',Session::get('id'))
+                ->get();
+            $activi = $target_list[0]->num;
         }
 
-        $log = \DB::table('work_log')
-            ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
-            ->where('work_log.sitter_id','=',$log_user)
-            ->select('work_log.*', 'work_content.*')
+
+        $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
+
+        return redirect('/logSpec')->with('log',$log)->with('target',$target_list)->with('num',$activi)->with('user',$user_type)->with('notice',$notice);
+    }
+    public function logSpecTarget($num){
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id',Session::get('id'))
             ->get();
 
         $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
 
-        return view('task.logSpec')->with('log',$log)->with('user',$user_type)->with('notice',$notice);
+        $sitter = \DB::table('care')
+            ->join('user','care.sitter_id','=','user.id')
+            ->join('target','care.target_num','=','target.num')
+            ->where('target.num',$num)
+            ->get();
+
+        if($sitter == '[]'){
+            $stter_id = null;
+        }else{
+            $stter_id = $sitter[0]->sitter_id;
+        }
+
+        $log = \DB::table('work_log')
+            ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
+            ->where('work_log.sitter_id','=',$stter_id)
+            ->where('work_log.target_num','=',$num)
+            ->select('work_log.*', 'work_content.*')
+            ->get();
+
+        if($user_type == '보호사'){
+            $target_list = \DB::table('care')
+                ->join('target','care.target_num','=','target.num')
+                ->where('sitter_id',Session::get('id'))
+                ->get();
+        }else{
+            $target_list = \DB::table('support')
+                ->join('target','support.target_num','=','target.num')
+                ->where('family_id',Session::get('id'))
+                ->get();
+        }
+        $activi = $num;
+
+        return view('task.logSpec')->with('log',$log)->with('target',$target_list)->with('num',$activi)->with('user',$user_type)->with('notice',$notice);
     }
 }

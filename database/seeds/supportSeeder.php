@@ -13,7 +13,7 @@ class supportSeeder extends Seeder
     {
         DB::table('support')->insert([
             'family_id' => 'user2',
-            'target_num' => '1',
+            'target_num' => '2',
         ]);
     }
 }

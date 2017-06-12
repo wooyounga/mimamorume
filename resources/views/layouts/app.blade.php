@@ -44,10 +44,10 @@
             $('#'+num).modal('show');
         };
 
-        function matchYesConfirm(url, num){
+        function matchYesConfirm(url){
             if(confirm("정말로 수락하겠습니까?")){
-               var log = $(num).val();
-                location.href=url+'/'+log;
+               //var log = $(num).val();
+                location.href=url;
             }
         }
 
@@ -131,7 +131,7 @@
                                         @else
                                             @foreach($notice as $n)
                                                 @if($n->notice_kind == '매칭')
-                                                    <a onclick=showModal({{$n->num}}) class="notice">{{$n->notice_content}}</a>
+                                                    <a onclick=showModal('modal{{$n->num}}') class="notice">{{explode('/',$n->notice_content)[0]}}</a>
                                                     <a href="{{URL::to('/noticeDest',[$n->num])}}" class="close" style="margin: 0 5px;">X</a>
                                                     <hr>
                                                 @elseif($n->notice_kind == '수락')
@@ -157,18 +157,21 @@
                     @endif
             </div>
     </nav>
-   @if(Session::get('id'))
-        @foreach($notice as $n)
-            <div id="{{$n->num}}" class="modal fade" role="dialog">
-                <div class="modal-dialog">
+    <div class="container">
+    </div>
+    @if(Session::get('id'))
+        @if($notice != '[]')
+            @foreach($notice as $n)
+                <div id="modal{{$n->num}}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">매칭 수락</h4>
-                        </div>
-                        <div class="modal-body">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">매칭 수락</h4>
+                            </div>
+                            <div class="modal-body">
                                 <b>※ 매칭신청을 요청한 사용자의 정보입니다.</b><br>
                                 <br><label>이름</label> {{$n->name}}
                                 <br><label>유형</label> {{$n->user_type}}
@@ -176,48 +179,18 @@
                                 <br><label>성별</label> {{$n->gender}}
                                 <br><label>연락처</label> {{$n->cellphone}}
                                 <br><label>연락처2</label> {{$n->telephone}}
-                            {{--@if($n->user_type == '보호사')
-                                @if($notice_etc[0]->lisence == 'yes')
-                                    @foreach($notice_etc as $ne)
-                                        <br><label>자격증명</label> {{$ne->license_kind}}{{$ne->license_grade}}
-                                        <br><label>발급처</label> {{$ne->institution}}
-                                    @endforeach
-                                @endif
-                            @else
-                                @if($notice_care != '[]')
-                                    @foreach($notice_care as $n)
-                                        <br><label>대상자넘버</label> {{$n->num}}
-                                        <br><label>대상자나이</label> {{$n->age}}
-                                        <br><label>대상자성별</label> {{$n->gender}}
-                                        <br><label>대상자장애</label> {{$n->disability_main}}
-                                        <br><label>대상자장애2</label> {{$n->disability_sub}}
-                                    @endforeach
-                                @endif
-                            @endif--}}
-                        </div><br>
-                        <div style="margin-left: 15px;">
-                            <b>※계약 마지막 날을 선택해주세요</b><br><br>
-                            <div>
-                                <input type="text" name="start{{$n->num}}" value="">
-                                <script type="text/javascript">
-                                    $(function(){
-                                        $('*[name=start{{$n->num}}]').appendDtpicker({
-                                            "futureOnly": true
-                                        });
-                                    });
-                                </script>
+                              {{--  <br><label>마지막 계약일</label> {{explode('/',$n->notice_content)[2]}}--}}
+                            </div><br>
+                            <div class="modal-footer">
+                                <a onclick="matchYesConfirm('{{URL::to('/matchYes',[$n->num])}}')" class="btn btn-primary">수락</a>
+                                <a onclick="matchNoConfirm('{{URL::to('/matchNo',[$n->num])}}')" class="btn btn-danger">거절</a>
                             </div>
-                        </div><br>
-                        <div class="modal-footer">
-                            <a onclick="matchYesConfirm('{{URL::to('/matchYes',[$n->num])}}','*[name=start{{$n->num}}]')" class="btn btn-primary">수락</a>
-                            <a onclick="matchNoConfirm('{{URL::to('/matchNo',[$n->num])}}')" class="btn btn-danger">거절</a>
                         </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
-    @endif<div class="container">
-    </div>
+            @endforeach
+        @endif
+    @endif
     @yield('content')
 </div>
 {{--

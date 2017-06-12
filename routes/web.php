@@ -20,18 +20,30 @@ Route::get('/home', 'HomeController@index');
 // 구인구직 서비스 라우트
 Route::get('/match', 'MatchController@index');
 
-Route::resource('/matching', 'MatchController@matching');
+Route::get('/matching/{num}/{target}/{date}', 'MatchController@matching');
 
-Route::get('/matchYes/{num}/{date}', 'MatchController@matchYes');
+Route::get('/matchYes/{num}', 'MatchController@matchYes');
 
 Route::get('/noticeDest/{num}', 'MatchController@noticeDest');
 
-Route::resource('/search', 'MatchController@search');
+Route::get('/search', 'MatchController@search');
 
 Route::resource('/matchNo', 'MatchController@matchNo');
 
+//대상자별 업무일지
+Route::get('/logSpecTarget/{num}', 'LogSpecController@logSpecTarget');
+
+//d3.js AjaxRoute
+Route::get('/chartData', 'ChartController@jsonTransmit');
+
+//chart value getRoute
+Route::get('/chartBluetooth', 'ChartController@getBluetoothValue');
+
+Route::get('/individual','IndividualController@index');
+
 Route::get('/chart', 'ChartController@index');
 Route::get('/snapshot', 'SnapShotController@index');
+
 
 Route::get('/task', 'TaskController@index');
 

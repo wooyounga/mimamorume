@@ -16,6 +16,7 @@ class CreateMatchingPostTable extends Migration
          Schema::create('matching_post', function (Blueprint $table) {
              $table->increments('num');
              $table->string('user_id', 30);
+             $table->string('target_num', 30)->nullable();
              $table->string('title', 30);
              $table->string('content');
              $table->string('user_type', 20);

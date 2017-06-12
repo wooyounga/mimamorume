@@ -16,9 +16,18 @@
 <script src="{{URL::to('/')}}/js/match.js"></script>
 @section('content')
     <script>
+        function matchModal(){
+            $('#matchModal').modal('show');
+        }
+
         function matchConfirm(url){
             if(confirm("정말로 매칭신청하겠습니까?")){
-                location.href=url;
+                var target = $('#target_num').val();
+                if(target == null){
+                    target = '없음';
+                }
+                var log = $('*[name=end]').val();
+                location.href=url+'/'+target+'/'+log;
             }
         }
     </script>
@@ -59,12 +68,49 @@
             <tr>
                 <th>제목</th>
                 <td>{{$match[0]->title}}</td>
-                <td><a class="btn btn-default pull-right" onclick="matchConfirm('{{URL::to('/matching',[$match[0]->num])}}')">매칭신청</a></td>
+                <td><a class="btn btn-default pull-right" onclick="matchModal()">매칭신청</a></td>
             </tr>
             <tr>
                 <th>내용</th>
                 <td colspan="2">{{$match[0]->content}}</td>
             </tr>
         </table>
+    </div>
+    <div id="matchModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">매칭 신청</h4>
+                </div>
+                <div class="modal-body">
+                    @if($target != '없음')
+                        <select class="form-control" id="target_num" name="target_num">
+                            @foreach($target as $t)
+                                <option value="{{$t->num}}">{{$t->name}}</option>
+                            @endforeach
+                        </select>
+                    @endif
+                        <div style="margin-left: 15px;">
+                            <b>※계약 마지막 날을 선택해주세요</b><br><br>
+                            <div>
+                                <input type="text" name="end" value="">
+                                <script type="text/javascript">
+                                    $(function(){
+                                        $('*[name=end]').appendDtpicker({
+                                            "futureOnly": true
+                                        });
+                                    });
+                                </script>
+                            </div>
+                        </div><br>
+                </div><br>
+                <div class="modal-footer">
+                    <a onclick="matchConfirm('{{URL::to('/matching',[$match[0]->num])}}')" class="btn btn-primary">매칭신청</a>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
