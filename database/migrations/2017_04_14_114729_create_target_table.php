@@ -16,7 +16,7 @@ class CreateTargetTable extends Migration
         Schema::create('target', function (Blueprint $table) {
             $table->increments('num');
             $table->string('name', 20);
-            $table->string('profile_image', 70);
+            $table->string('profile_image', 70)->nullable();
             $table->integer('age');
             $table->string('gender', 10);
             $table->string('telephone', 20);
@@ -24,8 +24,8 @@ class CreateTargetTable extends Migration
             $table->string('zip_code', 10);
             $table->string('main_address', 50);
             $table->string('rest_address', 50);
-            $table->string('latitude', 20);
-            $table->string('longitude', 20);
+            $table->string('latitude', 20)->nullable();
+            $table->string('longitude', 20)->nullable();
             $table->string('disability_main', 20);
             $table->string('disability_sub', 20)->nullable();
             $table->string('comment', 100)->nullable();
