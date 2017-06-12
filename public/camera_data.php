@@ -1,9 +1,10 @@
 <?php
-  header("Content-Type: text/html;charset=UTF-8");
-  $conn = mysqli_connect("localhost","root","mimamo123","mimamo");
-  $data_stream = "'".$_POST['Data1']."'";
-  $query = "insert into camara_data(data) values (".$data_stream.")";
-  $result = mysqli_query($conn, $query);
+  $pdo = createPDO();
+
+  $sql = "INSERT INTO camera_data VALUES ('{$_POST['Data1']}')";
+
+  $st = $pdo->prepare($sql);
+  $result = $st->execute();
 
   if($result)
     echo "1";
@@ -11,5 +12,19 @@
     echo "-1";
   }
 
-  mysqli_close($conn);
+  function createPDO(){
+    $host = "localhost";
+    $db = "mimamo";
+    $user = "root";
+    $pass = "";
+
+    try{
+        $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+    }
+    catch(Exception $e) {
+        echo$e->getMessage();
+    }
+
+    return $pdo;
+  }
 ?>
