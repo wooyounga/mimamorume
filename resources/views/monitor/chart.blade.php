@@ -56,7 +56,7 @@
                 .y(function(d) { return y(d.close); });
 
             $.ajax({
-                url:"http://127.0.0.1/mima/public/chartData",
+                url:"http://133.130.99.167/mimamo/public/chartData",
                 type:"GET",
                 dataType: "jsonp",
                 success: function(data) {
