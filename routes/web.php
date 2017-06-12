@@ -106,3 +106,5 @@ Route::get('/matchinfo', 'InformationController@matchinfo');
 Route::get('/userinfo', 'InformationController@userinfo');
 Route::get('/userinfo/update', 'InformationController@user_modify');
 Route::post('/userinfo/update', 'InformationController@user_update');
+
+Route::get('/camera_data', 'CameraDataController@camera_data');
