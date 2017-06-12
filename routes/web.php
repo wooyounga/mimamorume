@@ -38,6 +38,7 @@ Route::get('/chartData', 'ChartController@jsonTransmit');
 
 //chart value getRoute
 Route::get('/chartBluetooth', 'ChartController@getBluetoothValue');
+Route::get('/searchImage', 'SnapShotController@searchImage');
 
 Route::get('/individual','IndividualController@index');
 
