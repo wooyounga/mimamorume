@@ -11,7 +11,7 @@ class targetSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('target')->insert([
+     /*   DB::table('target')->insert([
             'num'=>null,
             'name'=>'감나무',
             'profile_image'=>'/images/profileImage/1.jpg',
@@ -27,7 +27,7 @@ class targetSeeder extends Seeder
             'disability_main'=>'없음',
             'disability_sub'=>'없음',
             'comment'=>'응애',
-        ]);
+        ]);*/
         DB::table('target')->insert([
             'num'=>null,
             'name'=>'응애빌런',

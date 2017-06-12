@@ -25,6 +25,19 @@
             <a href="{{URL::to('/home')}}">Home</a> > <a href="{{URL::to('/task')}}">근무</a> > <a href="{{URL::to('/logSpec')}}"><b>업무일지</b></a>
         </div>
         <div class="wrap">
+            <ul class="nav nav-tabs">
+                @if($target !== '없음')
+                    @foreach($target as $t)
+                        @if($t->num == $num)
+                            <li role="presentation" class="active"><a href="#">{{$t->name}}</a></li>
+                        @else
+                            <li role="presentation"><a href="{{URL::to('/logSpecTarget',[$t->num])}}">{{$t->name}}</a>
+                        @endif
+                    @endforeach
+                @else
+                    <li role="presentation" class="active"><a href="#">Home</a></li>
+                @endif
+            </ul>
             <table class="table table-striped ">
                 <tr>
                     <td>번호</td>
@@ -47,7 +60,7 @@
                     @endforeach
                 @endif
                 <tr>
-                    @if($user[0]->user_type == '보호사')
+                    @if($user[0]->user_type == '보호사' && $target != '없음')
                         <td colspan="5"><a class="btn btn-default pull-right" href="{{route('task.create')}}">등록</a></td>
                     @endif
                 </tr>

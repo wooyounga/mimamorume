@@ -43,8 +43,12 @@
                     <td>{{$log[0]->content_type}}</td>
                 </tr>
                 <tr>
+                    <td>복용약 명</td>
+                    <td>{{$log[0]->medicine_name}}</td>
+                </tr>
+                <tr>
                     <td>약 복용 일정</td>
-                    <td>복용약 명 : {{$log[0]->medicine_name}} / {{$log[0]->start_date}}부터 {{$log[0]->end_date}}까지 매일{{$log[0]->time}}</td>
+                    <td>{{$log[0]->start_date}}부터 {{$log[0]->end_date}}까지 매일{{$log[0]->time}}</td>
                 </tr>
                 <tr>
                     <td>내용</td>
