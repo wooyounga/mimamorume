@@ -13,8 +13,10 @@ class CreateCameraDataTable extends Migration
      */
     public function up()
     {
-        $table->string('data1')->nullable();
-        $table->string('data2')->nullable();
+        Schema::create('camera_data', function (Blueprint $table) {
+          $table->string('data1')->nullable();
+          $table->string('data2')->nullable();
+        });
     }
 
     /**
