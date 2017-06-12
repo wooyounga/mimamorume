@@ -14,8 +14,7 @@ class CreateCameraDataTable extends Migration
     public function up()
     {
         Schema::create('camera_data', function (Blueprint $table) {
-          $table->string('data1')->nullable();
-          $table->string('data2')->nullable();
+          $table->string('data')->nullable();
         });
     }
 
