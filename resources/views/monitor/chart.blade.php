@@ -43,7 +43,7 @@
                 height = +svg.attr("height") - margin.top - margin.bottom,
                 g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-            var parseTime = d3.timeParse("%d-%b-%y");
+            var parseTime = d3.timeParse("%d-%I:%S");
 
             var x = d3.scaleTime()
                 .rangeRound([0, width]);
@@ -56,9 +56,9 @@
                 .y(function(d) { return y(d.close); });
 
             $.ajax({
+                url:"http://133.130.99.167/mimamo/public/chartData",
                 type:"GET",
-                url:"133.130.99.167/mimamo/public/chartData",
-                dataType: "JSON",
+                dataType: "jsonp",
                 success: function(data) {
                     data.forEach(function (d) {
                         d.date = parseTime(d.date);
@@ -83,7 +83,7 @@
                         .attr("y", 6)
                         .attr("dy", "0.71em")
                         .attr("text-anchor", "end")
-                        .text("Price ($)");
+                        .text("심박수");
 
                     g.append("path")
                         .datum(data)
@@ -93,47 +93,12 @@
                         .attr("stroke-linecap", "round")
                         .attr("stroke-width", 1.5)
                         .attr("d", line);
+                },
+                error: function(data, status, er) {
+                    console.log("error:" + status, "er" + er);
+                    console.log("code:"+data.status+"\n"+"message:" + data.responseText+"\n"+"error:"+er);
                 }
-
             });
-
-//            d3.json("./getData.php", function(error, data) {
-//                data.forEach(function (d){
-//                    d.date = parseTime(d.date);
-//                    d.close = +d.close;
-//                    return d;
-//                });
-//            }, function(error, data) {
-//                if (error) throw error;
-//
-//                x.domain(d3.extent(data, function(d) { return d.date; }));
-//                y.domain(d3.extent(data, function(d) { return d.close; }));
-//
-//                g.append("g")
-//                    .attr("transform", "translate(0," + height + ")")
-//                    .call(d3.axisBottom(x))
-//                    .select(".domain")
-//                    .remove();
-//
-//                g.append("g")
-//                    .call(d3.axisLeft(y))
-//                    .append("text")
-//                    .attr("fill", "#000")
-//                    .attr("transform", "rotate(-90)")
-//                    .attr("y", 6)
-//                    .attr("dy", "0.71em")
-//                    .attr("text-anchor", "end")
-//                    .text("Price ($)");
-//
-//                g.append("path")
-//                    .datum(data)
-//                    .attr("fill", "none")
-//                    .attr("stroke", "steelblue")
-//                    .attr("stroke-linejoin", "round")
-//                    .attr("stroke-linecap", "round")
-//                    .attr("stroke-width", 1.5)
-//                    .attr("d", line);
-//            });
         </script>
     </div>
 @endsection
