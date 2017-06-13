@@ -150,7 +150,7 @@
                             </ul>
                         </div>
                     @else
-                        <div class="pull-right links" style="margin-top: 8px;">
+                        <div class="pull-right links" style="margin: 8px 50px 0 0;">
                             <a href="{{ route('login.create') }}" class="btn btn-warning" role="button">Login</a>
                             <a href="{{ route('join.create') }}" class="btn btn-warning" role="button">Join</a>
                         </div>

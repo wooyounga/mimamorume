@@ -30,6 +30,11 @@
                 location.href=url+'/'+target+'/'+log;
             }
         }
+        function destConfirm(url){
+            if(confirm("정말로 삭제하겠습니까?")){
+                location.href=url;
+            }
+        }
     </script>
     <div class="body">
         @if (session('alert'))
@@ -63,6 +68,10 @@
                     <td>{{$match[0]->work_day}}</td>
                     <td>{{$match[0]->work_period}}</td>
                 </tr>
+                <tr>
+                    <td colspan="1">주소</td>
+                    <td colspan="5">{{$match[0]->roadAddress}}</td>
+                </tr>
             </table>
         <table class="table" style="margin-top: 50px;">
             <tr>
@@ -76,9 +85,7 @@
                     {{$match[0]->content}}<br>
                     <a class="btn btn-default pull-right" href="/match">목록</a>
                     @if($match[0]->user_id == Session::get('id'))
-                        <a class="btn btn-default pull-right" style="margin: 0 10px;" href="/match">삭제</a>
-                        <a class="btn btn-default pull-right" href="/match">수정</a>
-
+                        <a class="btn btn-default pull-right" style="margin: 0 10px;" onclick="destConfirm('{{URL::to('/destroy',[$match[0]->num])}}')">삭제</a>
                     @endif
 
                 </td>

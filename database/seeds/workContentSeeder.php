@@ -13,7 +13,7 @@ class workContentSeeder extends Seeder
     {
         DB::table('work_content')->insert([
             'num'=>null,
-            'log_num'=>'2',
+            'log_num'=>'1',
             'content_type'=>'가사',
             'content'=>'오늘ㄹ도 열시미 놀앗따 ~끝~',
         ]);

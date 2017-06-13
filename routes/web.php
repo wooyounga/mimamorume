@@ -25,6 +25,8 @@ Route::post('/addinfo/update', 'InformationController@add_update');
 // 구인구직 서비스 라우트
 Route::get('/match', 'MatchController@index');
 
+Route::get('/destroy/{num}', 'MatchController@destroy');
+
 Route::get('/matching/{num}/{target}/{date}', 'MatchController@matching');
 
 Route::get('/matchYes/{num}', 'MatchController@matchYes');
