@@ -75,7 +75,7 @@
                     <tr>
                         <td>약 이름</td>
                         <td>
-                            <input type="text" class="form-control" name="medicine_name">
+                            <input type="text" class="form-control" name="medicine_name" required>
                         </td>
                     </tr>
                     <tr>
@@ -83,7 +83,7 @@
                         <td>
                             <div class="form-group form-inline">
                                 <label for="start">약복용 시간 및 시작날짜</label>
-                                <input type="text" id="start" name="dateStart" value="" class="form-control" style="margin: 0 20px">
+                                <input type="text" id="start" name="dateStart" value="" class="form-control" style="margin: 0 20px" required>
                                 <script type="text/javascript">
                                     $(function(){
                                         $('*[name=dateStart]').appendDtpicker({
@@ -92,7 +92,7 @@
                                     });
                                 </script>
                                 <label for="end">약복용 시간 및 완료날짜</label>
-                                <input type="text" id="end" name="dateEnd" value="" class="form-control" style="margin: 0 20px">
+                                <input type="text" id="end" name="dateEnd" value="" class="form-control" style="margin: 0 20px" required>
                                 <script type="text/javascript">
                                     $(function(){
                                         $('*[name=dateEnd]').appendDtpicker({
@@ -106,7 +106,7 @@
                     <tr>
                         <td>내용</td>
                         <td>
-                            <textarea class="form-control" name="content" id="content" rows="10"></textarea>
+                            <textarea class="form-control" name="content" id="content" rows="10" required></textarea>
                         </td>
                     </tr>
                     <tr>

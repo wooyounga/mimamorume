@@ -23,13 +23,12 @@ class ChartController extends Controller
     public function index() {
         //if(Session::get('id')){
 
-//            $notice = \DB::table('notice')
-//                ->join('user', 'notice.sender', '=', 'user.id')
-//                ->where('notice.addressee_id',Session::get('id'))
-//                ->get();
+            $notice = \DB::table('notice')
+                ->join('user', 'notice.sender', '=', 'user.id')
+                ->where('notice.addressee_id',Session::get('id'))
+                ->get();
 
-            return view('monitor.chart');
-//        ->with('notice',$notice)
+            return view('monitor.chart')->with('notice',$notice);
 //        }else{
 //            $alert = '잘못된 접근입니다.';
 //            return redirect('/')->with('alert',$alert);
@@ -104,7 +103,6 @@ class ChartController extends Controller
 //            return redirect('/')->with('alert',$alert);
 //        }
 //    }
-
 
 
 }

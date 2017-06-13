@@ -17,8 +17,15 @@ Route::get('/', 'WelcomeController@index');
 // 로그인 후 첫 페이지
 Route::get('/home', 'HomeController@index');
 
+// 추가 정보 페이지
+Route::get('/addinfo', 'InformationController@addinfo');
+Route::get('/addinfo/update', 'InformationController@add_modify');
+Route::post('/addinfo/update', 'InformationController@add_update');
+
 // 구인구직 서비스 라우트
 Route::get('/match', 'MatchController@index');
+
+Route::get('/destroy/{num}', 'MatchController@destroy');
 
 Route::get('/matching/{num}/{target}/{date}', 'MatchController@matching');
 
@@ -26,22 +33,27 @@ Route::get('/matchYes/{num}', 'MatchController@matchYes');
 
 Route::get('/noticeDest/{num}', 'MatchController@noticeDest');
 
-Route::get('/search', 'MatchController@search');
+Route::post('/search', 'MatchController@search');
 
 Route::resource('/matchNo', 'MatchController@matchNo');
 
 //대상자별 업무일지
 Route::get('/logSpecTarget/{num}', 'LogSpecController@logSpecTarget');
+//대상자별 스냅샷
+Route::get('/snapShotTarget/{num}', 'SnapShotController@snapShotTarget');
 
 //d3.js AjaxRoute
-Route::get('/chartData', 'ChartController@jsonTransmit');
+Route::get('/chartData/', 'ChartController@jsonTransmit');
 
 //chart value getRoute
 Route::get('/chartBluetooth', 'ChartController@getBluetoothValue');
 Route::get('/searchImage', 'SnapShotController@searchImage');
 
+Route::get('/searchImage', 'SnapShotController@searchImage');
+
 Route::get('/individual','IndividualController@index');
 
+Route::get('/monitoring', 'MonitoringController@index');
 Route::get('/chart', 'ChartController@index');
 Route::get('/snapshot', 'SnapShotController@index');
 
