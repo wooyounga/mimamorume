@@ -109,3 +109,8 @@ Route::get('/userinfo/update', 'InformationController@user_modify');
 Route::post('/userinfo/update', 'InformationController@user_update');
 
 Route::get('/camera_data', 'CameraDataController@camera_data');
+
+// 일정 페이지
+Route::post('calmonth', 'CalendarController@calMonth');
+Route::get('delcal', 'CalendarController@delCal');
+Route::resource('calendar', 'CalendarController');
