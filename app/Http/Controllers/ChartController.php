@@ -36,7 +36,7 @@ class ChartController extends Controller
     }
 
     public function getBluetoothValue(Request $request) {
-//        $data = $request->input('pulse');
+        $data = $request->input('pulse');
 //        DB::table('vital_data')->insert(
 //            [
 //                'num' => null,
@@ -45,8 +45,7 @@ class ChartController extends Controller
 //                'value' => $data
 //            ]
 //        );
-//        return $data;
-        echo "as";
+        return $data;
     }
 
 
@@ -85,6 +84,28 @@ class ChartController extends Controller
         }
         return $callback . "(" . json_encode($dataArray) . " ) ";
     }
+<<<<<<< HEAD
+=======
+
+
+//    public function index(Request $request) {
+//        if(Session::get('id')){
+//            $notice = \DB::table('notice')
+//                ->join('user', 'notice.sender', '=', 'user.id')
+//                ->where('notice.addressee_id',Session::get('id'))
+//                ->get();
+//
+//
+//            $pulseData = $request->input('sensorVal');
+//
+//            return view('monitor.chart')->with('pulseData', $pulseData)->with('notice',$notice);
+//        }else{
+//            $alert = '잘못된 접근입니다.';
+//
+//            return redirect('/')->with('alert',$alert);
+//        }
+//    }
+>>>>>>> 073e03ca39387f0953a52c5507046bd7ce66a241
 
 
 

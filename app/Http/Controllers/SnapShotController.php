@@ -59,6 +59,10 @@ class SnapShotController extends Controller
             return redirect('/')->with('alert',$alert);
         }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 073e03ca39387f0953a52c5507046bd7ce66a241
     public function searchImage()
     {
         // 폴더명 지정
@@ -72,12 +76,16 @@ class SnapShotController extends Controller
             if($filename == "." || $filename == ".."){
                 continue;
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 073e03ca39387f0953a52c5507046bd7ce66a241
             // 파일인 경우만 목록에 추가한다.
             if(is_file($dir . "/" . $filename)){
                 $files[] = $filename;
             }
         }
+<<<<<<< HEAD
         $fileArray = array();
         // 파일명을 자름
         foreach ($files as $f) {
@@ -109,4 +117,12 @@ class SnapShotController extends Controller
             }
         }
     }
+=======
+        // 파일명을 자름
+        foreach ($files as $f) {
+
+        }
+    }
+
+>>>>>>> 073e03ca39387f0953a52c5507046bd7ce66a241
 }
