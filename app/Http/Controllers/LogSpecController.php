@@ -182,7 +182,7 @@ class LogSpecController extends Controller
         $sitter = \DB::table('care')
             ->join('user','care.sitter_id','=','user.id')
             ->join('target','care.target_num','=','target.num')
-            ->where('target.num',$num)
+            ->where('care.target_num',$num)
             ->get();
 
         if($sitter == '[]'){
@@ -198,7 +198,7 @@ class LogSpecController extends Controller
             ->select('work_log.*', 'work_content.*')
             ->get();
 
-        if($user_type == '보호사'){
+        if($user_type[0]->user_type == '보호사'){
             $target_list = \DB::table('care')
                 ->join('target','care.target_num','=','target.num')
                 ->where('sitter_id',Session::get('id'))

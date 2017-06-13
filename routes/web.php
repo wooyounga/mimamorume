@@ -47,13 +47,16 @@ Route::resource('/matchNo', 'MatchController@matchNo');
 Route::get('/logSpecTarget/{num}', 'LogSpecController@logSpecTarget');
 
 //d3.js AjaxRoute
-Route::get('/chartData', 'ChartController@jsonTransmit');
+Route::get('/chartData/', 'ChartController@jsonTransmit');
 
 //chart value getRoute
 Route::get('/chartBluetooth', 'ChartController@getBluetoothValue');
 
+Route::get('/searchImage', 'SnapShotController@searchImage');
+
 Route::get('/individual','IndividualController@index');
 
+Route::get('/monitoring', 'MonitoringController@index');
 Route::get('/chart', 'ChartController@index');
 Route::get('/snapshot', 'SnapShotController@index');
 
