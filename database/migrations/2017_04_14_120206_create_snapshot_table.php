@@ -16,7 +16,7 @@ class CreateSnapshotTable extends Migration
         Schema::create('snapshot', function (Blueprint $table) {
             $table->increments('num');
             $table->string('snapshot_type', 20);
-            $table->string('snapshot_name', 30);
+            $table->string('snapshot_name', 30)->unique();
             $table->string('upload_name', 30);
             $table->integer('camera_num')->unsigned();
             $table->timestamps();

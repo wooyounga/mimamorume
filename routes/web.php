@@ -17,6 +17,11 @@ Route::get('/', 'WelcomeController@index');
 // 로그인 후 첫 페이지
 Route::get('/home', 'HomeController@index');
 
+// 추가 정보 페이지
+Route::get('/addinfo', 'InformationController@addinfo');
+Route::get('/addinfo/update', 'InformationController@add_modify');
+Route::post('/addinfo/update', 'InformationController@add_update');
+
 // 구인구직 서비스 라우트
 Route::get('/match', 'MatchController@index');
 
@@ -34,13 +39,17 @@ Route::resource('/matchNo', 'MatchController@matchNo');
 Route::get('/logSpecTarget/{num}', 'LogSpecController@logSpecTarget');
 
 //d3.js AjaxRoute
-Route::get('/chartData', 'ChartController@jsonTransmit');
+Route::get('/chartData/', 'ChartController@jsonTransmit');
 
 //chart value getRoute
 Route::get('/chartBluetooth', 'ChartController@getBluetoothValue');
+Route::get('/searchImage', 'SnapShotController@searchImage');
+
+Route::get('/searchImage', 'SnapShotController@searchImage');
 
 Route::get('/individual','IndividualController@index');
 
+Route::get('/monitoring', 'MonitoringController@index');
 Route::get('/chart', 'ChartController@index');
 Route::get('/snapshot', 'SnapShotController@index');
 
@@ -100,4 +109,4 @@ Route::post('/addinfo/update', 'InformationController@add_update');
 // 구인구직 현황 페이지
 Route::get('/matchinfo', 'InformationController@match_view');
 
-Route::get('/camera_data', 'CameraDataController@camera_data');
+//Route::get('/camera_data', 'CameraDataController@camera_data');

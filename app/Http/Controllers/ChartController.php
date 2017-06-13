@@ -23,13 +23,12 @@ class ChartController extends Controller
     public function index() {
         //if(Session::get('id')){
 
-//            $notice = \DB::table('notice')
-//                ->join('user', 'notice.sender', '=', 'user.id')
-//                ->where('notice.addressee_id',Session::get('id'))
-//                ->get();
+            $notice = \DB::table('notice')
+                ->join('user', 'notice.sender', '=', 'user.id')
+                ->where('notice.addressee_id',Session::get('id'))
+                ->get();
 
-            return view('monitor.chart');
-//        ->with('notice',$notice)
+            return view('monitor.chart')->with('notice',$notice);
 //        }else{
 //            $alert = '잘못된 접근입니다.';
 //            return redirect('/')->with('alert',$alert);
@@ -37,7 +36,7 @@ class ChartController extends Controller
     }
 
     public function getBluetoothValue(Request $request) {
-//        $data = $request->input('pulse');
+        $data = $request->input('pulse');
 //        DB::table('vital_data')->insert(
 //            [
 //                'num' => null,
@@ -46,23 +45,48 @@ class ChartController extends Controller
 //                'value' => $data
 //            ]
 //        );
-//        return $data;
-        echo "as";
+        return $data;
     }
 
 
-    private function jsonTransmit() {
+    public function jsonTransmit(Request $request)
+    {
+        $callback = $request->input('callback');
         $pulseData = \DB::table('vital_data')
             ->get();
-
         $dataArray = array();
 
+        $i = 0;
+//        $before = 0;
+//        $valueSum = 0;
+//        $count = 1;
         foreach ($pulseData as $data) {
-            $dataArray['date'] = $data->updated_at;
-            $dataArray['pulse'] = $data->value;
+            //평균 알고리즘
+//            if($i == 0 and $before != (int)date("s", strtotime($data->created_at))) {
+//                $valueSum += $data->value;
+//            } else if($before != (int)date("s", strtotime($data->created_at)) || $i == count($pulseData) - 1) {
+//                if($i == count($pulseData) - 1) {
+//                    $count++;
+//                    $valueSum += $data->value;
+//                }
+//                $dataArray[$i]['date'] = date("d-i:s", strtotime($data->created_at));
+//                $dataArray[$i]['close'] = (int)($valueSum / $count);
+//                $valueSum = $data->value;
+//                $count = 1;
+//            } else {
+//                $valueSum += $data->value;
+//                $count++;
+//            }
+//            $before = (int)date("s", strtotime($data->created_at));
+            $dataArray[$i]['date'] = date("d-i:s", strtotime($data->created_at));
+            $dataArray[$i]['close'] = $data->value;
+            $i++;
         }
+        return $callback . "(" . json_encode($dataArray) . " ) ";
+    }
+<<<<<<< HEAD
+=======
 
-        return json_encode($dataArray);
 
 //    public function index(Request $request) {
 //        if(Session::get('id')){
@@ -80,8 +104,8 @@ class ChartController extends Controller
 //
 //            return redirect('/')->with('alert',$alert);
 //        }
-
-    }
+//    }
+>>>>>>> 073e03ca39387f0953a52c5507046bd7ce66a241
 
 
 

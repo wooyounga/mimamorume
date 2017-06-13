@@ -49,18 +49,19 @@
             <a href="{{URL::to('/home')}}">Home</a> > <a href="{{URL::to('/monitoring')}}">모니터링</a> > <a href="{{URL::to('/snapshot')}}"><b>스냅샷</b></a>
         </div>
         <div class="wrap">
-            <div class="btn-group" style="margin-bottom: 20px;">
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                    전체 보기
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-                    <li><a tabindex="-1" href="#">외출 센서 촬영</a></li>
-                    <li><a tabindex="-1" href="#">일정 주기 촬영</a></li>
-                    <li><a tabindex="-1" href="#">수동 촬영</a></li>
-                    <li class="divider"></li>
-                </ul>
-            </div>
+            <ul class="nav nav-tabs">
+                @if($target !== '없음')
+                    @foreach($target as $t)
+                        @if($t->num == $num)
+                            <li role="presentation" class="active"><a href="#">{{$t->name}}</a></li>
+                        @else
+                            <li role="presentation"><a href="{{URL::to('/snapShotTarget',[$t->num])}}">{{$t->name}}</a>
+                        @endif
+                    @endforeach
+                @else
+                    <li role="presentation" class="active"><a href="#">Home</a></li>
+                @endif
+            </ul>
             <div class="modal_cont">
                 <div class="thumbnail_list">
                     <img class="thumbnail" src="{{URL::to('/')}}/images/main_logo.png">
