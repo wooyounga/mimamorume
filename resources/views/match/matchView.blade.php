@@ -72,7 +72,16 @@
             </tr>
             <tr>
                 <th>내용</th>
-                <td colspan="2">{{$match[0]->content}}</td>
+                <td colspan="2">
+                    {{$match[0]->content}}<br>
+                    <a class="btn btn-default pull-right" href="/match">목록</a>
+                    @if($match[0]->user_id == Session::get('id'))
+                        <a class="btn btn-default pull-right" style="margin: 0 10px;" href="/match">삭제</a>
+                        <a class="btn btn-default pull-right" href="/match">수정</a>
+
+                    @endif
+
+                </td>
             </tr>
         </table>
     </div>

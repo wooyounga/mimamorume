@@ -31,12 +31,14 @@ Route::get('/matchYes/{num}', 'MatchController@matchYes');
 
 Route::get('/noticeDest/{num}', 'MatchController@noticeDest');
 
-Route::get('/search', 'MatchController@search');
+Route::post('/search', 'MatchController@search');
 
 Route::resource('/matchNo', 'MatchController@matchNo');
 
 //대상자별 업무일지
 Route::get('/logSpecTarget/{num}', 'LogSpecController@logSpecTarget');
+//대상자별 스냅샷
+Route::get('/snapShotTarget/{num}', 'SnapShotController@snapShotTarget');
 
 //d3.js AjaxRoute
 Route::get('/chartData/', 'ChartController@jsonTransmit');

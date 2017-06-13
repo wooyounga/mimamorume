@@ -94,8 +94,8 @@
                         <span><input type="radio" id="recipient" name="subject" value="대상자"><label for="recipient">대상자</label></span>
                     </td>
                     <td>
-                        <span><input type="radio" id="man" name="gander" value="남"><label for="man">남</label></span>
-                        <span><input type="radio" id="woman" name="gander" value="여"><label for="woman">여</label></span>
+                        <span><input type="checkbox" id="man" name="gander[]" value="남"><label for="man">남</label></span>
+                        <span><input type="checkbox" id="woman" name="gander[]" value="여"><label for="woman">여</label></span>
                     </td>
                     <td>
                         <span><input type="checkbox" id="10less" name="age[]" value="10대 미만"><label for="10less">10대 미만</label></span>
@@ -180,7 +180,11 @@
                 @endforeach
             @endif
             <tr>
-                <td colspan="5"><a class="btn btn-default pull-right" href="{{route('match.create')}}">등록</a></td>
+                @if($search == '있음')
+                    <td colspan="5"><a class="btn btn-default pull-right" href="/match">전체보기</a></td>
+                @else
+                  <td colspan="5"><a class="btn btn-default pull-right" href="{{route('match.create')}}">등록</a></td>
+                @endif
             </tr>
             <tr class="text-center">
                 <td colspan="5">

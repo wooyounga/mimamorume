@@ -38,7 +38,7 @@ class LogSpecController extends Controller
                 }else{
                     $log = \DB::table('work_log')
                         ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
-                        ->where('work_log.sitter_id','=',$log_id[0]->sitter_id)
+                        ->where('work_log.sitter_id','=',Session::get('id'))
                         ->where('work_log.target_num','=',$log_id[0]->target_num)
                         ->select('work_log.*', 'work_content.*')
                         ->get();
@@ -65,7 +65,11 @@ class LogSpecController extends Controller
                 }else{
                     $log = \DB::table('work_log')
                         ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
-                        ->where('work_log.sitter_id','=',$log_id[0]->sitter_id)
+                       // ->where('work_log.sitter_id','=',$log_id[0]->sitter_id)
+                        ->where(function ($query) use($log_id){
+                            for($i = 0; $i < count($log_id) ; $i++)
+                                $query->where('work_log.sitter_id',$log_id[$i]->sitter_id);
+                        })
                         ->where('work_log.target_num','=',$user_target[0]->target_num)
                         ->select('work_log.*', 'work_content.*')
                         ->get();

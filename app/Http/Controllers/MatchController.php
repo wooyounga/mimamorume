@@ -26,9 +26,9 @@ class MatchController extends Controller
                 ->join('user', 'notice.sender', '=', 'user.id')
                 ->where('notice.addressee_id',Session::get('id'))
                 ->get();
+            $search = '없음';
 
-
-            return view('match.match')->with('match',$match)->with('notice',$notice);
+            return view('match.match')->with('match',$match)->with('notice',$notice)->with('search',$search);
         }else{
             $alert = '잘못된 접근입니다.';
 
@@ -256,7 +256,6 @@ class MatchController extends Controller
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id',Session::get('id'))
             ->get();
-        $search_list = array();
         $subject = $request->get('subject');
         $gander = $request->get('gander');
         $age = $request->get('age');
@@ -266,42 +265,33 @@ class MatchController extends Controller
         $address = $request->get('roadAddress');
         $search = $request->get('searchInput');
 
-        /*for($i = 0 ; $i < count($age) ; $i++){
-            $age_log = \DB::table('matching_post')->where('age',$age[$i])->get();
-            $search_list[$i] = $age_log[0];
-        }
+        $search_log = \DB::table('matching_post')
+            ->where('user_type',$subject)
+            ->where('content', 'like', '%'.$search.'%')
+            ->where(function ($query) use($gander){
+                for($i = 0; $i < count($gander) ; $i++)
+                    $query->orWhere('gender',$gander[$i]);
+            })
+            ->where(function ($query) use($disability){
+                for($i = 0; $i < count($disability) ; $i++)
+                $query->orWhere('disability',$disability[$i]);
+            })
+            ->where(function ($query) use($age){
+                for($i = 0; $i < count($age) ; $i++)
+                    $query->orWhere('age',$age[$i]);
+            })
+            ->where(function ($query) use($week){
+                for($i = 0; $i < count($week) ; $i++)
+                    $query->orWhere('work_day',$week[$i]);
+            })
+            ->where(function ($query) use($period){
+                for($i = 0; $i < count($period) ; $i++)
+                    $query->orWhere('work_period',$period[$i]);
+            })
+            ->get();
 
-        for($i = 0 ; $i < count($disability) ; $i++){
-            $search_count =  count($search_list);
-            $disability_log = \DB::table('matching_post')->where('disability',$disability[$i])->get();
-            $search_list[$search_count] = $disability_log[0];
-            $search_count++;
-        }
+        $search_btn = '있음';
 
-        for($i = 0 ; $i < count($week) ; $i++){
-            $search_count =  count($search_list);
-            $week_log = \DB::table('matching_post')->where('work_day',$week[$i])->get();
-            $search_list[$search_count] = $week_log[0];
-            $search_count++;
-        }
-
-        for($i = 0 ; $i < count($period) ; $i++){
-            $search_count =  count($search_list);
-            $period_log = \DB::table('matching_post')->where('work_period',$period[$i])->get();
-            $search_list[$search_count] = $period_log[0];
-            $search_count++;
-        }
-
-            $search_count =  count($search_list);
-            $search_log = \DB::table('matching_post')
-                ->orWhere('gender',$gander)
-                ->orWhere('user_type',$subject)
-                ->orWhere('content', 'like', '%' . $search . '%')
-                ->get();
-            $search_list[$search_count] = $search_log[0];*/
-
-       // $result = array_unique($input);
-        
-//        view('match.match')->with('notice',$notice)
+        return view('match.match')->with('notice',$notice)->with('match',$search_log)->with('search',$search_btn);
     }
 }
