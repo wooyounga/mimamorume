@@ -18,7 +18,20 @@ class Target extends Authenticatable
      * @var array
      */
     protected $fillable = [
-      'name', 'profile_image', 'age', 'gender', 'telephone', 'cellphone', 'zip_code', 'main_address', 'rest_address', 'latitude', 'longitude', 'disability_main', 'disability_sub', 'comment',
+      'name',
+      'profile_image',
+      'age',
+      'gender',
+      'telephone',
+      'cellphone',
+      'zip_code',
+      'main_address',
+      'rest_address',
+      'latitude',
+      'longitude',
+      'disability_main',
+      'disability_sub',
+      'comment',
     ];
 
     /**
@@ -26,4 +39,8 @@ class Target extends Authenticatable
      *
      * @var array
      */
+     protected $hidden = [
+       'latitude',
+       'longitude',
+     ];
 }

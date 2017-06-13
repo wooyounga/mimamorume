@@ -92,14 +92,14 @@
                       </div>
                   </div>
 
-                  <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
+                  {{-- <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
                       <label class="col-md-4 control-label">대상자 사진</label>
 
                       <div class="col-md-6">
                         <img src="{{ $t->profile_image }}" style="margin-bottom: 20px; width:100px; height: 130px;" class="img-thumbnail" onerror="javascript:this.src=''">
                         <input type="file" value="사진 업로드">
                       </div>
-                  </div>
+                  </div> --}}
 
                   <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                       <label for="name" class="col-md-4 control-label">이름</label>
@@ -188,7 +188,7 @@
                       <label for="disability_sub" class="col-md-4 control-label">장애 종류(부)</label>
 
                       <div class="col-md-6">
-                        <input id="disability_sub" type="text" class="form-control" name="disability_sub" value="{{ $t->disability_sub }}" placeholder="없을 경우 없음을 입력해주십시오.">
+                        <input id="disability_sub" type="text" class="form-control" name="disability_sub" value="{{ $t->disability_sub }}">
                       </div>
                   </div>
 
@@ -203,7 +203,7 @@
                   <div class="form-group">
                       <div class="col-md-6 col-md-offset-4">
                           <button type="submit" class="btn btn-primary">수정</button>
-                          <a href="{{ url('/userinfo') }}" class="btn btn-primary" role="button">목록</a>
+                          <a href="{{ url('/addinfo') }}" class="btn btn-primary" role="button">목록</a>
                       </div>
                   </div>
                 </form>

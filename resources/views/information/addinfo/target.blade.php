@@ -21,12 +21,12 @@
             <a href="{{ url('addinfo') }}" class="btn btn-info" role="button">추가 정보</a>
             <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">매칭 정보</a>
           </div>
-          {{-- @if ($target == null) --}}
+          @if ($target == null)
             <p>대상이 없습니다. 추가 버튼을 눌러서 추가를 진행 해주시기 바랍니다.</p>
 
-            <a href="{{ route('addinfo.create') }}" class="btn btn-primary" role="button">추가</a>
-          {{-- @else --}}
-            {{-- @foreach($target as $t)
+            <a href="{{ url('addinfo/create') }}" class="btn btn-primary" role="button">추가</a>
+          @else
+            @foreach($target as $t)
               <div class="panel panel-default">
                 <div class="panel-heading">대상자 정보</div>
 
@@ -40,14 +40,14 @@
                             <p>{{ $t->num }}</p>
                         </div>
                     </div>
-
+{{--
                     <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
                         <label class="col-md-4 control-label">대상자 사진</label>
 
                         <div class="col-md-6">
                             <p>{{ $t->profile_image }}</p>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                         <label for="name" class="col-md-4 control-label">이름</label>
@@ -125,7 +125,11 @@
                         <label for="disability_sub" class="col-md-4 control-label">장애 종류(부)</label>
 
                         <div class="col-md-6">
+                          @if ($t->disability_sub == null)
+                            <p>없음</p>
+                          @else
                             <p>{{ $t->disability_sub }}</p>
+                          @endif
                         </div>
                     </div>
 
@@ -133,20 +137,25 @@
                         <label for="comment " class="col-md-4 control-label">특이사항</label>
 
                         <div class="col-md-6">
+                          @if ($t->comment == null)
+                            <p>없음</p>
+                          @else
                             <p>{{ $t->comment }}</p>
+                          @endif
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
-                            <a href="{{ url('/addinfo/update') }}" class="btn btn-primary" role="button">수정</a>
+                          <a href="{{ url('addinfo/create') }}" class="btn btn-primary" role="button">추가</a>
+                          <a href="{{ url('/addinfo/modify') }}" class="btn btn-primary" role="button">수정</a>
                         </div>
                     </div>
                   </form>
                 </div>
               </div>
-              @endforeach --}}
-          {{-- @endif --}}
+              @endforeach
+          @endif
         </div>
     </div>
 </div>
