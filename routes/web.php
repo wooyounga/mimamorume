@@ -18,8 +18,6 @@ Route::get('/', 'WelcomeController@index');
 Route::get('/home', 'HomeController@index');
 
 // 구인구직 서비스 라우트
-Route::get('/match', 'MatchController@index');
-
 Route::get('/destroy/{num}', 'MatchController@destroy');
 
 Route::get('/matching/{num}/{target}/{date}', 'MatchController@matching');
@@ -30,7 +28,7 @@ Route::get('/noticeDest/{num}', 'MatchController@noticeDest');
 
 Route::post('/search', 'MatchController@search');
 
-Route::resource('/matchNo', 'MatchController@matchNo');
+Route::get('/matchNo', 'MatchController@matchNo');
 
 //대상자별 업무일지
 Route::get('/logSpecTarget/{num}', 'LogSpecController@logSpecTarget');
@@ -46,22 +44,12 @@ Route::get('/searchImage', 'SnapShotController@searchImage');
 
 Route::get('/searchImage', 'SnapShotController@searchImage');
 
-Route::get('/individual','IndividualController@index');
-
 Route::get('/monitoring', 'MonitoringController@index');
 Route::get('/chart', 'ChartController@index');
 Route::get('/snapshot', 'SnapShotController@index');
 
-
-Route::get('/task', 'TaskController@index');
-
-Route::get('/logSpec', 'LogSpecController@index');
-
-Route::get('/individual','IndividualController@index');
-
-Route::resource('/matching', 'MatchController@matching');
 Route::resource('match','MatchController');
-Route::resource('logSpec','logSpecController');
+Route::resource('logSpec','LogSpecController');
 Route::resource('task','TaskController');
 Route::resource('individual','IndividualController');
 
@@ -107,9 +95,7 @@ Route::post('/addinfo/update', 'InformationController@add_update');
 
 // 구인구직 현황 페이지
 Route::get('/matchinfo', 'InformationController@match_view');
-Route::get('/matchinfo', 'InformationController@matchinfo');
-
-Route::get('/camera_data', 'CameraDataController@camera_data');
+Route::get('/matchinfo', 'InformationController@match');
 
 // 일정 페이지
 Route::post('calmonth', 'CalendarController@calMonth');

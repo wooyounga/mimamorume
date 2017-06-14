@@ -175,6 +175,7 @@ class LogSpecController extends Controller
 
         return redirect('/logSpec')->with('log',$log)->with('target',$target_list)->with('num',$activi)->with('user',$user_type)->with('notice',$notice);
     }
+
     public function logSpecTarget($num){
         $notice = \DB::table('notice')
             ->join('user', 'notice.sender', '=', 'user.id')
