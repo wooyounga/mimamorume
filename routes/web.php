@@ -106,15 +106,8 @@ Route::get('/addinfo/modify', 'InformationController@add_modify');
 Route::post('/addinfo/update', 'InformationController@add_update');
 
 // 구인구직 현황 페이지
-<<<<<<< HEAD
 Route::get('/matchinfo', 'InformationController@match_view');
-=======
 Route::get('/matchinfo', 'InformationController@matchinfo');
-
-// 회원 정보 페이지
-Route::get('/userinfo', 'InformationController@userinfo');
-Route::get('/userinfo/update', 'InformationController@user_modify');
-Route::post('/userinfo/update', 'InformationController@user_update');
 
 Route::get('/camera_data', 'CameraDataController@camera_data');
 
@@ -122,4 +115,3 @@ Route::get('/camera_data', 'CameraDataController@camera_data');
 Route::post('calmonth', 'CalendarController@calMonth');
 Route::get('delcal', 'CalendarController@delCal');
 Route::resource('calendar', 'CalendarController');
->>>>>>> 8385a58c26d1024227287a51705c068adb54548b
