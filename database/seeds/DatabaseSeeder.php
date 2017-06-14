@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(vitalDataSeeder::class);
         $this->call(cameraSeeder::class);
         $this->call(snapshotSeeder::class);
+        $this->call(matchingPostSeed::class);
     }
 }

@@ -96,7 +96,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="/task"><b>Task</b></a>
+                                    <a href="{{ url('/task') }}"><b>Task</b></a>
                                     <ul>
                                         <li><a href="{{ url('/task') }}">Shift</a></li>
                                         <li><a href="{{ url('/logSpec') }}">LogSpec</a></li>
