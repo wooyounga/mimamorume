@@ -16,7 +16,7 @@ class JoinController extends Controller
         'user_type' => 'required',
         'name' => 'required|max:255',
         'id' => 'required|max:255|unique:user',
-        'pw' => 'required|min:6|confirmed',
+        'pw' => 'required|confirmed',
         'age' => 'required|integer',
         'gender' => 'required|max:50',
         'email' => 'required|email|max:255',

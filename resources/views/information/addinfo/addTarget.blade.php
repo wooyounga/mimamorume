@@ -80,7 +80,7 @@
               <div class="panel-heading">대상자 정보</div>
 
               <div class="panel-body">
-                <form class="fomr-horizontal" role="form" action="{{ url('addinfo/store') }}" method="post">
+                <form class="form-horizontal" role="form" action="{{ url('addinfo/store') }}" method="post">
                   {{ csrf_field() }}
 
                   <div class="form-group{{ $errors->has('num') ? ' has-error' : '' }}">
@@ -101,8 +101,8 @@
                       <label class="col-md-4 control-label">대상자 사진</label>
 
                       <div class="col-md-6">
-                        <img src="" style="margin-bottom: 20px; width:100px; height: 130px;" class="img-thumbnail" onerror="javascript:this.src=''">
-                        <input id="profile_image" type="file" name="profile_image" class="form-controll">
+                        <img src="/images/profileImage/{{ $target->profile_image }}" style="margin-bottom: 20px; width:100px; height: 130px;" class="img-thumbnail" onerror="javascript:this.src=''">
+                        <input id="profile_image" type="file" name="profile_image">
                       </div>
                   </div> --}}
 

@@ -15,11 +15,10 @@ class CreateResumeTable extends Migration
     {
         Schema::create('resume', function (Blueprint $table) {
             $table->increments('num');
+            $table->string('profile_image', 70)->default('default.jpg');
             $table->string('sitter_id', 20);
-            $table->string('license', 20);
             $table->string('center', 20);
             $table->string('career', 50)->nullable();
-            $table->string('profile_image', 70);
             $table->timestamps();
 
             $table->foreign('sitter_id')->references('id')->on('user');

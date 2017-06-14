@@ -16,7 +16,7 @@ class CreateTargetTable extends Migration
         Schema::create('target', function (Blueprint $table) {
             $table->integer('num')->unsigned()->primary();
             $table->string('name', 20);
-            $table->string('profile_image', 70)->nullable();
+            $table->string('profile_image', 70)->default('default.jpg');
             $table->integer('age');
             $table->string('gender', 10);
             $table->string('telephone', 20);

@@ -76,19 +76,21 @@
             <a href="{{ url('addinfo') }}" class="btn btn-info" role="button">추가 정보</a>
             <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">매칭 정보</a>
           </div>
-          @foreach($target as $t)
+
             <div class="panel panel-default">
               <div class="panel-heading">대상자 정보</div>
 
+
               <div class="panel-body">
-                <form class="fomr-horizontal" role="form" action="{{ url('addinfo/update') }}" method="post">
+                <form class="form-horizontal" role="form" action="{{ url('addinfo/update') }}" method="post">
+                  @foreach($target as $t)
                   {{ csrf_field() }}
 
                   <div class="form-group{{ $errors->has('num') ? ' has-error' : '' }}">
                       <label for="num" class="col-md-4 control-label">대상자 아이디</label>
 
                       <div class="col-md-6">
-                          <p>{{ $t->num }}</p>
+                          <input id="num" type="text" class="form-control" name="num" value="{{ $t->num }}" readonly>
                       </div>
                   </div>
 
@@ -129,7 +131,7 @@
                       <label for="telephone" class="col-md-4 control-label">집 전화번호</label>
 
                       <div class="col-md-6">
-                        <input id="telephone" type="text" class="form-control" name="telephone" value="{{ $t->telephone }}">
+                        <input id="telephone" type="text" class="form-control" name="telephone" value="{{ $t->telephone }}" autofocus>
                       </div>
                   </div>
 
@@ -202,14 +204,19 @@
 
                   <div class="form-group">
                       <div class="col-md-6 col-md-offset-4">
-                          <button type="submit" class="btn btn-primary">수정</button>
-                          <a href="{{ url('/addinfo') }}" class="btn btn-primary" role="button">목록</a>
+                        <p></p>
+                      </div>
+                  </div>
+                  @endforeach
+                  <div class="form-group">
+                      <div class="col-md-6 col-md-offset-4">
+                        <button type="submit" class="btn btn-primary">수정</button>
+                        <a href="{{ url('/addinfo') }}" class="btn btn-primary" role="button">목록</a>
                       </div>
                   </div>
                 </form>
               </div>
             </div>
-            @endforeach
         </div>
     </div>
 </div>

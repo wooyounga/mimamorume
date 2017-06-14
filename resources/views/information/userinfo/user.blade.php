@@ -26,7 +26,7 @@
                 <div class="panel-heading">회원 정보</div>
 
                 <div class="panel-body">
-                    <form class="fomr-horizontal" role="form" method="post">
+                    <form class="form-horizontal" role="form" method="post">
 
                       <div class="form-group{{ $errors->has('user_type') ? ' has-error' : '' }}">
                           <label for="user_type" class="col-md-4 control-label">회원구분</label>
@@ -118,7 +118,7 @@
 
                       <div class="form-group">
                           <div class="col-md-6 col-md-offset-4">
-                              <a href="{{ url('/userinfo/update') }}" class="btn btn-primary" role="button">수정</a>
+                              <a href="{{ url('/userinfo/modify') }}" class="btn btn-primary" role="button">수정</a>
                           </div>
                       </div>
                     </form>

@@ -17,11 +17,6 @@ Route::get('/', 'WelcomeController@index');
 // 로그인 후 첫 페이지
 Route::get('/home', 'HomeController@index');
 
-// 추가 정보 페이지
-Route::get('/addinfo', 'InformationController@addinfo');
-Route::get('/addinfo/update', 'InformationController@add_modify');
-Route::post('/addinfo/update', 'InformationController@add_update');
-
 // 구인구직 서비스 라우트
 Route::get('/match', 'MatchController@index');
 
@@ -108,5 +103,3 @@ Route::post('/addinfo/update', 'InformationController@add_update');
 
 // 구인구직 현황 페이지
 Route::get('/matchinfo', 'InformationController@match_view');
-
-//Route::get('/camera_data', 'CameraDataController@camera_data');

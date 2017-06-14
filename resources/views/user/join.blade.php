@@ -63,7 +63,7 @@
                 <div class="panel-heading">회원가입</div>
 
                 <div class="panel-body">
-                    <form class="fomr-horizontal" role="form" action="{{ route('join.store') }}" method="post">
+                    <form class="form-horizontal" role="form" action="{{ route('join.store') }}" method="post">
                       {{ csrf_field() }}
 
                       <div class="form-group{{ $errors->has('user_type') ? ' has-error' : '' }}">
