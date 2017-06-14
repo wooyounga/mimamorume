@@ -24,6 +24,5 @@
         <div>
             <a href="{{URL::to('/home')}}">Home</a> > <a href="{{URL::to('/task')}}">근무</a> > <a href="{{URL::to('/task')}}"><b>근무일정</b></a>
         </div>
-
     </div>
 @endsection

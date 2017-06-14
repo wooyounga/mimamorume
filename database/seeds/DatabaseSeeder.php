@@ -15,12 +15,12 @@ class DatabaseSeeder extends Seeder
          $this->call(licenseSeeder::class);
          $this->call(resumeSeeder::class);
         $this->call(targetSeeder::class);
+        $this->call(supportSeeder::class);
         // $this->call(workLogSeeder::class);
         // $this->call(medicineSchedulSeeder::class);
         // $this->call(workContentSeeder::class);
         $this->call(vitalDataSeeder::class);
         $this->call(cameraSeeder::class);
         $this->call(snapshotSeeder::class);
-        $this->call(careSeeder::class);
     }
 }

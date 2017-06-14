@@ -13,7 +13,7 @@ function createCal(){
     }
   });
 
-  window.location.replace("./");
+  window.location.replace("./home");
 }
 
 function viewCal(num){
@@ -47,7 +47,7 @@ function delCal(num){
     url:"./delcal?num=" + num
   });
 
-  window.location.replace("./");
+  window.location.replace("./home");
 }
 
 $(document).ready(function() {

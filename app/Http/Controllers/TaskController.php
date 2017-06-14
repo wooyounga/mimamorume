@@ -26,7 +26,7 @@ class TaskController extends Controller
                 ->get();
 
 
-            return view('task.task')->with('notice',$notice);
+            return view('main.home')->with('notice',$notice);
         }else{
             $alert = '잘못된 접근입니다.';
 
