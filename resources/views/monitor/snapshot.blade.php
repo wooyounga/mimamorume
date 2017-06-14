@@ -50,7 +50,7 @@
         </div>
         <div class="wrap">
             <ul class="nav nav-tabs">
-                @if($target !== '없음')
+                @if($target != '[]')
                     @foreach($target as $t)
                         @if($t->num == $num)
                             <li role="presentation" class="active"><a href="#">{{$t->name}}</a></li>
