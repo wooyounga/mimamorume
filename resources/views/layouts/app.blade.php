@@ -89,17 +89,17 @@
                                     <a href="{{ url('/match') }}"><b>Contract</b></a>
                                 </li>
                                 <li>
-                                    <a href="/monitoring"><b>Monitoring</b></a>
+                                    <a href="{{ url('/monitoring') }}"><b>Monitoring</b></a>
                                     <ul>
-                                        <li><a href="/snapshot">Snapshot</a></li>
-                                        <li><a href="/chart">Chart</a></li>
+                                        <li><a href="{{ url('/snapshot') }}">Snapshot</a></li>
+                                        <li><a href="{{ url('/chart') }}">Chart</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a href="/task"><b>Task</b></a>
                                     <ul>
-                                        <li><a href="/task">Shift</a></li>
-                                        <li><a href="/logSpec">LogSpec</a></li>
+                                        <li><a href="{{ url('/task') }}">Shift</a></li>
+                                        <li><a href="{{ url('/logSpec') }}">LogSpec</a></li>
                                     </ul>
                                 </li>
                             </ul>

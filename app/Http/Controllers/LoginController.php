@@ -54,7 +54,7 @@ class LoginController extends Controller
                 ->where('notice.addressee_id',Session::get('id'))
                 ->get();
 
-            return view('main.home')->with('notice',$notice);
+            return redirect('/home')->with('notice',$notice);
         }
     }
 
