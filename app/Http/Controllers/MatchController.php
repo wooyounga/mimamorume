@@ -20,48 +20,50 @@ class MatchController extends Controller
      */
     public function index()
     {
-        if(Session::get('id')){
+        if (Session::get('id')) {
             $match = \DB::table('matching_post')->get();
             $notice = \DB::table('notice')
                 ->join('user', 'notice.sender', '=', 'user.id')
-                ->where('notice.addressee_id',Session::get('id'))
+                ->where('notice.addressee_id', Session::get('id'))
                 ->get();
+            $search = '없음';
 
-
-            return view('match.match')->with('match',$match)->with('notice',$notice);
-        }else{
+            return view('match.match')->with('match', $match)->with('notice', $notice)->with('search', $search);
+        } else {
             $alert = '잘못된 접근입니다.';
 
-            return redirect('/')->with('alert',$alert);
+            return redirect('/')->with('alert', $alert);
         }
     }
 
-    public function create(){
+    public function create()
+    {
         $notice = \DB::table('notice')
             ->join('user', 'notice.sender', '=', 'user.id')
-            ->where('notice.addressee_id',Session::get('id'))
+            ->where('notice.addressee_id', Session::get('id'))
             ->get();
 
-        $user = \DB::table('user')->where('id',Session::get('id'))->get();
+        $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
-        if($user[0]->user_type == '보호자'){
+        if ($user[0]->user_type == '보호자') {
             $user_target = \DB::table('support')
-                ->join('user','support.family_id','=','user.id')
-                ->join('target','support.target_num','=','target.num')
-                ->where('user.id',Session::get('id'))
+                ->join('user', 'support.family_id', '=', 'user.id')
+                ->join('target', 'support.target_num', '=', 'target.num')
+                ->where('user.id', Session::get('id'))
                 ->get();
-        }else{
-            $user_target = \DB::table('user')->where('id',Session::get('id'))->get();
+        } else {
+            $user_target = \DB::table('user')->where('id', Session::get('id'))->get();
         }
 
 
-        return view('match.matchForm')->with('user',$user_target)->with('notice',$notice);
+        return view('match.matchForm')->with('user', $user_target)->with('notice', $notice);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $notice = \DB::table('notice')
             ->join('user', 'notice.sender', '=', 'user.id')
-            ->where('notice.addressee_id',Session::get('id'))
+            ->where('notice.addressee_id', Session::get('id'))
             ->get();
 
 
@@ -71,6 +73,7 @@ class MatchController extends Controller
             'target_num' => $request->get('target_num'),
             'title' => $request->get('title'),
             'content' => $request->get('content'),
+            'roadAddress' => $request->get('roadAddress'),
             'user_type' => $request->get('subject'),
             'gender' => $request->get('gender'),
             'age' => $request->get('age'),
@@ -83,37 +86,38 @@ class MatchController extends Controller
 
         $match = \DB::table('matching_post')->get();
 
-        return redirect('/match')->with('match',$match)->with('notice',$notice);
+        return redirect('/match')->with('match', $match)->with('notice', $notice);
     }
 
-    public function show($num){
+    public function show($num)
+    {
         $notice = \DB::table('notice')
             ->join('user', 'notice.sender', '=', 'user.id')
-            ->where('notice.addressee_id',Session::get('id'))
+            ->where('notice.addressee_id', Session::get('id'))
             ->get();
 
-        $match = \DB::table('matching_post')->where('num',$num)->get();
+        $match = \DB::table('matching_post')->where('num', $num)->get();
 
         $view = $match[0]->view;
 
-        \DB::table('matching_post')->where('num',$num)->update([
-            'view' => $view+1
+        \DB::table('matching_post')->where('num', $num)->update([
+            'view' => $view + 1
         ]);
 
-        $user = \DB::table('user')->where('id',Session::get('id'))->get();
+        $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
-        if($user[0]->user_type == '보호자'){
+        if ($user[0]->user_type == '보호자') {
             $target = \DB::table('support')
-                ->join('target','support.target_num','=','target.num')
-                ->where('support.family_id',Session::get('id'))->get();
-        }else{
+                ->join('target', 'support.target_num', '=', 'target.num')
+                ->where('support.family_id', Session::get('id'))->get();
+        } else {
             $target = '없음';
         }
 
-        return view('match.matchView')->with('match',$match)->with('target',$target)->with('notice',$notice);
+        return view('match.matchView')->with('match', $match)->with('target', $target)->with('notice', $notice);
     }
 
-    public function matching($num,$target,$date)
+    public function matching($num, $target, $date)
     {
         $notice = \DB::table('notice')
             ->join('user', 'notice.sender', '=', 'user.id')
@@ -129,16 +133,16 @@ class MatchController extends Controller
         $notice_log = \DB::table('notice')
             ->where('sender', Session::get('id'))
             ->where('addressee_id', $user_id)
-            ->where('notice_kind','매칭')
+            ->where('notice_kind', '매칭')
             ->get();
-     /*   $notice_sender = \DB::table('contract')->where('family_id', $user_id)->where('sitter_id', Session::get('id'))->get();
-        $notice_addressee = \DB::table('contract')->where('family_id', Session::get('id'))->where('sitter_id', $user_id)->get();*/
+        /*   $notice_sender = \DB::table('contract')->where('family_id', $user_id)->where('sitter_id', Session::get('id'))->get();
+           $notice_addressee = \DB::table('contract')->where('family_id', Session::get('id'))->where('sitter_id', $user_id)->get();*/
 
-        if($user[0]->user_type == '보호사'){
-            $content = '매칭신청이 왔습니다. 발신자 : '.Session::get('id').'/'.$target.'/'.$date;
-        }else{
+        if ($user[0]->user_type == '보호사') {
+            $content = '매칭신청이 왔습니다. 발신자 : ' . Session::get('id') . '/' . $target . '/' . $date;
+        } else {
             $target_num = $user[0]->target_num;
-            $content = '매칭신청이 왔습니다. 발신자 : '.Session::get('id').'/'.$target_num.'/'.$date;
+            $content = '매칭신청이 왔습니다. 발신자 : ' . Session::get('id') . '/' . $target_num . '/' . $date;
         }
         if ($user[0]->user_type == $my_type[0]->user_type) {
             $alert = '상대와 같은 유형은 매칭신청 할 수 없습니다.';
@@ -161,29 +165,30 @@ class MatchController extends Controller
         }
         return redirect()->back()->with('alert', $alert)->with('notice', $notice);
     }
+
     public function matchYes($num)
     {
         $notice = \DB::table('notice')
             ->join('user', 'notice.sender', '=', 'user.id')
-            ->where('notice.addressee_id',Session::get('id'))
+            ->where('notice.addressee_id', Session::get('id'))
             ->get();
 
-        $user = \DB::table('user')->where('id',Session::get('id'))->get();
+        $user = \DB::table('user')->where('id', Session::get('id'))->get();
         $sender = \DB::table('notice')
-            ->where('num',$num)
-            ->join('user','notice.sender','=','user.id')
+            ->where('num', $num)
+            ->join('user', 'notice.sender', '=', 'user.id')
             ->get();
-        $content = '매칭신청을 수락하셨습니다. 발신자 : '.Session::get('id');
+        $content = '매칭신청을 수락하셨습니다. 발신자 : ' . Session::get('id');
 
         $notice_target = \DB::table('notice')
-            ->where('notice.addressee_id',Session::get('id'))
-            ->where('notice.sender',$sender[0]->id)
-            ->where('num',$num)
+            ->where('notice.addressee_id', Session::get('id'))
+            ->where('notice.sender', $sender[0]->id)
+            ->where('num', $num)
             ->get();
 
-        $tar = explode('/',$notice_target[0]->notice_content);
+        $tar = explode('/', $notice_target[0]->notice_content);
 
-        if($user[0]->user_type == '보호사'){
+        if ($user[0]->user_type == '보호사') {
             \DB::table('contract')->insert([
                 'family_id' => $sender[0]->id,
                 'sitter_id' => Session::get('id'),
@@ -192,7 +197,7 @@ class MatchController extends Controller
             ]);
 
             $sitter = Session::get('id');
-        }else{
+        } else {
             \DB::table('contract')->insert([
                 'family_id' => Session::get('id'),
                 'sitter_id' => $sender[0]->id,
@@ -221,42 +226,44 @@ class MatchController extends Controller
 
         $alert = '매칭이 성공적으로 이루어졌습니다.';
 
-        \DB::table('notice')->where('num',$num)->delete();
+        \DB::table('notice')->where('num', $num)->delete();
 
-        return redirect('/home')->with('alert', $alert)->with('notice',$notice);
+        return redirect('/home')->with('alert', $alert)->with('notice', $notice);
     }
 
     public function matchNo($num)
     {
         $notice = \DB::table('notice')
             ->join('user', 'notice.sender', '=', 'user.id')
-            ->where('notice.addressee_id',Session::get('id'))
+            ->where('notice.addressee_id', Session::get('id'))
             ->get();
 
-        \DB::table('notice')->where('num',$num)->delete();
+        \DB::table('notice')->where('num', $num)->delete();
 
         $alert = '거절이 완료되었습니다';
 
-        return redirect()->back()->with('alert', $alert)->with('notice',$notice);
+        return redirect()->back()->with('alert', $alert)->with('notice', $notice);
     }
 
-    public function noticeDest($num){
-        \DB::table('notice')->where('num',$num)->delete();
+    public function noticeDest($num)
+    {
+        \DB::table('notice')->where('num', $num)->delete();
 
         $notice = \DB::table('notice')
             ->join('user', 'notice.sender', '=', 'user.id')
-            ->where('notice.addressee_id',Session::get('id'))
+            ->where('notice.addressee_id', Session::get('id'))
             ->get();
 
-        return redirect()->back()->with('notice',$notice);
+        return redirect()->back()->with('notice', $notice);
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         $notice = \DB::table('notice')
             ->join('user', 'notice.sender', '=', 'user.id')
-            ->where('notice.addressee_id',Session::get('id'))
+            ->where('notice.addressee_id', Session::get('id'))
             ->get();
-        $search_list = array();
+
         $subject = $request->get('subject');
         $gander = $request->get('gander');
         $age = $request->get('age');
@@ -266,42 +273,55 @@ class MatchController extends Controller
         $address = $request->get('roadAddress');
         $search = $request->get('searchInput');
 
-        /*for($i = 0 ; $i < count($age) ; $i++){
-            $age_log = \DB::table('matching_post')->where('age',$age[$i])->get();
-            $search_list[$i] = $age_log[0];
+        $address_search = explode(' ', $address);
+
+        if ($address_search == '') {
+            $address_log = $address_search[0] . ' ' . $address_search[1] . ' ' . $address_search[2];
+        } else {
+            $address_log = null;
         }
 
-        for($i = 0 ; $i < count($disability) ; $i++){
-            $search_count =  count($search_list);
-            $disability_log = \DB::table('matching_post')->where('disability',$disability[$i])->get();
-            $search_list[$search_count] = $disability_log[0];
-            $search_count++;
-        }
+        $search_log = \DB::table('matching_post')
+            ->where('user_type', $subject)
+            ->where('content', 'like', '%' . $search . '%')
+            ->where('roadAddress', 'like', '%' . $address_log . '%')
+            ->where(function ($query) use ($gander) {
+                for ($i = 0; $i < count($gander); $i++)
+                    $query->orWhere('gender', $gander[$i]);
+            })
+            ->where(function ($query) use ($disability) {
+                for ($i = 0; $i < count($disability); $i++)
+                    $query->orWhere('disability', $disability[$i]);
+            })
+            ->where(function ($query) use ($age) {
+                for ($i = 0; $i < count($age); $i++)
+                    $query->orWhere('age', $age[$i]);
+            })
+            ->where(function ($query) use ($week) {
+                for ($i = 0; $i < count($week); $i++)
+                    $query->orWhere('work_day', $week[$i]);
+            })
+            ->where(function ($query) use ($period) {
+                for ($i = 0; $i < count($period); $i++)
+                    $query->orWhere('work_period', $period[$i]);
+            })
+            ->get();
 
-        for($i = 0 ; $i < count($week) ; $i++){
-            $search_count =  count($search_list);
-            $week_log = \DB::table('matching_post')->where('work_day',$week[$i])->get();
-            $search_list[$search_count] = $week_log[0];
-            $search_count++;
-        }
+        $search_btn = '있음';
 
-        for($i = 0 ; $i < count($period) ; $i++){
-            $search_count =  count($search_list);
-            $period_log = \DB::table('matching_post')->where('work_period',$period[$i])->get();
-            $search_list[$search_count] = $period_log[0];
-            $search_count++;
-        }
+        return view('match.match')->with('notice', $notice)->with('match', $search_log)->with('search', $search_btn);
+    }
 
-            $search_count =  count($search_list);
-            $search_log = \DB::table('matching_post')
-                ->orWhere('gender',$gander)
-                ->orWhere('user_type',$subject)
-                ->orWhere('content', 'like', '%' . $search . '%')
-                ->get();
-            $search_list[$search_count] = $search_log[0];*/
+    public function destroy($num)
+    {
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id', Session::get('id'))
+            ->get();
 
-       // $result = array_unique($input);
-        
-//        view('match.match')->with('notice',$notice)
+        \DB::table('matching_post')->where('num', $num)->delete();
+        $alert = '게시글이 삭제되었습니다.';
+
+        return redirect('/match')->with('notice', $notice)->with('alert', $alert);
     }
 }

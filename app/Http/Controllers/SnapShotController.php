@@ -40,9 +40,6 @@ class SnapShotController extends Controller
                 }else{
                     $activi = $target_list[0]->num;
                 }
-              /*  $snapshot = \DB::table('camera')
-                    ->join('target','camera.target_num','=','target.num')
-                    ->join('snapshot','camera.num')*/
             }else{
                 $target_list = \DB::table('support')
                     ->join('target','support.target_num','=','target.num')
@@ -51,41 +48,75 @@ class SnapShotController extends Controller
 
                 $activi = $target_list[0]->num;
             }
+            $snapshot = \DB::table('camera')
+                ->join('target','camera.target_num','=','target.num')
+                ->join('snapshot','camera.num','=','snapshot.camera_num')
+                ->where('target.num',$target_list[0]->num)
+                ->get();
 
-            return view('monitor.snapshot')->with('target',$target_list)->with('num',$activi)->with('notice',$notice);
+            return view('monitor.snapshot')->with('target',$target_list)->with('snapshot',$snapshot)->with('num',$activi)->with('notice',$notice);
         }else{
             $alert = '잘못된 접근입니다.';
 
             return redirect('/')->with('alert',$alert);
         }
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 073e03ca39387f0953a52c5507046bd7ce66a241
+    public function snapShotTarget($num){
+        if(Session::get('id')){
+            $notice = \DB::table('notice')
+                ->join('user', 'notice.sender', '=', 'user.id')
+                ->where('notice.addressee_id',Session::get('id'))
+                ->get();
+
+            $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
+
+            if($user_type[0]->user_type == '보호사'){
+                $target_list = \DB::table('care')
+                    ->join('target','care.target_num','=','target.num')
+                    ->where('sitter_id',Session::get('id'))
+                    ->get();
+            }else{
+                $target_list = \DB::table('support')
+                    ->join('target','support.target_num','=','target.num')
+                    ->where('family_id',Session::get('id'))
+                    ->get();
+            }
+            $snapshot = \DB::table('camera')
+                ->join('target','camera.target_num','=','target.num')
+                ->join('snapshot','camera.num','=','snapshot.camera_num')
+                ->where('target.num',$num)
+                ->get();
+
+            $activi = $num;
+
+            return view('monitor.snapshot')->with('target',$target_list)->with('snapshot',$snapshot)->with('num',$activi)->with('notice',$notice);
+        }else{
+            $alert = '잘못된 접근입니다.';
+
+            return redirect('/')->with('alert',$alert);
+        }
+    }
+
     public function searchImage()
     {
         // 폴더명 지정
         $dir = "C:/xampp/htdocs/mima/public/images/monitor/snapshot";
         // 핸들 획득
-        $handle  = opendir($dir);
+        $handle = opendir($dir);
         $files = array();
 
         // 디렉터리에 포함된 파일을 저장한다.
         while (false !== ($filename = readdir($handle))) {
-            if($filename == "." || $filename == ".."){
+            if ($filename == "." || $filename == "..") {
                 continue;
             }
-<<<<<<< HEAD
 
-=======
->>>>>>> 073e03ca39387f0953a52c5507046bd7ce66a241
             // 파일인 경우만 목록에 추가한다.
-            if(is_file($dir . "/" . $filename)){
+            if (is_file($dir . "/" . $filename)) {
                 $files[] = $filename;
             }
         }
-<<<<<<< HEAD
         $fileArray = array();
         // 파일명을 자름
         foreach ($files as $f) {
@@ -116,13 +147,9 @@ class SnapShotController extends Controller
                 continue;
             }
         }
-    }
-=======
         // 파일명을 자름
         foreach ($files as $f) {
 
         }
     }
-
->>>>>>> 073e03ca39387f0953a52c5507046bd7ce66a241
 }

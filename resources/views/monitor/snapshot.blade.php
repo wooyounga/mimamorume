@@ -64,8 +64,15 @@
             </ul>
             <div class="modal_cont">
                 <div class="thumbnail_list">
-                    <img class="thumbnail" src="{{URL::to('/')}}/images/main_logo.png">
-                    <img class="thumbnail" src="{{URL::to('/')}}/images/main/main_image_01.png">
+                    @if($snapshot == '[]')
+                        <div><h3>최근에 찍힌 스냅샷이 존재하지 않습니다</h3></div>
+                    @else
+                        @foreach($snapshot as $s)
+                            <img class="thumbnail" src="{{URL::to('/')}}/images/monitor/snapShot/{{$s->upload_name}}">
+                        @endforeach
+                    @endif
+                   {{-- <img class="thumbnail" src="{{URL::to('/')}}/images/main_logo.png">
+                    <img class="thumbnail" src="{{URL::to('/')}}/images/main/main_image_01.png">--}}
                 </div>
                 <div id="myModal" class="modal">
                     <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>

@@ -20,18 +20,22 @@ Route::get('/home', 'HomeController@index');
 // 구인구직 서비스 라우트
 Route::get('/match', 'MatchController@index');
 
+Route::get('/destroy/{num}', 'MatchController@destroy');
+
 Route::get('/matching/{num}/{target}/{date}', 'MatchController@matching');
 
 Route::get('/matchYes/{num}', 'MatchController@matchYes');
 
 Route::get('/noticeDest/{num}', 'MatchController@noticeDest');
 
-Route::get('/search', 'MatchController@search');
+Route::post('/search', 'MatchController@search');
 
 Route::resource('/matchNo', 'MatchController@matchNo');
 
 //대상자별 업무일지
 Route::get('/logSpecTarget/{num}', 'LogSpecController@logSpecTarget');
+//대상자별 스냅샷
+Route::get('/snapShotTarget/{num}', 'SnapShotController@snapShotTarget');
 
 //d3.js AjaxRoute
 Route::get('/chartData/', 'ChartController@jsonTransmit');
@@ -102,4 +106,20 @@ Route::get('/addinfo/modify', 'InformationController@add_modify');
 Route::post('/addinfo/update', 'InformationController@add_update');
 
 // 구인구직 현황 페이지
+<<<<<<< HEAD
 Route::get('/matchinfo', 'InformationController@match_view');
+=======
+Route::get('/matchinfo', 'InformationController@matchinfo');
+
+// 회원 정보 페이지
+Route::get('/userinfo', 'InformationController@userinfo');
+Route::get('/userinfo/update', 'InformationController@user_modify');
+Route::post('/userinfo/update', 'InformationController@user_update');
+
+Route::get('/camera_data', 'CameraDataController@camera_data');
+
+// 일정 페이지
+Route::post('calmonth', 'CalendarController@calMonth');
+Route::get('delcal', 'CalendarController@delCal');
+Route::resource('calendar', 'CalendarController');
+>>>>>>> 8385a58c26d1024227287a51705c068adb54548b

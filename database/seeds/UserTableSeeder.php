@@ -24,7 +24,7 @@ class UserTableSeeder extends Seeder
             'telephone' => '0535551234',
             'cellphone' => '01012345678',
             'zip_code' => '122345',
-            'main_address' => '대구시 북구 복현동',
+            'main_address' => '대구 북구 복현동',
             'rest_address' => '영진전문대',
         ]);
         DB::table('user')->insert([
@@ -38,7 +38,7 @@ class UserTableSeeder extends Seeder
             'telephone' => '0535451234',
             'cellphone' => '01015345678',
             'zip_code' => '122345',
-            'main_address' => '대구시 북구 복현동',
+            'main_address' => '대구 북구 복현동',
             'rest_address' => '영진전문대',
         ]);
         /*foreach($user as $u){

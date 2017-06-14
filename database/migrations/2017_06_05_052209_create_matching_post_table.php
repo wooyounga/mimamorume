@@ -19,6 +19,7 @@ class CreateMatchingPostTable extends Migration
              $table->string('target_num', 30)->nullable();
              $table->string('title', 30);
              $table->string('content');
+             $table->string('roadAddress');
              $table->string('user_type', 20);
              $table->string('gender', 5);
              $table->string('age', 10);

@@ -84,8 +84,6 @@ class ChartController extends Controller
         }
         return $callback . "(" . json_encode($dataArray) . " ) ";
     }
-<<<<<<< HEAD
-=======
 
 
 //    public function index(Request $request) {
@@ -105,8 +103,6 @@ class ChartController extends Controller
 //            return redirect('/')->with('alert',$alert);
 //        }
 //    }
->>>>>>> 073e03ca39387f0953a52c5507046bd7ce66a241
-
 
 
 }
