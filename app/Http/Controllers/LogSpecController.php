@@ -91,6 +91,23 @@ class LogSpecController extends Controller
     //     }
       echo "응애";
     }
+<<<<<<< HEAD
+=======
+
+    public function logSpecTarget($num){
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id',Session::get('id'))
+            ->get();
+
+        $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
+
+        $sitter = \DB::table('care')
+            ->join('user','care.sitter_id','=','user.id')
+            ->join('target','care.target_num','=','target.num')
+            ->where('care.target_num',$num)
+            ->get();
+>>>>>>> ff74623524388e20f0e8b683c0d144b8228fc780
 
     // public function show($num){
     //     $notice = \DB::table('notice')

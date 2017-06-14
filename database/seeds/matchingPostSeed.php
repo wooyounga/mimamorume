@@ -49,7 +49,7 @@ class matchingPostSeed extends Seeder
              "user_type" => "보호사",
              'gender' => "여",
              'age' => $age[$i],
-             'disability'=> $disability[$i],
+             'disability' => $disability[$i],
              'work_day' => "주 5회",
              'work_period' => "3개월 미만",
              'view' => "0",
