@@ -32,10 +32,10 @@ class HomeController extends Controller
                 ->get();
             $user = \DB::table('user')->where('id',Session::get('id'))->get();
 
-            if($user[0]->user_type = '보호사'){
-                $contract = \DB::table('contract')->where('sitter_id',Session::get('id'))->get();
-            }else{
+            if($user[0]->user_type == '보호자'){
                 $contract = \DB::table('contract')->where('family_id',Session::get('id'))->get();
+            }else{
+                $contract = \DB::table('contract')->where('sitter_id',Session::get('id'))->get();
             }
 
             if($contract != '[]'){

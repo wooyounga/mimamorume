@@ -83,7 +83,7 @@
                 <th>내용</th>
                 <td colspan="2">
                     {{$match[0]->content}}<br>
-                    <a class="btn btn-default pull-right" href="/match">목록</a>
+                    <a class="btn btn-default pull-right" href="{{URL::to('/match')}}">목록</a>
                     @if($match[0]->user_id == Session::get('id'))
                         <a class="btn btn-default pull-right" style="margin: 0 10px;" onclick="destConfirm('{{URL::to('/destroy',[$match[0]->num])}}')">삭제</a>
                     @endif
