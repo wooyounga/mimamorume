@@ -4,7 +4,7 @@ function createCal(){
   var end = $('*[name=end]').val();
 
   $.ajax({
-    url:"/calendar",
+    url:"calendar",
     type:"POST",
     data:{
       "title":title,
@@ -13,12 +13,12 @@ function createCal(){
     }
   });
 
-  window.location.replace("/home");
+  location.href = "task";
 }
 
 function viewCal(num){
   $.ajax({
-    url:"/calendar/" + num,
+    url:"calendar/" + num,
     dataType:"json",
     success:function(data){
       console.log(data);
@@ -44,10 +44,10 @@ function viewCal(num){
 
 function delCal(num){
   $.ajax({
-    url:"/delcal?num=" + num
+    url:"delcal?num=" + num
   });
 
-  window.location.replace("/home");
+  location.href = "task";
 }
 
 $(document).ready(function() {
@@ -58,7 +58,7 @@ $(document).ready(function() {
   });
 
   $.ajax({
-    url:"/mimamo/public/calendar",
+    url:"calendar",
     dataType:"json",
     success:function(data){
       console.log(data);

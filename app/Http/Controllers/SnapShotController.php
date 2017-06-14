@@ -51,7 +51,7 @@ class SnapShotController extends Controller
             $snapshot = \DB::table('camera')
                 ->join('target','camera.target_num','=','target.num')
                 ->join('snapshot','camera.num','=','snapshot.camera_num')
-                ->where('target.num',$target_list[0]->num)
+                ->where('target.num',$activi)
                 ->get();
 
             return view('monitor.snapshot')->with('target',$target_list)->with('snapshot',$snapshot)->with('num',$activi)->with('notice',$notice);

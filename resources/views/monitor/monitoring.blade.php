@@ -40,13 +40,13 @@
         <div class="wrap">
             <div class="monitor_image">
                 <div>
-                    <a href="/snapshot">
+                    <a href="{{ URL::to('/snapshot') }}">
                         <img id="img01" src="{{ URL::to('/') }}/images/monitor/snapshot_button.png"
                          onmouseover="hover(this,'/snapshot_button');" onmouseout="unhover(this, '/snapshot_button')">
                     </a>
                 </div>
                 <div>
-                    <a href="/chart">
+                    <a href="{{ URL::to('/chart') }}">
                         <img src="{{ URL::to('/') }}/images/monitor/stats_button.png"
                          onmouseover="hover(this,'/stats_button');" onmouseout="unhover(this, '/stats_button')">
                     </a>
