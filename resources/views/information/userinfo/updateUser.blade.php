@@ -81,7 +81,7 @@
                   <div class="panel-heading">회원 정보</div>
 
                   <div class="panel-body">
-                    <form class="fomr-horizontal" role="form" action="{{ url('userinfo/update') }}" method="post">
+                    <form class="form-horizontal" role="form" action="{{ url('userinfo/update') }}" method="post">
                       {{ csrf_field() }}
 
                       <div class="form-group{{ $errors->has('user_type') ? ' has-error' : '' }}">
@@ -192,6 +192,7 @@
                       <div class="form-group">
                           <div class="col-md-6 col-md-offset-4">
                               <button type="submit" class="btn btn-primary">수정</button>
+                              <a href="{{ url('/userinfo') }}" class="btn btn-primary" role="button">취소</a>
                           </div>
                       </div>
                     </form>

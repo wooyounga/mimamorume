@@ -76,30 +76,32 @@
             <a href="{{ url('addinfo') }}" class="btn btn-info" role="button">추가 정보</a>
             <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">매칭 정보</a>
           </div>
-          @foreach($target as $t)
+
             <div class="panel panel-default">
               <div class="panel-heading">대상자 정보</div>
 
+
               <div class="panel-body">
-                <form class="fomr-horizontal" role="form" action="{{ url('addinfo/update') }}" method="post">
+                <form class="form-horizontal" role="form" action="{{ url('addinfo/update') }}" method="post">
+                  @foreach($target as $t)
                   {{ csrf_field() }}
 
                   <div class="form-group{{ $errors->has('num') ? ' has-error' : '' }}">
                       <label for="num" class="col-md-4 control-label">대상자 아이디</label>
 
                       <div class="col-md-6">
-                          <p>{{ $t->num }}</p>
+                          <input id="num" type="text" class="form-control" name="num" value="{{ $t->num }}" readonly>
                       </div>
                   </div>
 
-                  <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
+                  {{-- <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
                       <label class="col-md-4 control-label">대상자 사진</label>
 
                       <div class="col-md-6">
                         <img src="{{ $t->profile_image }}" style="margin-bottom: 20px; width:100px; height: 130px;" class="img-thumbnail" onerror="javascript:this.src=''">
                         <input type="file" value="사진 업로드">
                       </div>
-                  </div>
+                  </div> --}}
 
                   <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                       <label for="name" class="col-md-4 control-label">이름</label>
@@ -129,7 +131,7 @@
                       <label for="telephone" class="col-md-4 control-label">집 전화번호</label>
 
                       <div class="col-md-6">
-                        <input id="telephone" type="text" class="form-control" name="telephone" value="{{ $t->telephone }}">
+                        <input id="telephone" type="text" class="form-control" name="telephone" value="{{ $t->telephone }}" autofocus>
                       </div>
                   </div>
 
@@ -188,7 +190,7 @@
                       <label for="disability_sub" class="col-md-4 control-label">장애 종류(부)</label>
 
                       <div class="col-md-6">
-                        <input id="disability_sub" type="text" class="form-control" name="disability_sub" value="{{ $t->disability_sub }}" placeholder="없을 경우 없음을 입력해주십시오.">
+                        <input id="disability_sub" type="text" class="form-control" name="disability_sub" value="{{ $t->disability_sub }}">
                       </div>
                   </div>
 
@@ -202,14 +204,19 @@
 
                   <div class="form-group">
                       <div class="col-md-6 col-md-offset-4">
-                          <button type="submit" class="btn btn-primary">수정</button>
-                          <a href="{{ url('/userinfo') }}" class="btn btn-primary" role="button">목록</a>
+                        <p></p>
+                      </div>
+                  </div>
+                  @endforeach
+                  <div class="form-group">
+                      <div class="col-md-6 col-md-offset-4">
+                        <button type="submit" class="btn btn-primary">수정</button>
+                        <a href="{{ url('/addinfo') }}" class="btn btn-primary" role="button">목록</a>
                       </div>
                   </div>
                 </form>
               </div>
             </div>
-            @endforeach
         </div>
     </div>
 </div>

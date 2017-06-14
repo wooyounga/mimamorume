@@ -24,22 +24,16 @@
             <div class="panel panel-default">
               <div class="panel-heading">보호사 정보</div>
 
-              @if($resume == '[]')
-                <p>보호사에 대한 정보가 없습니다.</p>
-                <p>등록 버튼을 눌러서 보호사 정보 등록을 진행 해주시기 바랍니다.</p>
-                <a href="{{ url('addinfo/create') }}" class="btn btn-primary" role="button">추가</a>
-              @else
-
               <div class="panel-body">
-                <form class="form-horizontal" role="form">
-                  @foreach($resume as $r)
+                <form class="form-horizontal" role="form" action="{{ url('addinfo/store') }}" method="post" enctype="multipart/form-data">
+                  {{ csrf_field() }}
 
                   {{-- <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
                       <label class="col-md-4 control-label">프로필 사진</label>
 
                       <div class="col-md-6">
-                        <img src="" style="margin-bottom: 20px; width:100px; height: 130px;" class="img-thumbnail" onerror="javascript:this.src=''">
-                        <input type="file" value="사진 업로드">
+                        <img src="/images/profileImage/{{ $resume->profile_image }}" style="margin-bottom: 20px; width:100px; height: 130px;" class="img-thumbnail" onerror="javascript:this.src=''">
+                        <input id="profile_image" type="file" name="profile_image">
                       </div>
                   </div> --}}
 
@@ -47,7 +41,7 @@
                       <label for="center" class="col-md-4 control-label">소속</label>
 
                       <div class="col-md-6">
-                          <p>{{ $r->center }}</p>
+                          <input id="center" type="text" class="form-control" name="center" value="{{ old('center') }}" required autofocus>
                       </div>
                   </div>
 
@@ -55,37 +49,17 @@
                       <label for="career" class="col-md-4 control-label">경력</label>
 
                       <div class="col-md-6">
-                          <p>{{ $r->career }}</p>
+                          <input id="career" type="text" class="form-control" name="career" value="{{ old('career') }}" required>
                       </div>
                   </div>
-                @endforeach
 
-                <form class="form-horizontal" role="form" action="{{ url('license/add') }}" method="post">
-                  <table>
-                    <tr>
-                      <th>자격증 이름</th>
-                      <th>자격증 번호</th>
-                      <th>자격 등급</th>
-                      <th>발급 기관</th>
-                    </tr>
-                    <tr>
-                      <td><input id="license_kind" type="text" class="form-control" name="license_kind" value="" required></td>
-                      <td><input id="license_num" type="text" class="form-control" name="license_num" value="" required></td>
-                      <td><input id="license_grade" type="text" class="form-control" name="license_grade" value="" required></td>
-                      <td><input id="institution" type="text" class="form-control" name="institution" value="" required></td>
-                    </tr>
-                  </table>
-                  <button type="submit" class="btn btn-primary">등록</button>
-                  <a href="{{ url('license/modify') }}" class="btn btn-primary" role="button">수정</a>
+                  <div class="form-group">
+                      <div class="col-md-6 col-md-offset-4">
+                        <button type="submit" class="btn btn-primary">등록</button>
+                        <a href="{{ url('/addinfo') }}" class="btn btn-primary" role="button">취소</a>
+                      </div>
+                  </div>
                 </form>
-
-                <div class="form-group">
-                    <div class="col-md-6 col-md-offset-4">
-                      <a href="{{ url('addinfo/modify') }}" class="btn btn-primary" role="button">수정</a>
-                    </div>
-                </div>
-                </form>
-                @endif
               </div>
             </div>
           </div>

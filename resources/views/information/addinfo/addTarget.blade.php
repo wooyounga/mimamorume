@@ -80,23 +80,29 @@
               <div class="panel-heading">대상자 정보</div>
 
               <div class="panel-body">
-                <form class="fomr-horizontal" role="form" action="{{ route('addinfo.store') }}" method="post">
+                <form class="form-horizontal" role="form" action="{{ url('addinfo/store') }}" method="post">
                   {{ csrf_field() }}
 
                   <div class="form-group{{ $errors->has('num') ? ' has-error' : '' }}">
                       <label for="num" class="col-md-4 control-label">대상자 아이디</label>
 
-                      <div class="col-md-6">
-                        <input id="num" type="text" class="form-control" name="num" value="{{ old('num') }}" required readonly>
-                      </div>
+                      @if (count($target) == 0)
+                        <div class="col-md-6">
+                          <input id="num" type="text" class="form-control" name="num" value="1" required readonly>
+                        </div>
+                      @else
+                        <div class="col-md-6">
+                          <input id="num" type="text" class="form-control" name="num" value="{{ $target[count($target) - 1]->num + 1 }}" required readonly>
+                        </div>
+                      @endif
                   </div>
 
                   {{-- <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
                       <label class="col-md-4 control-label">대상자 사진</label>
 
                       <div class="col-md-6">
-                        <img src="" style="margin-bottom: 20px; width:100px; height: 130px;" class="img-thumbnail" onerror="javascript:this.src=''">
-                        <input id="profile_image" type="file" name="profile_image" class="form-controll">
+                        <img src="/images/profileImage/{{ $target->profile_image }}" style="margin-bottom: 20px; width:100px; height: 130px;" class="img-thumbnail" onerror="javascript:this.src=''">
+                        <input id="profile_image" type="file" name="profile_image">
                       </div>
                   </div> --}}
 
@@ -188,7 +194,7 @@
                       <label for="disability_sub" class="col-md-4 control-label">장애 종류(부)</label>
 
                       <div class="col-md-6">
-                        <input id="disability_sub" type="text" class="form-control" name="disability_sub" value="{{ old('disability_sub') }}" placeholder="없을 경우 없음을 입력해주십시오.">
+                        <input id="disability_sub" type="text" class="form-control" name="disability_sub" value="{{ old('disability_sub') }}">
                       </div>
                   </div>
 
