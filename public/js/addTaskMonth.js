@@ -41,7 +41,7 @@ function createCalMonth(){
         var title = targets[k];
 
         $.ajax({
-          url:"./calmonth",
+          url:"/calmonth",
           type:"POST",
           data:{
             title:title,
@@ -54,7 +54,7 @@ function createCalMonth(){
     }
   }
 
-  window.location.replace("./home");
+  window.location.replace("/home");
 }
 
 // 특정 달의 특정 요일에 해당하는 날짜들을 구하는 함수
