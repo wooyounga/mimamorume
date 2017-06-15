@@ -96,12 +96,8 @@ Route::get('/addinfo/destroy', 'InformationController@add_destroy');
 
 // 구인구직 현황 페이지
 Route::get('/matchinfo', 'InformationController@match_view');
-<<<<<<< HEAD
 
 Route::get('/camera_data', 'CameraDataController@camera_data');
-=======
-Route::get('/matchinfo', 'InformationController@match');
->>>>>>> 208ed4bf6485820970fa9459660dd36db33e20bb
 
 // 일정 페이지
 Route::post('calmonth', 'CalendarController@calMonth');
