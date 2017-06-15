@@ -82,7 +82,7 @@
 
 
               <div class="panel-body">
-                <form class="form-horizontal" role="form" action="{{ url('addinfo/update') }}" method="post">
+                <form class="form-horizontal" role="form" action="{{ url('addinfo/update') }}" method="post" enctype="multipart/form-data">
                   @foreach($target as $t)
                   {{ csrf_field() }}
 
@@ -94,14 +94,14 @@
                       </div>
                   </div>
 
-                  {{-- <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
+                  <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
                       <label class="col-md-4 control-label">대상자 사진</label>
 
                       <div class="col-md-6">
-                        <img src="{{ $t->profile_image }}" style="margin-bottom: 20px; width:100px; height: 130px;" class="img-thumbnail" onerror="javascript:this.src=''">
-                        <input type="file" value="사진 업로드">
+                        <img src="/images/profileImage/{{ $target[0]->profile_image }}" style="margin-bottom: 20px; width:70px; height: 90px;">
+                        <input id="profile_image" type="file" name="profile_image">
                       </div>
-                  </div> --}}
+                  </div>
 
                   <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                       <label for="name" class="col-md-4 control-label">이름</label>

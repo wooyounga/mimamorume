@@ -25,19 +25,19 @@
               <div class="panel-heading">보호사 정보</div>
 
               <div class="panel-body">
-                <form class="form-horizontal" role="form" action="{{ url('addinfo/update') }}" method="post">
+                <form class="form-horizontal" role="form" action="{{ url('addinfo/update') }}" method="post" enctype="multipart/form-data">
                   {{ csrf_field() }}
 
                   @foreach($resume as $r)
 
-                  {{-- <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
-                      <label class="col-md-4 control-label">프로필 사진</label>
+                    <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
+                        <label class="col-md-4 control-label">프로필 사진</label>
 
-                      <div class="col-md-6">
-                        <img src="" style="margin-bottom: 20px; width:100px; height: 130px;" class="img-thumbnail" onerror="javascript:this.src=''">
-                        <input type="file" value="사진 업로드">
-                      </div>
-                  </div> --}}
+                        <div class="col-md-6">
+                          <img src="/images/profileImage/{{ $resume[0]->profile_image }}" style="margin-bottom: 20px; width:70px; height: 90px;">
+                          <input type="file" name="profile_image">
+                        </div>
+                    </div>
 
                   <div class="form-group{{ $errors->has('center') ? ' has-error' : '' }}">
                       <label for="center" class="col-md-4 control-label">소속</label>

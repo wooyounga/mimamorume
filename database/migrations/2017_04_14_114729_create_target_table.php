@@ -16,7 +16,7 @@ class CreateTargetTable extends Migration
         Schema::create('target', function (Blueprint $table) {
             $table->increments('num');
             $table->string('name', 20);
-            $table->string('profile_image', 70)->default('default.jpg');
+            $table->string('profile_image', 70);
             $table->integer('age');
             $table->string('gender', 10);
             $table->string('telephone', 20);

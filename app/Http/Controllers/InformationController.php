@@ -91,20 +91,19 @@ class InformationController extends Controller {
 
           return view('information.addinfo.addTarget')->with('target', $target)->with('notice', $notice);
         } else {
-          $resume = \DB::table('resume')->where('sitter_id', Session::get('id'))->get();
+          $resume_count = \DB::table('resume')->get();
 
-          return view('information.addinfo.addSupporter')->with('resume', $resume)->with('notice', $notice);
+          return view('information.addinfo.addSupporter')->with('resume', $resume_count)->with('notice', $notice);
         }
       }
 
       public function add_store(Request $request) {
-        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
         if($request->hasFile('profile_image')) {
           $profile_image = $request->file('profile_image');
           $filename = time().'.'.$profile_image->getClientOriginalExtension();
-          Image::make($profile_image)->resize(100, 130)->save(public_path('/images/profileImage'.$filename));
+          Image::make($profile_image)->resize(70, 90)->save(public_path('/images/profileImage/'.$filename));
         }
 
         if($user[0]->user_type == '보호자') {
@@ -134,16 +133,12 @@ class InformationController extends Controller {
           $target = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('support.family_id', Session::get('id'))->get();
         } else {
           $resume = \DB::table('resume')->where('sitter_id', Session::get('id'))->get();
-
-          if($request->hasFile('profile_image')) {
-            $profile_image = $request->file('profile_image');
-            $filename = time().'.'.$profile_image->getClientOriginalExtension();
-            Image::make($profile_image)->resize(100, 130)->save(public_path('/images/profileImage'.$filename));
-          }
+          $license = '있음';
 
           \DB::table('resume')->insert([
-            'num' => null,
+            'num' => $request->input('num'),
             'profile_image' => $filename,
+            'license' => $license,
             'sitter_id' => Session::get('id'),
             'center' => $request->input('center'),
             'career' => $request->input('career'),
@@ -169,8 +164,13 @@ class InformationController extends Controller {
       }
 
       public function add_update(Request $request) {
-        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
+
+        if($request->hasFile('profile_image')) {
+          $profile_image = $request->file('profile_image');
+          $filename = time().'.'.$profile_image->getClientOriginalExtension();
+          Image::make($profile_image)->resize(70, 90)->save(public_path('/images/profileImage/'.$filename));
+        }
 
         if($user[0]->user_type == '보호자') {
           $target = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('support.family_id', Session::get('id'))->get();
@@ -193,10 +193,23 @@ class InformationController extends Controller {
           $resume = \DB::table('resume')->where('sitter_id', Session::get('id'))->get();
 
           \DB::table('resume')->where('sitter_id', Session::get('id'))->update([
-            'profile_image' => $request->input('profile_image'),
+            'profile_image' => $filename,
             'center' => $request->input('center'),
             'career' => $request->input('career'),
           ]);
+        }
+
+        return redirect('/addinfo');
+      }
+
+      public function add_destroy() {
+        $user = \DB::table('user')->where('id', Session::get('id'))->get();
+
+        if($user[0]->user_type == '보호자') {
+          \DB::table('support')->delete();
+          \DB::table('target')->delete();
+        } else {
+          \DB::table('license')->delete();
         }
 
         return redirect('/addinfo');

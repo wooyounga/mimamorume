@@ -104,10 +104,10 @@ Route::get('/addinfo/create', 'InformationController@add_create');
 Route::post('/addinfo/store', 'InformationController@add_store');
 Route::get('/addinfo/modify', 'InformationController@add_modify');
 Route::post('/addinfo/update', 'InformationController@add_update');
+Route::get('/addinfo/destroy', 'InformationController@add_destroy');
 
 // 구인구직 현황 페이지
 Route::get('/matchinfo', 'InformationController@match_view');
-Route::get('/matchinfo', 'InformationController@matchinfo');
 
 Route::get('/camera_data', 'CameraDataController@camera_data');
 

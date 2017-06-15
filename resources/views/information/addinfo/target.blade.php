@@ -41,14 +41,14 @@
                             <p>{{ $t->num }}</p>
                         </div>
                     </div>
-{{--
+
                     <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
                         <label class="col-md-4 control-label">대상자 사진</label>
 
                         <div class="col-md-6">
-                            <p>{{ $t->profile_image }}</p>
+                          <img src="/images/profileImage/{{ $target[0]->profile_image }}" style="margin-bottom: 20px; width:70px; height: 90px;">
                         </div>
-                    </div> --}}
+                    </div>
 
                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                         <label for="name" class="col-md-4 control-label">이름</label>
@@ -156,6 +156,7 @@
                         <div class="col-md-6 col-md-offset-4">
                           <a href="{{ url('addinfo/create') }}" class="btn btn-primary" role="button">추가</a>
                           <a href="{{ url('addinfo/modify') }}" class="btn btn-primary" role="button">수정</a>
+                          <a href="{{ url('addinfo/destroy') }}" class="btn btn-primary" role="button">삭제</a>
                         </div>
                     </div>
                   </form>

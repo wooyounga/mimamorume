@@ -28,14 +28,28 @@
                 <form class="form-horizontal" role="form" action="{{ url('addinfo/store') }}" method="post" enctype="multipart/form-data">
                   {{ csrf_field() }}
 
-                  {{-- <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
+                  <div class="form-group{{ $errors->has('num') ? ' has-error' : '' }}">
+                      <label for="num" class="col-md-4 control-label">보호사 아이디</label>
+
+                      @if (count($resume) == 0)
+                        <div class="col-md-6">
+                          <input id="num" type="text" class="form-control" name="num" value="1" required readonly>
+                        </div>
+                      @else
+                        <div class="col-md-6">
+                          <input id="num" type="text" class="form-control" name="num" value="{{ $resume[count($resume) - 1]->num + 1 }}" required readonly>
+                        </div>
+                      @endif
+                  </div>
+
+                  <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
                       <label class="col-md-4 control-label">프로필 사진</label>
 
                       <div class="col-md-6">
-                        <img src="/images/profileImage/{{ $resume->profile_image }}" style="margin-bottom: 20px; width:100px; height: 130px;" class="img-thumbnail" onerror="javascript:this.src=''">
-                        <input id="profile_image" type="file" name="profile_image">
+                        <img src="/images/profileImage/default.jpg" style="margin-bottom: 20px; width:70px; height: 90px;">
+                        <input type="file" name="profile_image">
                       </div>
-                  </div> --}}
+                  </div>
 
                   <div class="form-group{{ $errors->has('center') ? ' has-error' : '' }}">
                       <label for="center" class="col-md-4 control-label">소속</label>

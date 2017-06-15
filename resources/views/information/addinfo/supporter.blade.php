@@ -34,14 +34,13 @@
                 <form class="form-horizontal" role="form">
                   @foreach($resume as $r)
 
-                  {{-- <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
+                  <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
                       <label class="col-md-4 control-label">프로필 사진</label>
 
                       <div class="col-md-6">
-                        <img src="" style="margin-bottom: 20px; width:100px; height: 130px;" class="img-thumbnail" onerror="javascript:this.src=''">
-                        <input type="file" value="사진 업로드">
+                        <img src="/images/profileImage/{{ $resume[0]->profile_image }}" style="margin-bottom: 20px; width:70px; height: 90px;">
                       </div>
-                  </div> --}}
+                  </div>
 
                   <div class="form-group{{ $errors->has('center') ? ' has-error' : '' }}">
                       <label for="center" class="col-md-4 control-label">소속</label>
@@ -77,6 +76,7 @@
                   </table>
                   <button type="submit" class="btn btn-primary">등록</button>
                   <a href="{{ url('license/modify') }}" class="btn btn-primary" role="button">수정</a>
+                  <a href="{{ url('addinfo/destroy') }}" class="btn btn-primary" role="button">삭제</a>
                 </form>
 
                 <div class="form-group">
