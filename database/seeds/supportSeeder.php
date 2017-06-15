@@ -15,5 +15,15 @@ class supportSeeder extends Seeder
             'family_id' => 'user2',
             'target_num' => '1',
         ]);
+
+        DB::table('support')->insert([
+            'family_id' => 'user2',
+            'target_num' => '2',
+        ]);
+
+        DB::table('support')->insert([
+            'family_id' => 'user2',
+            'target_num' => '3',
+        ]);
     }
 }

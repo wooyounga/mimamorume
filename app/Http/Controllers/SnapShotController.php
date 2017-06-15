@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-
 use Illuminate\Support\Facades\Session;
 
+use Carbon\Carbon;
+
+use Illuminate\Database\QueryException;
 
 class SnapShotController extends Controller
 {
@@ -23,6 +25,7 @@ class SnapShotController extends Controller
     public function index()
     {
         if(Session::get('id')){
+            $this->searchImage();
             $notice = \DB::table('notice')
                 ->join('user', 'notice.sender', '=', 'user.id')
                 ->where('notice.addressee_id',Session::get('id'))
@@ -63,6 +66,7 @@ class SnapShotController extends Controller
     }
 
     public function snapShotTarget($num){
+        $this->searchImage();
         if(Session::get('id')){
             $notice = \DB::table('notice')
                 ->join('user', 'notice.sender', '=', 'user.id')
@@ -101,7 +105,7 @@ class SnapShotController extends Controller
     public function searchImage()
     {
         // 폴더명 지정
-        $dir = "C:/xampp/htdocs/mima/public/images/monitor/snapshot";
+        $dir = "/var/www/html/mimamo/public/images/monitor/snapShot";
         // 핸들 획득
         $handle = opendir($dir);
         $files = array();
@@ -117,24 +121,24 @@ class SnapShotController extends Controller
                 $files[] = $filename;
             }
         }
-        $fileArray = array();
-        // 파일명을 자름
+
         foreach ($files as $f) {
             $cameraNum = substr($f, 0, 1);
-            $snpshotTypeValue = (int)substr($f, 2, 1);
+            $snapshotTypeValue = (int)substr($f, 2, 1);
             $snapshotType = "";
-            switch ($snpshotTypeValue) {
+            switch ($snapshotTypeValue) {
                 case 1:
                     $snapshotType = "time";
                     break;
                 case 2:
-                    $snapshotType = "remote";
+                   $snapshotType = "remote";
                     break;
                 case 3:
                     $snapshotType = "sensing";
                     break;
             }
             $snapshotName = $f;
+
             try {
                 \DB::table('snapshot')->insert([
                     'snapshot_type' => $snapshotType,
@@ -147,9 +151,6 @@ class SnapShotController extends Controller
                 continue;
             }
         }
-        // 파일명을 자름
-        foreach ($files as $f) {
-
-        }
+        
     }
 }

@@ -90,7 +90,7 @@
                </tr>
                <tr>
                     <td>
-                        <span><input type="radio" id="care" name="subject" value="보호사"><label for="care">보호사</label></span>
+                        <span><input type="radio" id="care" name="subject" value="보호사" checked="checked"><label for="care">보호사</label></span>
                         <span><input type="radio" id="recipient" name="subject" value="대상자"><label for="recipient">대상자</label></span>
                     </td>
                     <td>

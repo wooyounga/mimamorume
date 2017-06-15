@@ -41,6 +41,20 @@ class UserTableSeeder extends Seeder
             'main_address' => '대구 북구 복현동',
             'rest_address' => '영진전문대',
         ]);
+        DB::table('user')->insert([
+            'id' => 'user3',
+            'user_type' => '보호사',
+            'pw' => bcrypt('secret'),
+            'name' => '사용자1',
+            'age' => '40',
+            'gender' => '여',
+            'email' => 'sssas@naver.com',
+            'telephone' => '05234551234',
+            'cellphone' => '0101234678',
+            'zip_code' => '122345',
+            'main_address' => '대구 북구 복현동',
+            'rest_address' => '영진전문대',
+        ]);
         /*foreach($user as $u){
             App\User::create($u);
         }*/
