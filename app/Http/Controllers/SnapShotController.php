@@ -66,6 +66,7 @@ class SnapShotController extends Controller
     }
 
     public function snapShotTarget($num){
+        $this->searchImage();
         if(Session::get('id')){
             $notice = \DB::table('notice')
                 ->join('user', 'notice.sender', '=', 'user.id')
