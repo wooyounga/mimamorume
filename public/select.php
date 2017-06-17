@@ -1,10 +1,13 @@
 <?php
 
-function unistr_to_xnstr($str){
-    return preg_replace('/\\\u([a-z0-9]{4})/i', "&#x\\1;", $str);
-}
+// function unistr_to_xnstr($str){
+//     return preg_replace('/\\\u([a-z0-9]{4})/i', "&#x\\1;", $str);
+// }
 
-$con=mysqli_connect("localhost","root","mimamo123","mimamo");
+$id = $_GET['id'];
+// $pw = $_GET['pw'];
+
+$con=mysqli_connect("localhost","root","","mimamo");
 
 if (mysqli_connect_errno($con))
 {
@@ -14,22 +17,26 @@ if (mysqli_connect_errno($con))
 
 mysqli_set_charset($con,"utf8");
 
+$sql = "select pw from user where id = '{$id}'";
 
-$res = mysqli_query($con,"select * from user");
+$res = mysqli_query($con, $sql);
 
 $result = array();
 
 while($row = mysqli_fetch_array($res)){
-  array_push($result,
-    array('id'=>$row[0],'pw'=>$row[2],
-    ));
+  echo $row[0];
+  // array_push($result,
+    // array('id'=>$row[0],'pw'=>$row[2],
+    // ));
 }
 
 
-$json = json_encode(array("result"=>$result));
-echo unistr_to_xnstr($json);
-
-
+//
+//
+// $json = json_encode(array("result"=>$result));
+// echo unistr_to_xnstr($json);
+//
+//
 mysqli_close($con);
 
 ?>

@@ -37,6 +37,7 @@ class ChartController extends Controller
 
     public function getBluetoothValue(Request $request) {
         $data = $request->input('pulse');
+        $targetNum = $request->input('targetNum');
 //        DB::table('vital_data')->insert(
 //            [
 //                'num' => null,
@@ -45,7 +46,8 @@ class ChartController extends Controller
 //                'value' => $data
 //            ]
 //        );
-        return $data;
+        echo $data;
+        echo $targetNum;
     }
 
 
