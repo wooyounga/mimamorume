@@ -64,7 +64,7 @@ class LoginController extends Controller
       return redirect('/');
     }
 
-    public function appLogin(Request $request){
+   /* public function appLogin(Request $request){
 
       $user_id = $request -> get('id');
       $user_pw = $request -> get('pw');
@@ -95,5 +95,35 @@ class LoginController extends Controller
           // return redirect('/home')->with('notice',$notice);
       }
       echo "2";
-    }
+    }*/
+
+   public function appLogin(Request $request){
+    /*   $username = $_POST['userid'];
+       $password = $_POST['userpass'];*/
+
+       $username = $request -> get('id');
+       $password = $request -> get('pw');
+       //라우트에서 post로 설정해두고 리퀘스트 겟 -> 알아서 값 가져옴!!
+
+       $user = \DB::table('user')->get();
+
+       $check_id = false;
+       $check_pw = false;
+
+       for( $i = 0 ; $i< count($user) ; $i++) {
+           if($user[$i]->id == $username){
+               $check_id = true;
+               if (Hash::check($password, $user[$i]->pw)) {
+                   $check_pw = true;
+               }
+           }
+       }
+
+
+       if($check_id == true && $check_pw == true) {
+           $result = array('userid'=>$username, 'userpass'=>$password);
+           echo json_encode($result);
+       }
+
+   }
 }
