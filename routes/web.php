@@ -70,7 +70,7 @@ Route::post('auth/join', [
 ]);
 
 /* 로그인 */
-Route::get('auth/applogin', 'LoginController@appLogin');
+Route::post('auth/applogin', 'LoginController@appLogin');
 
 Route::get('auth/login', [
   'as' => 'login.create',

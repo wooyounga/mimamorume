@@ -232,61 +232,50 @@ class LogSpecController extends Controller
     }
 /*
     public function appTarget(Request $request){
-        $user_type = \DB::table('user')->where('id',$request->get('id'))->get();
+        $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
+
+        $sitter = \DB::table('care')
+            ->join('user','care.sitter_id','=','user.id')
+            ->join('target','care.target_num','=','target.num')
+            ->where('care.target_num',$num)
+            ->get();
+
+        if($sitter == '[]'){
+            $stter_id = null;
+        }else{
+            $stter_id = $sitter[0]->sitter_id;
+        }
 
         if($user_type[0]->user_type == '보호사'){
-            $log_id = \DB::table('care')->where('sitter_id',$request->get('pw'))->get();
+            $target_list = \DB::table('care')
+                ->join('target','care.target_num','=','target.num')
+                ->where('sitter_id',Session::get('id'))
+                ->get();
+            $log = \DB::table('work_log')
+                ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
+                ->where('work_log.sitter_id','=',$stter_id)
+                ->where('work_log.target_num','=',$num)
+                ->select('work_log.*', 'work_content.*')
+                ->get();
+        }else{
+            $log_id = \DB::table('contract')->where('family_id',Session::get('id'))->get();
 
-            if($log_id == '[]'){
-                $log = '[]';
-                $target_list = '없음';
-                $activi = '없음';
-            }else{
-                $log = \DB::table('work_log')
-                    ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
-                    ->where('work_log.sitter_id','=',$request->get('id'))
-                    ->where('work_log.target_num','=',$log_id[0]->target_num)
-                    ->select('work_log.*', 'work_content.*')
-                    ->get();
-
-                $target_list = \DB::table('care')
-                    ->join('target','care.target_num','=','target.num')
-                    ->where('sitter_id',$request->get('id'))
-                    ->get();
-                $activi = $target_list[0]->num;
-            }
-
-        }else if($user_type[0]->user_type == '보호자'){
-            $log_id = \DB::table('contract')->where('family_id',$request->get('id'))->get();
-            $user_target = \DB::table('support')
-                ->join('user','support.family_id','=','user.id')
-                ->join('target','support.target_num','=','target.num')
-                ->where('user.id',$request->get('id'))
+            $log = \DB::table('work_log')
+                ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
+                // ->where('work_log.sitter_id','=',$log_id[0]->sitter_id)
+                ->where(function ($query) use($log_id){
+                    for($i = 0; $i < count($log_id) ; $i++)
+                        $query->orWhere('work_log.sitter_id',$log_id[$i]->sitter_id);
+                })
+                ->where('work_log.target_num','=',$num)
+                ->select('work_log.*', 'work_content.*')
                 ->get();
 
-            if($log_id == '[]'){
-                $log = '[]';
-                $target_list = $user_target;
-                //$activi = $user_target[0]->num;
-            }else{
-                $log = \DB::table('work_log')
-                    ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
-                    // ->where('work_log.sitter_id','=',$log_id[0]->sitter_id)
-                    ->where(function ($query) use($log_id){
-                        for($i = 0; $i < count($log_id) ; $i++)
-                            $query->orWhere('work_log.sitter_id',$log_id[$i]->sitter_id);
-                    })
-                    ->where('work_log.target_num','=',$user_target[0]->target_num)
-                    ->select('work_log.*', 'work_content.*')
-                    ->get();
-
-                $target_list = \DB::table('support')
-                    ->join('user','support.family_id','=','user.id')
-                    ->join('target','support.target_num','target.num')
-                    ->where('family_id',$request->get('id'))
-                    ->get();
-                //$activi = $user_target[0]->num;
-            }
+            $target_list = \DB::table('support')
+                ->join('target','support.target_num','=','target.num')
+                ->where('family_id',Session::get('id'))
+                ->get();
+        }
             $result = array('num'=>$log[0]->num, 'sitter_id'=>$log[0]->sitter_id, 'target_num'=>$log[0]->target_num,
                 'work_date'=>$log[0]->work_date, 'content_type'=>$log[0]->content_type, 'content'=>$log[0]->content,
                 );
@@ -301,7 +290,7 @@ public function addIndex(Request $request){
 
         if($log_id == '[]'){
             //$log = '[]';
-            $target_list = '없음';
+            $target_list = [];
             //$activi = '없음';
         }else{
             $target_list = \DB::table('care')
@@ -320,7 +309,7 @@ public function addIndex(Request $request){
             ->get();
 
         if($log_id == '[]'){
-            $log = '[]';
+            //$log = '[]';
             $target_list = $user_target;
             //$activi = $user_target[0]->num;
         }else{
