@@ -111,4 +111,4 @@ Route::get('delcal', 'CalendarController@delCal');
 Route::resource('calendar', 'CalendarController');
 
 // FCM Push
-Route::resource('fcm', 'pushController');
+Route::resource('fcm', 'FCMController');
