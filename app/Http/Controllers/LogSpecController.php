@@ -332,7 +332,9 @@ public function addIndex(Request $request){
             //$activi = $user_target[0]->num;
         }
     }
-    $result = $target_list;
-    echo json_encode($result);
+   // $result = array('num'=>$log[0]->num, 'name'=>$log[0]->sitter_id, 'target_num'=>$log[0]->target_num,
+    //    'work_date'=>$log[0]->work_date, 'content_type'=>$log[0]->content_type, 'content'=>$log[0]->content,
+    //);
+    echo json_encode($target_list);
 }
 }

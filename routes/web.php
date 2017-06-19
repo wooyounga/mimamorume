@@ -35,6 +35,8 @@ Route::get('/logSpecTarget/{num}', 'LogSpecController@logSpecTarget');
 //대상자별 스냅샷
 Route::get('/snapShotTarget/{num}', 'SnapShotController@snapShotTarget');
 
+Route::get('/addIndex', 'LogSpecController@addIndex');
+
 //d3.js AjaxRoute
 Route::get('/chartData/', 'ChartController@jsonTransmit');
 
