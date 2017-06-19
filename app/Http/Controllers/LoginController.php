@@ -101,8 +101,8 @@ class LoginController extends Controller
     /*   $username = $_POST['userid'];
        $password = $_POST['userpass'];*/
 
-       $username = $request -> get('id');
-       $password = $request -> get('pw');
+       $username = $request -> input('id');
+       $password = $request -> input('pw');
        //라우트에서 post로 설정해두고 리퀘스트 겟 -> 알아서 값 가져옴!!
 
        $user = \DB::table('user')->get();
@@ -118,7 +118,6 @@ class LoginController extends Controller
                }
            }
        }
-
 
        if($check_id == true && $check_pw == true) {
            $result = array('userid'=>$username, 'userpass'=>$password);
