@@ -238,8 +238,9 @@ class LogSpecController extends Controller
             $log = \DB::table('work_log')
                 ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
                 ->join('target','work_log.target_num','=','target.num')
+                ->join('medicine_schedule', 'work_log.num', '=', 'medicine_schedule.log_num')
                 ->where('work_log.sitter_id','=',$request->get('id'))
-                ->select('work_log.*', 'work_content.*','target.name')
+                ->select('work_log.*', 'work_content.*','target.name','medicine_schedule.*')
                 ->get();
         }else{
             $log_id = \DB::table('contract')->where('family_id',$request->get('id'))->get();
@@ -247,11 +248,12 @@ class LogSpecController extends Controller
             $log = \DB::table('work_log')
                 ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
                 ->join('target','work_log.target_num','=','target.num')
+                ->join('medicine_schedule', 'work_log.num', '=', 'medicine_schedule.log_num')
                 ->where(function ($query) use($log_id){
                     for($i = 0; $i < count($log_id) ; $i++)
                         $query->orWhere('work_log.sitter_id',$log_id[$i]->sitter_id);
                 })
-                ->select('work_log.*', 'work_content.*','target.name')
+                ->select('work_log.*', 'work_content.*','target.name','medicine_schedule.*')
                 ->get();
         }
         echo json_encode($log);
