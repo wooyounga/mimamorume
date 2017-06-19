@@ -231,7 +231,7 @@ class LogSpecController extends Controller
         return view('task.logSpec')->with('log',$log)->with('target',$target_list)->with('num',$activi)->with('user',$user_type)->with('notice',$notice);
     }
 
-    public function addIndex(Request $request){
+    public function appIndex(Request $request){
         $user_type = \DB::table('user')->where('id',$request->get('id'))->get();
 
         if($user_type[0]->user_type == '보호사'){
