@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class pushController extends Controller
 {
@@ -15,7 +16,7 @@ class pushController extends Controller
     {
         $sql = "Select Token From fcm";
 
-        $result = DB::select($sql);
+        $result = \DB::select($sql);
         $tokens = array();
 
         if(sizeof($result) > 0 ){
@@ -58,9 +59,8 @@ class pushController extends Controller
 
     public function store(Request $request)
     {
-        $token = $request->input("Token");
+	$token = $request->input("Token");
 
-        $query = "INSERT INTO fcm(Token) Values ('$token') ON DUPLICATE KEY UPDATE Token = '$token' ";
-        DB::insert($query);
+	\DB::statement('insert into fcm (Token) values (?) on duplicate key update Token = ?', array($token, $token));
     }
 }
