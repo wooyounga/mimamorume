@@ -14,7 +14,8 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         "app/*",
         "auth/applogin",
-        "chartBluetooth"
+        "chartBluetooth",
+        "fcm"
         //
     ];
 }
