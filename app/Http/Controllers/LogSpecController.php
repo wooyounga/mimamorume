@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
+use phpDocumentor\Reflection\Types\Array_;
 
 class LogSpecController extends Controller
 {
@@ -257,8 +258,10 @@ class LogSpecController extends Controller
                 ->select('work_log.*', 'work_content.*','target.name','medicine_schedule.*')
                 ->get();
         }
-        $string = "ssss";
+        $data = array(
+            'string'=>'sssss'
+        );
         //echo json_encode(array('log'=>$log));
-        echo json_encode("string", $string);
+        echo json_encode($data);
     }
 }
