@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class pushController extends Controller
+class FCMController extends Controller
 {
     public function __construct()
     {
@@ -15,7 +16,7 @@ class pushController extends Controller
     {
         $sql = "Select Token From fcm";
 
-        $result = DB::select($sql);
+        $result = \DB::select($sql);
         $tokens = array();
 
         if(sizeof($result) > 0 ){
@@ -24,10 +25,28 @@ class pushController extends Controller
            }
         }
 
-        $myMessage = "새글이 등록되었습니다.";
+        if(isset($_GET['message'])){
+          $myMessage = $_GET['message'];
+        }
+        else{
+          $myMessage = "새글이 등록되었습니다.";
+        }
 
         $message = array("message" => $myMessage);
 
+        $result = $this->send_notification($tokens, $message);
+
+        echo $result;
+    }
+
+    public function store(Request $request)
+    {
+	$token = $request->input("Token");
+
+	\DB::statement('insert into fcm (Token) values (?) on duplicate key update Token = ?', array($token, $token));
+    }
+
+    public function send_notification($tokens, $message){
         $url = 'https://fcm.googleapis.com/fcm/send';
         $fields = array(
                    'registration_ids' => $tokens,
@@ -35,7 +54,8 @@ class pushController extends Controller
                );
 
         $headers = array(
-               'Authorization:key =' . 'AAAASItoN3U:APA91bHMm6DZr9jf1zSrjCdfSESLMst14qdWpp_WWydjtSiXYtzNE02X7N28il2fkXS6QJxY7zdhhTO4GuuNNAQEYhZMJqhKDNoH9XCESwetxCYYQbAdewrmMw0PimwXUC_j_Ji6GKxH'
+               'Authorization:key =' . 'AAAASItoN3U:APA91bHMm6DZr9jf1zSrjCdfSESLMst14qdWpp_WWydjtSiXYtzNE02X7N28il2fkXS6QJxY7zdhhTO4GuuNNAQEYhZMJqhKDNoH9XCESwetxCYYQbAdewrmMw0PimwXUC_j_Ji6GKxH',
+               'Content-Type: application/json'
                );
 
         $ch = curl_init();
@@ -53,14 +73,6 @@ class pushController extends Controller
         }
         curl_close($ch);
 
-        echo $result;
-    }
-
-    public function store(Request $request)
-    {
-        $token = $request->input("Token");
-
-        $query = "INSERT INTO fcm(Token) Values ('$token') ON DUPLICATE KEY UPDATE Token = '$token' ";
-        DB::insert($query);
+        return $result;
     }
 }
