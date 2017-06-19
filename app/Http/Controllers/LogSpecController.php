@@ -256,6 +256,6 @@ class LogSpecController extends Controller
                 ->select('work_log.*', 'work_content.*','target.name','medicine_schedule.*')
                 ->get();
         }
-        echo json_encode($log);
+        echo json_encode(array('log'=>$log));
     }
 }
