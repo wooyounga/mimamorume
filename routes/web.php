@@ -37,6 +37,8 @@ Route::get('/snapShotTarget/{num}', 'SnapShotController@snapShotTarget');
 
 Route::get('/appIndex', 'LogSpecController@appIndex');
 
+Route::get('/appmatching', 'MatchController@appMatching');
+
 //d3.js AjaxRoute
 Route::get('/chartData/', 'ChartController@jsonTransmit');
 

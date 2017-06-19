@@ -324,4 +324,22 @@ class MatchController extends Controller
 
         return redirect('/match')->with('notice', $notice)->with('alert', $alert);
     }
+
+    public function appMatching(Request $request){
+        $user = \DB::table('user')->where('id',$request->get('id'))->get();
+
+        if($user[0]->user_type == '보호사'){
+            $contract  = \DB::table('contract')->where('sitter_id',$request->get('id'))->get();
+        }else{
+            $contract  = \DB::table('contract')->where('family_id',$request->get('id'))->get();
+        }
+
+        if($contract == '[]'){
+            $contract_list = [];
+        }else{
+            $contract_list = $contract;
+        }
+
+        echo json_encode(array('contract'=>$contract_list));
+    }
 }
