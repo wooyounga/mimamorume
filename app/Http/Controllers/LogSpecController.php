@@ -237,20 +237,21 @@ class LogSpecController extends Controller
         if($user_type[0]->user_type == '보호사'){
             $log = \DB::table('work_log')
                 ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
+                ->join('target','work_log.target_num','=','target.num')
                 ->where('work_log.sitter_id','=',$request->get('id'))
-                ->select('work_log.*', 'work_content.*')
+                ->select('work_log.*', 'work_content.*','target.name')
                 ->get();
         }else{
             $log_id = \DB::table('contract')->where('family_id',$request->get('id'))->get();
 
             $log = \DB::table('work_log')
                 ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
-                // ->where('work_log.sitter_id','=',$log_id[0]->sitter_id)
+                ->join('target','work_log.target_num','=','target.num')
                 ->where(function ($query) use($log_id){
                     for($i = 0; $i < count($log_id) ; $i++)
                         $query->orWhere('work_log.sitter_id',$log_id[$i]->sitter_id);
                 })
-                ->select('work_log.*', 'work_content.*')
+                ->select('work_log.*', 'work_content.*','target.name')
                 ->get();
         }
         echo json_encode($log);
