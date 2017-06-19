@@ -6,7 +6,13 @@ use Illuminate\Http\Request;
 
 class pushController extends Controller
 {
-    public function index(){
+    public function __construct()
+    {
+        $this->middleware('web');
+    }
+
+    public function index()
+    {
         $sql = "Select Token From fcm";
 
         $result = DB::select($sql);
@@ -49,7 +55,7 @@ class pushController extends Controller
 
         echo $result;
     }
-    
+
     public function store(Request $request)
     {
         $token = $request->input("Token");
