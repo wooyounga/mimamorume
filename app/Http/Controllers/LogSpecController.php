@@ -234,30 +234,30 @@ class LogSpecController extends Controller
     }
 
     public function appIndex(Request $request){
-        $user_type = \DB::table('user')->where('id',$request->get('id'))->get();
-
-        if($user_type[0]->user_type == '보호사'){
-            $log = \DB::table('work_log')
-                ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
-                ->join('target','work_log.target_num','=','target.num')
-                ->join('medicine_schedule', 'work_log.num', '=', 'medicine_schedule.log_num')
-                ->where('work_log.sitter_id','=',$request->get('id'))
-                ->select('work_log.*', 'work_content.*','target.name','medicine_schedule.*')
-                ->get();
-        }else{
-            $log_id = \DB::table('contract')->where('family_id',$request->get('id'))->get();
-
-            $log = \DB::table('work_log')
-                ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
-                ->join('target','work_log.target_num','=','target.num')
-                ->join('medicine_schedule', 'work_log.num', '=', 'medicine_schedule.log_num')
-                ->where(function ($query) use($log_id){
-                    for($i = 0; $i < count($log_id) ; $i++)
-                        $query->orWhere('work_log.sitter_id',$log_id[$i]->sitter_id);
-                })
-                ->select('work_log.*', 'work_content.*','target.name','medicine_schedule.*')
-                ->get();
-        }
+//        $user_type = \DB::table('user')->where('id',$request->get('id'))->get();
+//
+//        if($user_type[0]->user_type == '보호사'){
+//            $log = \DB::table('work_log')
+//                ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
+//                ->join('target','work_log.target_num','=','target.num')
+//                ->join('medicine_schedule', 'work_log.num', '=', 'medicine_schedule.log_num')
+//                ->where('work_log.sitter_id','=',$request->get('id'))
+//                ->select('work_log.*', 'work_content.*','target.name','medicine_schedule.*')
+//                ->get();
+//        }else{
+//            $log_id = \DB::table('contract')->where('family_id',$request->get('id'))->get();
+//
+//            $log = \DB::table('work_log')
+//                ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
+//                ->join('target','work_log.target_num','=','target.num')
+//                ->join('medicine_schedule', 'work_log.num', '=', 'medicine_schedule.log_num')
+//                ->where(function ($query) use($log_id){
+//                    for($i = 0; $i < count($log_id) ; $i++)
+//                        $query->orWhere('work_log.sitter_id',$log_id[$i]->sitter_id);
+//                })
+//                ->select('work_log.*', 'work_content.*','target.name','medicine_schedule.*')
+//                 ->get();
+//        }
         $data = array(
             'string'=>'sssss'
         );
