@@ -20,9 +20,11 @@ Route::get('/home', 'HomeController@index');
 // 구인구직 서비스 라우트
 Route::get('/destroy/{num}', 'MatchController@destroy');
 
-Route::get('/matching/{num}/{target}/{date}', 'MatchController@matching');
+Route::resource('/matching', 'MatchController@matching');
 
-Route::get('/matchYes/{num}', 'MatchController@matchYes');
+Route::get('/matchmodify/{num}', 'MatchController@matchModify');
+
+//Route::get('/matchYes/{num}', 'MatchController@matchYes');
 
 Route::get('/noticeDest/{num}', 'MatchController@noticeDest');
 

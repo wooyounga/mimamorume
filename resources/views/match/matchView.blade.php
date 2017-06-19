@@ -94,39 +94,87 @@
     </div>
     <div id="matchModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">매칭 신청</h4>
-                </div>
-                <div class="modal-body">
-                    @if($target != '없음')
-                        <select class="form-control" id="target_num" name="target_num">
-                            @foreach($target as $t)
-                                <option value="{{$t->num}}">{{$t->name}}</option>
-                            @endforeach
-                        </select>
-                    @endif
+            <form class="form-horizontal" name="form-horizontal" role="form" method="get" action="{{URL::to('/matching')}}">
+            {{csrf_field()}}
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">매칭 신청</h4>
+                    </div>
+                    <div class="modal-body">
+                        @if($target != '없음')
+                            <label for="target_num" style=" margin-left: 13px;">대상자명</label>
+                            <select class="form-control" id="target_num" name="target_num" style="width: 98%; margin-left: 13px;">
+                                @foreach($target as $t)
+                                    <option value="{{$t->num}}">{{$t->name}}</option>
+                                @endforeach
+                            </select>
+                        @endif
+                        <br>
                         <div style="margin-left: 15px;">
-                            <b>※계약 마지막 날을 선택해주세요</b><br><br>
+                            <b>※계약 시작 날을 선택해주세요</b><br>
                             <div>
-                                <input type="text" name="end" value="">
+                                <input class="form-control" type="text" name="work_start" value="">
                                 <script type="text/javascript">
                                     $(function(){
-                                        $('*[name=end]').appendDtpicker({
+                                        $('*[name=work_start]').appendDtpicker({
                                             "futureOnly": true
                                         });
                                     });
                                 </script>
                             </div>
                         </div><br>
-                </div><br>
-                <div class="modal-footer">
-                    <a onclick="matchConfirm('{{URL::to('/matching',[$match[0]->num])}}')" class="btn btn-primary">매칭신청</a>
+                        <div style="margin-left: 15px;">
+                            <b>※계약 마지막 날을 선택해주세요</b><br>
+                            <div>
+                                <input class="form-control" type="text" name="work_end" value="">
+                                <script type="text/javascript">
+                                    $(function(){
+                                        $('*[name=work_end]').appendDtpicker({
+                                            "futureOnly": true
+                                        });
+                                    });
+                                </script>
+                            </div>
+                        </div><br>
+                        <label for="work_week"style="margin-left: 15px;">근무일</label>
+                        <select class="form-control" id="work_week" name="work_week" style="width: 97%; margin-left: 15px;">
+                            <option value="주1회">주 1회</option>
+                            <option value="주2회">주 2회</option>
+                            <option value="주3회">주 3회</option>
+                            <option value="주4회">주 4회</option>
+                            <option value="주5회">주 5회</option>
+                            <option value="주6회">주 6회</option>
+                            <option value="주7회">주 7회</option>
+                        </select><br>
+                        <label for="work_start_time"style="margin-left: 15px;">근무시작 시간</label>
+                        <select class="form-control" id="work_start_time" name="work_start_time" style="width: 97%; margin-left: 15px;">
+                            <script>
+                                for(var i = 0; i <= 24; i++){
+                                    document.write("<option value='"+i+":00'>"+i+":00</option>");
+                                }
+                            </script>
+                        </select>
+                        <br>
+                        <label for="work_end_time"style="margin-left: 15px;">근무끝나는 시간</label>
+                        <select class="form-control" id="work_end_time" name="work_end_time" style="width: 97%; margin-left: 15px;">
+                            <script>
+                                for(var i = 0; i <= 24; i++){
+                                    document.write("<option value='"+i+":00'>"+i+":00</option>");
+                                }
+                            </script>
+                        </select><br>
+                        <label for="content"style="margin-left: 15px;">전하고 싶은 말</label>
+                        <textarea class="form-control" id="content" name="content" rows="4" style="width: 97%; margin-left: 15px;"></textarea>
+                    </div><br>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">매칭신청</button>
+                        {{--onclick="matchConfirm('{{URL::to('/matching',[$match[0]->num])}}')"--}}
+                    </div>
                 </div>
-            </div>
+                <input type="hidden" name="num" value="{{$match[0]->num}}">
+            </form>
         </div>
     </div>
 @endsection

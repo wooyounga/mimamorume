@@ -18,8 +18,15 @@ class CreateNoticeTable extends Migration
             $table->integer('target_num')->unsigned()->nullable();
             $table->string('addressee_id', 20);
             $table->string('sender', 20)->nullable();
+            $table->string('work_week')->nullable();
+            $table->string('work_start')->nullable();
+            $table->string('work_end')->nullable();
+            $table->string('work_start_time')->nullable();
+            $table->string('work_end_time')->nullable();
             $table->string('notice_kind', 10);
-            $table->string('notice_content', 100);
+            $table->string('notice_title', 100);
+            $table->string('notice_content', 100)->nullable();
+            $table->string('notice_check', 100)->nullable();
             $table->timestamps();
 
             $table->foreign('target_num')->references('num')->on('target');
