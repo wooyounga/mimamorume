@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 class ChartController extends Controller
 {
@@ -38,16 +39,15 @@ class ChartController extends Controller
     public function getBluetoothValue(Request $request) {
         $data = $request->input('pulse');
         $targetNum = $request->input('targetNum');
-//        DB::table('vital_data')->insert(
-//            [
-//                'num' => null,
-//                'data_type' => 'pulse',
-//                'target_num' => 1,
-//                'value' => $data
-//            ]
-//        );
-        echo $data;
-        echo $targetNum;
+        \DB::table('vital_data')->insert(
+            [
+                'num' => null,
+                'data_type' => 'pulse',
+                'target_num' => $targetNum,
+                'value' => $data,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ]
+        );
     }
 
 
