@@ -112,7 +112,7 @@
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                            <a href="{{ url('/userinfo') }}">내 정보</a>
+                                            <a href="{{ url('userinfo') }}">내 정보</a>
                                             <a href="{{ route('login.destroy') }}">로그아웃</a>
                                         </li>
                                     </ul>

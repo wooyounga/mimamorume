@@ -16,7 +16,7 @@ class resumeSeeder extends Seeder
             'license' => 'yes',
             'center' => '영진전문대',
             'career' => '1234',
-            'profile_image' => '/images/profileImage/2.jpg',
+            'profile_image' => '/images/profile/2.jpg',
         ]);
     }
 }

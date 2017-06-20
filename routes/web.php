@@ -87,12 +87,14 @@ Route::get('/userinfo/modify', 'InformationController@user_modify');
 Route::post('/userinfo/update', 'InformationController@user_update');
 
 // 추가 정보 페이지
-Route::get('/addinfo', 'InformationController@add_view');
+Route::get('/addinfo', 'InformationController@add_index');
 Route::get('/addinfo/create', 'InformationController@add_create');
 Route::post('/addinfo/store', 'InformationController@add_store');
+Route::get('/addinfo/view/{num}', 'InformationController@add_view');
 Route::get('/addinfo/modify', 'InformationController@add_modify');
 Route::post('/addinfo/update', 'InformationController@add_update');
 Route::get('/addinfo/destroy', 'InformationController@add_destroy');
+Route::post('/addinfo/license', 'InformationController@add_license');
 
 // 구인구직 현황 페이지
 Route::get('/matchinfo', 'InformationController@match_view');
