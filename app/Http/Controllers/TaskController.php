@@ -25,8 +25,19 @@ class TaskController extends Controller
                 ->where('notice.addressee_id',Session::get('id'))
                 ->get();
 
+            $targets = \DB::table('target')->get();
 
-            return view('main.home')->with('notice',$notice);
+            $t_name = [];
+            $i = 0;
+            foreach ($targets as $target) {
+              $t_name[$i] = $target->name;
+              $i++;
+            }
+
+            return view('main.home')->with([
+              'notice' => $notice,
+              'targets' => $t_name
+            ]);
         }else{
             $alert = '잘못된 접근입니다.';
 

@@ -16,7 +16,9 @@ class VerifyCsrfToken extends BaseVerifier
         "auth/applogin",
         "chartBluetooth",
         "fcm",
-        "appIndex"
+        "appIndex",
+        "calmonth",
+        "calendar"
         //
     ];
 }

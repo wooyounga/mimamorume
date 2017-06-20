@@ -50,6 +50,14 @@ function delCal(num){
   location.href = "task";
 }
 
+function delAllCal(){
+  $.ajax({
+    url:"delallcal"
+  });
+
+  location.href = "task";
+}
+
 $(document).ready(function() {
   $.ajaxSetup({
     headers: {

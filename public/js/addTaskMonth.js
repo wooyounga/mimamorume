@@ -34,25 +34,17 @@ function createCalMonth(){
     day_arr.push(getTargetDays(month, days[i]));
   }
 
-  // 날짜에 맞춰 일정 생성
-  for(var i = 0; i < days.length; i++){
-    for(var j = 0; j < day_arr[i].length; j++){
-      for(var k = 0; k < targets.length; k++){
-        var title = targets[k];
-
-        $.ajax({
-          url:"calmonth",
-          type:"POST",
-          data:{
-            title:title,
-            year:year,
-            month:month,
-            date:day_arr[i][j]
-          }
-        });
-      }
+  $.ajax({
+    url:"calmonth",
+    type:"POST",
+    data:{
+      days:days,
+      day_arr:day_arr,
+      targets:targets,
+      month:month,
+      year:year
     }
-  }
+  });
 
   location.href = "task";
 }

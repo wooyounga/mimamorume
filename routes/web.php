@@ -110,6 +110,7 @@ Route::get('/camera_data', 'CameraDataController@camera_data');
 // 달력 - 근무일정
 Route::post('calmonth', 'CalendarController@calMonth');
 Route::get('delcal', 'CalendarController@delCal');
+Route::get('delallcal', 'CalendarController@delAllCal');
 Route::resource('calendar', 'CalendarController');
 
 // FCM Push
