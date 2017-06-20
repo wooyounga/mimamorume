@@ -530,7 +530,7 @@ class MatchController extends Controller
             }else{
                 $alert = '조건 수정시 매칭수락이 불가능 합니다.';
 
-                return redirect('/home')->with('alert', $alert)->with('notice', $notice);
+                return redirect()->back()->with('alert', $alert)->with('notice', $notice);
             }
         }
     }
