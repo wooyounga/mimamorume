@@ -20,9 +20,11 @@ Route::get('/home', 'HomeController@index');
 // 구인구직 서비스 라우트
 Route::get('/destroy/{num}', 'MatchController@destroy');
 
-Route::get('/matching/{num}/{target}/{date}', 'MatchController@matching');
+Route::resource('/matching', 'MatchController@matching');
 
-Route::get('/matchYes/{num}', 'MatchController@matchYes');
+Route::get('/matchmodify/{num}', 'MatchController@matchModify');
+
+//Route::get('/matchYes/{num}', 'MatchController@matchYes');
 
 Route::get('/noticeDest/{num}', 'MatchController@noticeDest');
 
@@ -34,6 +36,10 @@ Route::get('/matchNo', 'MatchController@matchNo');
 Route::get('/logSpecTarget/{num}', 'LogSpecController@logSpecTarget');
 //대상자별 스냅샷
 Route::get('/snapShotTarget/{num}', 'SnapShotController@snapShotTarget');
+
+Route::get('/appIndex', 'LogSpecController@appIndex');
+
+Route::get('/appmatching', 'MatchController@appMatching');
 
 //d3.js AjaxRoute
 Route::get('/chartData/', 'ChartController@jsonTransmit');
@@ -68,6 +74,8 @@ Route::post('auth/join', [
 ]);
 
 /* 로그인 */
+Route::post('auth/applogin', 'LoginController@appLogin');
+
 Route::get('auth/login', [
   'as' => 'login.create',
   'uses' => 'LoginController@create',
@@ -101,7 +109,11 @@ Route::get('/matchinfo', 'InformationController@match_view');
 
 Route::get('/camera_data', 'CameraDataController@camera_data');
 
-// 일정 페이지
+// 달력 - 근무일정
 Route::post('calmonth', 'CalendarController@calMonth');
 Route::get('delcal', 'CalendarController@delCal');
+Route::get('delallcal', 'CalendarController@delAllCal');
 Route::resource('calendar', 'CalendarController');
+
+// FCM Push
+Route::resource('fcm', 'FCMController');

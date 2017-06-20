@@ -26,7 +26,10 @@ class InformationController extends Controller {
        /**************************     회원 정보     **************************/
 
        public function user_view() {
-         $notice = \DB::table('notice')->join('user', 'notice.sender', '=', 'user.id')->where('notice.addressee_id',Session::get('id'))->get();
+         $notice = \DB::table('notice')
+             ->join('user', 'notice.sender', '=', 'user.id')
+             ->where('notice.addressee_id', Session::get('id'))
+             ->orderBy('num', 'desc')->get();
          $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
          return view('info.user.view')->with('user', $user)->with('notice', $notice);
@@ -68,7 +71,10 @@ class InformationController extends Controller {
        /**************************     추가 정보     **************************/
 
       public function add_index() {
-        $notice = \DB::table('notice')->join('user', 'notice.sender', '=', 'user.id')->where('notice.addressee_id',Session::get('id'))->get();
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id', Session::get('id'))
+            ->orderBy('num', 'desc')->get();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
         if($user[0]->user_type == '보호자') {
@@ -84,7 +90,10 @@ class InformationController extends Controller {
       }
 
       public function add_create() {
-        $notice = \DB::table('notice')->join('user', 'notice.sender', '=', 'user.id')->where('notice.addressee_id',Session::get('id'))->get();
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id', Session::get('id'))
+            ->orderBy('num', 'desc')->get();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
         if($user[0]->user_type == '보호자') {
@@ -162,7 +171,10 @@ class InformationController extends Controller {
       }
 
       public function add_modify() {
-        $notice = \DB::table('notice')->join('user', 'notice.sender', '=', 'user.id')->where('notice.addressee_id',Session::get('id'))->get();
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id', Session::get('id'))
+            ->orderBy('num', 'desc')->get();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
         if($user[0]->user_type == '보호자') {
@@ -245,8 +257,10 @@ class InformationController extends Controller {
       /**************************     매칭 정보     **************************/
 
       public function match_view() {
-        $notice = \DB::table('notice')->join('user', 'notice.sender', '=', 'user.id')->where('notice.addressee_id',Session::get('id'))->get();
-        $target = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('support.family_id', Session::get('id'))->get();
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id', Session::get('id'))
+            ->orderBy('num', 'desc')->get();
 
         return view('info.match.list')->with('notice', $notice);
       }

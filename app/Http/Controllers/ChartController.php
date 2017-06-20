@@ -23,10 +23,10 @@ class ChartController extends Controller
     public function index() {
         //if(Session::get('id')){
 
-            $notice = \DB::table('notice')
-                ->join('user', 'notice.sender', '=', 'user.id')
-                ->where('notice.addressee_id',Session::get('id'))
-                ->get();
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id', Session::get('id'))
+            ->orderBy('num', 'desc')->get();
 
             return view('monitor.chart')->with('notice',$notice);
 //        }else{
@@ -37,6 +37,7 @@ class ChartController extends Controller
 
     public function getBluetoothValue(Request $request) {
         $data = $request->input('pulse');
+        $targetNum = $request->input('targetNum');
 //        DB::table('vital_data')->insert(
 //            [
 //                'num' => null,
@@ -45,7 +46,8 @@ class ChartController extends Controller
 //                'value' => $data
 //            ]
 //        );
-        return $data;
+        echo $data;
+        echo $targetNum;
     }
 
 

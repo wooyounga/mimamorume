@@ -7,6 +7,11 @@ use DB;
 
 class CalendarController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('web');
+    }
+
     public function index(){
       $rows = DB::table('calendar')->get();
 
@@ -67,25 +72,39 @@ class CalendarController extends Controller
       DB::table('calendar')->where('num', $_GET['num'])->delete();
     }
 
-    public function calMonth(){
-      $title = $_POST['title'];
-      $year = $_POST['year'];
-      $month = $_POST['month'] + 1;
-      $date = $_POST['date'];
+    public function delAllCal(){
+      DB::table('calendar')->delete();
+    }
 
-      DB::table('calendar')->insert([
-        'num' => null,
-        'title' => $title,
-        'start_year' => $year,
-        'start_month' => $month,
-        'start_day' => $date,
-        'start_hour' => 0,
-        'start_minute' => 0,
-        'end_year' => $year,
-        'end_month' => $month,
-        'end_day' => $date,
-        'end_hour' => 0,
-        'end_minute' => 0,
-      ]);
+    public function calMonth(){
+      $days = $_POST['days'];
+      $day_arr = $_POST['day_arr'];
+      $targets = $_POST['targets'];
+      $month = $_POST['month'] + 1;
+      $year = $_POST['year'];
+
+      // 날짜에 맞춰 일정 생성
+      for($i = 0; $i < count($days); $i++){
+        for($j = 0; $j < count($day_arr[$i]); $j++){
+          for($k = 0; $k < count($targets); $k++){
+            $title = $targets[$k];
+
+            DB::table('calendar')->insert([
+              'num' => null,
+              'title' => $title,
+              'start_year' => $year,
+              'start_month' => $month,
+              'start_day' => $day_arr[$i][$j],
+              'start_hour' => 0,
+              'start_minute' => 0,
+              'end_year' => $year,
+              'end_month' => $month,
+              'end_day' => $day_arr[$i][$j],
+              'end_hour' => 0,
+              'end_minute' => 0,
+            ]);
+          }
+        }
+      }
     }
 }

@@ -28,8 +28,8 @@ class SnapShotController extends Controller
             $this->searchImage();
             $notice = \DB::table('notice')
                 ->join('user', 'notice.sender', '=', 'user.id')
-                ->where('notice.addressee_id',Session::get('id'))
-                ->get();
+                ->where('notice.addressee_id', Session::get('id'))
+                ->orderBy('num', 'desc')->get();
 
             $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
 
@@ -70,8 +70,8 @@ class SnapShotController extends Controller
         if(Session::get('id')){
             $notice = \DB::table('notice')
                 ->join('user', 'notice.sender', '=', 'user.id')
-                ->where('notice.addressee_id',Session::get('id'))
-                ->get();
+                ->where('notice.addressee_id', Session::get('id'))
+                ->orderBy('num', 'desc')->get();
 
             $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
 

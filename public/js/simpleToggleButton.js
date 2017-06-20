@@ -33,7 +33,4 @@ $(document).ready(function() {
   $("#btn_group_day4").simpleToggleBtn();
   $("#btn_group_day5").simpleToggleBtn();
   $("#btn_group_day6").simpleToggleBtn();
-
-  $("#btn_group_target0").simpleToggleBtn();
-  $("#btn_group_target1").simpleToggleBtn();
 });
