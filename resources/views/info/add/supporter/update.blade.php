@@ -16,11 +16,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-          <div class="panel-body">
+          <div class="panel-group">
             <a href="{{ url('userinfo') }}" class="btn btn-info" role="button">회원 정보</a>
             <a href="{{ url('addinfo') }}" class="btn btn-info" role="button">추가 정보</a>
             <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">매칭 정보</a>
           </div>
+
             <div class="panel panel-default">
               <div class="panel-heading">보호사 정보</div>
 
@@ -28,13 +29,11 @@
                 <form class="form-horizontal" role="form" action="{{ url('addinfo/update') }}" method="post" enctype="multipart/form-data">
                   {{ csrf_field() }}
 
-                  @foreach($resume as $r)
-
                     <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
                         <label class="col-md-4 control-label">프로필 사진</label>
 
                         <div class="col-md-6">
-                          <img src="/images/profileImage/{{ $resume[0]->profile_image }}" style="margin-bottom: 20px; width:70px; height: 90px;">
+                          <img src="{{URL::to('/')}}/images/profile/{{ $resume[0]->profile_image }}" style="margin-bottom: 20px; width:70px; height: 90px;">
                           <input type="file" name="profile_image">
                         </div>
                     </div>
@@ -43,7 +42,7 @@
                       <label for="center" class="col-md-4 control-label">소속</label>
 
                       <div class="col-md-6">
-                        <input id="center" type="text" class="form-control" name="center" value="{{ $r->center }}" required autofocus>
+                        <input id="center" type="text" class="form-control" name="center" value="{{ $resume[0]->center }}" required autofocus>
                       </div>
                   </div>
 
@@ -51,10 +50,23 @@
                       <label for="career" class="col-md-4 control-label">경력</label>
 
                       <div class="col-md-6">
-                        <input id="career" type="text" class="form-control" name="career" value="{{ $r->career }}" required>
+                        <input id="career" type="text" class="form-control" name="career" value="{{ $resume[0]->career }}" required>
                       </div>
                   </div>
-                @endforeach
+
+                  <div class="form-group{{ $errors->has('license') ? ' has-error' : '' }}">
+                      <label for="license" class="col-md-4 control-label">자격증 유무</label>
+
+                      <div class="col-md-6">
+                        @if($resume[0]->license == 'yes')
+                          <label for="yes">있음</label><input id="yes" type="radio" name="license" value="yes" checked>
+                          <label for="yes">없음</label><input id="yes" type="radio" name="license" value="no">
+                        @else
+                          <label for="yes">있음</label><input id="yes" type="radio" name="license" value="yes">
+                          <label for="yes">없음</label><input id="yes" type="radio" name="license" value="no" checked>
+                        @endif
+                      </div>
+                  </div>
 
                   <div class="form-group">
                       <div class="col-md-6 col-md-offset-4">

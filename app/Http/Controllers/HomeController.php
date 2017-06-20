@@ -28,8 +28,8 @@ class HomeController extends Controller
 
             $notice = \DB::table('notice')
                 ->join('user', 'notice.sender', '=', 'user.id')
-                ->where('notice.addressee_id',Session::get('id'))
-                ->get();
+                ->where('notice.addressee_id', Session::get('id'))
+                ->orderBy('num', 'desc')->get();
             $user = \DB::table('user')->where('id',Session::get('id'))->get();
 
             if($user[0]->user_type == '보호자'){

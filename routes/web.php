@@ -20,9 +20,11 @@ Route::get('/home', 'HomeController@index');
 // 구인구직 서비스 라우트
 Route::get('/destroy/{num}', 'MatchController@destroy');
 
-Route::get('/matching/{num}/{target}/{date}', 'MatchController@matching');
+Route::resource('/matching', 'MatchController@matching');
 
-Route::get('/matchYes/{num}', 'MatchController@matchYes');
+Route::get('/matchmodify/{num}', 'MatchController@matchModify');
+
+//Route::get('/matchYes/{num}', 'MatchController@matchYes');
 
 Route::get('/noticeDest/{num}', 'MatchController@noticeDest');
 
@@ -94,12 +96,14 @@ Route::get('/userinfo/modify', 'InformationController@user_modify');
 Route::post('/userinfo/update', 'InformationController@user_update');
 
 // 추가 정보 페이지
-Route::get('/addinfo', 'InformationController@add_view');
+Route::get('/addinfo', 'InformationController@add_index');
 Route::get('/addinfo/create', 'InformationController@add_create');
 Route::post('/addinfo/store', 'InformationController@add_store');
+Route::get('/addinfo/view/{num}', 'InformationController@add_view');
 Route::get('/addinfo/modify', 'InformationController@add_modify');
 Route::post('/addinfo/update', 'InformationController@add_update');
 Route::get('/addinfo/destroy', 'InformationController@add_destroy');
+Route::post('/addinfo/license', 'InformationController@add_license');
 
 // 구인구직 현황 페이지
 Route::get('/matchinfo', 'InformationController@match_view');
@@ -109,6 +113,7 @@ Route::get('/camera_data', 'CameraDataController@camera_data');
 // 달력 - 근무일정
 Route::post('calmonth', 'CalendarController@calMonth');
 Route::get('delcal', 'CalendarController@delCal');
+Route::get('delallcal', 'CalendarController@delAllCal');
 Route::resource('calendar', 'CalendarController');
 
 // FCM Push

@@ -61,6 +61,7 @@
             }
         }
     </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment-with-locales.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -73,9 +74,6 @@
 
 </head>
 <body>
-
-
-
 <div id="app">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="nav">
@@ -112,7 +110,7 @@
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                            <a href="{{ url('/userinfo') }}">내 정보</a>
+                                            <a href="{{ url('userinfo') }}">내 정보</a>
                                             <a href="{{ route('login.destroy') }}">로그아웃</a>
                                         </li>
                                     </ul>
@@ -123,26 +121,32 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                         <img src="{{ URL::to('/') }}/images/notice_list.png" width="15" height="20">
                                     </a>
-                                    <ul class="dropdown-menu" role="menu" style="width: 300px; text-align: center;">
+                                    <ul class="dropdown-menu" role="menu" style="width: 400px; text-align: center;">
                                             <hr>
                                         @if($notice == '[]')
                                             <p>새로운 알림이 없습니다</p>
                                             <hr>
                                         @else
+                                            <?php $i = 1; ?>
                                             @foreach($notice as $n)
                                                 @if($n->notice_kind == '매칭')
-                                                    <a onclick=showModal('modal{{$n->num}}') class="notice">{{explode('/',$n->notice_content)[0]}}</a>
+                                                    <a onclick=showModal('modal{{$n->num}}') class="notice"><?php echo $i; ?> : {{$n->notice_title}}</a>
+                                                    <a href="{{URL::to('/noticeDest',[$n->num])}}" class="close" style="margin: 0 5px;">X</a>
+                                                    <hr>
+                                                @elseif($n->notice_kind == '수정')
+                                                    <a onclick=showModal('modal{{$n->num}}') class="notice"><?php echo $i; ?> : {{$n->notice_title}}</a>
                                                     <a href="{{URL::to('/noticeDest',[$n->num])}}" class="close" style="margin: 0 5px;">X</a>
                                                     <hr>
                                                 @elseif($n->notice_kind == '수락')
-                                                    {{$n->notice_content}}
+                                                        <?php echo $i; ?> : {{$n->notice_title}}
                                                     <a href="{{URL::to('/noticeDest',[$n->num])}}" class="close" style="margin: 0 5px;">X</a>
                                                     <hr>
                                                 @else
-                                                    {{$n->notice_content}}
+                                                        <?php echo $i; ?> : {{$n->notice_title}}
                                                     <a href="{{URL::to('/noticeDest',[$n->num])}}" class="close" style="margin: 0 5px;">x</a>
                                                     <hr>
                                                 @endif
+                                                    <?php $i++; ?>
                                             @endforeach
                                         @endif
                                     </ul>
@@ -162,32 +166,168 @@
     @if(Session::get('id'))
         @if($notice != '[]')
             @foreach($notice as $n)
-                <div id="modal{{$n->num}}" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
+                <script>
+                    $(function(){
+                        $(':radio[name=week_check{{$n->num}}]').on('change',function(){
+                            var weekInput = '<select class="form-control" id="work_week_input{{$n->num}}" name="work_week_input{{$n->num}}" style="margin-top:10px;">';
+                            weekInput+='<option value="주1회">주 1회</option>';
+                            weekInput+='<option value="주2회">주 2회</option>';
+                            weekInput+='<option value="주3회">주 3회</option>';
+                            weekInput+='<option value="주4회">주 4회</option>';
+                            weekInput+='<option value="주5회">주 5회</option>';
+                            weekInput+='<option value="주6회">주 6회</option>';
+                            weekInput+='<option value="주7회">주 7회</option>';
+                            weekInput+='</select>';
 
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">매칭 수락</h4>
-                            </div>
-                            <div class="modal-body">
-                                <b>※ 매칭신청을 요청한 사용자의 정보입니다.</b><br>
-                                <br><label>이름</label> {{$n->name}}
-                                <br><label>유형</label> {{$n->user_type}}
-                                <br><label>나이</label> {{$n->age}}
-                                <br><label>성별</label> {{$n->gender}}
-                                <br><label>연락처</label> {{$n->cellphone}}
-                                <br><label>연락처2</label> {{$n->telephone}}
-                              {{--  <br><label>마지막 계약일</label> {{explode('/',$n->notice_content)[2]}}--}}
-                            </div><br>
-                            <div class="modal-footer">
-                                <a onclick="matchYesConfirm('{{URL::to('/matchYes',[$n->num])}}')" class="btn btn-primary">수락</a>
-                                <a onclick="matchNoConfirm('{{URL::to('/matchNo',[$n->num])}}')" class="btn btn-danger">거절</a>
+                            if($("input:radio[name='week_check{{$n->num}}']:checked").val() == 'yes'){
+                                $('.week{{$n->num}}').append(weekInput);
+                            }else{
+                                $('#work_week_input{{$n->num}}').remove();
+                            }
+                        });
+                        $(':radio[name=work_start{{$n->num}}]').on('change',function(){
+                            if($("input:radio[name='work_start{{$n->num}}']:checked").val() == 'yes'){
+                                var weekInput = '<input type="hidden" value="yes" id="week_check_start_input{{$n->num}}" name="week_check_start_input{{$n->num}}">';
+
+                                $('#start{{$n->num}}').append(weekInput);
+                                $('#start{{$n->num}}').css('display','');
+                            }else{
+                                $('#start{{$n->num}}').css('display','none');
+                                $('#start{{$n->num}}').remove($('#week_check_start_input{{$n->num}}'));
+                            }
+                        });
+                        $(':radio[name=work_end{{$n->num}}]').on('change',function(){
+                            if($("input:radio[name='work_end{{$n->num}}']:checked").val() == 'yes'){
+                                var weekInput = '<input type="hidden" value="yes" id="week_check_end_input{{$n->num}}" name="week_check_end_input{{$n->num}}">';
+
+                                $('#start{{$n->num}}').append(weekInput);
+                                $('#end{{$n->num}}').css('display','');
+                            }else{
+                                $('#end{{$n->num}}').css('display','none');
+                                $('#end{{$n->num}}').remove($('#week_check_end_input{{$n->num}}'));
+                            }
+                        });
+                        $(':radio[name=work_start_time{{$n->num}}]').on('change',function(){
+                            var weekInput = '<select class="form-control" id="work_start_time_input{{$n->num}}" name="work_start_time_input{{$n->num}}"  style="margin-top:10px;">';
+                            for(var i = 0; i <= 24; i++){
+                                weekInput+="<option value='"+i+":00'>"+i+":00</option>";
+                            }
+
+                            if($("input:radio[name='work_start_time{{$n->num}}']:checked").val() == 'yes'){
+                                $('.start_time{{$n->num}}').append(weekInput);
+                            }else{
+                                $('#work_start_time_input{{$n->num}}').remove();
+                            }
+                        });
+                        $(':radio[name=work_end_time{{$n->num}}]').on('change',function(){
+                            var weekInput = '<select class="form-control" id="work_end_time_input{{$n->num}}" name="work_end_time_input{{$n->num}}"  style="margin-top:10px;">';
+                            for(var i = 0; i <= 24; i++){
+                                weekInput+="<option value='"+i+":00'>"+i+":00</option>";
+                            }
+                            weekInput+='</select>';
+
+                            if($("input:radio[name='work_end_time{{$n->num}}']:checked").val() == 'yes'){
+                                $('.end_time{{$n->num}}').append(weekInput);
+                            }else{
+                                $('#work_end_time_input{{$n->num}}').remove();
+                            }
+                        });
+                    });
+                </script>
+                <form class="form-horizontal" name="form-horizontal" role="form" method="get" action="{{URL::to('/matchmodify',[$n->num])}}">
+                    <div id="modal{{$n->num}}" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">매칭 수락</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <b>※ 매칭신청을 요청한 사용자의 정보입니다.</b><br>
+                                    <br><label>이름</label> {{$n->name}}
+                                    <br><label>유형</label> {{$n->user_type}}
+                                    <br><label>나이</label> {{$n->age}}
+                                    <br><label>성별</label> {{$n->gender}}
+                                    <br><label>연락처</label> {{$n->cellphone}}
+                                    <br><label>연락처2</label> {{$n->telephone}}
+                                    <br><br>
+                                    <b>※상대가 제시한 조건입니다.</b><br>
+                                    <br><div style="width: 65%; float: left; margin-left: 10px;"><label>근무일</label>
+                                        <input readonly class="form-control" name="work_week_day{{$n->num}}" value="{{$n->work_week}}">
+                                    </div><br>
+                                    <div class="week{{$n->num}}" style="margin-top: 10px;">
+                                        <label for="week_check_yes" style="margin-left: 10px;">변경</label><input type="radio" name="week_check{{$n->num}}" id="week_check_yes{{$n->num}}" value="yes">
+                                        <label for="week_check_no">변경안함</label><input type="radio" name="week_check{{$n->num}}" id="week_check_no{{$n->num}}" value="no" checked>
+                                    </div>
+                                    <br><div style="width: 65%; float: left; margin-left: 10px;"><label>근무 시작 날짜</label>
+                                        <input readonly class="form-control" name="work_start_day{{$n->num}}" value="{{$n->work_start}}">
+                                    </div><br>
+                                    <div style="margin-top: 10px;">
+                                        <label for="work_start_yes{{$n->num}}" style="margin-left: 10px;">변경</label><input type="radio" name="work_start{{$n->num}}" id="work_start_yes{{$n->num}}" value="yes">
+                                        <label for="work_start_no{{$n->num}}">변경안함</label><input type="radio" name="work_start{{$n->num}}" id="work_start_no{{$n->num}}" value="no" checked>
+                                    </div>
+                                    <div id="start{{$n->num}}" style="display: none; margin-top: 10px">
+                                        <input class="form-control" type="text" name="start_work{{$n->num}}" value="">
+                                        <script type="text/javascript">
+                                            $(function(){
+                                                $('*[name=start_work{{$n->num}}]').appendDtpicker({
+                                                    "futureOnly": true
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+                                    <br><div style="width: 65%; float: left; margin-left: 10px;"><label>근무 종료 날짜</label>
+                                        <input readonly class="form-control" name="work_end_day{{$n->num}}" value="{{$n->work_end}}">
+                                    </div><br>
+                                    <div style="margin-top: 10px;">
+                                        <label for="work_end_yes{{$n->num}}" style="margin-left: 10px;">변경</label><input type="radio" name="work_end{{$n->num}}" id="work_end_yes{{$n->num}}" value="yes">
+                                        <label for="work_end_no{{$n->num}}">변경안함</label><input type="radio" name="work_end{{$n->num}}" id="work_end_no{{$n->num}}" value="no" checked>
+                                    </div>
+                                    <div id="end{{$n->num}}" style="display: none; margin-top: 10px">
+                                        <input class="form-control" type="text" name="end_work{{$n->num}}" value="">
+                                        <script type="text/javascript">
+                                            $(function(){
+                                                $('*[name=end_work{{$n->num}}]').appendDtpicker({
+                                                    "futureOnly": true
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+                                    <br><div style="width: 65%; float: left; margin-left: 10px;"><label>근무 시작 시간</label>
+                                        <input readonly class="form-control" name="start_time{{$n->num}}" value="{{$n->work_start_time}}">
+                                    </div><br>
+                                    <div class="start_time{{$n->num}}" style="margin-top: 10px;">
+                                        <label for="work_start_time_yes{{$n->num}}" style="margin-left: 10px;">변경</label><input type="radio" name="work_start_time{{$n->num}}" id="work_start_time_yes{{$n->num}}" value="yes">
+                                        <label for="work_start_time_no{{$n->num}}">변경안함</label><input type="radio" name="work_start_time{{$n->num}}" id="work_start_time_no{{$n->num}}" value="no" checked>
+                                    </div>
+                                    <br><div style="width: 65%; float: left; margin-left: 10px;"><label>근무 종료 시간</label>
+                                        <input readonly class="form-control" name="end_time{{$n->num}}" value="{{$n->work_end_time}}">
+                                    </div><br>
+                                    <div class="end_time{{$n->num}}" style="margin-top: 10px;">
+                                        <label for="work_end_time_yes{{$n->num}}" style="margin-left: 10px;">변경</label><input type="radio" name="work_end_time{{$n->num}}" id="work_end_time_yes{{$n->num}}" value="yes">
+                                        <label for="work_end_time_no{{$n->num}}">변경안함</label><input type="radio" name="work_end_time{{$n->num}}" id="work_end_time_no{{$n->num}}" value="no" checked>
+                                    </div>
+                                </div>
+                                <div style="margin-left: 25px;">
+                                    <label>상대가 남긴 말</label>
+                                    <p>{{$n->notice_content}}</p>
+                                </div><br>
+                                <label for="content{{$n->num}}"style="margin-left: 25px;">전하고 싶은 말</label>
+                                <textarea class="form-control" id="content{{$n->num}}" name="content{{$n->num}}" rows="5" style="width: 90%; margin-left: 30px;"></textarea>
+                                <br>
+                                <div class="modal-footer">
+                                    @if($n->notice_check != 'true')
+                                        <button type="submit" class="btn btn-primary" name="btn" value="modify">조건 변경 요청</button>
+                                        <button type="submit" class="btn btn-primary" name="btn" value="yes">수락</button>
+                                        <a onclick="matchNoConfirm('{{URL::to('/matchNo',[$n->num])}}')" class="btn btn-danger">거절</a>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             @endforeach
         @endif
     @endif
