@@ -23,10 +23,10 @@ class ChartController extends Controller
     public function index() {
         //if(Session::get('id')){
 
-            $notice = \DB::table('notice')
-                ->join('user', 'notice.sender', '=', 'user.id')
-                ->where('notice.addressee_id',Session::get('id'))
-                ->get();
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id', Session::get('id'))
+            ->orderBy('num', 'desc')->get();
 
             return view('monitor.chart')->with('notice',$notice);
 //        }else{

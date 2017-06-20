@@ -169,7 +169,7 @@
                 <script>
                     $(function(){
                         $(':radio[name=week_check{{$n->num}}]').on('change',function(){
-                            var weekInput = '<select class="form-control" id="work_week_input{{$n->num}}" name="work_week_input{{$n->num}}" style="width: 97%; margin-left: 15px;">';
+                            var weekInput = '<select class="form-control" id="work_week_input{{$n->num}}" name="work_week_input{{$n->num}}" style="margin-top:10px;">';
                             weekInput+='<option value="주1회">주 1회</option>';
                             weekInput+='<option value="주2회">주 2회</option>';
                             weekInput+='<option value="주3회">주 3회</option>';
@@ -208,7 +208,7 @@
                             }
                         });
                         $(':radio[name=work_start_time{{$n->num}}]').on('change',function(){
-                            var weekInput = '<select class="form-control" id="work_start_time_input{{$n->num}}" name="work_start_time_input{{$n->num}}" style="width: 97%; margin-left: 15px;">';
+                            var weekInput = '<select class="form-control" id="work_start_time_input{{$n->num}}" name="work_start_time_input{{$n->num}}"  style="margin-top:10px;">';
                             for(var i = 0; i <= 24; i++){
                                 weekInput+="<option value='"+i+":00'>"+i+":00</option>";
                             }
@@ -220,7 +220,7 @@
                             }
                         });
                         $(':radio[name=work_end_time{{$n->num}}]').on('change',function(){
-                            var weekInput = '<select class="form-control" id="work_end_time_input{{$n->num}}" name="work_end_time_input{{$n->num}}" style="width: 97%; margin-left: 15px;">';
+                            var weekInput = '<select class="form-control" id="work_end_time_input{{$n->num}}" name="work_end_time_input{{$n->num}}"  style="margin-top:10px;">';
                             for(var i = 0; i <= 24; i++){
                                 weekInput+="<option value='"+i+":00'>"+i+":00</option>";
                             }
@@ -254,17 +254,21 @@
                                     <br><label>연락처2</label> {{$n->telephone}}
                                     <br><br>
                                     <b>※상대가 제시한 조건입니다.</b><br>
-                                    <br><div style="width: 50%; float: left;"><label>근무일</label> <input readonly name="work_week_day{{$n->num}}" value="{{$n->work_week}}"></div>
-                                    <div class="week{{$n->num}}">
-                                        <label for="week_check_yes">변경</label><input type="radio" name="week_check{{$n->num}}" id="week_check_yes{{$n->num}}" value="yes">
+                                    <br><div style="width: 65%; float: left; margin-left: 10px;"><label>근무일</label>
+                                        <input readonly class="form-control" name="work_week_day{{$n->num}}" value="{{$n->work_week}}">
+                                    </div><br>
+                                    <div class="week{{$n->num}}" style="margin-top: 10px;">
+                                        <label for="week_check_yes" style="margin-left: 10px;">변경</label><input type="radio" name="week_check{{$n->num}}" id="week_check_yes{{$n->num}}" value="yes">
                                         <label for="week_check_no">변경안함</label><input type="radio" name="week_check{{$n->num}}" id="week_check_no{{$n->num}}" value="no" checked>
                                     </div>
-                                    <br><div style="width: 50%; float: left;"><label>근무 시작 날짜</label> <input readonly name="work_start_day{{$n->num}}" value="{{$n->work_start}}"></div>
-                                    <div>
-                                        <label for="work_start_yes{{$n->num}}">변경</label><input type="radio" name="work_start{{$n->num}}" id="work_start_yes{{$n->num}}" value="yes">
+                                    <br><div style="width: 65%; float: left; margin-left: 10px;"><label>근무 시작 날짜</label>
+                                        <input readonly class="form-control" name="work_start_day{{$n->num}}" value="{{$n->work_start}}">
+                                    </div><br>
+                                    <div style="margin-top: 10px;">
+                                        <label for="work_start_yes{{$n->num}}" style="margin-left: 10px;">변경</label><input type="radio" name="work_start{{$n->num}}" id="work_start_yes{{$n->num}}" value="yes">
                                         <label for="work_start_no{{$n->num}}">변경안함</label><input type="radio" name="work_start{{$n->num}}" id="work_start_no{{$n->num}}" value="no" checked>
                                     </div>
-                                    <div id="start{{$n->num}}" style="display: none; width: 97%; margin-left: 15px;">
+                                    <div id="start{{$n->num}}" style="display: none; margin-top: 10px">
                                         <input class="form-control" type="text" name="start_work{{$n->num}}" value="">
                                         <script type="text/javascript">
                                             $(function(){
@@ -274,12 +278,14 @@
                                             });
                                         </script>
                                     </div>
-                                    <br><div style="width: 50%; float: left;"><label>근무 종료 날짜</label> <input readonly name="work_end_day{{$n->num}}" value="{{$n->work_end}}"></div>
-                                    <div>
-                                        <label for="work_end_yes{{$n->num}}">변경</label><input type="radio" name="work_end{{$n->num}}" id="work_end_yes{{$n->num}}" value="yes">
+                                    <br><div style="width: 65%; float: left; margin-left: 10px;"><label>근무 종료 날짜</label>
+                                        <input readonly class="form-control" name="work_end_day{{$n->num}}" value="{{$n->work_end}}">
+                                    </div><br>
+                                    <div style="margin-top: 10px;">
+                                        <label for="work_end_yes{{$n->num}}" style="margin-left: 10px;">변경</label><input type="radio" name="work_end{{$n->num}}" id="work_end_yes{{$n->num}}" value="yes">
                                         <label for="work_end_no{{$n->num}}">변경안함</label><input type="radio" name="work_end{{$n->num}}" id="work_end_no{{$n->num}}" value="no" checked>
                                     </div>
-                                    <div id="end{{$n->num}}" style="display: none; width: 97%; margin-left: 15px;">
+                                    <div id="end{{$n->num}}" style="display: none; margin-top: 10px">
                                         <input class="form-control" type="text" name="end_work{{$n->num}}" value="">
                                         <script type="text/javascript">
                                             $(function(){
@@ -289,20 +295,28 @@
                                             });
                                         </script>
                                     </div>
-                                    <br><div style="width: 50%; float: left;"><label>근무 시작 시간</label><input readonly name="start_time{{$n->num}}" value="{{$n->work_start_time}}"></div>
-                                    <div class="start_time{{$n->num}}">
-                                        <label for="work_start_time_yes{{$n->num}}">변경</label><input type="radio" name="work_start_time{{$n->num}}" id="work_start_time_yes{{$n->num}}" value="yes">
+                                    <br><div style="width: 65%; float: left; margin-left: 10px;"><label>근무 시작 시간</label>
+                                        <input readonly class="form-control" name="start_time{{$n->num}}" value="{{$n->work_start_time}}">
+                                    </div><br>
+                                    <div class="start_time{{$n->num}}" style="margin-top: 10px;">
+                                        <label for="work_start_time_yes{{$n->num}}" style="margin-left: 10px;">변경</label><input type="radio" name="work_start_time{{$n->num}}" id="work_start_time_yes{{$n->num}}" value="yes">
                                         <label for="work_start_time_no{{$n->num}}">변경안함</label><input type="radio" name="work_start_time{{$n->num}}" id="work_start_time_no{{$n->num}}" value="no" checked>
                                     </div>
-                                    <br><div style="width: 50%; float: left;"><label>근무 종료 시간</label> <input readonly name="end_time{{$n->num}}" value="{{$n->work_end_time}}"></div>
-                                    <div class="end_time{{$n->num}}">
-                                        <label for="work_end_time_yes{{$n->num}}">변경</label><input type="radio" name="work_end_time{{$n->num}}" id="work_end_time_yes{{$n->num}}" value="yes">
+                                    <br><div style="width: 65%; float: left; margin-left: 10px;"><label>근무 종료 시간</label>
+                                        <input readonly class="form-control" name="end_time{{$n->num}}" value="{{$n->work_end_time}}">
+                                    </div><br>
+                                    <div class="end_time{{$n->num}}" style="margin-top: 10px;">
+                                        <label for="work_end_time_yes{{$n->num}}" style="margin-left: 10px;">변경</label><input type="radio" name="work_end_time{{$n->num}}" id="work_end_time_yes{{$n->num}}" value="yes">
                                         <label for="work_end_time_no{{$n->num}}">변경안함</label><input type="radio" name="work_end_time{{$n->num}}" id="work_end_time_no{{$n->num}}" value="no" checked>
                                     </div>
                                 </div>
-                                <div style="width: 97%; margin-left: 15px;"><label>상대가 남긴 말</label>{{$n->notice_content}}</div><br>
-                                <label for="content{{$n->num}}"style="margin-left: 15px;">전하고 싶은 말</label>
-                                <textarea class="form-control" id="content{{$n->num}}" name="content{{$n->num}}" rows="5" style="width: 97%; margin-left: 15px;"></textarea>
+                                <div style="margin-left: 25px;">
+                                    <label>상대가 남긴 말</label>
+                                    <p>{{$n->notice_content}}</p>
+                                </div><br>
+                                <label for="content{{$n->num}}"style="margin-left: 25px;">전하고 싶은 말</label>
+                                <textarea class="form-control" id="content{{$n->num}}" name="content{{$n->num}}" rows="5" style="width: 90%; margin-left: 30px;"></textarea>
+                                <br>
                                 <div class="modal-footer">
                                     @if($n->notice_check != 'true')
                                         <button type="submit" class="btn btn-primary" name="btn" value="modify">조건 변경 요청</button>

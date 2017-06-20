@@ -22,8 +22,8 @@ class TaskController extends Controller
         if(Session::get('id')){
             $notice = \DB::table('notice')
                 ->join('user', 'notice.sender', '=', 'user.id')
-                ->where('notice.addressee_id',Session::get('id'))
-                ->get();
+                ->where('notice.addressee_id', Session::get('id'))
+                ->orderBy('num', 'desc')->get();
 
 
             return view('main.home')->with('notice',$notice);
@@ -37,8 +37,8 @@ class TaskController extends Controller
     public function create(){
         $notice = \DB::table('notice')
             ->join('user', 'notice.sender', '=', 'user.id')
-            ->where('notice.addressee_id',Session::get('id'))
-            ->get();
+            ->where('notice.addressee_id', Session::get('id'))
+            ->orderBy('num', 'desc')->get();
         $target = \DB::table('care')
             ->join('target','care.target_num','=','target.num')
             ->where('care.sitter_id',Session::get('id'))

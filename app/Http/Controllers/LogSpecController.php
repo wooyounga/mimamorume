@@ -24,8 +24,8 @@ class LogSpecController extends Controller
         if(Session::get('id')){
             $notice = \DB::table('notice')
                 ->join('user', 'notice.sender', '=', 'user.id')
-                ->where('notice.addressee_id',Session::get('id'))
-                ->get();
+                ->where('notice.addressee_id', Session::get('id'))
+                ->orderBy('num', 'desc')->get();
 
             $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
 
@@ -95,8 +95,8 @@ class LogSpecController extends Controller
     public function show($num){
         $notice = \DB::table('notice')
             ->join('user', 'notice.sender', '=', 'user.id')
-            ->where('notice.addressee_id',Session::get('id'))
-            ->get();
+            ->where('notice.addressee_id', Session::get('id'))
+            ->orderBy('num', 'desc')->get();
 
 
         $etc = \DB::table('work_log')
@@ -115,8 +115,8 @@ class LogSpecController extends Controller
     public function store(Request $request){
         $notice = \DB::table('notice')
             ->join('user', 'notice.sender', '=', 'user.id')
-            ->where('notice.addressee_id',Session::get('id'))
-            ->get();
+            ->where('notice.addressee_id', Session::get('id'))
+            ->orderBy('num', 'desc')->get();
 
         \DB::table('work_log')->insert([
             'num' => null,
@@ -180,8 +180,8 @@ class LogSpecController extends Controller
     public function logSpecTarget($num){
         $notice = \DB::table('notice')
             ->join('user', 'notice.sender', '=', 'user.id')
-            ->where('notice.addressee_id',Session::get('id'))
-            ->get();
+            ->where('notice.addressee_id', Session::get('id'))
+            ->orderBy('num', 'desc')->get();
     
         $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
 

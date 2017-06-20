@@ -427,74 +427,111 @@ class MatchController extends Controller
                 ->where('notice.addressee_id', Session::get('id'))
                 ->orderBy('num', 'desc')->get();
 
-            $user = \DB::table('user')->where('id', Session::get('id'))->get();
-            $sender = \DB::table('notice')
-                ->where('num', $num)
-                ->join('user', 'notice.sender', '=', 'user.id')
-                ->get();
-            $title = '매칭신청을 수락하셨습니다. 발신자 : ' . Session::get('id');
-
-            $notice_num = \DB::table('notice')
-                ->join('user', 'notice.sender', '=', 'user.id')
-                ->where('notice.num', $num)
-                ->get();
-
-            if ($user[0]->user_type == '보호사') {
-                \DB::table('contract')->insert([
-                    'family_id' => $sender[0]->id,
-                    'sitter_id' => Session::get('id'),
-                    'work_week'=>$request->get('work_week_day'.$num),
-                    'work_start'=>$request->get('work_start_day'.$num),
-                    'work_end'=>$request->get('work_end_day'.$num),
-                    'work_start_time'=>$request->get('start_time'.$num),
-                    'work_end_time'=>$request->get('end_time'.$num),
-                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                ]);
-
-                $sitter = Session::get('id');
-            } else {
-                \DB::table('contract')->insert([
-                    'family_id' => Session::get('id'),
-                    'sitter_id' => $sender[0]->id,
-                    'work_week'=>$request->get('work_week_day'.$num),
-                    'work_start'=>$request->get('work_start_day'.$num),
-                    'work_end'=>$request->get('work_end_day'.$num),
-                    'work_start_time'=>$request->get('start_time'.$num),
-                    'work_end_time'=>$request->get('end_time'.$num),
-                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                ]);
-
-                $sitter = $sender[0]->id;
+            if($request->get('work_week_input'.$num)){
+                $week_input = false;
+            }else{
+                $week_input = true;
             }
 
-            \DB::table('care')->insert([
-                'sitter_id' => $sitter,
-                'target_num' => $notice_num[0]->target_num,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            ]);
+            if($request->get('week_check_start_input'.$num) == 'yes'){
+                $work_start_input = false;
+            }else{
+                $work_start_input = true;
+            }
 
-            \DB::table('notice')->insert([
-                'num' => null,
-                'target_num' => null,
-                'addressee_id' => $sender[0]->id,
-                'sender' => Session::get('id'),
-                'work_week'=>$request->get('work_week_day'.$num),
-                'work_start'=>$request->get('work_start_day'.$num),
-                'work_end'=>$request->get('work_end_day'.$num),
-                'work_start_time'=>$request->get('start_time'.$num),
-                'work_end_time'=>$request->get('end_time'.$num),
-                'notice_kind' => '수락',
-                'notice_title' => $title,
-                'notice_content' => null,
-                'notice_check' => null,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            ]);
+            if($request->get('week_check_end_input'.$num) == 'yes'){
+                $work_end_input = false;
+            }else{
+                $work_end_input = true;
+            }
 
-            $alert = '매칭이 성공적으로 이루어졌습니다.';
+            if($request->get('work_start_time_input'.$num)){
+                $start_time_input = false;
+            }else{
+                $start_time_input = true;
+            }
 
-            \DB::table('notice')->where('num', $num)->delete();
+            if($request->get('work_end_time_input'.$num)){
+                $end_time_input = false;
+            }else{
+                $end_time_input = true;
+            }
 
-            return redirect('/home')->with('alert', $alert)->with('notice', $notice);
+            if($week_input == true && $work_start_input == true &&
+                $work_end_input == true && $start_time_input == true && $end_time_input == true){
+                $user = \DB::table('user')->where('id', Session::get('id'))->get();
+                $sender = \DB::table('notice')
+                    ->where('num', $num)
+                    ->join('user', 'notice.sender', '=', 'user.id')
+                    ->get();
+                $title = '매칭신청을 수락하셨습니다. 발신자 : ' . Session::get('id');
+
+                $notice_num = \DB::table('notice')
+                    ->join('user', 'notice.sender', '=', 'user.id')
+                    ->where('notice.num', $num)
+                    ->get();
+
+                if ($user[0]->user_type == '보호사') {
+                    \DB::table('contract')->insert([
+                        'family_id' => $sender[0]->id,
+                        'sitter_id' => Session::get('id'),
+                        'work_week'=>$request->get('work_week_day'.$num),
+                        'work_start'=>$request->get('work_start_day'.$num),
+                        'work_end'=>$request->get('work_end_day'.$num),
+                        'work_start_time'=>$request->get('start_time'.$num),
+                        'work_end_time'=>$request->get('end_time'.$num),
+                        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                    ]);
+
+                    $sitter = Session::get('id');
+                } else {
+                    \DB::table('contract')->insert([
+                        'family_id' => Session::get('id'),
+                        'sitter_id' => $sender[0]->id,
+                        'work_week'=>$request->get('work_week_day'.$num),
+                        'work_start'=>$request->get('work_start_day'.$num),
+                        'work_end'=>$request->get('work_end_day'.$num),
+                        'work_start_time'=>$request->get('start_time'.$num),
+                        'work_end_time'=>$request->get('end_time'.$num),
+                        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                    ]);
+
+                    $sitter = $sender[0]->id;
+                }
+
+                \DB::table('care')->insert([
+                    'sitter_id' => $sitter,
+                    'target_num' => $notice_num[0]->target_num,
+                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                ]);
+
+                \DB::table('notice')->insert([
+                    'num' => null,
+                    'target_num' => null,
+                    'addressee_id' => $sender[0]->id,
+                    'sender' => Session::get('id'),
+                    'work_week'=>$request->get('work_week_day'.$num),
+                    'work_start'=>$request->get('work_start_day'.$num),
+                    'work_end'=>$request->get('work_end_day'.$num),
+                    'work_start_time'=>$request->get('start_time'.$num),
+                    'work_end_time'=>$request->get('end_time'.$num),
+                    'notice_kind' => '수락',
+                    'notice_title' => $title,
+                    'notice_content' => null,
+                    'notice_check' => null,
+                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                ]);
+
+                $alert = '매칭이 성공적으로 이루어졌습니다.';
+
+                \DB::table('notice')->where('num', $num)->delete();
+
+                return redirect('/home')->with('alert', $alert)->with('notice', $notice);
+            }else{
+                $alert = '조건 수정시 매칭수락이 불가능 합니다.';
+
+                return redirect('/home')->with('alert', $alert)->with('notice', $notice);
+            }
         }
     }
 }
