@@ -357,6 +357,7 @@ class MatchController extends Controller
                     $join->on('user.id', '=', 'contract.sitter_id')
                         ->orOn('user.id', '=', 'contract.family_id');
                 })
+                ->select('contract.*', 'user.name')
                 ->where('sitter_id',$request->get('id'))
                 ->get();
         }else{
@@ -365,6 +366,7 @@ class MatchController extends Controller
                     $join->on('user.id', '=', 'contract.sitter_id')
                         ->orOn('user.id', '=', 'contract.family_id');
                 })
+                ->select('contract.*', 'user.name')
                 ->where('family_id',$request->get('id'))
                 ->get();
         }
