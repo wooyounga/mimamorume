@@ -41,13 +41,14 @@ Route::get('/appIndex', 'LogSpecController@appIndex');
 
 Route::get('/appmatching', 'MatchController@appMatching');
 
+//send img to android
+Route::get('/imageSend', 'SnapShotController@imageSend');
+
 //d3.js AjaxRoute
 Route::get('/chartData/', 'ChartController@jsonTransmit');
 
 //chart value getRoute
-Route::get('/chartBluetooth', 'ChartController@getBluetoothValue');
-Route::get('/searchImage', 'SnapShotController@searchImage');
-
+Route::post('/chartBluetooth', 'ChartController@getBluetoothValue');
 Route::get('/searchImage', 'SnapShotController@searchImage');
 
 Route::get('/monitoring', 'MonitoringController@index');

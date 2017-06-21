@@ -151,6 +151,19 @@ class SnapShotController extends Controller
                 continue;
             }
         }
-        
+    }
+
+    public function imageSend() {
+        $result = \DB::table('snapshot')->where('camera_num', 1)->get();
+
+        $array = array();
+        foreach($result as $value) {
+            $json = [
+                "image_url" => $value->upload_name
+            ];
+            array_push($array, $json);
+        }
+
+        echo json_encode($array);
     }
 }
