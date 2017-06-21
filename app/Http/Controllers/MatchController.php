@@ -351,22 +351,12 @@ class MatchController extends Controller
 
         if($user[0]->user_type == '보호사'){
             $contract  = \DB::table('contract')
-                //->join('user','contract.sitter_id','=','user.id')
-                //->join('user','contract.family_id','=','user.id')
-                ->join('user', function ($join) {
-                    $join->on('user.id', '=', 'contract.sitter_id')
-                        ->orOn('user.id', '=', 'contract.family_id');
-                })
-                ->select('contract.*', 'user.name')
+                ->join('user','contract.sitter_id','=','user.id')
                 ->where('sitter_id',$request->get('id'))
                 ->get();
         }else{
             $contract  = \DB::table('contract')
-                ->join('user', function ($join) {
-                    $join->on('user.id', '=', 'contract.sitter_id')
-                        ->orOn('user.id', '=', 'contract.family_id');
-                })
-                ->select('contract.*', 'user.name')
+                ->join('user','contract.family_id','=','user.id')
                 ->where('family_id',$request->get('id'))
                 ->get();
         }
