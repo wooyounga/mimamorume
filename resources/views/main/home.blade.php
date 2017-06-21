@@ -159,7 +159,7 @@
           @endfor
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick=createCalMonth()>완료</button>
+          <button type="button" class="btn btn-primary" onclick=createCalMonth({{count($targets)}})>완료</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
         </div>
       </div>

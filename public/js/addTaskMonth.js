@@ -1,4 +1,4 @@
-function createCalMonth(){
+function createCalMonth(targetNum){
 
   // 체크박스 체크돼있는 요일을 구함
   var days = new Array();
@@ -14,7 +14,7 @@ function createCalMonth(){
   // 체크박스 체크돼있는 대상자를 구함
   var targets = new Array();
 
-  for(var i = 0; i < 2; i++){
+  for(var i = 0; i < targetNum; i++){
     var tag2 = "input:checkbox[id=cb_target" + i + "]";
 
     if($(tag2).is(":checked")){
