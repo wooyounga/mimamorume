@@ -122,6 +122,7 @@ class LoginController extends Controller
        if($check_id == true && $check_pw == true) {
            /*$result = array('userid'=>$username, 'userpass'=>$password);
            echo json_encode($result);*/
+           //Session::set('id', $username);
            echo "success";
        }else{
            echo "failure";

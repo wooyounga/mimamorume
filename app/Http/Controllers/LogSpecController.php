@@ -241,6 +241,7 @@ class LogSpecController extends Controller
                 ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
                 ->join('target','work_log.target_num','=','target.num')
                 ->join('medicine_schedule', 'work_log.num', '=', 'medicine_schedule.log_num')
+                ->join('user','work_log.sitter_id','=','user.id')
                 ->where('work_log.sitter_id','=',$request->get('id'))
                 ->select('work_log.*', 'work_content.*','target.name','medicine_schedule.*')
                 ->get();
@@ -251,6 +252,7 @@ class LogSpecController extends Controller
                 ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
                 ->join('target','work_log.target_num','=','target.num')
                 ->join('medicine_schedule', 'work_log.num', '=', 'medicine_schedule.log_num')
+                ->join('user','work_log.sitter_id','=','user.id')
                 ->where(function ($query) use($log_id){
                     for($i = 0; $i < count($log_id) ; $i++)
                         $query->orWhere('work_log.sitter_id',$log_id[$i]->sitter_id);
