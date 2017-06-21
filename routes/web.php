@@ -107,6 +107,9 @@ Route::post('/addinfo/license', 'InformationController@add_license');
 // 구인구직 현황 페이지
 Route::get('/matchinfo', 'InformationController@match_view');
 
+// 전단지 페이지
+Route::Resource('poster', 'PosterController');
+
 Route::get('/camera_data', 'CameraDataController@camera_data');
 
 // 달력 - 근무일정

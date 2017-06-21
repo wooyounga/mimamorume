@@ -139,11 +139,10 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-md-6 col-md-offset-4">
-                      <p></p>
-                    </div>
+                <div id="map">
+
                 </div>
+
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
                       <a href="{{ url('addinfo/modify') }}" class="btn btn-primary" role="button">수정</a>
