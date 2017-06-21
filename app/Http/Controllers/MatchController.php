@@ -144,6 +144,16 @@ class MatchController extends Controller
             $target = $user[0]->target_num;
         }
 
+        $notice_check = 0;
+
+        if($notice != '[]'){
+            for($i = 0; $i < count($notice) ; $i++){
+                if($notice[$i]->notice_check == true){
+                    $notice_check++;
+                }
+            }
+        }
+
    //     if ($user[0]->user_type == '보호사') {
             $title = '매칭신청이 왔습니다. 발신자 : ' . Session::get('id');
      //   } else {
@@ -152,7 +162,7 @@ class MatchController extends Controller
         if ($user[0]->user_type == $my_type[0]->user_type) {
             $alert = '상대와 같은 유형은 매칭신청 할 수 없습니다.';
         } else {
-            if ($notice_log == '[]') {
+            if ($notice_log == '[]' && $notice_check == 0) {
                 \DB::table('notice')->insert([
                     'num' => null,
                     'target_num' => $target,
@@ -342,11 +352,13 @@ class MatchController extends Controller
         if($user[0]->user_type == '보호사'){
             $contract  = \DB::table('contract')
                 ->join('user','contract.sitter_id','=','user.id')
+                ->join('user','contract.family_id','=','user.id')
                 ->where('sitter_id',$request->get('id'))
                 ->get();
         }else{
             $contract  = \DB::table('contract')
                 ->join('user','contract.family_id','=','user.id')
+                ->join('user','contract.sitter_id','=','user.id')
                 ->where('family_id',$request->get('id'))
                 ->get();
         }
@@ -524,7 +536,7 @@ class MatchController extends Controller
                     'notice_kind' => '수락',
                     'notice_title' => $title,
                     'notice_content' => null,
-                    'notice_check' => null,
+                    'notice_check' => 'true',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ]);
 
