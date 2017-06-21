@@ -16,12 +16,12 @@
   <div class="container">
       <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            <div class="panel-body">
-                <a href="{{ url('userinfo') }}" class="btn btn-info" role="button">회원 정보</a>
-                <a href="{{ url('addinfo') }}" class="btn btn-info" role="button">추가 정보</a>
-                <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">매칭 정보</a>
+            <div class="panel-group">
+              <a href="{{ url('userinfo') }}" class="btn btn-info" role="button">회원 정보</a>
+              <a href="{{ url('addinfo') }}" class="btn btn-info" role="button">추가 정보</a>
+              <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">매칭 정보</a>
             </div>
-            @foreach($user as $u)
+
             <div class="panel panel-default">
                 <div class="panel-heading">회원 정보</div>
 
@@ -32,7 +32,7 @@
                           <label for="user_type" class="col-md-4 control-label">회원구분</label>
 
                           <div class="col-md-6">
-                              <p>{{ $u->user_type }}</p>
+                              <p>{{ $user[0]->user_type }}</p>
                           </div>
                       </div>
 
@@ -40,7 +40,7 @@
                           <label for="name" class="col-md-4 control-label">이름</label>
 
                           <div class="col-md-6">
-                              <p>{{ $u->name }}</p>
+                              <p>{{ $user[0]->name }}</p>
                           </div>
                       </div>
 
@@ -48,7 +48,7 @@
                           <label for="id" class="col-md-4 control-label">아이디</label>
 
                           <div class="col-md-6">
-                              <p>{{ $u->id }}</p>
+                              <p>{{ $user[0]->id }}</p>
                           </div>
                       </div>
 
@@ -56,7 +56,7 @@
                           <label for="age" class="col-md-4 control-label">나이</label>
 
                           <div class="col-md-6">
-                              <p>{{ $u->age.'세' }}</p>
+                              <p>{{ $user[0]->age.'세' }}</p>
                           </div>
                       </div>
 
@@ -64,7 +64,7 @@
                           <label for="gender" class="col-md-4 control-label">성별</label>
 
                           <div class="col-md-6">
-                              <p>{{ $u->gender }}</p>
+                              <p>{{ $user[0]->gender }}</p>
                           </div>
                       </div>
 
@@ -72,7 +72,7 @@
                           <label for="email" class="col-md-4 control-label">이메일</label>
 
                           <div class="col-md-6">
-                              <p>{{ $u->email }}</p>
+                              <p>{{ $user[0]->email }}</p>
                           </div>
                       </div>
 
@@ -80,7 +80,7 @@
                           <label for="telephone" class="col-md-4 control-label">집전화번호</label>
 
                           <div class="col-md-6">
-                              <p>{{ $u->telephone }}</p>
+                              <p>{{ $user[0]->telephone }}</p>
                           </div>
                       </div>
 
@@ -88,7 +88,7 @@
                           <label for="cellphone" class="col-md-4 control-label">휴대전화번호</label>
 
                           <div class="col-md-6">
-                              <p>{{ $u->cellphone }}</p>
+                              <p>{{ $user[0]->cellphone }}</p>
                           </div>
                       </div>
 
@@ -96,7 +96,7 @@
                           <label for="zip_code" class="col-md-4 control-label">우편번호</label>
 
                           <div class="col-md-6">
-                              <p>{{ $u->zip_code }}</p>
+                              <p>{{ $user[0]->zip_code }}</p>
                           </div>
                       </div>
 
@@ -104,7 +104,7 @@
                           <label for="main_address" class="col-md-4 control-label">주소</label>
 
                           <div class="col-md-6">
-                              <p>{{ $u->main_address }}</p>
+                              <p>{{ $user[0]->main_address }}</p>
                           </div>
                       </div>
 
@@ -112,7 +112,7 @@
                           <label for="rest_address" class="col-md-4 control-label">나머지 주소</label>
 
                           <div class="col-md-6">
-                              <p>{{ $u->rest_address }}</p>
+                              <p>{{ $user[0]->rest_address }}</p>
                           </div>
                       </div>
 
@@ -124,7 +124,6 @@
                     </form>
                 </div>
             </div>
-          @endforeach
           </div>
       </div>
   </div>

@@ -12,11 +12,13 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        "app/*",
+	"app/*",
         "auth/applogin",
         "chartBluetooth",
         "fcm",
-        "appIndex"
+        "appIndex",
+        "calmonth",
+        "calendar"
         //
     ];
 }

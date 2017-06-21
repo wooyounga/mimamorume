@@ -39,7 +39,8 @@ class HomeController extends Controller
             }
 
             if($contract != '[]'){
-                return view('main.home')->with('notice',$notice);
+//                return view('main.home')->with('notice',$notice);
+		return redirect('/task');
             }else{
                 return redirect('/match')->with('notice',$notice);
             }

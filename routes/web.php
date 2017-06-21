@@ -41,13 +41,14 @@ Route::get('/appIndex', 'LogSpecController@appIndex');
 
 Route::get('/appmatching', 'MatchController@appMatching');
 
+//send img to android
+Route::get('/imageSend', 'SnapShotController@imageSend');
+
 //d3.js AjaxRoute
 Route::get('/chartData/', 'ChartController@jsonTransmit');
 
 //chart value getRoute
-Route::get('/chartBluetooth', 'ChartController@getBluetoothValue');
-Route::get('/searchImage', 'SnapShotController@searchImage');
-
+Route::post('/chartBluetooth', 'ChartController@getBluetoothValue');
 Route::get('/searchImage', 'SnapShotController@searchImage');
 
 Route::get('/monitoring', 'MonitoringController@index');
@@ -95,21 +96,27 @@ Route::get('/userinfo/modify', 'InformationController@user_modify');
 Route::post('/userinfo/update', 'InformationController@user_update');
 
 // 추가 정보 페이지
-Route::get('/addinfo', 'InformationController@add_view');
+Route::get('/addinfo', 'InformationController@add_index');
 Route::get('/addinfo/create', 'InformationController@add_create');
 Route::post('/addinfo/store', 'InformationController@add_store');
+Route::get('/addinfo/view/{num}', 'InformationController@add_view');
 Route::get('/addinfo/modify', 'InformationController@add_modify');
 Route::post('/addinfo/update', 'InformationController@add_update');
 Route::get('/addinfo/destroy', 'InformationController@add_destroy');
+Route::post('/addinfo/license', 'InformationController@add_license');
 
 // 구인구직 현황 페이지
 Route::get('/matchinfo', 'InformationController@match_view');
+
+// 전단지 페이지
+Route::Resource('poster', 'PosterController');
 
 Route::get('/camera_data', 'CameraDataController@camera_data');
 
 // 달력 - 근무일정
 Route::post('calmonth', 'CalendarController@calMonth');
 Route::get('delcal', 'CalendarController@delCal');
+Route::get('delallcal', 'CalendarController@delAllCal');
 Route::resource('calendar', 'CalendarController');
 
 // FCM Push

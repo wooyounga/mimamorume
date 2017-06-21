@@ -103,6 +103,9 @@ class LoginController extends Controller
 
        $username = $request -> input('id');
        $password = $request -> input('pw');
+
+
+
        //라우트에서 post로 설정해두고 리퀘스트 겟 -> 알아서 값 가져옴!!
 
        $user = \DB::table('user')->get();
@@ -120,9 +123,14 @@ class LoginController extends Controller
        }
 
        if($check_id == true && $check_pw == true) {
+<<<<<<< HEAD
            /*$result = array('userid'=>$username, 'userpass'=>$password);
            echo json_encode($result);*/
            //Session::set('id', $username);
+=======
+ //          $result = ["result" => ['id'=>$username, 'pw'=>$password]];
+//           echo json_encode($result);
+>>>>>>> 63a30754f923b26d7f74ba2c87fd4ec5973b3866
            echo "success";
        }else{
            echo "failure";

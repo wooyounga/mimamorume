@@ -1,0 +1,41 @@
+#table {
+  width: 1000px;
+  height: 1450px;
+}
+
+#table .title {
+  background-color: red;
+  color: white;
+  font-size: 70px;
+  text-align: center;
+}
+
+#table .sub_title {
+  font-size: 50px;
+  text-align: center;
+}
+
+#table .photo {
+  text-align: center;
+}
+
+#table .content {
+  font-size: 20px;
+  letter-spacing: 5px;
+}
+
+#table .date {
+  text-align: right;
+  font-size: 20px;
+}
+
+#table .foot {
+  background-color: red;
+  color: white;
+  font-size: 25px;
+  text-align: center;
+}
+
+p {
+  display: inline;
+}

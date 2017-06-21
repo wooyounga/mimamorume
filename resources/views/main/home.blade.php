@@ -62,6 +62,15 @@
 		color: blue;
 	}
 
+  .a-event{
+    display: block;
+    padding: 5px;
+  }
+
+  .a-event span{
+    font-size: 17px;
+  }
+
 </style>
 
 @section('content')
@@ -72,6 +81,9 @@
         function openModal2(){
             $('#addTaskModal').modal('show');
         }
+        function openModal3(){
+            $('#delAllTaskModal').modal('show');
+        }
     </script>
     <!-- 캘린더 api -->
     <script type='text/javascript' src='{{URL::to('/')}}/js/fullcalendar.js'></script>
@@ -81,7 +93,7 @@
 <div id="body">
   <div class="open_modal">
     <!-- Open Add Task Month Modal Button -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" onclick="openModal()">
+    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" onclick="openModal()">
       일정 추가 (월단위)
     </button>
   </div>
@@ -89,8 +101,16 @@
 
   <div class="open_modal">
     <!-- Open Add Task Modal Button -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" onclick="openModal2()">
+    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" onclick="openModal2()">
       일정 추가
+    </button>
+  </div>
+  <br>
+
+  <div class="open_modal">
+    <!-- Open Delete All Task Button -->
+    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" onclick="openModal3()">
+      모든 일정 삭제
     </button>
   </div>
   <br><br>
@@ -121,10 +141,12 @@
 
           <br><br>
 
-          @php
-            $targets = ["박OO", "김OO"];
-          @endphp
-          @for($i = 0; $i < 2; $i++)
+          @for($i = 0; $i < count($targets); $i++)
+          <script type="text/javascript">
+            $(document).ready(function() {
+              $("#btn_group_target{{$i}}").simpleToggleBtn();
+            });
+          </script>
           <!--버튼 그룹-->
             <div class= "btns" id="btn_group_target{{$i}}">
               <!--처음 보여지는 버튼-->
@@ -137,7 +159,7 @@
           @endfor
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick=createCalMonth()>완료</button>
+          <button type="button" class="btn btn-primary" onclick=createCalMonth({{count($targets)}})>완료</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
         </div>
       </div>
@@ -172,6 +194,25 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" onclick=createCal()>완료</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 모든 일정 삭제 Modal -->
+  <div class="modal fade" id="delAllTaskModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">모든 일정 삭제하기</h4>
+        </div>
+        <div class="modal-body">
+          <p>정말 삭제하시겠습니까?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick=delAllCal()>확인</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
         </div>
       </div>
