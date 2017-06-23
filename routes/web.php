@@ -108,7 +108,8 @@ Route::get('/addinfo/destroy', 'InformationController@add_destroy');
 Route::post('/addinfo/license', 'InformationController@add_license');
 
 // 구인구직 현황 페이지
-Route::get('/matchinfo', 'InformationController@match_view');
+Route::get('/matchinfo', 'InformationController@match_index');
+Route::get('/matchinfo/view/{num}', 'InformationController@match_view');
 
 // 전단지 페이지
 Route::Resource('poster', 'PosterController');

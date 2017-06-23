@@ -32,7 +32,9 @@
                   </tr>
                   <tr>
                     <td class="photo"><img src="{{URL::to('/')}}/images/profile/{{ $target[0]->profile_image }}" style="width:300px;"></td>
-                    <td class="photo"><img src="{{URL::to('/')}}/images/monitor/snapShot/{{ $snapshot }}" style="width:300px;"></td>
+                    <td class="photo"><img src="{{URL::to('/')}}/images/monitor/snapShot/{{-- $snapshot[count(snapshot) - 1]->num --}}" style="width:300px;"></td>
+                    <input id="target_num" type="hidden" name="target_num" value="{{ $target[0]->num }}">
+                    <input id="snapshot_num" type="hidden" name="snapshot_num" value="{{-- $snapshot[count(snapshot) - 1]->num --}}">
                   </tr>
                   <tr>
                     <td class="content" colspan="2">이름 : {{ $target[0]->name }}</td>
@@ -63,7 +65,6 @@
 
                 <div class="panel-body">
                   <button type="submit" class="btn btn-primary">등록</button>
-                  <a href="{{ url('/poster') }}" class="btn btn-primary" role="button">목록</a>
                 </div>
               </form>
             </div>
