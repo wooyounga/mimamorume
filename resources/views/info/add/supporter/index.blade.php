@@ -75,7 +75,6 @@
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
                       <a href="{{ url('addinfo/modify') }}" class="btn btn-primary" role="button">수정</a>
-                      <a href="{{ url('addinfo/destroy') }}" class="btn btn-primary" role="button">삭제</a>
                     </div>
                 </div>
               </form>
@@ -159,6 +158,7 @@
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
                           <button type="submit" class="btn btn-primary">자격증 추가</button>
+                          <a href="{{ url('addinfo/destroy') }}" class="btn btn-primary" role="button">삭제</a>
                         </div>
                     </div>
                   </form>

@@ -35,6 +35,7 @@ class PosterController extends Controller
         $target = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('support.family_id', Session::get('id'))->get();
         $snapshot = \DB::table('camera')
         ->join('snapshot', 'camera.num', '=', 'snapshot.camera_num')
+        ->where('snapshot.snapshot_type', 'sensing')
         ->where('camera.target_num', 'target.num')->get();
 
         return view('/poster/create')->with('user', $user)->with('target', $target)->with('snapshot', $snapshot)->with('notice',$notice);
@@ -66,15 +67,17 @@ class PosterController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $user
+     * @param  int  $num
      * @return \Illuminate\Http\Response
      */
-    public function show($user)
+    public function show($num)
     {
         $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
+        $target = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('support.family_id', Session::get('id'))->get();
+        $poster = \DB::table('poster')->where('target_num', $num)->get();
 
-        return view('/poster/view')->with('user', $user)->with('notice',$notice);
+        return view('/poster/view')->with('user', $user)->with('target', $target)->with('poster', $poster)->with('notice',$notice);
     }
 
     // /**

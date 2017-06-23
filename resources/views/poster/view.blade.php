@@ -14,20 +14,6 @@
 
 <link rel="stylesheet" href="/css/poster.css">
 
-<script src="/js/html2canvas.js"></script>
-
-<script>
-  function makeShareImage() {
-    element = $("#save_image");
-      html2canvas(element, {
-        onrendered : function(canvas) {
-          getCanvas = canvas;
-          upload();
-        }
-      });
-  }
-</script>
-
 @section('content')
 <div class="container">
     <div class="row" style="margin:auto 0; width:1050px;">
@@ -43,34 +29,33 @@
                     <td class="sub_title"><p>실종 전 사진</p></td>
                   </tr>
                   <tr>
-                    <td class="photo"><img src="{{URL::to('/')}}/images/profile/default.jpg" style="width:300px;"></td>
-                    <td class="photo"><img src="{{URL::to('/')}}/images/profile/default.jpg" style="width:300px;"></td>
+                    <td class="photo"><img src="{{URL::to('/')}}/images/profile/{{-- $poster[0]->target_num --}}" style="width:300px;"></td>
+                    <td class="photo"><img src="{{URL::to('/')}}/images/profile/{{-- $poster[0]->snapshot_num --}}" style="width:300px;"></td>
                   </tr>
                   <tr>
-                    <td class="content" colspan="2"><p>이름 : </p><p>이현필</p></td>
+                    <td class="content" colspan="2">이름 : {{ $target[0]->name }}</td>
                   </tr>
                   <tr>
-                    <td class="content" colspan="2"><p>나이 : </p><p>26세</p></td>
+                    <td class="content" colspan="2">나이 : {{ $target[0]->age }}세</td>
                   </tr>
                   <tr>
-                    <td class="content" colspan="2"><p>성별 : </p><p>남성</p></td>
-                  </tr>
-                  <tr>
-                    <td class="content" colspan="2"><p>인상착의 : </p><p>키 180cm, 목걸이 지갑을 지니고 다님</p></td>
-                  </tr>
-                  <tr>
-                    <td class="content" colspan="2"><p>특이사항 : </p><p>지체장애 1급</p></td>
+                    <td class="content" colspan="2">성별 : {{ $target[0]->gender }}</td>
                   </tr>
                   <tr>
                     <td class="content" colspan="2">
-                      <textarea name="name" rows="10" cols="100"></textarea>
+                      특이사항 : {{ $target[0]->disability_main }}{{ ',' . $target[0]->disability_sub }}{{ ',' . $target[0]->comment }}
                     </td>
                   </tr>
                   <tr>
-                    <td class="date" colspan="2"><p>작성일 : </p><p>{{ date("Y-m-d") }}&nbsp;&nbsp;</p></td>
+                    <td class="content" colspan="2">인상착의 : <p>{{-- $poster[0]->clothes --}}</p></td>
                   </tr>
                   <tr>
-                    <td class="foot" colspan="2"><p>위 사람을 찾으신 분은 (010-2442-0326) 혹은 경찰서 (112)로 연락주시기 바랍니다.</p></td>
+                    <td class="content" colspan="2">
+                      <p>{{-- $poster[0]->other --}}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="foot" colspan="2">위 사람을 찾으신 분은 <p style="color:yellow;">{{ $user[0]->cellphone }}</p> 혹은 경찰서 <p style="color:yellow;">112</p>로 연락주시기 바랍니다.</td>
                   </tr>
                 </table>
               </div>
