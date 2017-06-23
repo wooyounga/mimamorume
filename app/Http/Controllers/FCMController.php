@@ -14,6 +14,7 @@ class FCMController extends Controller
 
     public function index()
     {
+//        $pushTarget = $_GET[''];
         $sql = "Select Token From fcm";
 
         $result = \DB::select($sql);
@@ -55,7 +56,8 @@ class FCMController extends Controller
        	);
 
        	$headers = array(
-          'Authorization:key =' . 'AAAASItoN3U:APA91bHMm6DZr9jf1zSrjCdfSESLMst14qdWpp_WWydjtSiXYtzNE02X7N28il2fkXS6QJxY7zdhhTO4GuuNNAQEYhZMJqhKDNoH9XCESwetxCYYQbAdewrmMw0PimwXUC_j_Ji6GKxH',
+          'Authorization:key =' . ' AAAAocsFlMQ:APA91bG92-CCrBOYOk2LTLyffzFOIZf_k0dtS7vO4-G5c0oNXjggxp0gKRHwTHA4m4erWvV4TMh7GYqPgI-IKhu5boFpnYu5QeeGW8nHrcYme1fR02znhK2AW581qQRIzY5Fq7CwhFfJ',
+//          'Authorization:key =' . 'AAAASItoN3U:APA91bHMm6DZr9jf1zSrjCdfSESLMst14qdWpp_WWydjtSiXYtzNE02X7N28il2fkXS6QJxY7zdhhTO4GuuNNAQEYhZMJqhKDNoH9XCESwetxCYYQbAdewrmMw0PimwXUC_j_Ji6GKxH',
           'Content-Type: application/json'
        	);
 

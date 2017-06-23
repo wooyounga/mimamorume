@@ -32,6 +32,8 @@ Route::post('/search', 'MatchController@search');
 
 Route::get('/matchNo', 'MatchController@matchNo');
 
+Route::get('/push', 'ChartController@pushCurl');
+
 //대상자별 업무일지
 Route::get('/logSpecTarget/{num}', 'LogSpecController@logSpecTarget');
 //대상자별 스냅샷
