@@ -32,11 +32,10 @@
     <td class="sub_title">실종 전 사진</td>
   </tr>
   <tr>
-    <td class="photo"><img src="{{URL::to('/')}}/images/profile/default.jpg" style="width:300px;"></td>
-    <td class="photo"><img src="{{URL::to('/')}}/images/profile/default.jpg" style="width:300px;"></td>
+    <td class="photo"><img src="{{URL::to('/')}}/images/profile/{{ $target[0]->profile_image }}" style="width:300px;"></td>
+    <td class="photo"><img src="{{URL::to('/')}}/images/monitor/snapShot/{{ $snapshot[0]->snapshot_name }}" style="width:300px;"></td>
     <input id="target_num" type="hidden" name="target_num" value="{{ $target[0]->num }}">
-    <!-- <input id="snapshot_num" type="hidden" name="snapshot_num" value="{{-- $snapshot[count(snapshot) - 1]->num --}}"> -->
-    <input id="snapshot_num" type="hidden" name="snapshot_num" value="1">
+    <input id="snapshot_name" type="hidden" name="snapshot_name" value="{{ $snapshot[0]->snapshot_name }}">
   </tr>
   <tr>
     <td class="content" colspan="2">이름 : {{ $target[0]->name }}</td>

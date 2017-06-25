@@ -60,8 +60,8 @@
       <td class="sub_title">실종 전 사진</td>
     </tr>
     <tr>
-      <td class="photo"><img src="{{URL::to('/')}}/images/profile/default.jpg" style="width:300px;"></td>
-      <td class="photo"><img src="{{URL::to('/')}}/images/profile/default.jpg" style="width:300px;"></td>
+      <td class="photo"><img src="{{URL::to('/')}}/images/profile/{{ $target[0]->profile_image }}" style="width:300px;"></td>
+      <td class="photo"><img src="{{URL::to('/')}}/images/monitor/snapShot/{{ $poster[0]->snapshot_name }}" style="width:300px;"></td>
     </tr>
     <tr>
       <td class="content" colspan="2">이름 : {{ $target[0]->name }}</td>
@@ -78,11 +78,11 @@
       </td>
     </tr>
     <tr>
-      <td class="content" colspan="2">인상착의 : {{-- $poster[0]->clothes --}}</td>
+      <td class="content" colspan="2">인상착의 : {{ $poster[0]->clothes }}</td>
     </tr>
     <tr>
       <td class="content" colspan="2">
-        {{-- $poster[0]->other --}}
+        {{ $poster[0]->other }}
       </td>
     </tr>
     <tr>

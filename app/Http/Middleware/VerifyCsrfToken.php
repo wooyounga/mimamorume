@@ -18,7 +18,8 @@ class VerifyCsrfToken extends BaseVerifier
         "fcm",
         "appIndex",
         "calmonth",
-        "calendar"
+        "calendar",
+        "gps"
         //
     ];
 }

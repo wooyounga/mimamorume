@@ -49,9 +49,9 @@ class ChartController extends Controller
             ]
         );
 
-       if($data > 170) {
-           pushCurl("pulse danger");
-       }
+        if($data > 160) {
+            $this->pushCurl("심박수너무뛴다");
+        }
     }
 
 
@@ -121,7 +121,6 @@ class ChartController extends Controller
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         $response = curl_exec($ch);
         curl_close($ch);
-        echo $response;
     }
 
 
@@ -129,3 +128,4 @@ class ChartController extends Controller
 
 
 }
+

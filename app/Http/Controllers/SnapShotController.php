@@ -156,7 +156,7 @@ class SnapShotController extends Controller
     }
 
     public function imageSend() {
-        $result = \DB::table('snapshot')->where('camera_num', 1)->get();
+        $result = \DB::table('snapshot')->get();
 
         $array = array();
         foreach($result as $value) {

@@ -28,10 +28,15 @@ class PosterController extends Controller
         $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
         $target = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('support.family_id', Session::get('id'))->get();
+
+foreach($target as $val){
+$targetNum = $val->num;
+}
+
         $snapshot = \DB::table('camera')
         ->join('snapshot', 'camera.num', '=', 'snapshot.camera_num')
         ->where('snapshot.snapshot_type', 'sensing')
-        ->where('camera.target_num', 'target.num')->get();
+        ->where('camera.target_num', $targetNum)->get();
 
         return view('/poster/create')->with('user', $user)->with('target', $target)->with('snapshot', $snapshot)->with('notice',$notice);
     }
@@ -50,13 +55,15 @@ class PosterController extends Controller
 
         \DB::table('poster')->insert([
           'target_num' => $request->input('target_num'),
-          'snapshot_num' => $request->input('snapshot_num'),
+          'snapshot_name' => $request->input('snapshot_name'),
           'clothes' => $request->input('clothes'),
           'other' => $request->input('other'),
           'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
-        return redirect('/poster/view')->with('user', $user)->with('notice',$notice);
+	$poster = \DB::table('poster')->get();
+
+        return redirect('/poster/view')->with('user', $user)->with('notice',$notice)->with('target',$target)->with('poster',$poster);
     }
 
     /**

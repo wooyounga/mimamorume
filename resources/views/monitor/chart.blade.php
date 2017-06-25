@@ -13,10 +13,15 @@
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<!--d3js-->
-<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+<style>
+    canvas{
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+</style>
 @section('content')
-
     @if (session('alert'))
         <script>
             var msg = '{{Session::get('alert')}}';
@@ -34,72 +39,58 @@
 
         </div>
         {{--d3.js Area--}}
-        <svg width="960" height="500"></svg>
+        <div style="width:75%;">
+            <canvas id="canvas"></canvas>
+        </div>
 
         {{--d3.js graph draw--}}
         <script>
-            var svg = d3.select("svg"),
-                margin = {top: 20, right: 20, bottom: 30, left: 50},
-                width = +svg.attr("width") - margin.left - margin.right,
-                height = +svg.attr("height") - margin.top - margin.bottom,
-                g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-            var parseTime = d3.timeParse("%d-%I:%S");
-
-            var x = d3.scaleTime()
-                .rangeRound([0, width]);
-
-            var y = d3.scaleLinear()
-                .rangeRound([height, 0]);
-
-            var line = d3.line()
-                .x(function(d) { return x(d.date); })
-                .y(function(d) { return y(d.close); });
-
-            $.ajax({
-                url:"http://133.130.99.167/mimamo/public/chartData",
+            var dateArray = [];
+            var dataArray = [];
+                $.ajax({
+                url:"http:/"+"/133.130.99.167/mimamo/public/chartData",
                 type:"GET",
                 dataType: "jsonp",
                 success: function(data) {
                     data.forEach(function (d) {
-                        d.date = parseTime(d.date);
-                        d.close = +d.close;
-                        return d;
+                        dateArray.push(d.date);
+                        dataArray.push(d.close);
                     });
-
-                    x.domain(d3.extent(data, function(d) { return d.date; }));
-                    y.domain(d3.extent(data, function(d) { return d.close; }));
-
-                    g.append("g")
-                        .attr("transform", "translate(0," + height + ")")
-                        .call(d3.axisBottom(x))
-                        .select(".domain")
-                        .remove();
-
-                    g.append("g")
-                        .call(d3.axisLeft(y))
-                        .append("text")
-                        .attr("fill", "#000")
-                        .attr("transform", "rotate(-90)")
-                        .attr("y", 6)
-                        .attr("dy", "0.71em")
-                        .attr("text-anchor", "end")
-                        .text("심박수");
-
-                    g.append("path")
-                        .datum(data)
-                        .attr("fill", "none")
-                        .attr("stroke", "steelblue")
-                        .attr("stroke-linejoin", "round")
-                        .attr("stroke-linecap", "round")
-                        .attr("stroke-width", 1.5)
-                        .attr("d", line);
                 },
                 error: function(data, status, er) {
                     console.log("error:" + status, "er" + er);
                     console.log("code:"+data.status+"\n"+"message:" + data.responseText+"\n"+"error:"+er);
                 }
             });
+            var config = {
+                type: 'line',
+                data: {
+                    labels: dateArray,
+                    datasets: [{
+                        label: "pulse data",
+                        backgroundColor : 'rgba(255, 99, 132, 0.2)',
+                        borderColor : 'rgba(255,99,132,1)',
+                        borderWidth: 2,
+                        data: dataArray,
+                        fill: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: true,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    }
+                }
+            };
+            window.onload = function() {
+                var ctx = document.getElementById("canvas").getContext("2d");
+                window.myLine = new Chart(ctx, config);
+            };
         </script>
     </div>
 @endsection

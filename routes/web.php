@@ -124,3 +124,7 @@ Route::resource('calendar', 'CalendarController');
 
 // FCM Push
 Route::resource('fcm', 'FCMController');
+
+
+//gps
+Route::post('gps', 'GpsController@getUserGps');
