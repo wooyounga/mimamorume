@@ -17,7 +17,8 @@ class CreatePosterTable extends Migration
             $table->increments('num');
             $table->integer('target_num')->unsigned();
             $table->integer('snapshot_num')->unsigned();
-            $table->string('content', 100)->nullable();
+            $table->string('clothes');
+            $table->string('other');
             $table->timestamps();
 
             $table->foreign('target_num')->references('num')->on('target');

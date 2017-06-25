@@ -14,7 +14,7 @@ class targetSeeder extends Seeder
         DB::table('target')->insert([
             'num'=>null,
             'name'=>'이현필',
-            'profile_image'=>'/images/profile/1.jpg',
+            'profile_image'=>'default.jpg',
             'age'=>'70',
             'gender'=>'남',
             'telephone'=>'0535555555',
@@ -31,7 +31,7 @@ class targetSeeder extends Seeder
         DB::table('target')->insert([
             'num'=>null,
             'name'=>'곽대효',
-            'profile_image'=>'/images/profile/1.jpg',
+            'profile_image'=>'default.jpg',
             'age'=>'50',
             'gender'=>'여',
             'telephone'=>'0535544555',
@@ -49,7 +49,7 @@ class targetSeeder extends Seeder
         DB::table('target')->insert([
             'num'=>null,
             'name'=>'조찬호',
-            'profile_image'=>'/images/profile/1.jpg',
+            'profile_image'=>'default.jpg',
             'age'=>'70',
             'gender'=>'남',
             'telephone'=>'0535884555',
