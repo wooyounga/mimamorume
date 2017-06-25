@@ -12,7 +12,34 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="//code.jquery.com/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/target.css">
+<style>
+  .list {
+    display: inline-block;
+    width: 200px;
+    height: 70px;
+    border-radius: 10px;
+    border: 2px solid lightgray;
+  }
+
+  .list_link {
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  .thumbnale {
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  p {
+    padding: 5px;
+    display: inline-block;
+    color: gray;
+  }
+</style>
 
 @section('content')
 <div class="container">
@@ -21,15 +48,15 @@
           <div class="panel-group">
             <a href="{{ url('userinfo') }}" class="btn btn-info" role="button">회원 정보</a>
             <a href="{{ url('addinfo') }}" class="btn btn-info" role="button">추가 정보</a>
-            <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">매칭 정보</a>
+            <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">계약 정보</a>
           </div>
 
           <div class="panel panel-default">
-            <div class="panel-heading">구인구직 정보</div>
+            <div class="panel-heading">계약 정보</div>
 
             <div class="panel-body">
               @if ($match == '[]')
-                <p>담당하고 있는 대상자가 없습니다.</p>
+                담당하고 있는 대상자가 없습니다.
               @else
 
                 @foreach($match as $m)

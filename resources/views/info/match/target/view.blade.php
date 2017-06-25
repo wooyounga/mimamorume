@@ -19,11 +19,11 @@
           <div class="panel-group">
             <a href="{{ url('userinfo') }}" class="btn btn-info" role="button">회원 정보</a>
             <a href="{{ url('addinfo') }}" class="btn btn-info" role="button">추가 정보</a>
-            <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">매칭 정보</a>
+            <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">계약 정보</a>
           </div>
 
           <div class="panel panel-default">
-            <div class="panel-heading">대상자 정보</div>
+            <div class="panel-heading">계약 정보</div>
 
             <div class="panel-body">
               <form class="form-horizontal" role="form">
@@ -31,7 +31,7 @@
                     <label for="num" class="col-md-4 control-label">대상자 아이디</label>
 
                     <div class="col-md-6">
-                        <p>{{ $match[0]->num }}</p>
+                        {{ $match[0]->num }}
                     </div>
                 </div>
 
@@ -47,7 +47,7 @@
                     <label for="name" class="col-md-4 control-label">이름</label>
 
                     <div class="col-md-6">
-                        <p>{{ $match[0]->name }}</p>
+                        {{ $match[0]->name }}
                     </div>
                 </div>
 
@@ -55,7 +55,7 @@
                     <label for="age" class="col-md-4 control-label">나이</label>
 
                     <div class="col-md-6">
-                        <p>{{ $match[0]->age }}</p>
+                        {{ $match[0]->age }}
                     </div>
                 </div>
 
@@ -63,7 +63,7 @@
                     <label for="gender" class="col-md-4 control-label">성별</label>
 
                     <div class="col-md-6">
-                        <p>{{ $match[0]->gender }}</p>
+                        {{ $match[0]->gender }}
                     </div>
                 </div>
 
@@ -71,7 +71,7 @@
                     <label for="telephone" class="col-md-4 control-label">집 전화번호</label>
 
                     <div class="col-md-6">
-                        <p>{{ $match[0]->telephone }}</p>
+                        {{ $match[0]->telephone }}
                     </div>
                 </div>
 
@@ -79,7 +79,7 @@
                     <label for="cellphone" class="col-md-4 control-label">휴대 전화번호</label>
 
                     <div class="col-md-6">
-                        <p>{{ $match[0]->cellphone }}</p>
+                        {{ $match[0]->cellphone }}
                     </div>
                 </div>
 
@@ -87,7 +87,7 @@
                     <label for="zip_code" class="col-md-4 control-label">우편번호</label>
 
                     <div class="col-md-6">
-                        <p>{{ $match[0]->zip_code }}</p>
+                        {{ $match[0]->zip_code }}
                     </div>
                 </div>
 
@@ -95,7 +95,7 @@
                     <label for="main_address" class="col-md-4 control-label">주소</label>
 
                     <div class="col-md-6">
-                        <p>{{ $match[0]->main_address }}</p>
+                        {{ $match[0]->main_address }}
                     </div>
                 </div>
 
@@ -103,7 +103,7 @@
                     <label for="rest_address" class="col-md-4 control-label">나머지 주소</label>
 
                     <div class="col-md-6">
-                        <p>{{ $match[0]->rest_address }}</p>
+                        {{ $match[0]->rest_address }}
                     </div>
                 </div>
 
@@ -111,7 +111,7 @@
                     <label for="disability_main" class="col-md-4 control-label">장애 종류(주)</label>
 
                     <div class="col-md-6">
-                        <p>{{ $match[0]->disability_main }}</p>
+                        {{ $match[0]->disability_main }}
                     </div>
                 </div>
 
@@ -120,9 +120,9 @@
 
                     <div class="col-md-6">
                       @if ($match[0]->disability_sub == null)
-                        <p>없음</p>
+                        없음
                       @else
-                        <p>{{ $match[0]->disability_sub }}</p>
+                        {{ $match[0]->disability_sub }}
                       @endif
                     </div>
                 </div>
@@ -132,15 +132,59 @@
 
                     <div class="col-md-6">
                       @if ($match[0]->comment == null)
-                        <p>없음</p>
+                        없음
                       @else
-                        <p>{{ $match[0]->comment }}</p>
+                        {{ $match[0]->comment }}
                       @endif
                     </div>
                 </div>
 
                 <div id="map">
 
+                </div>
+              </form>
+            </div>
+
+            <div class="panel-body">
+              <form class="form-horizontal" role="form">
+                <div class="form-group{{ $errors->has('work_week') ? ' has-error' : '' }}">
+                    <label for="work_week" class="col-md-4 control-label">근무 요일</label>
+
+                    <div class="col-md-6">
+                        {{ $contract[0]->work_week }}
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('work_start') ? ' has-error' : '' }}">
+                    <label for="work_start" class="col-md-4 control-label">근무 시작일</label>
+
+                    <div class="col-md-6">
+                        {{ $contract[0]->work_start }}
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('work_end') ? ' has-error' : '' }}">
+                    <label for="work_end" class="col-md-4 control-label">근무 종료일</label>
+
+                    <div class="col-md-6">
+                        {{ $contract[0]->work_end }}
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('work_start_time') ? ' has-error' : '' }}">
+                    <label for="work_start_time" class="col-md-4 control-label">근무 시작시간</label>
+
+                    <div class="col-md-6">
+                        {{ $contract[0]->work_start_time }}
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('work_end_time') ? ' has-error' : '' }}">
+                    <label for="work_end_time" class="col-md-4 control-label">근무 종료시간</label>
+
+                    <div class="col-md-6">
+                        {{ $contract[0]->work_end_time }}
+                    </div>
                 </div>
               </form>
             </div>

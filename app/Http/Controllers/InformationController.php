@@ -261,9 +261,8 @@ class InformationController extends Controller {
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
         if($user[0]->user_type == '보호자') {
-          $match = \DB::table('support')->where('family_id', Session::get('id'))->get();
 
-          return view('info.match.support.list')->with('match', $match)->with('notice', $notice);
+          return view('info.match.supporter.list')->with('match', $match)->with('notice', $notice);
         } else {
           $match = \DB::table('care')->join('target', 'care.target_num', '=', 'target.num')->where('sitter_id', Session::get('id'))->get();
 
@@ -276,13 +275,13 @@ class InformationController extends Controller {
           $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
           if($user[0]->user_type == '보호자') {
-            $match = \DB::table('support')->where('family_id', Session::get('id'))->get();
 
             return view('info.match.support.view')->with('match', $match)->with('notice', $notice);
           } else {
             $match = \DB::table('care')->join('target', 'care.target_num', '=', 'target.num')->where('sitter_id', Session::get('id'))->get();
+            $contract = \DB::table('contract')->where('sitter_id', Session::get('id'))->get();
 
-            return view('info.match.target.view')->with('match', $match)->with('notice', $notice);
+            return view('info.match.target.view')->with('match', $match)->with('contract', $contract)->with('notice', $notice);
           }
       }
 }

@@ -74,7 +74,7 @@
           <div class="panel-group">
             <a href="{{ url('userinfo') }}" class="btn btn-info" role="button">회원 정보</a>
             <a href="{{ url('addinfo') }}" class="btn btn-info" role="button">추가 정보</a>
-            <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">매칭 정보</a>
+            <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">계약 정보</a>
           </div>
 
           <div class="panel panel-default">
@@ -88,7 +88,7 @@
                       <label for="user_type" class="col-md-4 control-label">회원구분</label>
 
                       <div class="col-md-6">
-                          <p>{{ $user[0]->user_type }}</p>
+                          {{ $user[0]->user_type }}
                       </div>
                   </div>
 
@@ -104,7 +104,7 @@
                       <label for="id" class="col-md-4 control-label">아이디</label>
 
                       <div class="col-md-6">
-                          <p>{{ $user[0]->id }}</p>
+                          {{ $user[0]->id }}
                       </div>
                   </div>
 
@@ -128,7 +128,7 @@
                       <label for="age" class="col-md-4 control-label">나이</label>
 
                       <div class="col-md-6">
-                          <p>{{ $user[0]->age.'세' }}</p>
+                          {{ $user[0]->age.'세' }}
                       </div>
                   </div>
 
@@ -136,7 +136,7 @@
                       <label for="gender" class="col-md-4 control-label">성별</label>
 
                       <div class="col-md-6">
-                          <p>{{ $user[0]->gender }}</p>
+                          {{ $user[0]->gender }}
                       </div>
                   </div>
 

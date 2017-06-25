@@ -19,7 +19,7 @@
           <div class="panel-group">
             <a href="{{ url('userinfo') }}" class="btn btn-info" role="button">회원 정보</a>
             <a href="{{ url('addinfo') }}" class="btn btn-info" role="button">추가 정보</a>
-            <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">매칭 정보</a>
+            <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">계약 정보</a>
           </div>
 
           <div class="panel panel-default">
@@ -31,7 +31,7 @@
                     <label for="num" class="col-md-4 control-label">대상자 아이디</label>
 
                     <div class="col-md-6">
-                        <p>{{ $target[0]->num }}</p>
+                        {{ $target[0]->num }}
                     </div>
                 </div>
 
@@ -47,7 +47,7 @@
                     <label for="name" class="col-md-4 control-label">이름</label>
 
                     <div class="col-md-6">
-                        <p>{{ $target[0]->name }}</p>
+                        {{ $target[0]->name }}
                     </div>
                 </div>
 
@@ -55,7 +55,7 @@
                     <label for="age" class="col-md-4 control-label">나이</label>
 
                     <div class="col-md-6">
-                        <p>{{ $target[0]->age }}</p>
+                        {{ $target[0]->age }}
                     </div>
                 </div>
 
@@ -63,7 +63,7 @@
                     <label for="gender" class="col-md-4 control-label">성별</label>
 
                     <div class="col-md-6">
-                        <p>{{ $target[0]->gender }}</p>
+                        {{ $target[0]->gender }}
                     </div>
                 </div>
 
@@ -71,7 +71,7 @@
                     <label for="telephone" class="col-md-4 control-label">집 전화번호</label>
 
                     <div class="col-md-6">
-                        <p>{{ $target[0]->telephone }}</p>
+                        {{ $target[0]->telephone }}
                     </div>
                 </div>
 
@@ -79,7 +79,7 @@
                     <label for="cellphone" class="col-md-4 control-label">휴대 전화번호</label>
 
                     <div class="col-md-6">
-                        <p>{{ $target[0]->cellphone }}</p>
+                        {{ $target[0]->cellphone }}
                     </div>
                 </div>
 
@@ -87,7 +87,7 @@
                     <label for="zip_code" class="col-md-4 control-label">우편번호</label>
 
                     <div class="col-md-6">
-                        <p>{{ $target[0]->zip_code }}</p>
+                        {{ $target[0]->zip_code }}
                     </div>
                 </div>
 
@@ -95,7 +95,7 @@
                     <label for="main_address" class="col-md-4 control-label">주소</label>
 
                     <div class="col-md-6">
-                        <p>{{ $target[0]->main_address }}</p>
+                        {{ $target[0]->main_address }}
                     </div>
                 </div>
 
@@ -103,7 +103,7 @@
                     <label for="rest_address" class="col-md-4 control-label">나머지 주소</label>
 
                     <div class="col-md-6">
-                        <p>{{ $target[0]->rest_address }}</p>
+                        {{ $target[0]->rest_address }}
                     </div>
                 </div>
 
@@ -111,7 +111,7 @@
                     <label for="disability_main" class="col-md-4 control-label">장애 종류(주)</label>
 
                     <div class="col-md-6">
-                        <p>{{ $target[0]->disability_main }}</p>
+                        {{ $target[0]->disability_main }}
                     </div>
                 </div>
 
@@ -120,9 +120,9 @@
 
                     <div class="col-md-6">
                       @if ($target[0]->disability_sub == null)
-                        <p>없음</p>
+                        없음
                       @else
-                        <p>{{ $target[0]->disability_sub }}</p>
+                        {{ $target[0]->disability_sub }}
                       @endif
                     </div>
                 </div>
@@ -132,9 +132,9 @@
 
                     <div class="col-md-6">
                       @if ($target[0]->comment == null)
-                        <p>없음</p>
+                        없음
                       @else
-                        <p>{{ $target[0]->comment }}</p>
+                        {{ $target[0]->comment }}
                       @endif
                     </div>
                 </div>
