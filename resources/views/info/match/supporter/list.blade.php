@@ -59,11 +59,11 @@
                 대상자를 담당하고 있는 보호사가 없습니다.
               @else
 
-                @foreach($match as $t)
+                @foreach($match as $m)
                   <div class="list">
-                    <a class="list_link" href="{{ url('/matchinfo/view', [$t->num]) }}">
-                      <img class="thumbnale" src="{{URL::to('/')}}/images/profile/{{ $t->profile_image }}">
-                      <p>{{ $t->name }} <br> {{ $t->cellphone }}</p>
+                    <a class="list_link" href="{{ url('/matchinfo/view', [$m->target_num]) }}">
+                      <img class="thumbnale" src="{{URL::to('/')}}/images/profile/{{ $m->profile_image }}">
+                      <p>{{ $m->name }} <br> {{ $m->cellphone }}</p>
                     </a>
                   </div>
                 @endforeach

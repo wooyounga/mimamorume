@@ -112,7 +112,8 @@ Route::get('/matchinfo', 'InformationController@match_index');
 Route::get('/matchinfo/view/{num}', 'InformationController@match_view');
 
 // 전단지 페이지
-Route::Resource('poster', 'PosterController');
+Route::get('poster/create', 'PosterController@create');
+Route::post('poster/store', 'PosterController@store');
 
 Route::get('/camera_data', 'CameraDataController@camera_data');
 

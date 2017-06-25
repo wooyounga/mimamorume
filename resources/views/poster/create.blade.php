@@ -19,7 +19,7 @@
   <div class="row" style="margin:auto 0; width:1050px;">
     <div class="panel panel-default">
       <div class="panel-body">
-        <form class="form-horizontal" role="form" action="{{ route('poster.store') }}" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" role="form" action="{{ url('poster/store') }}" method="post" enctype="multipart/form-data">
           {{ csrf_field() }}
 
 <div id="poster_body">
