@@ -11,6 +11,23 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="//code.jquery.com/jquery.min.js"></script>
+<script async defer
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBsExSeg_8tFWequawd8Rs6yhbj5slCzCY&callback=initMap">
+</script>
+<script>
+
+    function initMap() {
+        var address = {lat: 35.896274, lng: 128.621965};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 17,
+            center: address
+        });
+        var marker = new google.maps.Marker({
+            position: address,
+            map: map
+        });
+    }
+</script>
 
 @section('content')
 <div class="container">
@@ -140,7 +157,7 @@
                 </div>
 
                 <div id="map">
-
+                    
                 </div>
 
                 <div class="form-group">

@@ -49,9 +49,10 @@ class ChartController extends Controller
             ]
         );
 
-        if($data > 160) {
-            $this->pushCurl("심박수너무뛴다");
-        }
+$this->pushCurl("gg");
+//        if($data > 160) {
+//            $this->pushCurl("심박수너무뛴다");
+//        }
     }
 
 
@@ -109,7 +110,7 @@ class ChartController extends Controller
 //        }
 //    }
 
-    private function pushCurl($message)
+    public function pushCurl($message)
     {
         $u = "http://133.130.99.167/mimamo/public/fcm";
         $array = ['message'=>$message];
