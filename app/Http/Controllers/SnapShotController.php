@@ -55,6 +55,7 @@ class SnapShotController extends Controller
                 ->join('target','camera.target_num','=','target.num')
                 ->join('snapshot','camera.num','=','snapshot.camera_num')
                 ->where('target.num',$activi)
+                ->orderBy('created_at', 'desc')
                 ->get();
 
             return view('monitor.snapshot')->with('target',$target_list)->with('snapshot',$snapshot)->with('num',$activi)->with('notice',$notice);
@@ -90,6 +91,7 @@ class SnapShotController extends Controller
                 ->join('target','camera.target_num','=','target.num')
                 ->join('snapshot','camera.num','=','snapshot.camera_num')
                 ->where('target.num',$num)
+                ->orderBy('created_at', 'desc')
                 ->get();
 
             $activi = $num;

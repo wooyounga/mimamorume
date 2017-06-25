@@ -70,7 +70,7 @@
                           @foreach($snapshot as $s)
                             <span style="display:inline-block; width:300px; height:200px; text-align:center">
                                 <img class="thumbnail" src="{{URL::to('/')}}/images/monitor/snapShot/{{$s->upload_name}}">
-                                <br>{{$s->snapshot_type}}<br>
+                                <br>{{$s->snapshot_type}}<br>{{$s->created_at}}
                               </span>
                           @endforeach
                     @endif
