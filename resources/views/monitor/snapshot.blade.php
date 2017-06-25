@@ -68,8 +68,8 @@
                         <div><h3>최근에 찍힌 스냅샷이 존재하지 않습니다</h3></div>
                     @else
                           @foreach($snapshot as $s)
-                            <span style="display:inline-block; width:300px; height:200px;">
-                                <img class="thumbnail" src="{{URL::to('/')}}/images/monitor/snapShot/{{$s->upload_name}}">
+                            <span style="display:inline-block; width:300px; height:200px; text-align:center">
+                                <img class="thumbnail" src="{{URL::to('/')}}/images/monitor/snapShot/{{$s->upload_name}}" width="220px;" height="123.750">
                                 <br>{{$s->snapshot_type}}<br>
                               </span>
                           @endforeach
