@@ -94,8 +94,8 @@ li{
 }
 
 .thumbnail_list .thumbnail{
-    width: 20%;
-    height: auto;
+  width: 220px;
+  height: 123.750px;
 }
 
 .modal_cont .close:hover,
