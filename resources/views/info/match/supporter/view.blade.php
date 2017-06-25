@@ -27,19 +27,11 @@
 
             <div class="panel-body">
               <form class="form-horizontal" role="form">
-                <div class="form-group{{ $errors->has('num') ? ' has-error' : '' }}">
-                    <label for="num" class="col-md-4 control-label">대상자 아이디</label>
-
-                    <div class="col-md-6">
-                        {{ $target[0]->num }}
-                    </div>
-                </div>
-
                 <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
                     <label class="col-md-4 control-label">대상자 사진</label>
 
                     <div class="col-md-6">
-                      <img src="{{URL::to('/')}}/images/profile/{{ $target[0]->profile_image }}" style="margin-bottom: 20px; width:70px; height: 90px;">
+                      <img src="{{URL::to('/')}}/images/profile/{{ $match[0]->profile_image }}" style="margin-bottom: 20px; width:70px; height: 90px;">
                     </div>
                 </div>
 
@@ -47,7 +39,7 @@
                     <label for="name" class="col-md-4 control-label">이름</label>
 
                     <div class="col-md-6">
-                        {{ $target[0]->name }}
+                        {{ $match[0]->name }}
                     </div>
                 </div>
 
@@ -55,7 +47,7 @@
                     <label for="age" class="col-md-4 control-label">나이</label>
 
                     <div class="col-md-6">
-                        {{ $target[0]->age }}
+                        {{ $match[0]->age }}
                     </div>
                 </div>
 
@@ -63,7 +55,7 @@
                     <label for="gender" class="col-md-4 control-label">성별</label>
 
                     <div class="col-md-6">
-                        {{ $target[0]->gender }}
+                        {{ $match[0]->gender }}
                     </div>
                 </div>
 
@@ -71,7 +63,7 @@
                     <label for="telephone" class="col-md-4 control-label">집 전화번호</label>
 
                     <div class="col-md-6">
-                        {{ $target[0]->telephone }}
+                        {{ $match[0]->telephone }}
                     </div>
                 </div>
 
@@ -79,7 +71,7 @@
                     <label for="cellphone" class="col-md-4 control-label">휴대 전화번호</label>
 
                     <div class="col-md-6">
-                        {{ $target[0]->cellphone }}
+                        {{ $match[0]->cellphone }}
                     </div>
                 </div>
 
@@ -87,7 +79,7 @@
                     <label for="zip_code" class="col-md-4 control-label">우편번호</label>
 
                     <div class="col-md-6">
-                        {{ $target[0]->zip_code }}
+                        {{ $match[0]->zip_code }}
                     </div>
                 </div>
 
@@ -95,7 +87,7 @@
                     <label for="main_address" class="col-md-4 control-label">주소</label>
 
                     <div class="col-md-6">
-                        {{ $target[0]->main_address }}
+                        {{ $match[0]->main_address }}
                     </div>
                 </div>
 
@@ -103,7 +95,7 @@
                     <label for="rest_address" class="col-md-4 control-label">나머지 주소</label>
 
                     <div class="col-md-6">
-                        {{ $target[0]->rest_address }}
+                        {{ $match[0]->rest_address }}
                     </div>
                 </div>
 
@@ -111,7 +103,7 @@
                     <label for="disability_main" class="col-md-4 control-label">장애 종류(주)</label>
 
                     <div class="col-md-6">
-                        {{ $target[0]->disability_main }}
+                        {{ $match[0]->disability_main }}
                     </div>
                 </div>
 
@@ -119,10 +111,10 @@
                     <label for="disability_sub" class="col-md-4 control-label">장애 종류(부)</label>
 
                     <div class="col-md-6">
-                      @if ($target[0]->disability_sub == null)
+                      @if ($match[0]->disability_sub == null)
                         없음
                       @else
-                        {{ $target[0]->disability_sub }}
+                        {{ $match[0]->disability_sub }}
                       @endif
                     </div>
                 </div>
@@ -131,10 +123,10 @@
                     <label for="comment" class="col-md-4 control-label">특이사항</label>
 
                     <div class="col-md-6">
-                      @if ($target[0]->comment == null)
+                      @if ($match[0]->comment == null)
                         없음
                       @else
-                        {{ $target[0]->comment }}
+                        {{ $match[0]->comment }}
                       @endif
                     </div>
                 </div>

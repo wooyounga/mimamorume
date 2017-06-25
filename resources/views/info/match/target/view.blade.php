@@ -27,14 +27,6 @@
 
             <div class="panel-body">
               <form class="form-horizontal" role="form">
-                <div class="form-group{{ $errors->has('num') ? ' has-error' : '' }}">
-                    <label for="num" class="col-md-4 control-label">대상자 아이디</label>
-
-                    <div class="col-md-6">
-                        {{ $match[0]->num }}
-                    </div>
-                </div>
-
                 <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
                     <label class="col-md-4 control-label">대상자 사진</label>
 
