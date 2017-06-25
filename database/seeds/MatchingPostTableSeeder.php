@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class matchingPostSeed extends Seeder
+class MatchingPostTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -37,6 +37,15 @@ class matchingPostSeed extends Seeder
              'view' => "0",
           ]);
         }
+
+        $title = ["보호사 구합니다", "우리 가족이 활동하고 싶어 합니다", "장애인 관련 자격증 있으신 분", "경력 3년 이상", "가족 같은 분 구합니다",
+        "장애인 단체 활동가와 함께 일 해주실 분", "제발 도와주세요", "보호가 필요합니다", "이렇게 하는 거 맞나요?", "함께 해주세요"];
+
+        $age = ["20대", "50대", "40대", "30대", "60대 이상",
+        "60대", "20대", "10대 미만", "30대", "40대"];
+
+        $disability = ["자폐성장애", "지체장애", "청각장애", "안면장애", "언어장애",
+        "뇌병변장애", "지적장애", "자폐성장애", "안면장애", "청각장애"];
 
         for($i = 5; $i < 10; $i++){
           DB::table('matching_post')->insert([

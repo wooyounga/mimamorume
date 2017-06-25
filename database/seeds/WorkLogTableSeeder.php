@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class workLogSeeder extends Seeder
+class WorkLogTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,6 +17,7 @@ class workLogSeeder extends Seeder
             'target_num'=>'1',
             'work_date'=>'2017/05/04',
         ]);
+        
         DB::table('work_log')->insert([
             'num'=>null,
             'sitter_id'=>'user1',

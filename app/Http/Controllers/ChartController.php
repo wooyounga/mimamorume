@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 
 class ChartController extends Controller
@@ -48,6 +48,10 @@ class ChartController extends Controller
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]
         );
+
+       if($data > 170) {
+           pushCurl("pulse danger");
+       }
     }
 
 
@@ -100,11 +104,28 @@ class ChartController extends Controller
 //
 //            return view('monitor.chart')->with('pulseData', $pulseData)->with('notice',$notice);
 //        }else{
-//            $alert = '잘못된 접근입니다.';
-//
+//            $alert = '잘못된 접근입니다.'
 //            return redirect('/')->with('alert',$alert);
 //        }
 //    }
+
+    private function pushCurl($message)
+    {
+        $u = "http://133.130.99.167/mimamo/public/fcm";
+        $array = ['message'=>$message];
+        $url = $u.'?'.http_build_query($array);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        echo $response;
+    }
+
+
+
 
 
 }

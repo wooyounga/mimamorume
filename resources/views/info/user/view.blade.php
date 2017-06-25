@@ -19,7 +19,7 @@
             <div class="panel-group">
               <a href="{{ url('userinfo') }}" class="btn btn-info" role="button">회원 정보</a>
               <a href="{{ url('addinfo') }}" class="btn btn-info" role="button">추가 정보</a>
-              <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">매칭 정보</a>
+              <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">계약 정보</a>
             </div>
 
             <div class="panel panel-default">
@@ -32,7 +32,7 @@
                           <label for="user_type" class="col-md-4 control-label">회원구분</label>
 
                           <div class="col-md-6">
-                              <p>{{ $user[0]->user_type }}</p>
+                              {{ $user[0]->user_type }}
                           </div>
                       </div>
 
@@ -40,7 +40,7 @@
                           <label for="name" class="col-md-4 control-label">이름</label>
 
                           <div class="col-md-6">
-                              <p>{{ $user[0]->name }}</p>
+                              {{ $user[0]->name }}
                           </div>
                       </div>
 
@@ -48,7 +48,7 @@
                           <label for="id" class="col-md-4 control-label">아이디</label>
 
                           <div class="col-md-6">
-                              <p>{{ $user[0]->id }}</p>
+                              {{ $user[0]->id }}
                           </div>
                       </div>
 
@@ -56,7 +56,7 @@
                           <label for="age" class="col-md-4 control-label">나이</label>
 
                           <div class="col-md-6">
-                              <p>{{ $user[0]->age.'세' }}</p>
+                              {{ $user[0]->age.'세' }}
                           </div>
                       </div>
 
@@ -64,7 +64,7 @@
                           <label for="gender" class="col-md-4 control-label">성별</label>
 
                           <div class="col-md-6">
-                              <p>{{ $user[0]->gender }}</p>
+                              {{ $user[0]->gender }}
                           </div>
                       </div>
 
@@ -72,7 +72,7 @@
                           <label for="email" class="col-md-4 control-label">이메일</label>
 
                           <div class="col-md-6">
-                              <p>{{ $user[0]->email }}</p>
+                              {{ $user[0]->email }}
                           </div>
                       </div>
 
@@ -80,7 +80,7 @@
                           <label for="telephone" class="col-md-4 control-label">집전화번호</label>
 
                           <div class="col-md-6">
-                              <p>{{ $user[0]->telephone }}</p>
+                              {{ $user[0]->telephone }}
                           </div>
                       </div>
 
@@ -88,7 +88,7 @@
                           <label for="cellphone" class="col-md-4 control-label">휴대전화번호</label>
 
                           <div class="col-md-6">
-                              <p>{{ $user[0]->cellphone }}</p>
+                              {{ $user[0]->cellphone }}
                           </div>
                       </div>
 
@@ -96,7 +96,7 @@
                           <label for="zip_code" class="col-md-4 control-label">우편번호</label>
 
                           <div class="col-md-6">
-                              <p>{{ $user[0]->zip_code }}</p>
+                              {{ $user[0]->zip_code }}
                           </div>
                       </div>
 
@@ -104,7 +104,7 @@
                           <label for="main_address" class="col-md-4 control-label">주소</label>
 
                           <div class="col-md-6">
-                              <p>{{ $user[0]->main_address }}</p>
+                              {{ $user[0]->main_address }}
                           </div>
                       </div>
 
@@ -112,7 +112,7 @@
                           <label for="rest_address" class="col-md-4 control-label">나머지 주소</label>
 
                           <div class="col-md-6">
-                              <p>{{ $user[0]->rest_address }}</p>
+                              {{ $user[0]->rest_address }}
                           </div>
                       </div>
 

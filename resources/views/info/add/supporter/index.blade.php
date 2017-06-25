@@ -34,7 +34,7 @@
           <div class="panel-group">
             <a href="{{ url('userinfo') }}" class="btn btn-info" role="button">회원 정보</a>
             <a href="{{ url('addinfo') }}" class="btn btn-info" role="button">추가 정보</a>
-            <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">매칭 정보</a>
+            <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">계약 정보</a>
           </div>
 
           <div class="panel panel-default">
@@ -42,8 +42,8 @@
 
             <div class="panel-body">
               @if($resume == '[]')
-                <p>보호사에 대한 정보가 없습니다.</p>
-                <p>등록 버튼을 눌러서 보호사 정보 등록 후 사용해 주시기 바랍니다.</p>
+                보호사에 대한 정보가 없습니다. <br>
+                등록 버튼을 눌러서 보호사 정보 등록 후 사용해 주시기 바랍니다. <br>
                 <a href="{{ url('addinfo/create') }}" class="btn btn-primary" role="button">추가</a>
               @else
 
@@ -60,7 +60,7 @@
                     <label for="center" class="col-md-4 control-label">소속</label>
 
                     <div class="col-md-6">
-                        <p>{{ $resume[0]->center }}</p>
+                        {{ $resume[0]->center }}
                     </div>
                 </div>
 
@@ -68,14 +68,13 @@
                     <label for="career" class="col-md-4 control-label">경력</label>
 
                     <div class="col-md-6">
-                        <p>{{ $resume[0]->career }}</p>
+                        {{ $resume[0]->career }}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
                       <a href="{{ url('addinfo/modify') }}" class="btn btn-primary" role="button">수정</a>
-                      <a href="{{ url('addinfo/destroy') }}" class="btn btn-primary" role="button">삭제</a>
                     </div>
                 </div>
               </form>
@@ -88,14 +87,14 @@
                             <label for="license_kind" class="col-md-4 control-label">자격증 이름</label>
 
                             <div class="col-md-6">
-                                <p>{{ $l->license_kind }}</p>
+                                {{ $l->license_kind }}
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('license_num') ? ' has-error' : '' }}">
                             <label for="license_num" class="col-md-4 control-label">자격증 번호</label>
 
                             <div class="col-md-6">
-                                <p>{{ $l->license_num }}</p>
+                                {{ $l->license_num }}
                             </div>
                         </div>
 
@@ -103,7 +102,7 @@
                             <label for="license_grade" class="col-md-4 control-label">자격 등급</label>
 
                             <div class="col-md-6">
-                                <p>{{ $l->license_grade }}</p>
+                                {{ $l->license_grade }}
                             </div>
                         </div>
 
@@ -111,7 +110,7 @@
                             <label for="institution" class="col-md-4 control-label">발급 기관</label>
 
                             <div class="col-md-6">
-                                <p>{{ $l->institution }}</p>
+                                {{ $l->institution }}
                             </div>
                         </div>
                       </form>
@@ -159,6 +158,7 @@
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
                           <button type="submit" class="btn btn-primary">자격증 추가</button>
+                          <a href="{{ url('addinfo/destroy') }}" class="btn btn-primary" role="button">삭제</a>
                         </div>
                     </div>
                   </form>

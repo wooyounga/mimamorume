@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class careSeeder extends Seeder
+class CareTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,10 +14,6 @@ class careSeeder extends Seeder
         DB::table('care')->insert([
             'sitter_id' => 'user1',
             'target_num' => '1',
-        ]);
-        DB::table('care')->insert([
-            'sitter_id' => 'user1',
-            'target_num' => '2',
         ]);
     }
 }

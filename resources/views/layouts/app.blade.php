@@ -84,20 +84,20 @@
                         <div class="zeta-wrap">
                             <ul class="zeta-menu center-block">
                                 <li>
-                                    <a href="{{ url('/match') }}"><b>Contract</b></a>
+                                    <a href="{{ url('/match') }}"><b>매칭</b></a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/monitoring') }}"><b>Monitoring</b></a>
+                                    <a href="{{ url('/monitoring') }}"><b>모니터링</b></a>
                                     <ul>
-                                        <li><a href="{{ url('/snapshot') }}">Snapshot</a></li>
-                                        <li><a href="{{ url('/chart') }}">Chart</a></li>
+                                        <li><a href="{{ url('/snapshot') }}">촬영기록</a></li>
+                                        <li><a href="{{ url('/chart') }}">심박수 확인</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/task') }}"><b>Task</b></a>
+                                    <a href="{{ url('/task') }}"><b>업무지원</b></a>
                                     <ul>
-                                        <li><a href="{{ url('/task') }}">Shift</a></li>
-                                        <li><a href="{{ url('/logSpec') }}">LogSpec</a></li>
+                                        <li><a href="{{ url('/task') }}">일정관리</a></li>
+                                        <li><a href="{{ url('/logSpec') }}">업무일지</a></li>
                                     </ul>
                                 </li>
                             </ul>

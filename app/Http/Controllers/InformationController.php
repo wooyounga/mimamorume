@@ -162,8 +162,8 @@ class InformationController extends Controller {
       }
 
       public function add_view($num) {
-        $notice = \DB::table('notice')->join('user', 'notice.sender', '=', 'user.id')->where('notice.addressee_id',Session::get('id'))->get();
-        $user = \DB::table('user')->where('id', Session::get('id'))->get();
+          $notice = \DB::table('notice')->join('user', 'notice.sender', '=', 'user.id')->where('notice.addressee_id',Session::get('id'))->get();
+          $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
           $target = \DB::table('target')->where('num', $num)->get();
 
@@ -256,12 +256,32 @@ class InformationController extends Controller {
 
       /**************************     매칭 정보     **************************/
 
-      public function match_view() {
-        $notice = \DB::table('notice')
-            ->join('user', 'notice.sender', '=', 'user.id')
-            ->where('notice.addressee_id', Session::get('id'))
-            ->orderBy('num', 'desc')->get();
+      public function match_index() {
+        $notice = \DB::table('notice')->join('user', 'notice.sender', '=', 'user.id')->where('notice.addressee_id', Session::get('id'))->orderBy('num', 'desc')->get();
+        $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
-        return view('info.match.list')->with('notice', $notice);
+        if($user[0]->user_type == '보호자') {
+
+          return view('info.match.supporter.list')->with('match', $match)->with('notice', $notice);
+        } else {
+          $match = \DB::table('care')->join('target', 'care.target_num', '=', 'target.num')->where('sitter_id', Session::get('id'))->get();
+
+          return view('info.match..target.list')->with('match', $match)->with('notice', $notice);
+        }
+      }
+
+      public function match_view($num) {
+          $notice = \DB::table('notice')->join('user', 'notice.sender', '=', 'user.id')->where('notice.addressee_id',Session::get('id'))->get();
+          $user = \DB::table('user')->where('id', Session::get('id'))->get();
+
+          if($user[0]->user_type == '보호자') {
+
+            return view('info.match.support.view')->with('match', $match)->with('notice', $notice);
+          } else {
+            $match = \DB::table('care')->join('target', 'care.target_num', '=', 'target.num')->where('sitter_id', Session::get('id'))->get();
+            $contract = \DB::table('contract')->where('sitter_id', Session::get('id'))->get();
+
+            return view('info.match.target.view')->with('match', $match)->with('contract', $contract)->with('notice', $notice);
+          }
       }
 }

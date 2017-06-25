@@ -142,12 +142,48 @@
                 <div id="map">
 
                 </div>
+              </form>
+            </div>
 
-                <div class="form-group">
-                    <div class="col-md-6 col-md-offset-4">
-                      <a href="{{ url('addinfo/modify') }}" class="btn btn-primary" role="button">수정</a>
-                      <a href="{{ url('addinfo/destroy') }}" class="btn btn-primary" role="button">삭제</a>
-                      <a href="{{ route('poster.create') }}" class="btn btn-primary" role="button">실종 전단지 작성</a>
+            <div class="panel-body">
+              <form class="form-horizontal" role="form">
+                <div class="form-group{{ $errors->has('work_week') ? ' has-error' : '' }}">
+                    <label for="work_week" class="col-md-4 control-label">근무 요일</label>
+
+                    <div class="col-md-6">
+                        {{ $contract[0]->work_week }}
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('work_start') ? ' has-error' : '' }}">
+                    <label for="work_start" class="col-md-4 control-label">근무 시작일</label>
+
+                    <div class="col-md-6">
+                        {{ $contract[0]->work_start }}
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('work_end') ? ' has-error' : '' }}">
+                    <label for="work_end" class="col-md-4 control-label">근무 종료일</label>
+
+                    <div class="col-md-6">
+                        {{ $contract[0]->work_end }}
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('work_start_time') ? ' has-error' : '' }}">
+                    <label for="work_start_time" class="col-md-4 control-label">근무 시작시간</label>
+
+                    <div class="col-md-6">
+                        {{ $contract[0]->work_start_time }}
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('work_end_time') ? ' has-error' : '' }}">
+                    <label for="work_end_time" class="col-md-4 control-label">근무 종료시간</label>
+
+                    <div class="col-md-6">
+                        {{ $contract[0]->work_end_time }}
                     </div>
                 </div>
               </form>

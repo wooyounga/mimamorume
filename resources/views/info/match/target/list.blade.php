@@ -12,7 +12,34 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="//code.jquery.com/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/target.css">
+<style>
+  .list {
+    display: inline-block;
+    width: 200px;
+    height: 70px;
+    border-radius: 10px;
+    border: 2px solid lightgray;
+  }
+
+  .list_link {
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  .thumbnale {
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  p {
+    padding: 5px;
+    display: inline-block;
+    color: gray;
+  }
+</style>
 
 @section('content')
 <div class="container">
@@ -21,32 +48,26 @@
           <div class="panel-group">
             <a href="{{ url('userinfo') }}" class="btn btn-info" role="button">회원 정보</a>
             <a href="{{ url('addinfo') }}" class="btn btn-info" role="button">추가 정보</a>
-            <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">매칭 정보</a>
+            <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">계약 정보</a>
           </div>
 
           <div class="panel panel-default">
-            <div class="panel-heading">구인구직 정보</div>
+            <div class="panel-heading">계약 정보</div>
 
             <div class="panel-body">
-              @if ($target == '[]')
-                <p>대상이 없습니다. 대상을 추가하지 않으면 저희 서비스를 이용하실 수 없습니다.</p>
-                <p>추가 버튼을 눌러서 대상자 추가를 진행 해주시기 바랍니다.</p>
+              @if ($match == '[]')
+                담당하고 있는 대상자가 없습니다.
               @else
 
-                @foreach($target as $t)
+                @foreach($match as $m)
                   <div class="list">
-                    <a class="list_link" href="{{ url('/addinfo/view', [$t->num]) }}">
-                      <img class="thumbnale" src="{{URL::to('/')}}/images/profile/{{ $t->profile_image }}">
-                      <p>{{ $t->name }} <br> {{ $t->cellphone }}</p>
+                    <a class="list_link" href="{{ url('/matchinfo/view', [$m->num]) }}">
+                      <img class="thumbnale" src="{{URL::to('/')}}/images/profile/{{ $m->profile_image }}">
+                      <p>{{ $m->name }} <br> {{ $m->cellphone }}</p>
                     </a>
                   </div>
                 @endforeach
               @endif
-              <div class="form-group">
-                  <div class="col-md-6 col-md-offset-4">
-                    <a href="{{ url('addinfo/create') }}" class="btn btn-primary" role="button">추가</a>
-                  </div>
-              </div>
             </div>
           </div>
         </div>

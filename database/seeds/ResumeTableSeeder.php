@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class resumeSeeder extends Seeder
+class ResumeTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,9 @@ class resumeSeeder extends Seeder
         DB::table('resume')->insert([
             'sitter_id' => 'user1',
             'license' => 'yes',
-            'center' => '영진전문대',
-            'career' => '1234',
-            'profile_image' => '/images/profile/2.jpg',
+            'center' => '영진전문대학',
+            'career' => '3년',
+            'profile_image' => 'Woo.jpg',
         ]);
     }
 }

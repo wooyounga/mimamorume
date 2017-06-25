@@ -52,28 +52,22 @@
           </div>
 
           <div class="panel panel-default">
-            <div class="panel-heading">대상자 정보</div>
+            <div class="panel-heading">구인구직 정보</div>
 
             <div class="panel-body">
-              @if ($target == '[]')
-                대상이 없습니다. 대상을 추가하지 않으면 저희 서비스를 이용하실 수 없습니다. <br>
-                추가 버튼을 눌러서 대상자 추가를 진행 해주시기 바랍니다. <br>
+              @if ($match == '[]')
+                대상자를 담당하고 있는 보호사가 없습니다.
               @else
 
-                @foreach($target as $t)
+                @foreach($match as $t)
                   <div class="list">
-                    <a class="list_link" href="{{ url('/addinfo/view', [$t->num]) }}">
+                    <a class="list_link" href="{{ url('/matchinfo/view', [$t->num]) }}">
                       <img class="thumbnale" src="{{URL::to('/')}}/images/profile/{{ $t->profile_image }}">
                       <p>{{ $t->name }} <br> {{ $t->cellphone }}</p>
                     </a>
                   </div>
                 @endforeach
               @endif
-              <div class="form-group">
-                  <div class="col-md-6 col-md-offset-4">
-                    <a href="{{ url('addinfo/create') }}" class="btn btn-primary" role="button">추가</a>
-                  </div>
-              </div>
             </div>
           </div>
         </div>
