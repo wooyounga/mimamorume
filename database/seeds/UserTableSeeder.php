@@ -15,49 +15,34 @@ class UserTableSeeder extends Seeder
             'id' => 'user1',
             'user_type' => '보호사',
             'pw' => bcrypt('secret'),
-            'name' => '김태인',
-            'age' => 27,
-            'gender' => '남성',
-            'email' => 'kimtaein@naver.com',
+            'name' => '우영아',
+            'age' => '22',
+            'gender' => '여성',
+            'email' => 'wooyoung-a@naver.com',
             'telephone' => '0700000000',
-            'cellphone' => '01096887755',
-            'zip_code' => '38117',
-            'main_address' => '경상북도 경주시 천군동 191-5',
-            'rest_address' => '파에톤',
+            'cellphone' => '01077135539',
+            'zip_code' => '41527',
+            'main_address' => '대구광역시 북구 복현동 218',
+            'rest_address' => '영진전문대학 본관 200호',
         ]);
 
         DB::table('user')->insert([
             'id' => 'user2',
             'user_type' => '보호자',
             'pw' => bcrypt('secret'),
-            'name' => '곽대효',
-            'age' => '26',
+            'name' => '김태인',
+            'age' => '27',
             'gender' => '남성',
-            'email' => 'kwakdaehyo@naver.com',
+            'email' => 'kimtaein@naver.com',
             'telephone' => '07000000000',
-            'cellphone' => '01033329775',
-            'zip_code' => '41426',
-            'main_address' => '대구광역시 북구 동천동 914',
-            'rest_address' => '204동 1104호',
+            'cellphone' => '01096887750',
+            'zip_code' => '44978',
+            'main_address' => '울산광역시 울주군 온양읍 대안리 568-2',
+            'rest_address' => '동호대안맨션 302호',
         ]);
 
         DB::table('user')->insert([
             'id' => 'user3',
-            'user_type' => '보호사',
-            'pw' => bcrypt('secret'),
-            'name' => '이현필',
-            'age' => '26',
-            'gender' => '남성',
-            'email' => 'aritsitic0326@naver.com',
-            'telephone' => '07050339461',
-            'cellphone' => '01024420326',
-            'zip_code' => '41562',
-            'main_address' => '대구광역시 북구 복현동 428-7',
-            'rest_address' => '안하우스 402호',
-        ]);
-
-        DB::table('user')->insert([
-            'id' => 'user4',
             'user_type' => '보호자',
             'pw' => bcrypt('secret'),
             'name' => '김성용',
@@ -68,7 +53,7 @@ class UserTableSeeder extends Seeder
             'cellphone' => '01041161574',
             'zip_code' => '44920',
             'main_address' => '울산광역시 울주군 범서읍 구영리 212',
-            'rest_address' => '101동 104호',
+            'rest_address' => '울산구영1단지주공아파트 101동 104호',
         ]);
     }
 }

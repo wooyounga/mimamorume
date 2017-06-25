@@ -47,7 +47,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="content" colspan="2">인상착의 : <p>{{-- $poster[0]->clothes --}}</p></td>
+                    <td class="content" colspan="2">인상착의 : {{-- $poster[0]->clothes --}}</td>
                   </tr>
                   <tr>
                     <td class="content" colspan="2">
@@ -63,22 +63,19 @@
               <div class="SNS_Share_Top hidden-xs">
                 <input type="button" value="인쇄" onclick="window.print();">
 
-               <!-- Share on Twitter -->
                <a href="#" onclick="javascript:window.open('https://twitter.com/intent/tweet?text='
                +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog',
                 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" alt="Share on Twitter">
-                  <img src="/images/Twitter.png" style="width:32px; height:32px;"></a>
+                  <img src="{{URL::to('/')}}/images/Twitter.png" style="width:32px; height:32px;"></a>
 
-               <!-- Share on Facebook -->
                <a href="#" onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u='
                +encodeURIComponent(document.URL)+'&amp;t='+encodeURIComponent(document.title), 'facebooksharedialog',
                 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" alt="Share on Facebook">
-                <img src="/images/Facebook.png" style="width:32px; height:32px;"></a>
+                <img src="{{URL::to('/')}}/images/Facebook.png" style="width:32px; height:32px;"></a>
 
-               <!-- Share on Google+ -->
                <a href="#" onclick="javascript:window.open('https://plus.google.com/share?url='+encodeURIComponent(document.URL), 'googleplussharedialog',
                'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=600');return false;" target="_blank" alt="Share on Google+">
-                <img src="/images/Google_Plus.png" style="width:32px; height:32px;"></a>
+                <img src="{{URL::to('/')}}/images/Google_Plus.png" style="width:32px; height:32px;"></a>
              </div>
 
             </div>

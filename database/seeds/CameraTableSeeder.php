@@ -18,12 +18,12 @@ class CameraTableSeeder extends Seeder
 
         DB::table('camera')->insert([
             'num' => null,
-            'target_num' => '2',
+            'target_num' => '1',
         ]);
 
         DB::table('camera')->insert([
             'num' => null,
-            'target_num' => '3',
+            'target_num' => '1',
         ]);
     }
 }

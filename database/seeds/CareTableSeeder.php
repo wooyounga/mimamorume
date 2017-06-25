@@ -15,10 +15,5 @@ class CareTableSeeder extends Seeder
             'sitter_id' => 'user1',
             'target_num' => '1',
         ]);
-
-        DB::table('care')->insert([
-            'sitter_id' => 'user1',
-            'target_num' => '2',
-        ]);
     }
 }
