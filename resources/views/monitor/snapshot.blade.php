@@ -67,12 +67,14 @@
                     @if($snapshot == '[]')
                         <div><h3>최근에 찍힌 스냅샷이 존재하지 않습니다</h3></div>
                     @else
-                        @foreach($snapshot as $s)
+                        <div class="form-inline">
+                          @foreach($snapshot as $s)
                             <span style="display:inline-block">
-                              <img class="thumbnail" src="{{URL::to('/')}}/images/monitor/snapShot/{{$s->upload_name}}"><br>
-                              {{$s->snapshot_type}}<br>
-                            </span>
-                        @endforeach
+                                <img class="thumbnail" src="{{URL::to('/')}}/images/monitor/snapShot/{{$s->upload_name}}"><br>
+                                {{$s->snapshot_type}}<br>
+                              </span>
+                          @endforeach
+                        </div>
                     @endif
                    {{-- <img class="thumbnail" src="{{URL::to('/')}}/images/main_logo.png">
                     <img class="thumbnail" src="{{URL::to('/')}}/images/main/main_image_01.png">--}}
