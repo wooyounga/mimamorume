@@ -68,11 +68,15 @@
                         <div><h3>최근에 찍힌 스냅샷이 존재하지 않습니다</h3></div>
                     @else
                         <div class="form-inline">
+                          <?php $i = 0; ?>
                           @foreach($snapshot as $s)
-                            <span style="display:inline-block">
-                                <img class="thumbnail" src="{{URL::to('/')}}/images/monitor/snapShot/{{$s->upload_name}}"><br>
-                                {{$s->snapshot_type}}<br>
-                              </span>
+                            <div style="float:left">
+                                <img class="thumbnail" src="{{URL::to('/')}}/images/monitor/snapShot/{{$s->upload_name}}">
+                                <br>{{$s->snapshot_type}}<br>
+                              </div>
+                            <?php if($i != 3){?>
+                                  <br>
+                            <?php $i == 0; } ?>
                           @endforeach
                         </div>
                     @endif
