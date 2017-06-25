@@ -70,10 +70,10 @@
                         <div class="form-inline">
                           <?php $i = 0; ?>
                           @foreach($snapshot as $s)
-                            <div style="float:left">
+                            <span style="display:inline-block; width:300px;">
                                 <img class="thumbnail" src="{{URL::to('/')}}/images/monitor/snapShot/{{$s->upload_name}}">
                                 <br>{{$s->snapshot_type}}<br>
-                              </div>
+                              </span>
                             <?php if($i != 3){?>
                                   <br>
                             <?php $i == 0; } ?>
