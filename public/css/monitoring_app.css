@@ -118,7 +118,8 @@ li{
 
 .thumbnail_list img{
     display: inline-block;
-    width: 20%;
+    width: 220px;
+    height: 123.750px;
 }
 .thumbnail_list > div{
     width: 100%;
