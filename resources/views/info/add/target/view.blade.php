@@ -147,7 +147,7 @@
                     <div class="col-md-6 col-md-offset-4">
                       <a href="{{ url('addinfo/modify') }}" class="btn btn-primary" role="button">수정</a>
                       <a href="{{ url('addinfo/destroy') }}" class="btn btn-primary" role="button">삭제</a>
-                      <a href="{{ route('poster.create') }}" class="btn btn-primary" role="button">실종 전단지 작성</a>
+                      <a href="{{ url('poster/create') }}" class="btn btn-primary" role="button">실종 전단지 작성</a>
                     </div>
                 </div>
               </form>

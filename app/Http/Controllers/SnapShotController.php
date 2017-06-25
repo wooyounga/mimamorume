@@ -107,7 +107,7 @@ class SnapShotController extends Controller
     public function searchImage()
     {
         // 폴더명 지정
-        $dir = "/var/www/html/mimamo/public/images/monitor/snapShot";
+        $dir = "images/monitor/snapShot";
         // 핸들 획득
         $handle = opendir($dir);
         $files = array();

@@ -61,25 +61,10 @@ $targetNum = $val->num;
           'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
-	$poster = \DB::table('poster')->get();
+        $finalAdd = \DB::table('poster')->max('num');
+        $poster = \DB::table('poster')->where('num', $finalAdd)->get();
 
-        return redirect('/poster/view')->with('user', $user)->with('notice',$notice)->with('target',$target)->with('poster',$poster);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $num
-     * @return \Illuminate\Http\Response
-     */
-    public function show($num)
-    {
-        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
-        $user = \DB::table('user')->where('id', Session::get('id'))->get();
-        $target = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('support.family_id', Session::get('id'))->get();
-        $poster = \DB::table('poster')->where('target_num', $num)->get();
-
-        return view('/poster/view')->with('user', $user)->with('target', $target)->with('poster', $poster)->with('notice',$notice);
+        return view('/poster/view')->with('user', $user)->with('notice',$notice)->with('target',$target)->with('poster',$poster);
     }
 
     // /**
