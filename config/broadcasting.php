@@ -54,5 +54,8 @@ return [
         ],
 
     ],
-
+    'options' => [
+        'cluster' => 'eu',
+        'encrypted' => true
+    ],
 ];
