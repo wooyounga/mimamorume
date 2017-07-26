@@ -11,7 +11,7 @@
     <video id="remoteVideo" autoplay></video>
 </div>
   {{--<script src="{{ asset('js/photo.js') }}"></script>--}}
- <script src="https://ex.app:8081/socket.io/socket.io.js"></script>
+ <script src="//{{ Request::getHost() }}:8081/socket.io/socket.io.js"></script>
  <script src="{{ asset('js/lib/adapter.js')}}"></script>
  <script src="{{ asset('js/main.js')}}"></script>
 </body>
