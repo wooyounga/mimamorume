@@ -15,7 +15,6 @@ class BroadcastServiceProvider extends ServiceProvider
     public function boot()
     {
         Broadcast::routes();
-
         /*
          * Authenticate the user's personal channel...
          */
@@ -23,4 +22,5 @@ class BroadcastServiceProvider extends ServiceProvider
             return (int) $user->id === (int) $userId;
         });
     }
+
 }

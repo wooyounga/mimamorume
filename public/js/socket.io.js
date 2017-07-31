@@ -1,3 +1,4 @@
+/*
 ! function(t, e) {
     "object" == typeof exports && "object" == typeof module ? module.exports = e() : "function" == typeof define && define.amd ? define([], e) : "object" == typeof exports ? exports.io = e() : t.io = e()
 }(this, function() {
@@ -244,7 +245,7 @@
 
         function i(t) {
             e.save(t), e.names = [], e.skips = [];
-            for (var n = ("string" == typeof t ? t : "").split(/[\s,]+/), r = n.length, o = 0; o < r; o++) n[o] && (t = n[o].replace(/\*/g, ".*?"), "-" === t[0] ? e.skips.push(new RegExp("^" + t.substr(1) + "$")) : e.names.push(new RegExp("^" + t + "$")))
+            for (var n = ("string" == typeof t ? t : "").split(/[\s,]+/), r = n.length, o = 0; o < r; o++) n[o] && (t = n[o].replace(/\*!/g, ".*?"), "-" === t[0] ? e.skips.push(new RegExp("^" + t.substr(1) + "$")) : e.names.push(new RegExp("^" + t + "$")))
         }
 
         function s() {
@@ -1095,7 +1096,7 @@
                         this.isBinary ? n.setRequestHeader("Content-type", "application/octet-stream") : n.setRequestHeader("Content-type", "text/plain;charset=UTF-8")
                     } catch (s) {}
                     try {
-                        n.setRequestHeader("Accept", "*/*")
+                        n.setRequestHeader("Accept", "*!/!*")
                     } catch (s) {}
                     "withCredentials" in n && (n.withCredentials = !0), this.requestTimeout && (n.timeout = this.requestTimeout), this.hasXDR() ? (n.onload = function() {
                             r.onLoad()
@@ -1864,7 +1865,7 @@
                 this.port && ("wss" === e && 443 !== Number(this.port) || "ws" === e && 80 !== Number(this.port)) && (n = ":" + this.port), this.timestampRequests && (t[this.timestampParam] = p()), this.supportsBinary || (t.b64 = 1), t = a.encode(t), t.length && (t = "?" + t);
                 var r = this.hostname.indexOf(":") !== -1;
 
-                var xx = e + "://" + (r ? "[" + this.hostname + "]" : this.hostname) + n + ':80' + this.path + t;
+                var xx = e + "://" + (r ? "[" + this.hostname + "]" : this.hostname) + n + ':8000' + this.path + t;
                 console.log('cuxxx = ' + this.port);
                 return xx;
             }, r.prototype.check = function() {
@@ -2079,4 +2080,4 @@
         }
     }])
 });
-//# sourceMappingURL=socket.io.js.map
+//# sourceMappingURL=socket.io.js.map*/

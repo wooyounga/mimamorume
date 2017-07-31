@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
+    <script type='text/javascript' src='{{URL::to('/')}}/js/playrtc.js'></script>
     <!-- DatePicker -->
     <script type="text/javascript" src="{{ asset('js/jquery.simple-dtpicker.js') }}"></script>
     <link type="text/css" href="{{ asset('css/jquery.simple-dtpicker.css') }}" rel="stylesheet" />
@@ -26,7 +26,23 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/nav_app.css') }}" rel="stylesheet">
+    <style>
+        .local-video {
+            width: 80px;
+            height: 60px;
+            z-index: 10;
+            position: relative;
+            top: -100px;
+            right: 30px;
+        }
 
+        .remote-video {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 320px;
+            height: 240px;
+        }
+    </style>
     <script>
         $(function(){
             $('*[name=date]').change(function(){
