@@ -59,6 +59,38 @@ class MatchController extends Controller
         return view('match.matchForm')->with('user', $user_target)->with('notice', $notice);
     }
 
+    public function matchvideo(Request $request){
+        $video_num = $request->get('video_num');
+        $notice_num = $request->get('notice_num');
+
+        $notice_addresse_id = \DB::table('notice')
+            ->where('num', $notice_num)
+            ->get();
+
+        $target = \DB::table('notice')
+                ->where('num', $notice_num)
+                ->get();
+
+        $title = Session::get('id').'님께서 화상채팅을 신청하셨습니다.';
+
+        \DB::table('notice')->insert([
+            'num' => null,
+            'target_num' => $target[0]->target_num,
+            'addressee_id' => $notice_addresse_id[0]->sender,
+            'sender' => Session::get('id'),
+            'work_week' => '',
+            'work_start' => '',
+            'work_end' => '',
+            'work_start_time' => '',
+            'work_end_time' => '',
+            'notice_title' => $title,
+            'notice_kind' => '화상채팅',
+            'notice_content' => $video_num,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+    }
+
     public function store(Request $request)
     {
         $notice = \DB::table('notice')
