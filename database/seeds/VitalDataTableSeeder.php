@@ -12,7 +12,7 @@ class VitalDataTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 0; $i < 100; $i++) {
+        for($i = 0; $i < 30; $i++) {
           $randomNum = mt_rand(60, 120);
 
           DB::table('vital_data')->insert([

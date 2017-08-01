@@ -25,7 +25,10 @@ class PosterController extends Controller
      */
     public function create()
     {
-        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
+        $notice = \DB::table('notice')
+	->join('user', 'notice.sender', '=', 'user.id')
+	->where('notice.addressee_id', Session::get('id'))
+        ->orderBy('num', 'desc')->get();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
         $target = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('support.family_id', Session::get('id'))->get();
 
@@ -38,7 +41,12 @@ $targetNum = $val->num;
         ->where('snapshot.snapshot_type', 'sensing')
         ->where('camera.target_num', $targetNum)->get();
 
+if(count($snapshot) == 0){
+	return view('/poster/create')->with('user', $user)->with('target', $target)->with('notice',$notice);
+}
+else{
         return view('/poster/create')->with('user', $user)->with('target', $target)->with('snapshot', $snapshot)->with('notice',$notice);
+}
     }
 
     /**
@@ -49,7 +57,11 @@ $targetNum = $val->num;
      */
     public function store(Request $request)
     {
-        $notice = \DB::table('notice')->where('addressee_id',Session::get('id'))->get();
+        
+        $notice = \DB::table('notice')
+        ->join('user', 'notice.sender', '=', 'user.id')
+        ->where('notice.addressee_id', Session::get('id'))
+        ->orderBy('num', 'desc')->get();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
         $target = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('support.family_id', Session::get('id'))->get();
 

@@ -24,7 +24,8 @@ class GpsController extends Controller
             'target_num' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
+
+        
     }
 
-    
 }

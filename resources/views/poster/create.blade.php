@@ -33,9 +33,17 @@
   </tr>
   <tr>
     <td class="photo"><img src="{{URL::to('/')}}/images/profile/{{ $target[0]->profile_image }}" style="width:300px;"></td>
+@if(isset($snapshot))
     <td class="photo"><img src="{{URL::to('/')}}/images/monitor/snapShot/{{ $snapshot[0]->snapshot_name }}" style="width:300px;"></td>
+@else
+    <td class="photo"><img src="{{URL::to('/')}}/images/profile/default.jpg" style="width:300px;"></td>
+@endif
     <input id="target_num" type="hidden" name="target_num" value="{{ $target[0]->num }}">
+@if(isset($snapshot))
     <input id="snapshot_name" type="hidden" name="snapshot_name" value="{{ $snapshot[0]->snapshot_name }}">
+@else
+    <input id="snapshot_name" type="hidden" name="snapshot_name" value="default.jpg">
+@endif
   </tr>
   <tr>
     <td class="content" colspan="2">이름 : {{ $target[0]->name }}</td>

@@ -180,6 +180,8 @@ class MatchController extends Controller
                 ]);
 
                 $alert = '매칭 신청이 완료되었습니다.';
+
+                $this->pushCurl("매칭신청이 왔습니다. 컴퓨터에서 확인해주세요");
             } else {
                 $alert = '이미 매칭 신청이 완료된 상대입니다.';
             }
@@ -549,5 +551,19 @@ class MatchController extends Controller
                 return redirect()->back()->with('alert', $alert)->with('notice', $notice);
             }
         }
+    }
+
+    public function pushCurl($message)
+    {
+        $u = "http://133.130.99.167/mimamo/public/fcm";
+        $array = ['message'=>$message];
+        $url = $u.'?'.http_build_query($array);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $response = curl_exec($ch);
+        curl_close($ch);
     }
 }

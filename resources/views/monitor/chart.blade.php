@@ -45,52 +45,43 @@
 
         {{--d3.js graph draw--}}
         <script>
-            var dateArray = [];
-            var dataArray = [];
-                $.ajax({
-                url:"http:/"+"/133.130.99.167/mimamo/public/chartData",
-                type:"GET",
-                dataType: "jsonp",
-                success: function(data) {
-                    data.forEach(function (d) {
-                        dateArray.push(d.date);
-                        dataArray.push(d.close);
-                    });
-                },
-                error: function(data, status, er) {
-                    console.log("error:" + status, "er" + er);
-                    console.log("code:"+data.status+"\n"+"message:" + data.responseText+"\n"+"error:"+er);
-                }
-            });
-            var config = {
-                type: 'line',
-                data: {
-                    labels: dateArray,
-                    datasets: [{
-                        label: "pulse data",
-                        backgroundColor : 'rgba(255, 99, 132, 0.2)',
-                        borderColor : 'rgba(255,99,132,1)',
-                        borderWidth: 2,
-                        data: dataArray,
-                        fill: false,
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    tooltips: {
-                        mode: 'index',
-                        intersect: true,
+                var dateArray = [];
+                var dataArray = [];
+                    $.ajax({
+                    url:"http:/"+"/133.130.99.167/mimamo/public/chartData",
+                    type:"GET",
+                    dataType: "jsonp",
+                    success: function(data) {
+                        data.forEach(function (d) {
+                            dateArray.push(d.date);
+                            dataArray.push(d.close);
+                        });
                     },
-                    hover: {
-                        mode: 'nearest',
-                        intersect: true
+                    error: function(data, status, er) {
+                        console.log("error:" + status, "er" + er);
+                        console.log("code:"+data.status+"\n"+"message:" + data.responseText+"\n"+"error:"+er);
                     }
-                }
-            };
-            window.onload = function() {
-                var ctx = document.getElementById("canvas").getContext("2d");
-                window.myLine = new Chart(ctx, config);
-            };
+                });
+                var config = {
+                    type: 'line',
+                    data: {
+                        labels: dateArray,
+                        datasets: [{
+                            label: "pulse data",
+                            backgroundColor : 'rgba(255, 99, 132, 0.2)',
+                            borderColor : 'rgba(255,99,132,1)',
+                            borderWidth: 2,
+                            data: dataArray,
+                            fill: false,
+                        }]
+                    }
+                };
+
+                window.onload = function() {
+                    var ctx = document.getElementById("canvas").getContext("2d");
+                    window.myLine = new Chart(ctx, config);
+                };
+
         </script>
     </div>
 @endsection

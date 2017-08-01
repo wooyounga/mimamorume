@@ -49,10 +49,9 @@ class ChartController extends Controller
             ]
         );
 
-$this->pushCurl("gg");
-//        if($data > 160) {
-//            $this->pushCurl("심박수너무뛴다");
-//        }
+        if($data > 160) {
+            $this->pushCurl("심박수너무뛴다");
+        }
     }
 
 

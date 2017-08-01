@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LicenseTableSeeder::class);
         $this->call(ContractTableSeeder::class);
         $this->call(CareTableSeeder::class);
-        // $this->call(VitalDataTableSeeder::class);
+        $this->call(VitalDataTableSeeder::class);
         $this->call(CameraTableSeeder::class);
         $this->call(MatchingPostTableSeeder::class);
     }

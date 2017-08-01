@@ -12,7 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="//code.jquery.com/jquery.min.js"></script>
 
-<script src="/js/html2canvas.js"></script>
+<script src="{{URL::to('/')}}/js/html2canvas.js"></script>
 
 <link rel="stylesheet" href="{{URL::to('/')}}/css/poster.css">
 
@@ -61,7 +61,11 @@
     </tr>
     <tr>
       <td class="photo"><img src="{{URL::to('/')}}/images/profile/{{ $target[0]->profile_image }}" style="width:300px;"></td>
+@if($poster[0]->snapshot_name == "default.jpg")
+      <td class="photo"><img src="{{URL::to('/')}}/images/profile/{{ $poster[0]->snapshot_name }}" style="width:300px;"></td>
+@else
       <td class="photo"><img src="{{URL::to('/')}}/images/monitor/snapShot/{{ $poster[0]->snapshot_name }}" style="width:300px;"></td>
+@endif
     </tr>
     <tr>
       <td class="content" colspan="2">이름 : {{ $target[0]->name }}</td>
