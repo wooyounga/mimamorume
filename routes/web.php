@@ -127,6 +127,8 @@ Route::resource('calendar', 'CalendarController');
 Route::resource('fcm', 'FCMController');
 
 
+Route::post('matchvideo','MatchController@matchvideo');
+
 //gps
 Route::post('gps', 'GpsController@getUserGps');
 

@@ -15,7 +15,7 @@ class CreateNoticeTable extends Migration
     {
         Schema::create('notice', function (Blueprint $table) {
             $table->increments('num');
-            $table->integer('target_num')->unsigned()->nullable();
+            $table->integer('target_num')->nullable()->unsigned();
             $table->string('addressee_id', 20);
             $table->string('sender', 20)->nullable();
             $table->string('work_week')->nullable();
