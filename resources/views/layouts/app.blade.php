@@ -310,8 +310,8 @@
                                                     </button>
                                                 </form>
 
-                                                <video class="remote-video center-block" id="callerLocalVideo"></video>
-                                                <video class="local-video pull-right" id="callerRemoteVideo"></video>
+                                                <video class="remote-video center-block" id="calleeRemoteVideo"></video>
+                                                <video class="local-video pull-right" id="calleeLocalVideo"></video>
 
                                             </div>
                                             <script>
@@ -351,10 +351,10 @@
                                                 var connectChannelButton = document.querySelector('#connectChannel');
                                                 var appCallee;
 
-                                                appCaller = new PlayRTC({
+                                                appCallee = new PlayRTC({
                                                     projectKey: "60ba608a-e228-4530-8711-fa38004719c1",
-                                                    localMediaTarget: "callerLocalVideo",
-                                                    remoteMediaTarget: "callerRemoteVideo"
+                                                    localMediaTarget: "calleeLocalVideo",
+                                                    remoteMediaTarget: "calleeRemoteVideo"
                                                 });
 
                                                 connectChannelButton.addEventListener('click', function(e) {
