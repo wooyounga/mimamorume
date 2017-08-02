@@ -310,8 +310,8 @@
                                                     </button>
                                                 </form>
 
-                                                <video class="remote-video center-block" id="calleeRemoteVideo"></video>
-                                                <video class="local-video pull-right" id="calleeLocalVideo"></video>
+                                                <video class="remote-video center-block" id="callerLocalVideo"></video>
+                                                <video class="local-video pull-right" id="callerRemoteVideo"></video>
 
                                             </div>
                                             <script>
