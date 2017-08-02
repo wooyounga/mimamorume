@@ -351,10 +351,10 @@
                                                 var connectChannelButton = document.querySelector('#connectChannel');
                                                 var appCallee;
 
-                                                appCallee = new PlayRTC({
+                                                appCaller = new PlayRTC({
                                                     projectKey: "60ba608a-e228-4530-8711-fa38004719c1",
-                                                    localMediaTarget: "calleeLocalVideo",
-                                                    remoteMediaTarget: "calleeRemoteVideo"
+                                                    localMediaTarget: "callerLocalVideo",
+                                                    remoteMediaTarget: "callerRemoteVideo"
                                                 });
 
                                                 connectChannelButton.addEventListener('click', function(e) {
