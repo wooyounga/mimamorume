@@ -334,7 +334,7 @@
                                                         type:"POST",
                                                         data:{"video_num":channelId, "notice_num":$("#notice_num").val()},
                                                         success:function(data){
-                                                            
+
                                                         }
                                                     });
                                                 });

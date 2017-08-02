@@ -34,6 +34,8 @@ Route::get('/matchNo', 'MatchController@matchNo');
 
 Route::get('/push', 'ChartController@pushCurl');
 
+Route::post('/matchvideo','MatchController@matchvideo');
+
 //대상자별 업무일지
 Route::get('/logSpecTarget/{num}', 'LogSpecController@logSpecTarget');
 //대상자별 스냅샷
@@ -125,9 +127,6 @@ Route::resource('calendar', 'CalendarController');
 
 // FCM Push
 Route::resource('fcm', 'FCMController');
-
-
-Route::post('matchvideo','MatchController@matchvideo');
 
 //gps
 Route::post('gps', 'GpsController@getUserGps');
