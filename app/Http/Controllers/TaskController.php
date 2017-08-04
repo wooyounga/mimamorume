@@ -24,6 +24,9 @@ class TaskController extends Controller
                 ->join('user', 'notice.sender', '=', 'user.id')
                 ->where('notice.addressee_id', Session::get('id'))
                 ->orderBy('num', 'desc')->get();
+            $count = \DB::table('notice')
+                ->where('addressee_id', Session::get('id'))
+                ->whereNull('notice_check')->count();
 
             $targets = \DB::table('target')->get();
 
@@ -37,7 +40,7 @@ class TaskController extends Controller
             return view('main.home')->with([
               'notice' => $notice,
               'targets' => $t_name
-            ]);
+            ])->with('count',$count);
         }else{
             $alert = '잘못된 접근입니다.';
 
@@ -50,11 +53,14 @@ class TaskController extends Controller
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id', Session::get('id'))
             ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
         $target = \DB::table('care')
             ->join('target','care.target_num','=','target.num')
             ->where('care.sitter_id',Session::get('id'))
             ->get();
 
-        return view('task.logSpecForm')->with('target',$target)->with('notice',$notice);
+        return view('task.logSpecForm')->with('target',$target)->with('notice',$notice)->with('count',$count);
     }
 }

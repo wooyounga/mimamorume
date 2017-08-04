@@ -26,9 +26,13 @@ class MatchController extends Controller
                 ->join('user', 'notice.sender', '=', 'user.id')
                 ->where('notice.addressee_id', Session::get('id'))
                 ->orderBy('num', 'desc')->get();
+            $count = \DB::table('notice')
+                ->where('addressee_id', Session::get('id'))
+                ->whereNull('notice_check')->count();
+
             $search = '없음';
 
-            return view('match.match')->with('match', $match)->with('notice', $notice)->with('search', $search);
+            return view('match.match')->with('match', $match)->with('notice', $notice)->with('search', $search)->with('count',$count);
         } else {
             $alert = '잘못된 접근입니다.';
 
@@ -42,6 +46,9 @@ class MatchController extends Controller
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id', Session::get('id'))
             ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
 
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
@@ -56,7 +63,7 @@ class MatchController extends Controller
         }
 
 
-        return view('match.matchForm')->with('user', $user_target)->with('notice', $notice);
+        return view('match.matchForm')->with('user', $user_target)->with('notice', $notice)->with('count',$count);
     }
 
     public function matchvideo(Request $request){
@@ -91,12 +98,32 @@ class MatchController extends Controller
 
     }
 
+    public function notice(){
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id', Session::get('id'))
+            ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
+
+        $count = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id', Session::get('id'))
+            ->where('notice.notice_check',false);
+
+        return redirect()->back()->with('notice',$notice)->with('count',$count);
+    }
+
     public function store(Request $request)
     {
         $notice = \DB::table('notice')
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id', Session::get('id'))
             ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
 
 
         \DB::table('matching_post')->insert([
@@ -118,7 +145,7 @@ class MatchController extends Controller
 
         $match = \DB::table('matching_post')->get();
 
-        return redirect('/match')->with('match', $match)->with('notice', $notice);
+        return redirect('/match')->with('match', $match)->with('notice', $notice)->with('count',$count);
     }
 
     public function show($num)
@@ -127,6 +154,9 @@ class MatchController extends Controller
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id', Session::get('id'))
             ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
 
         $match = \DB::table('matching_post')->where('num', $num)->get();
 
@@ -146,7 +176,7 @@ class MatchController extends Controller
             $target = '없음';
         }
 
-        return view('match.matchView')->with('match', $match)->with('target', $target)->with('notice', $notice);
+        return view('match.matchView')->with('match', $match)->with('target', $target)->with('notice', $notice)->with('count',$count);
     }
 
     public function matching(Request $request)
@@ -155,6 +185,9 @@ class MatchController extends Controller
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id', Session::get('id'))
             ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
 
         $my_type = \DB::table('user')->where('id', Session::get('id'))->get();
         $user = \DB::table('matching_post')
@@ -218,73 +251,8 @@ class MatchController extends Controller
                 $alert = '이미 매칭 신청이 완료된 상대입니다.';
             }
         }
-        return redirect()->back()->with('alert', $alert)->with('notice', $notice);
+        return redirect()->back()->with('alert', $alert)->with('notice', $notice)->with('count',$count);
     }
-/*
-    public function matchYes($num)
-    {
-        $notice = \DB::table('notice')
-            ->join('user', 'notice.sender', '=', 'user.id')
-            ->where('notice.addressee_id', Session::get('id'))
-            ->orderBy('num', 'desc')->get();
-
-        $user = \DB::table('user')->where('id', Session::get('id'))->get();
-        $sender = \DB::table('notice')
-            ->where('num', $num)
-            ->join('user', 'notice.sender', '=', 'user.id')
-            ->get();
-        $content = '매칭신청을 수락하셨습니다. 발신자 : ' . Session::get('id');
-
-        $notice_target = \DB::table('notice')
-            ->where('notice.addressee_id', Session::get('id'))
-            ->where('notice.sender', $sender[0]->id)
-            ->where('num', $num)
-            ->get();
-
-        $tar = explode('/', $notice_target[0]->notice_content);
-
-        if ($user[0]->user_type == '보호사') {
-            \DB::table('contract')->insert([
-                'family_id' => $sender[0]->id,
-                'sitter_id' => Session::get('id'),
-                'term' => $tar[2],
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            ]);
-
-            $sitter = Session::get('id');
-        } else {
-            \DB::table('contract')->insert([
-                'family_id' => Session::get('id'),
-                'sitter_id' => $sender[0]->id,
-                'term' => $tar[2],
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            ]);
-
-            $sitter = $sender[0]->id;
-        }
-
-        \DB::table('care')->insert([
-            'sitter_id' => $sitter,
-            'target_num' => $tar[1],
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-
-        \DB::table('notice')->insert([
-            'num' => null,
-            'target_num' => null,
-            'addressee_id' => $sender[0]->id,
-            'sender' => Session::get('id'),
-            'notice_kind' => '수락',
-            'notice_content' => $content,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-
-        $alert = '매칭이 성공적으로 이루어졌습니다.';
-
-        \DB::table('notice')->where('num', $num)->delete();
-
-        return redirect('/home')->with('alert', $alert)->with('notice', $notice);
-    }*/
 
     public function matchNo($num)
     {
@@ -292,12 +260,15 @@ class MatchController extends Controller
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id', Session::get('id'))
             ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
 
         \DB::table('notice')->where('num', $num)->delete();
 
         $alert = '거절이 완료되었습니다';
 
-        return redirect()->back()->with('alert', $alert)->with('notice', $notice);
+        return redirect()->back()->with('alert', $alert)->with('notice', $notice)->with('count',$count);
     }
 
     public function noticeDest($num)
@@ -308,8 +279,11 @@ class MatchController extends Controller
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id', Session::get('id'))
             ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
 
-        return redirect()->back()->with('notice', $notice);
+        return redirect()->back()->with('notice', $notice)->with('count',$count);
     }
 
     public function search(Request $request)
@@ -318,6 +292,9 @@ class MatchController extends Controller
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id', Session::get('id'))
             ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
 
         $subject = $request->get('subject');
         $gander = $request->get('gander');
@@ -364,7 +341,7 @@ class MatchController extends Controller
 
         $search_btn = '있음';
 
-        return view('match.match')->with('notice', $notice)->with('match', $search_log)->with('search', $search_btn);
+        return view('match.match')->with('notice', $notice)->with('match', $search_log)->with('search', $search_btn)->with('count',$count);
     }
 
     public function destroy($num)
@@ -373,11 +350,14 @@ class MatchController extends Controller
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id', Session::get('id'))
             ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
 
         \DB::table('matching_post')->where('num', $num)->delete();
         $alert = '게시글이 삭제되었습니다.';
 
-        return redirect('/match')->with('notice', $notice)->with('alert', $alert);
+        return redirect('/match')->with('notice', $notice)->with('alert', $alert)->with('count',$count);
     }
 
     public function appMatching(Request $request){
@@ -409,6 +389,9 @@ class MatchController extends Controller
                 ->join('user', 'notice.sender', '=', 'user.id')
                 ->where('notice.addressee_id', Session::get('id'))
                 ->orderBy('num', 'desc')->get();
+            $count = \DB::table('notice')
+                ->where('addressee_id', Session::get('id'))
+                ->whereNull('notice_check')->count();
 
             $notice_num = \DB::table('notice')
                 ->join('user', 'notice.sender', '=', 'user.id')
@@ -470,12 +453,15 @@ class MatchController extends Controller
 
             $alert = '조건 변경 요청이 완료되었습니다.';
 
-            return redirect()->back()->with('alert',$alert)->with('notice', $notice);
+            return redirect()->back()->with('alert',$alert)->with('notice', $notice)->with('count',$count);
         }else{
             $notice = \DB::table('notice')
                 ->join('user', 'notice.sender', '=', 'user.id')
                 ->where('notice.addressee_id', Session::get('id'))
                 ->orderBy('num', 'desc')->get();
+            $count = \DB::table('notice')
+                ->where('addressee_id', Session::get('id'))
+                ->whereNull('notice_check')->count();
 
             if($request->get('work_week_input'.$num)){
                 $week_input = false;
@@ -576,11 +562,11 @@ class MatchController extends Controller
 
                 \DB::table('notice')->where('num', $num)->delete();
 
-                return redirect('/home')->with('alert', $alert)->with('notice', $notice);
+                return redirect('/home')->with('alert', $alert)->with('notice', $notice)->with('count',$count);
             }else{
                 $alert = '조건 수정시 매칭수락이 불가능 합니다.';
 
-                return redirect()->back()->with('alert', $alert)->with('notice', $notice);
+                return redirect()->back()->with('alert', $alert)->with('notice', $notice)->with('count',$count);
             }
         }
     }

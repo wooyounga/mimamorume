@@ -42,7 +42,7 @@ class IndividualController extends Controller
                     ->select('user.*', 'target.*')
                     ->get();
             }
-            return view('individual.individual')->with('user', $user)->with('etc',$etc)->with('notice',$notice);
+            return view('individual.individual')->with('user', $user)->with('etc',$etc)->with('notice',$notice)->with('count',$count);
         }else{
             $alert = '잘못된 접근입니다.';
 
@@ -56,6 +56,9 @@ class IndividualController extends Controller
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id', Session::get('id'))
             ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
 
         $user = \DB::table('user')->where('id', 'user1')->get();
         if($user[0]->user_type == '보호사'){
@@ -70,7 +73,7 @@ class IndividualController extends Controller
                 ->select('user.*', 'target.*')
                 ->get();
         }
-        return view('individual.individualForm')->with('user', $user)->with('etc',$etc)->with('notice',$notice);
+        return view('individual.individualForm')->with('user', $user)->with('etc',$etc)->with('notice',$notice)->with('count',$count);
     }
 
     public function update(Request $request,$id){

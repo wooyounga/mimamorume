@@ -43,8 +43,17 @@
             height: 240px;
         }
     </style>
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
     <script>
         $(function(){
+            var time = 0;
+
             $('*[name=date]').change(function(){
                 $('#dateLog').val($('*[name=date]').val());
             });
@@ -60,7 +69,23 @@
                 if(confirm("화상채팅 연결 시 현재 변경한 조건은 반영되지 않습니다.")){
                     $('#video_form').css('display','none');
                     $('#video_div').css('display','');
+                    $('#btn_cont').css('display','none');
+                    $('#btn_cont2').css('display','');
                 }
+            });
+
+            setInterval(function(){time+=1},1000);
+
+            if(time == 1000*60*5){
+                notice();
+            }
+
+            $(document).keydown(function(e) {
+                time = 0;
+            });
+
+            $(document).click(function(e) {
+                time = 0;
             });
         });
         function showModal(num){
@@ -87,6 +112,10 @@
             if(confirm("거절하시면 알림이 사라집니다. 정말로 거절하겠습니까?")){
                 location.href=url;
             }
+        }
+
+        function notice(){
+            location.href="{{URL::to('/notice')}}";
         }
     </script>
 
@@ -147,10 +176,16 @@
                             <ul class="nav navbar-nav">
                                 <li class="dropdown pull-right">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        <img src="{{ URL::to('/') }}/images/notice_list.png" width="15" height="20">
+                                        <div>
+                                            <img src="{{ URL::to('/') }}/images/notice_list.png" width="15" height="20" style="position: absolute">
+                                            @if($count != 0)
+                                                <span style="background-color: red; color: yellow; position: relative; margin:20px; border-radius: 100px;">{{$count}}</span>
+                                            @endif
+                                        </div>
                                     </a>
                                     <ul class="dropdown-menu" role="menu" style="width: 400px; text-align: center;">
                                             <hr>
+                                        <div id="notice"></div>
                                         @if($notice == '[]')
                                             <p>새로운 알림이 없습니다</p>
                                             <hr>
@@ -166,19 +201,19 @@
                                                     <a href="{{URL::to('/noticeDest',[$n->num])}}" class="close" style="margin: 0 5px;">X</a>
                                                     <hr>
                                                 @elseif($n->notice_kind == '화상채팅')
-                                                        <a onclick=video(),showModal('modal{{$n->num}}') class="notice"><?php echo $i; ?> : {{$n->notice_title}}</a>
-                                                        <a href="{{URL::to('/noticeDest',[$n->num])}}" class="close" style="margin: 0 5px;">X</a>
-                                                        <hr>
+                                                    <a onclick=video(),showModal('modal{{$n->num}}') class="notice"><?php echo $i; ?> : {{$n->notice_title}}</a>
+                                                    <a href="{{URL::to('/noticeDest',[$n->num])}}" class="close" style="margin: 0 5px;">X</a>
+                                                    <hr>
                                                 @elseif($n->notice_kind == '수락')
-                                                        <?php echo $i; ?> : {{$n->notice_title}}
+                                                    <?php echo $i; ?> : {{$n->notice_title}}
                                                     <a href="{{URL::to('/noticeDest',[$n->num])}}" class="close" style="margin: 0 5px;">X</a>
                                                     <hr>
                                                 @else
-                                                        <?php echo $i; ?> : {{$n->notice_title}}
+                                                    <?php echo $i; ?> : {{$n->notice_title}}
                                                     <a href="{{URL::to('/noticeDest',[$n->num])}}" class="close" style="margin: 0 5px;">x</a>
                                                     <hr>
                                                 @endif
-                                                    <?php $i++; ?>
+                                                <?php $i++; ?>
                                             @endforeach
                                         @endif
                                     </ul>
@@ -440,10 +475,16 @@
                                         </div>
                                     <div class="modal-footer">
                                         @if($n->notice_check != 'true')
-                                            <button type="submit" class="btn btn-primary" name="btn" value="modify">조건 변경 요청</button>
-                                            <span class="btn btn-primary" id="video_btn">화상채팅 연결</span>
-                                            {{--<button type="submit" class="btn btn-primary" name="btn" value="yes">수락</button>
-                                            <a onclick="matchNoConfirm('{{URL::to('/matchNo',[$n->num])}}')" class="btn btn-danger">거절</a>--}}
+                                            <div id="btn_cont">
+                                                <button type="submit" class="btn btn-primary" name="btn" value="modify">조건 변경 요청</button>
+                                                <span class="btn btn-primary" id="video_btn">화상채팅 연결</span>
+                                                <button type="submit" class="btn btn-primary" name="btn" value="yes">수락</button>
+                                                <a onclick="matchNoConfirm('{{URL::to('/matchNo',[$n->num])}}')" class="btn btn-danger">거절</a>
+                                            </div>
+                                            <div id="btn_cont2" style="display: none;">
+                                                <button type="submit" class="btn btn-primary" name="btn" value="yes">수락</button>
+                                                <a onclick="matchNoConfirm('{{URL::to('/matchNo',[$n->num])}}')" class="btn btn-danger">거절</a>
+                                            </div>
                                         @endif
                                     </div>
                                 </div>

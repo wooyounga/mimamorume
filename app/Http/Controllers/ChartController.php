@@ -28,6 +28,9 @@ class ChartController extends Controller
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id', Session::get('id'))
             ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
 
             return view('monitor.chart')->with('notice',$notice);
 //        }else{

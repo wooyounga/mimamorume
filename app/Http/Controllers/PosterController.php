@@ -29,6 +29,9 @@ class PosterController extends Controller
 	->join('user', 'notice.sender', '=', 'user.id')
 	->where('notice.addressee_id', Session::get('id'))
         ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
         $target = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('support.family_id', Session::get('id'))->get();
 
@@ -45,7 +48,7 @@ if(count($snapshot) == 0){
 	return view('/poster/create')->with('user', $user)->with('target', $target)->with('notice',$notice);
 }
 else{
-        return view('/poster/create')->with('user', $user)->with('target', $target)->with('snapshot', $snapshot)->with('notice',$notice);
+        return view('/poster/create')->with('user', $user)->with('target', $target)->with('snapshot', $snapshot)->with('notice',$notice)->with('count',$count);
 }
     }
 
@@ -62,6 +65,9 @@ else{
         ->join('user', 'notice.sender', '=', 'user.id')
         ->where('notice.addressee_id', Session::get('id'))
         ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
         $target = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('support.family_id', Session::get('id'))->get();
 
@@ -76,7 +82,7 @@ else{
         $finalAdd = \DB::table('poster')->max('num');
         $poster = \DB::table('poster')->where('num', $finalAdd)->get();
 
-        return view('/poster/view')->with('user', $user)->with('notice',$notice)->with('target',$target)->with('poster',$poster);
+        return view('/poster/view')->with('user', $user)->with('notice',$notice)->with('target',$target)->with('poster',$poster)->with('count',$count);
     }
 
     // /**

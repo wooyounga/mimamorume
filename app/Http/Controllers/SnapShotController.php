@@ -30,6 +30,9 @@ class SnapShotController extends Controller
                 ->join('user', 'notice.sender', '=', 'user.id')
                 ->where('notice.addressee_id', Session::get('id'))
                 ->orderBy('num', 'desc')->get();
+            $count = \DB::table('notice')
+                ->where('addressee_id', Session::get('id'))
+                ->whereNull('notice_check')->count();
 
             $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
 
@@ -58,7 +61,7 @@ class SnapShotController extends Controller
                 ->orderBy('snapshot.created_at', 'desc')
                 ->get();
 
-            return view('monitor.snapshot')->with('target',$target_list)->with('snapshot',$snapshot)->with('num',$activi)->with('notice',$notice);
+            return view('monitor.snapshot')->with('target',$target_list)->with('snapshot',$snapshot)->with('num',$activi)->with('notice',$notice)->with('count',$count);
         }else{
             $alert = '잘못된 접근입니다.';
 
@@ -73,6 +76,9 @@ class SnapShotController extends Controller
                 ->join('user', 'notice.sender', '=', 'user.id')
                 ->where('notice.addressee_id', Session::get('id'))
                 ->orderBy('num', 'desc')->get();
+            $count = \DB::table('notice')
+                ->where('addressee_id', Session::get('id'))
+                ->whereNull('notice_check')->count();
 
             $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
 
@@ -96,7 +102,7 @@ class SnapShotController extends Controller
 
             $activi = $num;
 
-            return view('monitor.snapshot')->with('target',$target_list)->with('snapshot',$snapshot)->with('num',$activi)->with('notice',$notice);
+            return view('monitor.snapshot')->with('target',$target_list)->with('snapshot',$snapshot)->with('num',$activi)->with('notice',$notice)->with('count',$count);
         }else{
             $alert = '잘못된 접근입니다.';
 

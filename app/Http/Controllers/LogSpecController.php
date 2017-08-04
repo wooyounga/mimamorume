@@ -26,6 +26,9 @@ class LogSpecController extends Controller
                 ->join('user', 'notice.sender', '=', 'user.id')
                 ->where('notice.addressee_id', Session::get('id'))
                 ->orderBy('num', 'desc')->get();
+            $count = \DB::table('notice')
+                ->where('addressee_id', Session::get('id'))
+                ->whereNull('notice_check')->count();
 
             $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
 
@@ -84,7 +87,7 @@ class LogSpecController extends Controller
                 }
             }
 
-            return view('task.logSpec')->with('log',$log)->with('user',$user_type)->with('target',$target_list)->with('num',$activi)->with('notice',$notice);
+            return view('task.logSpec')->with('log',$log)->with('user',$user_type)->with('target',$target_list)->with('num',$activi)->with('notice',$notice)->with('count',$count);
         }else{
             $alert = '잘못된 접근입니다.';
 
@@ -97,7 +100,9 @@ class LogSpecController extends Controller
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id', Session::get('id'))
             ->orderBy('num', 'desc')->get();
-
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
 
         $etc = \DB::table('work_log')
             ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
@@ -109,7 +114,7 @@ class LogSpecController extends Controller
         $target_no = \DB::table('work_log')->where('num',$num)->get();
         $target = \DB::table('target')->where('num',$target_no[0]->target_num)->get();
 
-        return view('task.logSpecView')->with('log',$etc)->with('target',$target)->with('notice',$notice);
+        return view('task.logSpecView')->with('log',$etc)->with('target',$target)->with('notice',$notice)->with('count',$count);
     }
 
     public function store(Request $request){
@@ -117,6 +122,9 @@ class LogSpecController extends Controller
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id', Session::get('id'))
             ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
 
         \DB::table('work_log')->insert([
             'num' => null,
@@ -174,7 +182,7 @@ class LogSpecController extends Controller
 
         $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
 
-        return redirect('/logSpec')->with('log',$log)->with('target',$target_list)->with('num',$activi)->with('user',$user_type)->with('notice',$notice);
+        return redirect('/logSpec')->with('log',$log)->with('target',$target_list)->with('num',$activi)->with('user',$user_type)->with('notice',$notice)->with('count',$count);
     }
 
     public function logSpecTarget($num){
@@ -182,6 +190,9 @@ class LogSpecController extends Controller
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id', Session::get('id'))
             ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
     
         $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
 
@@ -230,7 +241,7 @@ class LogSpecController extends Controller
 
         $activi = $num;
 
-        return view('task.logSpec')->with('log',$log)->with('target',$target_list)->with('num',$activi)->with('user',$user_type)->with('notice',$notice);
+        return view('task.logSpec')->with('log',$log)->with('target',$target_list)->with('num',$activi)->with('user',$user_type)->with('notice',$notice)->with('count',$count);
     }
 
     public function appIndex(Request $request){

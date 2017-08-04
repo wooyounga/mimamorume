@@ -30,16 +30,22 @@ class InformationController extends Controller {
              ->join('user', 'notice.sender', '=', 'user.id')
              ->where('notice.addressee_id', Session::get('id'))
              ->orderBy('num', 'desc')->get();
+           $count = \DB::table('notice')
+               ->where('addressee_id', Session::get('id'))
+               ->whereNull('notice_check')->count();
          $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
-         return view('info.user.view')->with('user', $user)->with('notice', $notice);
+         return view('info.user.view')->with('user', $user)->with('notice', $notice)->with('count',$count);
        }
 
        public function user_modify() {
          $notice = \DB::table('notice')->join('user', 'notice.sender', '=', 'user.id')->where('notice.addressee_id',Session::get('id'))->get();
+           $count = \DB::table('notice')
+               ->where('addressee_id', Session::get('id'))
+               ->whereNull('notice_check')->count();
          $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
-         return view('info.user.update')->with('user', $user)->with('notice', $notice);
+         return view('info.user.update')->with('user', $user)->with('notice', $notice)->with('count',$count);
        }
 
        public function user_update(Request $request) {
@@ -75,17 +81,20 @@ class InformationController extends Controller {
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id', Session::get('id'))
             ->orderBy('num', 'desc')->get();
+          $count = \DB::table('notice')
+              ->where('addressee_id', Session::get('id'))
+              ->whereNull('notice_check')->count();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
         if($user[0]->user_type == '보호자') {
           $target = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('support.family_id', Session::get('id'))->get();
 
-          return view('info.add.target.index')->with('target', $target)->with('notice', $notice);
+          return view('info.add.target.index')->with('target', $target)->with('notice', $notice)->with('count',$count);
         } else {
           $resume = \DB::table('resume')->where('sitter_id', Session::get('id'))->get();
           $license = \DB::table('license')->where('sitter_id', Session::get('id'))->get();
 
-          return view('info.add.supporter.index')->with('resume', $resume)->with('license', $license)->with('notice', $notice);
+          return view('info.add.supporter.index')->with('resume', $resume)->with('license', $license)->with('notice', $notice)->with('count',$count);
         }
       }
 
@@ -94,6 +103,9 @@ class InformationController extends Controller {
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id', Session::get('id'))
             ->orderBy('num', 'desc')->get();
+          $count = \DB::table('notice')
+              ->where('addressee_id', Session::get('id'))
+              ->whereNull('notice_check')->count();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
         if($user[0]->user_type == '보호자') {
@@ -163,11 +175,14 @@ class InformationController extends Controller {
 
       public function add_view($num) {
           $notice = \DB::table('notice')->join('user', 'notice.sender', '=', 'user.id')->where('notice.addressee_id',Session::get('id'))->get();
+          $count = \DB::table('notice')
+              ->where('addressee_id', Session::get('id'))
+              ->whereNull('notice_check')->count();
           $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
           $target = \DB::table('target')->where('num', $num)->get();
 
-          return view('info.add.target.view')->with('target', $target)->with('notice', $notice);
+          return view('info.add.target.view')->with('target', $target)->with('notice', $notice)->with('count',$count);
       }
 
       public function add_modify() {
@@ -175,16 +190,19 @@ class InformationController extends Controller {
             ->join('user', 'notice.sender', '=', 'user.id')
             ->where('notice.addressee_id', Session::get('id'))
             ->orderBy('num', 'desc')->get();
+          $count = \DB::table('notice')
+              ->where('addressee_id', Session::get('id'))
+              ->whereNull('notice_check')->count();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
         if($user[0]->user_type == '보호자') {
           $target = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('support.family_id', Session::get('id'))->get();
 
-          return view('info.add.target.update')->with('target', $target)->with('notice', $notice);
+          return view('info.add.target.update')->with('target', $target)->with('notice', $notice)->with('count',$count);
         } else {
           $resume = \DB::table('resume')->where('sitter_id', Session::get('id'))->get();
 
-          return view('info.add.supporter.update')->with('resume', $resume)->with('notice', $notice);
+          return view('info.add.supporter.update')->with('resume', $resume)->with('notice', $notice)->with('count',$count);
         }
       }
 
@@ -258,21 +276,27 @@ class InformationController extends Controller {
 
       public function match_index() {
         $notice = \DB::table('notice')->join('user', 'notice.sender', '=', 'user.id')->where('notice.addressee_id', Session::get('id'))->orderBy('num', 'desc')->get();
+          $count = \DB::table('notice')
+              ->where('addressee_id', Session::get('id'))
+              ->whereNull('notice_check')->count();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
         if($user[0]->user_type == '보호자') {
           $match = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('family_id', Session::get('id'))->get();
 
-          return view('info.match.supporter.list')->with('match', $match)->with('notice', $notice);
+          return view('info.match.supporter.list')->with('match', $match)->with('notice', $notice)->with('count',$count);
         } else {
           $match = \DB::table('care')->join('target', 'care.target_num', '=', 'target.num')->where('sitter_id', Session::get('id'))->get();
 
-          return view('info.match..target.list')->with('match', $match)->with('notice', $notice);
+          return view('info.match..target.list')->with('match', $match)->with('notice', $notice)->with('count',$count);
         }
       }
 
       public function match_view($num) {
           $notice = \DB::table('notice')->join('user', 'notice.sender', '=', 'user.id')->where('notice.addressee_id',Session::get('id'))->get();
+          $count = \DB::table('notice')
+              ->where('addressee_id', Session::get('id'))
+              ->whereNull('notice_check')->count();
           $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
           if($user[0]->user_type == '보호자') {
@@ -284,7 +308,7 @@ class InformationController extends Controller {
             $match = \DB::table('care')->join('target', 'care.target_num', '=', 'target.num')->where('sitter_id', Session::get('id'))->get();
             $contract = \DB::table('contract')->where('sitter_id', Session::get('id'))->get();
 
-            return view('info.match.target.view')->with('match', $match)->with('contract', $contract)->with('notice', $notice);
+            return view('info.match.target.view')->with('match', $match)->with('contract', $contract)->with('notice', $notice)->with('count',$count);
           }
       }
 }

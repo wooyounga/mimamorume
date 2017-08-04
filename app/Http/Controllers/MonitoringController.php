@@ -28,8 +28,11 @@ class MonitoringController extends Controller
                 ->join('user', 'notice.sender', '=', 'user.id')
                 ->where('notice.addressee_id', Session::get('id'))
                 ->orderBy('num', 'desc')->get();
+            $count = \DB::table('notice')
+                ->where('addressee_id', Session::get('id'))
+                ->whereNull('notice_check')->count();
 
-            return view('monitor.monitoring')->with('notice',$notice);
+            return view('monitor.monitoring')->with('notice',$notice)->with('count',$count);
         }else{
             $alert = '잘못된 접근입니다.';
 
