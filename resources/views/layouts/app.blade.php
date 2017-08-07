@@ -314,7 +314,7 @@
                                             <h4 class="modal-title">매칭 수락</h4>
                                         </div>
                                         <div>
-                                            <div class="col-md-6" id="video_div">
+                                            <div class="col-md-6" id="video_div" style="display: none; width: 100%; height: 80%;">
                                                 <h2 class="h3">Caller</h2>
                                                 <h3 class="h4">Create and Connect Channel</h3>
                                                 <form class="form-inline">
@@ -332,7 +332,7 @@
 
                                             </div>
 
-                                            <div class="col-md-6" id="video_div2">
+                                            <div class="col-md-6" id="video_div2" style="display: none; width: 100%; height: 80%;">
                                                 <h2 class="h3">Callee</h2>
                                                 <h3 class="h4">Connect Channel</h3>
                                                 <form class="form-inline">
