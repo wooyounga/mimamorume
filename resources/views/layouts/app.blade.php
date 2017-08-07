@@ -56,8 +56,6 @@
                 if(confirm("화상채팅 연결 시 현재 변경한 조건은 반영되지 않습니다.")){
                     $('#video_form').css('display','none');
                     $('#video_div').css('display','');
-                    $('#video_btn').css('display','none');
-                    $('#video_btn2').css('display','');
                 }
             });
         });
@@ -427,16 +425,10 @@
                                     </div>
                                     <div class="modal-footer">
                                         @if($n->notice_check != 'true')
-                                            <div id="video_btn">
-                                                <button type="submit" class="btn btn-primary" name="btn" value="modify">조건 변경 요청</button>
-                                                <span class="btn btn-primary" id="video_btn">화상채팅 연결</span>
-                                                <button type="submit" class="btn btn-primary" name="btn" value="yes">수락</button>
-                                                <a onclick="matchNoConfirm('{{URL::to('/matchNo',[$n->num])}}')" class="btn btn-danger">거절</a>
-                                            </div>
-                                            <div id="video_btn2" style="display:none;">
-                                                <button type="submit" class="btn btn-primary" name="btn" value="yes">수락</button>
-                                                <a onclick="matchNoConfirm('{{URL::to('/matchNo',[$n->num])}}')" class="btn btn-danger">거절</a>
-                                            </div>
+                                            <button type="submit" class="btn btn-primary" name="btn" value="modify">조건 변경 요청</button>
+                                            <span class="btn btn-primary" id="video_btn">화상채팅 연결</span>
+                                            {{--<button type="submit" class="btn btn-primary" name="btn" value="yes">수락</button>
+                                            <a onclick="matchNoConfirm('{{URL::to('/matchNo',[$n->num])}}')" class="btn btn-danger">거절</a>--}}
                                         @endif
                                     </div>
                                 </div>
