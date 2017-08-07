@@ -332,7 +332,7 @@
 
                                             </div>
 
-                                            <div class="col-md-6" id="video_div2" style="display: none; width: 100%; height: 80%;">
+                                            <div class="col-md-6" id="video_div2">
                                                 <h2 class="h3">Callee</h2>
                                                 <h3 class="h4">Connect Channel</h3>
                                                 <form class="form-inline">
