@@ -319,7 +319,7 @@
                                             appCaller.on('connectChannel', function(channelId) {
                                                 createChannelId.value = channelId;
                                                 $.ajax({
-                                                    url:"/matchvideo",
+                                                    url:"{{URL::to('/matchvideo')}}",
                                                     type:"POST",
                                                     data:{"video_num":channelId, "notice_num":$("#notice_num").val()},
                                                     success:function(data){
