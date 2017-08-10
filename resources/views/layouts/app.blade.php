@@ -272,15 +272,13 @@
                                     </div>
                                     <div>
                                         <div class="col-md-6" id="video_div" style="display: none; width: 100%; height: 80%;">
-                                            <h2 class="h3">Caller</h2>
-                                            <h3 class="h4">Create and Connect Channel</h3>
                                             <form class="form-inline">
                                                 <div class="form-group">
-                                                    <label class="sr-only" for="createChannelId">Channel Id</label>
+                                                    <label class="sr-only" for="createChannelId">화상채팅 번호</label>
                                                     <input class="form-control" type="text" id="createChannelId" placeholder="Create and connect the channel." value="" readonly>
                                                 </div>
                                                 <button class="btn btn-default" id="createChannel">
-                                                    <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> Create Channel
+                                                    <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> 화상채팅연결
                                                 </button>
                                             </form>
 
@@ -290,15 +288,13 @@
                                         </div>
 
                                         <div class="col-md-6" id="video_div2" style="display: none; width: 100%; height: 80%;">
-                                            <h2 class="h3">Callee</h2>
-                                            <h3 class="h4">Connect Channel</h3>
                                             <form class="form-inline">
                                                 <div class="form-group">
-                                                    <label class="sr-only" for="connectChannelId">Channel Id</label>
+                                                    <label class="sr-only" for="connectChannelId">화상채팅 번호</label>
                                                     <input class="form-control" type="text" id="connectChannelId" placeholder="Enter the channel id." value="{{$n->notice_content}}" readonly>
                                                 </div>
                                                 <button class="btn btn-default" id="connectChannel">
-                                                    <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Connect Channel
+                                                    <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> 화상채팅 연결
                                                 </button>
                                             </form>
 
