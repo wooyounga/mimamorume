@@ -52,7 +52,7 @@
             }, function(){
                 $('ul:first',this).hide();
             });
-            $('#video_btn').click(function(){
+            $('#video_connect').click(function(){
                 if(confirm("화상채팅 연결 시 현재 변경한 조건은 반영되지 않습니다.")){
                     $('#video_form').css('display','none');
                     $('#video_div').css('display','');
@@ -425,7 +425,7 @@
                                         @if($n->notice_check != 'true')
                                             <div id="video_btn">
                                                 <button type="submit" class="btn btn-primary" name="btn" value="modify">조건 변경 요청</button>
-                                                <span class="btn btn-primary" id="video_btn">화상채팅 연결</span>
+                                                <span class="btn btn-primary" id="video_connect">화상채팅 연결</span>
                                                 <button type="submit" class="btn btn-primary" name="btn" value="yes">수락</button>
                                                 <a onclick="matchNoConfirm('{{URL::to('/matchNo',[$n->num])}}')" class="btn btn-danger">거절</a>
                                             </div>
