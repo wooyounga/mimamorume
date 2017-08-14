@@ -45,7 +45,7 @@ $targetNum = $val->num;
         ->where('camera.target_num', $targetNum)->get();
 
 if(count($snapshot) == 0){
-	return view('/poster/create')->with('user', $user)->with('target', $target)->with('notice',$notice);
+	return view('/poster/create')->with('user', $user)->with('target', $target)->with('notice',$notice)->with('count',$count);
 }
 else{
         return view('/poster/create')->with('user', $user)->with('target', $target)->with('snapshot', $snapshot)->with('notice',$notice)->with('count',$count);
