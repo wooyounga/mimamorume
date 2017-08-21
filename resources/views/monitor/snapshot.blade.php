@@ -14,8 +14,19 @@
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<style>
+  .shot_info{
+    margin: 0;
+    padding: 0;
+    color: yellow;
+    font-size: 19px;
+    font-weight: bold;
+	  text-shadow: 0 0 5px #000;
+  }
+</style>
 <script>
     $(document).ready(function(){
+        $('.shot_info').hide();
         var modal = document.getElementById('myModal');
 
         var modalImg = document.getElementById("img01");
@@ -26,6 +37,17 @@
             modalImg.src = this.src;
             captionText.innerHTML = this.alt;
         });
+
+        $('.thumbnail').hover(
+          function(){
+            $(this).siblings('.shot_off').hide();
+            $(this).siblings('.shot_info').show();
+          },
+          function(){
+            $(this).siblings('.shot_info').hide();
+            $(this).siblings('.shot_off').show();
+          }
+        );
 
         var span = document.getElementsByClassName("close")[0];
 
@@ -68,9 +90,15 @@
                         <div><h3>최근에 찍힌 스냅샷이 존재하지 않습니다</h3></div>
                     @else
                           @foreach($snapshot as $s)
-                            <span style="display:inline-block; width:300px; height:200px; text-align:center">
-                                <img class="thumbnail" src="{{URL::to('/')}}/images/monitor/snapShot/{{$s->upload_name}}">
-                                <br>{{$s->snapshot_type}}<br>{{$s->created_at}}
+                            <span style="display:inline-block; width:280px; height:200px; text-align:center">
+                                <img class="thumbnail" src="{{URL::to('/')}}/images/monitor/snapShot/{{$s->upload_name}}" style="position: relative; width:280px; height:200px;">
+                                <span class="shot_off" style="position: relative; top: -130px;">
+                                  <!-- {{$s->snapshot_type}}&nbsp;&nbsp;{{$s->created_at}} -->
+                                  <br>&nbsp;
+                                </span>
+                                <span class="shot_info" style="position: relative; top: -130px;">
+                                  {{$s->snapshot_type}}&nbsp;&nbsp;{{$s->created_at}}
+                                </span>
                               </span>
                           @endforeach
                     @endif
