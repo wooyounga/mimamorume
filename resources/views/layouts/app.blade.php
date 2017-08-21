@@ -299,6 +299,12 @@
                     });
                 </script>
                 <form class="form-horizontal" name="form-horizontal" role="form" method="get" action="{{URL::to('/matchmodify',[$n->num])}}">
+                  <style>
+                  .form-horizontal{
+                    margin: 0;
+                    padding: 0;
+                  }
+                  </style>
                     <div>
                         <div id="modal{{$n->num}}" class="modal fade" role="dialog">
                             <input type="hidden" id="notice_num" value="{{$n->num}}">

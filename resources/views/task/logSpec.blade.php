@@ -56,9 +56,9 @@
     </style>
     <div class="body">
         <div style="margin-top: 30px;">
-            <input onclick="filter(7)" type="button" value="1주일" class="btn btn-primary">
-            <input onclick="filter(30)" type="button" value="1개월" class="btn btn-primary">
-            <input onclick="filter(90)" type="button" value="3개월" class="btn btn-primary">
+            <input onclick="filter(7)" type="button" value="1주일" class="btn btn-default">
+            <input onclick="filter(30)" type="button" value="1개월" class="btn btn-default">
+            <input onclick="filter(90)" type="button" value="3개월" class="btn btn-default">
         </div>
         <div class="wrap">
             <ul class="nav nav-tabs">
