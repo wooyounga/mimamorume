@@ -167,7 +167,9 @@ class SnapShotController extends Controller
         $array = array();
         foreach($result as $value) {
             $json = [
-                "image_url" => $value->upload_name
+                "image_url" => $value->upload_name,
+		"user_name" => "이현필",
+		"snapshot_type" => $value->snapshot_type
             ];
             array_push($array, $json);
         }

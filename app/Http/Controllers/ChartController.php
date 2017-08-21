@@ -32,7 +32,7 @@ class ChartController extends Controller
             ->where('addressee_id', Session::get('id'))
             ->whereNull('notice_check')->count();
 
-            return view('monitor.chart')->with('notice',$notice);
+            return view('monitor.chart')->with('notice',$notice)->with('count', $count);
 //        }else{
 //            $alert = '잘못된 접근입니다.';
 //            return redirect('/')->with('alert',$alert);
@@ -53,7 +53,7 @@ class ChartController extends Controller
         );
 
         if($data > 160) {
-            $this->pushCurl("심박수너무뛴다");
+            system('node ./js/fcm.js'.'대상자의 심박수가 위험수치보다 높습니다');
         }
     }
 
@@ -111,23 +111,6 @@ class ChartController extends Controller
 //            return redirect('/')->with('alert',$alert);
 //        }
 //    }
-
-    public function pushCurl($message)
-    {
-        $u = "http://133.130.99.167/mimamo/public/fcm";
-        $array = ['message'=>$message];
-        $url = $u.'?'.http_build_query($array);
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        $response = curl_exec($ch);
-        curl_close($ch);
-    }
-
-
-
 
 
 }

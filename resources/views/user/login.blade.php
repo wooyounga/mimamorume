@@ -3,7 +3,7 @@
 @section('content')
 <style>
   body{
-    background-image: url("/images/main/main_bg.png");
+    background-image: url("{{ URL::to('/') }}/images/main/main_bg.png");
     background-size: cover;
     background-repeat: no-repeat;
   }
