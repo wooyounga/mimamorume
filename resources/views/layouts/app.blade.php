@@ -28,8 +28,8 @@
     <link href="{{ asset('css/nav_app.css') }}" rel="stylesheet">
     <style>
         .local-video {
-            width: 80px;
-            height: 60px;
+            width: 140px;
+            height: 120px;
             z-index: 10;
             position: relative;
             top: -100px;
@@ -83,6 +83,8 @@
         function video(){
             $('#video_form').css('display','none');
             $('#video_div2').css('display','');
+            $('#video_btn').css('display','none');
+            $('#video_btn2').css('display','none');
         }
         function dest(url){
             location.href=url;
@@ -282,7 +284,7 @@
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h4 class="modal-title">매칭 수락</h4>
                                     </div>
-                                    <div>
+                                    <div style="background-color: black;">
                                         <div class="col-md-6" id="video_div" style="display: none; width: 100%; height: 80%;">
                                             <form class="form-inline">
                                                 <div class="form-group">
@@ -299,20 +301,22 @@
 
                                         </div>
 
-                                        <div class="col-md-6" id="video_div2" style="display: none; width: 100%; height: 80%;">
-                                            <form class="form-inline">
-                                                <div class="form-group">
-                                                    <label class="sr-only" for="connectChannelId">화상채팅 번호</label>
-                                                    <input class="form-control" type="text" id="connectChannelId" placeholder="Enter the channel id." value="{{$n->notice_content}}" readonly>
-                                                </div>
-                                                <button class="btn btn-default" id="connectChannel">
-                                                    <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> 화상채팅 연결
-                                                </button>
-                                            </form>
+                                        <div style="background-color: black">
+                                            <div class="col-md-6" id="video_div2" style="display: none; width: 100%; height: 80%;">
+                                                <form class="form-inline">
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="connectChannelId">화상채팅 번호</label>
+                                                        <input class="form-control" type="text" id="connectChannelId" placeholder="Enter the channel id." value="{{$n->notice_content}}" readonly>
+                                                    </div>
+                                                    <button class="btn btn-default" id="connectChannel">
+                                                        <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> 화상채팅 연결
+                                                    </button>
+                                                </form>
 
-                                            <video class="remote-video center-block" id="calleeRemoteVideo"></video>
-                                            <video class="local-video pull-right" id="calleeLocalVideo"></video>
+                                                <video class="remote-video center-block" id="calleeRemoteVideo"></video>
+                                                <video class="local-video pull-right" id="calleeLocalVideo"></video>
 
+                                            </div>
                                         </div>
                                         <script>
                                             'use strict';

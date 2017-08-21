@@ -10,6 +10,7 @@
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 @section('content')
     @if (session('alert'))
         <script>
@@ -24,10 +25,29 @@
         <div>
             <a href="{{URL::to('/home')}}">Home</a> > <a href="{{URL::to('/task')}}">근무</a> > <a href="{{URL::to('/logSpec')}}"><b>업무일지</b></a>
         </div>
+        <div style="margin-top: 30px;">
+            <input onclick="filter(7)" type="button" value="1주일" class="btn btn-primary">
+            <input onclick="filter(30)" type="button" value="1개월" class="btn btn-primary">
+            <input onclick="filter(90)" type="button" value="3개월" class="btn btn-primary">
+        </div>
         <div class="wrap">
             <ul class="nav nav-tabs">
                 @if($target !== '없음')
                     @foreach($target as $t)
+                        <script>
+                            function filter(num){
+                                var url = '{{URL::to('/logSpecFilter')}}';
+                                var target = '{{$t->num}}';
+                                $.ajax({
+                                    url:url+'/'+num,
+                                    type:"GET",
+                                    data:{"target_num":target},
+                                    success:function(data){
+
+                                    }
+                                });
+                            }
+                        </script>
                         @if($t->num == $num)
                             <li role="presentation" class="active"><a href="#">{{$t->name}}</a></li>
                         @else
