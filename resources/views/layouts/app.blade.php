@@ -44,6 +44,13 @@
         .btn-info{
           width: 100px;
         }
+        .notibar{
+          font-size: 17px;
+          font-weight: bold;
+        }
+        .notibar2{
+          font-size: 17px;
+        }
     </style>
     <script>
         $(function(){
@@ -109,34 +116,34 @@
                 <div class="zeta-wrap">
                     <ul class="zeta-menu center-block">
                         <li>
-                            <a href="{{ url('/match') }}"><b>매칭</b></a>
+                            <a href="{{ url('/match') }}"><b>CONTRACT</b></a>
                         </li>
                         <li>
-                            <a href="{{ url('/monitoring') }}"><b>모니터링</b></a>
+                            <a href="{{ url('/monitoring') }}"><b>MIMAMORI</b></a>
                             <ul>
-                                <li><a href="{{ url('/snapshot') }}">촬영기록</a></li>
-                                <li><a href="{{ url('/chart') }}">심박수 확인</a></li>
+                                <li><a href="{{ url('/snapshot') }}">Snapshot</a></li>
+                                <li><a href="{{ url('/chart') }}">Heart-Rate</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="{{ url('/task') }}"><b>업무지원</b></a>
+                            <a href="{{ url('/task') }}"><b>WORKING</b></a>
                             <ul>
-                                <li><a href="{{ url('/task') }}">일정관리</a></li>
-                                <li><a href="{{ url('/logSpec') }}">업무일지</a></li>
+                                <li><a href="{{ url('/task') }}">Schedule</a></li>
+                                <li><a href="{{ url('/logSpec') }}">Daily-Log</a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
                 <div class="notice pull-right">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown">
+                        <li class="dropdown notibar">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Session::get('id') }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="{{ url('userinfo') }}">내 정보</a>
-                                    <a href="{{ route('login.destroy') }}">로그아웃</a>
+                                    <a class="notibar2" href="{{ url('userinfo') }}">내 정보</a>
+                                    <a class="notibar2" href="{{ route('login.destroy') }}">로그아웃</a>
                                 </li>
                             </ul>
                         </li>
@@ -144,8 +151,8 @@
                     <ul class="nav navbar-nav">
                         <li class="dropdown pull-right">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <div>
-                                    <img src="{{ URL::to('/') }}/images/notice_list.png" width="15" height="20" style="position: absolute">
+                                <div style="width: 50px;">
+                                    <img src="{{ URL::to('/') }}/images/notice_icon.png" width="20" height="20" style="position: absolute">
                                     @if($count != 0)
                                         <span style="background-color: red; color: yellow; position: relative; margin:20px; border-radius: 100px;">{{$count}}</span>
                                     @endif
@@ -154,7 +161,7 @@
                             <ul class="dropdown-menu" role="menu" style="width: 400px; text-align: center;">
                                 <hr>
                                 @if($notice == '[]')
-                                    <p>새로운 알림이 없습니다</p>
+                                    <p class="notibar2">새로운 알림이 없습니다</p>
                                     <hr>
                                 @else
                                     <?php $i = 1; ?>
@@ -189,8 +196,8 @@
                 </div>
             @else
                 <div class="pull-right links" style="margin: 8px 50px 0 0;">
-                    <a href="{{URL::to('/')}}" class="btn btn-info" role="button">Login</a>
-                    <a href="{{ route('join.create') }}" class="btn btn-info" role="button">Join</a>
+                    <a href="{{URL::to('/')}}" class="btn btn-info" role="button">LOGIN</a>
+                    <a href="{{ route('join.create') }}" class="btn btn-info" role="button">JOIN</a>
                 </div>
             @endif
         </div>
