@@ -41,6 +41,9 @@
             width: 320px;
             height: 240px;
         }
+        .btn-info{
+          width: 100px;
+        }
     </style>
     <script>
         $(function(){
@@ -100,7 +103,7 @@
     <nav class="navbar navbar-default navbar-static-top">
         <div class="nav">
             <a class="logo pull-left" href="{{ url('/task') }}">
-                <img src="{{ URL::to('/') }}/images/main_logo.png" width="140" height="30">
+                <img src="{{ URL::to('/') }}/images/main_logo_n.png" width="140" height="30">
             </a>
             @if (Session::get('id'))
                 <div class="zeta-wrap">
