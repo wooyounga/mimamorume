@@ -23,6 +23,9 @@
     font-weight: bold;
 	  text-shadow: 0 0 5px #000;
   }
+  #caption{
+    font-size: 40px;
+  }
 </style>
 <script>
     $(document).ready(function(){
@@ -35,7 +38,8 @@
         $('.thumbnail').click(function(){
             modal.style.display = "block";
             modalImg.src = this.src;
-            captionText.innerHTML = this.alt;
+            var text = $(this).siblings('.shot_info').html();
+            captionText.innerHTML = text;
         });
 
         $('.thumbnail').hover(
