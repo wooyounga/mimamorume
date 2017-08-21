@@ -27,19 +27,19 @@
     font-size: 18px;
 }
 .nav .zeta-menu li:hover {
-    background: skyblue;
+    background: white;
 }
 .nav .zeta-menu li:hover>a {
-    color: white;
+    color: #5059a8;
 }
 .nav .zeta-menu a {
-    color: skyblue;
+    color: white;
     display: block;
     padding: 10px 10px;
     text-decoration: none;
 }
 .nav .zeta-menu ul {
-    background: skyblue;
+    background: white;
     display: none;
     padding: 0;
     position: absolute;
@@ -49,10 +49,10 @@
 }
 
 .nav .zeta-menu ul li:hover {
-    background: white;
+    background: #5059a8;
 }
 .nav .zeta-menu ul li:hover a {
-    color: black;
+    color: white;
 }
 .nav .zeta-menu ul a {
     color: black;

@@ -33,10 +33,40 @@
             }
         </script>
     @endif
+    <div id="bgimg">
+      <div class="page_title">
+        업무일지
+      </div>
+      <br>
+      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a onclick="formConfirm('{{URL::to('/task')}}')">근무</a> > <a onclick="formConfirm('{{URL::to('/logSpec')}}')"><b>업무일지</b></a>
+    </div>
+    <style>
+      #bgimg{
+        background-image: url("{{ URL::to('/') }}/images/bgimg/bgimg1.png");
+        background-size: cover;
+        height: 300px;
+        padding-left: 75px;
+        padding-top: 70px;
+        color: white;
+        font-size: 17px;
+        font-weight: bold;
+      }
+      #bgimg > a{
+        color: white;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: bold;
+      }
+      .page_title{
+        color: white;
+        font-size: 40px;
+        margin-bottom: 100px;
+      }
+      .body{
+        margin-top: -5%;
+      }
+    </style>
     <div class="body">
-        <div>
-            <a href="{{URL::to('/home')}}">Home</a> > <a onclick="formConfirm('{{URL::to('/task')}}')">근무</a> > <a onclick="formConfirm('{{URL::to('/logSpec')}}')"><b>업무일지</b></a>
-        </div>
         <div class="wrap">
             <form class="form-horizeontal" role="form" method="post" action="{{route('logSpec.store')}}">
                 {{csrf_field()}}

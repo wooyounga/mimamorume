@@ -18,6 +18,11 @@
   .logbtn{
     margin-left: 25%;
     width: 50%;
+    background-color: #5059a8;
+    color: white;
+  }
+  .logbtn:hover{
+    color: white;
   }
   #id{
     margin-top: 5px;
@@ -62,7 +67,7 @@
                     @endif
                     <br>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-info logbtn">
+                        <button type="submit" class="btn logbtn">
                             LOGIN
                         </button>
                     </div>

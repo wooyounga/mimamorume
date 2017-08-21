@@ -36,6 +36,36 @@
             }
         }
     </script>
+    <div id="bgimg">
+      <div class="page_title">
+        구인구직
+      </div>
+      <br>
+      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/match')}}">매칭</a> > <a href="{{URL::to('/match')}}"><b>구인</b></a>
+    </div>
+    <style>
+      #bgimg{
+        background-image: url("{{ URL::to('/') }}/images/bgimg/bgimg2.png");
+        background-size: cover;
+        height: 300px;
+        padding-left: 75px;
+        padding-top: 70px;
+        color: white;
+        font-size: 17px;
+        font-weight: bold;
+      }
+      #bgimg > a{
+        color: white;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: bold;
+      }
+      .page_title{
+        color: white;
+        font-size: 40px;
+        margin-bottom: 100px;
+      }
+    </style>
     <div class="body">
         @if (session('alert'))
             <script>
@@ -46,9 +76,6 @@
                 }
             </script>
         @endif
-        <div>
-            <a href="{{URL::to('/home')}}">Home</a> > <a href="{{URL::to('/match')}}">매칭</a> > <a href="{{URL::to('/match')}}"><b>구인</b></a>
-        </div>
         <br>
             <h4 style="color: #428bca;">※글쓴이가 원하는 조건 입니다.</h4>
             <table class="table">

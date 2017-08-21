@@ -70,10 +70,40 @@
             }
         </script>
     @endif
+    <div id="bgimg">
+      <div class="page_title">
+        스냅샷 촬영기록
+      </div>
+      <br>
+      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/monitoring')}}">모니터링</a> > <a href="{{URL::to('/snapshot')}}"><b>스냅샷</b></a>
+    </div>
+    <style>
+      #bgimg{
+        background-image: url("{{ URL::to('/') }}/images/bgimg/bgimg3.png");
+        background-size: cover;
+        height: 300px;
+        padding-left: 75px;
+        padding-top: 70px;
+        color: white;
+        font-size: 17px;
+        font-weight: bold;
+      }
+      #bgimg > a{
+        color: white;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: bold;
+      }
+      .page_title{
+        color: white;
+        font-size: 40px;
+        margin-bottom: 100px;
+      }
+      .body{
+        margin-top: -5%;
+      }
+    </style>
     <div class="body">
-        <div>
-            <a href="{{URL::to('/home')}}">Home</a> > <a href="{{URL::to('/monitoring')}}">모니터링</a> > <a href="{{URL::to('/snapshot')}}"><b>스냅샷</b></a>
-        </div>
         <div class="wrap">
             <ul class="nav nav-tabs">
                 @if($target != '[]')

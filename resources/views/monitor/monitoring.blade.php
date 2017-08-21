@@ -35,7 +35,7 @@
     @endif
     <div class="body">
         <div>
-            <a href="{{URL::to('/home')}}">Home</a> > <a href="{{URL::to('/monitoring')}}"><b>모니터링</b></a>
+            <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="width:20px; height:20px;"></a> > <a href="{{URL::to('/monitoring')}}"><b>모니터링</b></a>
         </div>
         <div class="wrap">
             <div class="monitor_image">

@@ -13,13 +13,14 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 
 @section('content')
+<br><br>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
           <div class="panel-group">
-            <a href="{{ url('userinfo') }}" class="btn btn-info" role="button">회원 정보</a>
-            <a href="{{ url('addinfo') }}" class="btn btn-info" role="button">추가 정보</a>
-            <a href="{{ url('matchinfo') }}" class="btn btn-info" role="button">계약 정보</a>
+            <a href="{{ url('userinfo') }}" class="btn btn-default" role="button">회원 정보</a>
+            <a href="{{ url('addinfo') }}" class="btn btn-default" role="button">추가 정보</a>
+            <a href="{{ url('matchinfo') }}" class="btn btn-default" role="button">계약 정보</a>
           </div>
 
           <div class="panel panel-default">

@@ -109,10 +109,15 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navcolor">
+      <style>
+      .navcolor{
+        background-color: #5059a8
+      }
+      </style>
         <div class="nav">
             <a class="logo pull-left" href="{{ url('/task') }}">
-                <img src="{{ URL::to('/') }}/images/main_logo_n.png" width="140" height="30">
+                <img src="{{ URL::to('/') }}/images/logo.png" width="140" height="30">
             </a>
             @if (Session::get('id'))
                 <div class="zeta-wrap">
@@ -121,7 +126,7 @@
                             <a href="{{ url('/match') }}"><b>CONTRACT</b></a>
                         </li>
                         <li>
-                            <a href="{{ url('/monitoring') }}"><b>MIMAMORI</b></a>
+                            <a href="{{ url('/snapshot') }}"><b>MIMAMORI</b></a>
                             <ul>
                                 <li><a href="{{ url('/snapshot') }}">Snapshot</a></li>
                                 <li><a href="{{ url('/chart') }}">Heart-Rate</a></li>
@@ -142,6 +147,15 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Session::get('id') }} <span class="caret"></span>
                             </a>
+                            <style>
+                              .dropdown-toggle{
+                                color: white;
+                              }
+                              .dropdown-toggle:hover{
+                                background-color: white;
+                                color: #5059a8;
+                              }
+                            </style>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
                                     <a class="notibar2" href="{{ url('userinfo') }}">내 정보</a>
@@ -153,8 +167,8 @@
                     <ul class="nav navbar-nav">
                         <li class="dropdown pull-right">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <div style="width: 50px;">
-                                    <img src="{{ URL::to('/') }}/images/notice_icon.png" width="20" height="20" style="position: absolute">
+                                <div style="width: 50px; height: 20px;">
+                                    <img src="{{ URL::to('/') }}/images/notice.png" width="20" height="20" style="position: absolute">
                                     @if($count != 0)
                                         <span style="background-color: red; color: yellow; position: relative; margin:20px; border-radius: 100px;">{{$count}}</span>
                                     @endif
@@ -197,10 +211,22 @@
                     </ul>
                 </div>
             @else
-                <div class="pull-right links" style="margin: 8px 50px 0 0;">
-                    <a href="{{URL::to('/')}}" class="btn btn-info" role="button">LOGIN</a>
-                    <a href="{{ route('join.create') }}" class="btn btn-info" role="button">JOIN</a>
+                <div class="pull-right links" style="margin: 9px 50px 0 0;">
+                    <a href="{{URL::to('/')}}" class="buttonss" role="button">LOGIN</a>&nbsp;&nbsp;
+                    <a href="{{ route('join.create') }}" class="buttonss" role="button">JOIN</a>
                 </div>
+                <style>
+                  .buttonss{
+                    text-decoration: none;
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: white;
+                    padding-left: 10px;
+                  }
+                  .buttonss:hover{
+                    color: white;
+                  }
+                </style>
             @endif
         </div>
     </nav>

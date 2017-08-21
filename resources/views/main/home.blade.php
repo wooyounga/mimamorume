@@ -47,7 +47,7 @@
 
 	.open_modal{
 		text-align: right;
-		margin-right: 15%;
+		margin-right: 5%;
 	}
 
 	.btns{
@@ -87,29 +87,48 @@
     </script>
     <!-- 캘린더 api -->
     <script type='text/javascript' src='{{URL::to('/')}}/js/fullcalendar.js'></script>
-    <div class="head">
-      <a href="{{URL::to('/home')}}">Home</a> > <a href="{{URL::to('/task')}}">근무</a> > <a href="{{URL::to('/task')}}"><b>근무일정</b></a>
+    <div id="bgimg">
+      <div class="page_title">
+        근무일정
+      </div>
+      <br>
+      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/task')}}">근무</a> > <a href="{{URL::to('/task')}}"><b>근무일정</b></a>
     </div>
+    <style>
+      #bgimg{
+        background-image: url("{{ URL::to('/') }}/images/bgimg/bgimg5.png");
+        background-size: cover;
+        height: 300px;
+        padding-left: 75px;
+        padding-top: 70px;
+        color: white;
+        font-size: 17px;
+        font-weight: bold;
+      }
+      #bgimg > a{
+        color: white;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: bold;
+      }
+      .page_title{
+        color: white;
+        font-size: 40px;
+        margin-bottom: 100px;
+      }
+    </style>
 <div id="body">
   <div class="open_modal">
     <!-- Open Add Task Month Modal Button -->
-    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" onclick="openModal()">
+    <button type="button" class="btn btn-default btn-md" data-toggle="modal" onclick="openModal()">
       일정 추가 (월단위)
     </button>
-  </div>
-  <br>
-
-  <div class="open_modal">
-    <!-- Open Add Task Modal Button -->
-    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" onclick="openModal2()">
+      <!-- Open Add Task Modal Button -->
+    <button type="button" class="btn btn-default btn-md" data-toggle="modal" onclick="openModal2()">
       일정 추가
     </button>
-  </div>
-  <br>
-
-  <div class="open_modal">
-    <!-- Open Delete All Task Button -->
-    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" onclick="openModal3()">
+      <!-- Open Delete All Task Button -->
+    <button type="button" class="btn btn-default btn-md" data-toggle="modal" onclick="openModal3()">
       모든 일정 삭제
     </button>
   </div>
@@ -246,4 +265,5 @@
     </div>
   </div>
 </div>
+<br><br>
 @endsection
