@@ -44,7 +44,8 @@ class TaskController extends Controller
         }else{
             $alert = '잘못된 접근입니다.';
 
-            return redirect('/')->with('alert',$alert);
+            // return redirect('/')->with('alert',$alert);
+            return redirect('/');
         }
     }
 

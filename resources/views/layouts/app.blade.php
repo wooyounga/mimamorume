@@ -99,8 +99,8 @@
 <div id="app">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="nav">
-            <a class="logo pull-left" href="{{ url('/') }}">
-                <img src="{{ URL::to('/') }}/images/main_logo.png" width="80" height="30">
+            <a class="logo pull-left" href="{{ url('/task') }}">
+                <img src="{{ URL::to('/') }}/images/main_logo.png" width="140" height="30">
             </a>
             @if (Session::get('id'))
                 <div class="zeta-wrap">
@@ -186,8 +186,8 @@
                 </div>
             @else
                 <div class="pull-right links" style="margin: 8px 50px 0 0;">
-                    <a href="{{ route('login.create') }}" class="btn btn-warning" role="button">Login</a>
-                    <a href="{{ route('join.create') }}" class="btn btn-warning" role="button">Join</a>
+                    <a href="{{URL::to('/')}}" class="btn btn-info" role="button">Login</a>
+                    <a href="{{ route('join.create') }}" class="btn btn-info" role="button">Join</a>
                 </div>
             @endif
         </div>

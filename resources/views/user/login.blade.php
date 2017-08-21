@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+  body{
+    background-image: url("images/main/main_bg.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
