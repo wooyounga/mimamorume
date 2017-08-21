@@ -40,6 +40,7 @@ Route::get('/notice','MatchController@notice');
 
 //대상자별 업무일지
 Route::get('/logSpecTarget/{num}', 'LogSpecController@logSpecTarget');
+Route::get('/logSpecFilter/{num}', 'LogSpecController@logSpecFilter');
 //대상자별 스냅샷
 Route::get('/snapShotTarget/{num}', 'SnapShotController@snapShotTarget');
 

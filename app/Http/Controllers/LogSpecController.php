@@ -244,6 +244,10 @@ class LogSpecController extends Controller
         return view('task.logSpec')->with('log',$log)->with('target',$target_list)->with('num',$activi)->with('user',$user_type)->with('notice',$notice)->with('count',$count);
     }
 
+    public function logSpecFilter(Request $request, $num){
+        return redirect('match.matchForm');
+    }
+
     public function appIndex(Request $request){
         $user_type = \DB::table('user')->where('id',$request->get('id'))->get();
 
