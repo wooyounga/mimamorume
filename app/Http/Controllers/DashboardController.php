@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 use App\Http\Requests;
 
@@ -12,7 +13,7 @@ class DashboardController extends Controller
     {
         $this->middleware('web');
     }
-  
+
     /**
      * Show the application dashboard.
      *
@@ -24,7 +25,15 @@ class DashboardController extends Controller
         $supporter = \DB::table('user')->where('user_type', '보호사')->get();
         $target = \DB::table('target')->get();
         $contract = \DB::table('contract')->get();
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id', Session::get('id'))
+            ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
 
-        return view('dashboard')->with('family', $family)->with('supporter', $supporter)->with('target', $target)->with('contract', $contract);
+        return view('dashboard')->with('family', $family)->with('supporter', $supporter)->with('target', $target)->with('contract', $contract)
+        ->with('count', $count)->with('notice', $notice);
     }
 }
