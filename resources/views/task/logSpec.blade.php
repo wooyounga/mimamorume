@@ -57,25 +57,26 @@
     <div class="body">
         <div style="margin-top: 30px;">
             <input onclick="filter(7)" type="button" value="1주일" class="btn btn-default">
-            <input onclick="filter(30)" type="button" value="1개월" class="btn btn-default">
-            <input onclick="filter(90)" type="button" value="3개월" class="btn btn-default">
+            <input onclick="filter(1)" type="button" value="1개월" class="btn btn-default">
+            <input onclick="filter(3)" type="button" value="3개월" class="btn btn-default">
+            <input onclick="filter(6)" type="button" value="6개월" class="btn btn-default">
+            <input onclick="filter(12)" type="button" value="1년" class="btn btn-default">
+            <input onclick="home()" type="button" value="전체보기" class="btn btn-default">
         </div>
         <div class="wrap">
             <ul class="nav nav-tabs">
                 @if($target !== '없음')
                     @foreach($target as $t)
                         <script>
-                            function filter(num){
+                            function filter(filter){
                                 var url = '{{URL::to('/logSpecFilter')}}';
                                 var target = '{{$t->num}}';
-                                $.ajax({
-                                    url:url+'/'+num,
-                                    type:"GET",
-                                    data:{"target_num":target},
-                                    success:function(data){
-
-                                    }
-                                });
+                                location.href=url+'/'+filter+'/'+target;
+                            }
+                            function home(){
+                                var url = '{{URL::to('/logSpecTarget')}}';
+                                var target = '{{$t->num}}';
+                                location.href=url+'/'+target;
                             }
                         </script>
                         @if($t->num == $num)
