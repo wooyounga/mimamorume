@@ -89,8 +89,20 @@
                     <li role="presentation" class="active"><a href="#">Home</a></li>
                 @endif
             </ul>
-            <table class="table table-striped ">
-                <tr>
+            <table class="table table-striped">
+              <style>
+                #table_head{
+                  background-color: #333333;
+                  color: white;
+                  font-size: 17px;
+                  font-weight: bold;
+                }
+                .table_body{
+                  font-size: 17px;
+                  font-weight: bold;
+                }
+              </style>
+                <tr id="table_head">
                     <td>번호</td>
                     <td>내용</td>
                     <td>작성자</td>
@@ -102,9 +114,17 @@
                     </tr>
                 @else
                     @foreach($log as $l)
-                        <tr>
-                            <td><a href="{{route('logSpec.show',[$l->num])}}">{{$l->num}}</a></td>
-                            <td><a href="{{route('logSpec.show',[$l->num])}}"><p class="logSpec_content">{{$l->content}}</p></a></td>
+                        <tr class="table_body">
+                            <td class="post_numm"><a href="{{route('logSpec.show',[$l->num])}}">{{$l->num}}</a></td>
+                            <td class="post_conn"><a href="{{route('logSpec.show',[$l->num])}}"><p class="logSpec_content">{{$l->content}}</p></a></td>
+                            <style>
+                              .post_numm > a, .post_conn > a{
+                                color: black;
+                              }
+                              .post_numm > a:hover, .post_conn > a:hover{
+                                text-decoration: none;
+                              }
+                            </style>
                             <td>{{$l->sitter_id}}</td>
                             <td>{{$l->work_date}}</td>
                         </tr>

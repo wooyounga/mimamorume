@@ -187,7 +187,19 @@
             </table>
         </form>
         <table class="table table-striped ">
-            <tr>
+            <style>
+              #table_head{
+                background-color: #333333;
+                color: white;
+                font-size: 17px;
+                font-weight: bold;
+              }
+              .table_body{
+                font-size: 17px;
+                font-weight: bold;
+              }
+            </style>
+            <tr id="table_head">
                 <td>번호</td>
                 <td>제목</td>
                 <td>작성자</td>
@@ -200,7 +212,7 @@
                 </tr>
             @else
                 @foreach($match as $m)
-                    <tr>
+                    <tr class="table_body">
                         <td><a href="{{route('match.show',[$m->num])}}">{{$m->num}}</a></td>
                         <td><a href="{{route('match.show',[$m->num])}}">{{$m->title}}</a></td>
                         <td>{{$m->user_id}}</td>
