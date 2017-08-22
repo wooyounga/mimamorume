@@ -222,16 +222,20 @@ class LogSpecController extends Controller
         }else{
             $log_id = \DB::table('contract')->where('family_id',Session::get('id'))->get();
 
-            $log = \DB::table('work_log')
-                ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
-                // ->where('work_log.sitter_id','=',$log_id[0]->sitter_id)
-                ->where(function ($query) use($log_id){
-                    for($i = 0; $i < count($log_id) ; $i++)
-                        $query->orWhere('work_log.sitter_id',$log_id[$i]->sitter_id);
-                })
-                ->where('work_log.target_num','=',$num)
-                ->select('work_log.*', 'work_content.*')
-                ->get();
+            if($log_id == '[]'){
+                $log = '[]';
+            }else{
+                $log = \DB::table('work_log')
+                    ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
+                    // ->where('work_log.sitter_id','=',$log_id[0]->sitter_id)
+                    ->where(function ($query) use($log_id){
+                        for($i = 0; $i < count($log_id) ; $i++)
+                            $query->orWhere('work_log.sitter_id',$log_id[$i]->sitter_id);
+                    })
+                    ->where('work_log.target_num','=',$num)
+                    ->select('work_log.*', 'work_content.*')
+                    ->get();
+            }
 
             $target_list = \DB::table('support')
                 ->join('target','support.target_num','=','target.num')
