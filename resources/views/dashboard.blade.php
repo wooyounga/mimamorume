@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<link rel="stylesheet" href="/css/AdminLTE.css">
+<link rel="stylesheet" href="css/AdminLTE.css">
 <script src="js/dashboard.js"></script>
 {{-- <script src="plugins/flot/jquery.flot.js"></script> --}}
 
