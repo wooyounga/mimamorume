@@ -12,6 +12,21 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         DB::table('user')->insert([
+            'id' => 'admin',
+            'user_type' => '관리자',
+            'pw' => bcrypt('secret'),
+            'name' => '센터명',
+            'age' => '0',
+            'gender' => '남성',
+            'email' => 'admin@admin.kr',
+            'telephone' => '00000000000',
+            'cellphone' => '00000000000',
+            'zip_code' => '00000',
+            'main_address' => '센터 위치',
+            'rest_address' => '센터 위치 상세',
+        ]);
+
+        DB::table('user')->insert([
             'id' => 'user1',
             'user_type' => '보호사',
             'pw' => bcrypt('secret'),

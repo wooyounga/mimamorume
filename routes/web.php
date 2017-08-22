@@ -138,3 +138,5 @@ Route::get('/video', function () {
     // default => return view('welcome');
     return view('index');
 });
+
+Route::get('/dashboard', 'DashboardController@index');
