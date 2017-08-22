@@ -49,6 +49,12 @@ class LoginController extends Controller
         }
         if($check_id == true && $check_pw == true){
             Session::set('id', $user_id);
+            $user = \DB::table('user')
+                ->where('id', Session::get('id'))
+                ->get();
+            Session::set('user_type', $user[0]->user_type);
+            Session::set('name', $user[0]->name);
+
             $notice = \DB::table('notice')
                 ->join('user', 'notice.sender', '=', 'user.id')
                 ->where('notice.addressee_id',Session::get('id'))

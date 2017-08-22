@@ -145,7 +145,7 @@
                     <ul class="nav navbar-nav">
                         <li class="dropdown notibar">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Session::get('id') }} <span class="caret"></span>
+                                {{ Session::get('name') }} <span class="caret"></span>
                             </a>
                             <style>
                               .dropdown-toggle{
@@ -159,6 +159,9 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li>
                                     <a class="notibar2" href="{{ url('userinfo') }}">내 정보</a>
+                                    @if(Session::get('user_type') == '관리자')
+                                    <a class="notibar2" href="{{ url('dashboard') }}">관리자 페이지</a>
+                                    @endif
                                     <a class="notibar2" href="{{ route('login.destroy') }}">로그아웃</a>
                                 </li>
                             </ul>
