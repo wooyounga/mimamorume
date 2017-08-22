@@ -5,6 +5,36 @@
 {{-- <script src="plugins/flot/jquery.flot.js"></script> --}}
 
 @section('content')
+<div id="bgimg">
+  <div class="page_title">
+    관리자 페이지
+  </div>
+  <br>
+  <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/dashboard')}}">관리자 페이지</a>
+</div>
+<style>
+  #bgimg{
+    background-image: url("{{ URL::to('/') }}/images/bgimg/pt.png");
+    background-size: cover;
+    height: 300px;
+    padding-left: 75px;
+    padding-top: 70px;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+  }
+  #bgimg > a{
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+  }
+  .page_title{
+    color: white;
+    font-size: 40px;
+    margin-bottom: 100px;
+  }
+</style>
 <div class="container" style="margin-top: 50px;">
   <div class="row">
     {{-- <div class="notice">
