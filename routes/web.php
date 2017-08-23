@@ -61,6 +61,7 @@ Route::get('/searchImage', 'SnapShotController@searchImage');
 Route::get('/monitoring', 'MonitoringController@index');
 Route::get('/chart', 'ChartController@index');
 Route::get('/snapshot', 'SnapShotController@index');
+Route::get('/snapShotFilter/{filter}/{num}', 'SnapShotController@snapShotFilter');
 
 Route::resource('match','MatchController');
 Route::resource('logSpec','LogSpecController');

@@ -69,6 +69,47 @@ class SnapShotController extends Controller
         }
     }
 
+    public function snapShotFilter($filter, $num){
+        if(Session::get('id')){
+            $notice = \DB::table('notice')
+                ->join('user', 'notice.sender', '=', 'user.id')
+                ->where('notice.addressee_id', Session::get('id'))
+                ->orderBy('num', 'desc')->get();
+            $count = \DB::table('notice')
+                ->where('addressee_id', Session::get('id'))
+                ->whereNull('notice_check')->count();
+
+            $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
+
+            if($user_type[0]->user_type == '보호사'){
+                $target_list = \DB::table('care')
+                    ->join('target','care.target_num','=','target.num')
+                    ->where('sitter_id',Session::get('id'))
+                    ->get();
+            }else{
+                $target_list = \DB::table('support')
+                    ->join('target','support.target_num','=','target.num')
+                    ->where('family_id',Session::get('id'))
+                    ->get();
+            }
+            $snapshot = \DB::table('camera')
+                ->join('target','camera.target_num','=','target.num')
+                ->join('snapshot','camera.num','=','snapshot.camera_num')
+                ->where('target.num',$num)
+                ->where('snapshot.snapshot_type',$filter)
+                ->orderBy('snapshot.created_at', 'desc')
+                ->get();
+
+            $activi = $num;
+
+            return view('monitor.snapshot')->with('target',$target_list)->with('snapshot',$snapshot)->with('num',$activi)->with('notice',$notice)->with('count',$count);
+        }else{
+            $alert = '잘못된 접근입니다.';
+
+            return redirect('/')->with('alert',$alert);
+        }
+    }
+
     public function snapShotTarget($num){
         $this->searchImage();
         if(Session::get('id')){
