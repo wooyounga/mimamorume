@@ -14,7 +14,7 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="{{URL::to('/')}}/js/matchForm.js"></script>
-<script src="https://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
 <script>
     function formConfirm(url){
         if(confirm("지금 나가시면 작성 중인 내용은 전부 삭제 됩니다. 정말로 나가시겠습니까?")){
@@ -33,7 +33,7 @@
         </script>
     @endif
     <script>
-        function PostCode() {
+        function execDaumPostCode() {
             new daum.Postcode({
                 oncomplete: function(data) {
                     // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -177,8 +177,8 @@
                         <td>주소</td>
                         <td colspan="5">
                             <div class="form-inline pull-right">
-                                <input type="text" id="roadAddress" class="form-control" style="width: 500px;" name="roadAddress" value="" readonly required>
-                                <input type="button" class="btn btn-default" value="동 검색" onClick="PostCode()"><br/>
+                                <input type="text" id="roadAddress" class="form-control" name="roadAddress" value="" readonly>
+                                <input type="button" class="btn btn-default" value="동 검색" onClick="execDaumPostCode()"><br/>
                             </div>
                         </td>
                     </tr>
