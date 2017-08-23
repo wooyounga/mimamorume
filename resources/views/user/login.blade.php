@@ -67,9 +67,14 @@
                     @endif
                     <br>
                     <div class="form-group">
-                        <button type="submit" class="btn logbtn">
+                        <button type="submit" class="btn logbtn stt">
                             LOGIN
                         </button>
+                        <style>
+                          .stt{
+                            font-weight: bold;
+                          }
+                        </style>
                     </div>
                     <br>
                 </form>

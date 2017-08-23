@@ -116,7 +116,11 @@
       }
       </style>
         <div class="nav">
+            @if(Session::get('user_type') == '관리자')
+            <a class="logo pull-left" href="{{ url('/dashboard') }}">
+            @else
             <a class="logo pull-left" href="{{ url('/task') }}">
+            @endif
                 <img src="{{ URL::to('/') }}/images/logo.png" width="140" height="30">
             </a>
             @if (Session::get('id'))
