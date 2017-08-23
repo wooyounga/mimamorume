@@ -80,7 +80,6 @@
             <h4 style="color: #428bca;">※글쓴이가 원하는 조건 입니다.</h4>
             <table class="table">
                 <tr>
-                    <td>구분</td>
                     <td>성별</td>
                     <td>나이</td>
                     <td>대상장애</td>
@@ -88,7 +87,6 @@
                     <td>근무기간</td>
                 </tr>
                 <tr>
-                    <td>{{$match[0]->user_type}}</td>
                     <td>{{$match[0]->gender}}</td>
                     <td>{{$match[0]->age}}</td>
                     <td>{{$match[0]->disability}}</td>

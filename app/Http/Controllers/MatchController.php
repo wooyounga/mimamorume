@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class MatchController extends Controller
 {
@@ -133,7 +134,6 @@ class MatchController extends Controller
             'title' => $request->get('title'),
             'content' => $request->get('content'),
             'roadAddress' => $request->get('roadAddress'),
-            'user_type' => $request->get('subject'),
             'gender' => $request->get('gender'),
             'age' => $request->get('age'),
             'disability' => $request->get('disability'),
@@ -304,40 +304,69 @@ class MatchController extends Controller
         $period = $request->get('period');
         $address = $request->get('roadAddress');
         $search = $request->get('searchInput');
-
+        $g = '';
         $address_search = explode(' ', $address);
 
         if ($address_search == '') {
-            $address_log = $address_search[0] . ' ' . $address_search[1] . ' ' . $address_search[2];
+            $address_log = $address_search[0].' '.$address_search[1].' '.$address_search[2];
         } else {
             $address_log = null;
         }
 
-        $search_log = \DB::table('matching_post')
-            ->where('user_type', $subject)
-            ->where('content', 'like', '%' . $search . '%')
-            ->where('roadAddress', 'like', '%' . $address_log . '%')
-            ->where(function ($query) use ($gander) {
-                for ($i = 0; $i < count($gander); $i++)
-                    $query->orWhere('gender', $gander[$i]);
-            })
-            ->where(function ($query) use ($disability) {
-                for ($i = 0; $i < count($disability); $i++)
-                    $query->orWhere('disability', $disability[$i]);
-            })
-            ->where(function ($query) use ($age) {
-                for ($i = 0; $i < count($age); $i++)
-                    $query->orWhere('age', $age[$i]);
-            })
-            ->where(function ($query) use ($week) {
-                for ($i = 0; $i < count($week); $i++)
-                    $query->orWhere('work_day', $week[$i]);
-            })
-            ->where(function ($query) use ($period) {
-                for ($i = 0; $i < count($period); $i++)
-                    $query->orWhere('work_period', $period[$i]);
-            })
-            ->get();
+        if($subject == '대상자'){
+            $search_log = \DB::table('matching_post')
+                ->join('user', 'matching_post.user_id', '=', 'user.id')
+                ->where('user.user_type','보호자')
+                ->where('matching_post.content', 'like', '%'.$search.'%')
+                ->where('matching_post.roadAddress', 'like', '%'.$address_log.'%')
+                ->where(function ($query) use ($gander,$g) {
+                    for ($i = 0; $i < count($gander); $i++)
+                        $g = $gander[$i].'성';
+                        $query->orWhere('matching_post.gender', $g);
+                })
+                ->where(function ($query) use ($disability) {
+                    for ($i = 0; $i < count($disability); $i++)
+                        $query->orWhere('matching_post.disability', $disability[$i]);
+                })
+                ->where(function ($query) use ($age) {
+                    for ($i = 0; $i < count($age); $i++)
+                        $query->orWhere('matching_post.age', $age[$i]);
+                })
+                ->where(function ($query) use ($week) {
+                    for ($i = 0; $i < count($week); $i++)
+                        $query->orWhere('matching_post.work_day', $week[$i]);
+                })
+                ->where(function ($query) use ($period) {
+                    for ($i = 0; $i < count($period); $i++)
+                        $query->orWhere('matching_post.work_period', $period[$i]);
+                })
+                ->get();
+        }else{
+            $search_log = \DB::table('matching_post')
+                ->join('user', 'matching_post.user_id', '=', 'user.id')
+                ->where('user.user_type','보호사')
+                ->where('matching_post.content', 'like', '%' . $search . '%')
+                ->where('matching_post.roadAddress', 'like', '%' . $address_log . '%')
+                ->where(function ($query) use ($gander,$g) {
+                    for ($i = 0; $i < count($gander); $i++)
+                        $g = $gander[$i].'성';
+                        $query->orWhere('user.gender', $g);
+                })
+                ->where(function ($query) use ($age) {
+                    for ($i = 0; $i < count($age); $i++)
+                        $age = explode('대',$age[$i])[0];
+                        $query->orWhereBetween('user.age', [$age,$age+9]);
+                })
+                ->where(function ($query) use ($week) {
+                    for ($i = 0; $i < count($week); $i++)
+                        $query->orWhere('matching_post.work_day', $week[$i]);
+                })
+                ->where(function ($query) use ($period) {
+                    for ($i = 0; $i < count($period); $i++)
+                        $query->orWhere('matching_post.work_period', $period[$i]);
+                })
+                ->get();
+        }
 
         $search_btn = '있음';
 

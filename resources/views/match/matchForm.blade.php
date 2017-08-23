@@ -14,7 +14,7 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="{{URL::to('/')}}/js/matchForm.js"></script>
-<script src="https://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
 <script>
     function formConfirm(url){
         if(confirm("지금 나가시면 작성 중인 내용은 전부 삭제 됩니다. 정말로 나가시겠습니까?")){
@@ -33,7 +33,7 @@
         </script>
     @endif
     <script>
-        function PostCode() {
+        function execDaumPostCode() {
             new daum.Postcode({
                 oncomplete: function(data) {
                     // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -119,20 +119,15 @@
                                 </select>
                             </td>
                         </tr>
+                        <tr>
+                            <td>성별</td>
+                            <td>나이</td>
+                            <td>장애</td>
+                            <td>근무일</td>
+                            <td>근무기간</td>
+                        </tr>
                     @endif
                     <tr>
-                        <td>구분</td>
-                        <td>성별</td>
-                        <td>나이</td>
-                        <td>장애</td>
-                        <td>근무일</td>
-                        <td>근무기간</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span><label for="care">보호사</label><input type="radio" id="care" name="subject" value="보호사" required></span>
-                            <span><label for="recipient">대상자</label><input type="radio" id="recipient" name="subject" value="대상자" required></span>
-                        </td>
                         <td>
                             <span><label for="man">남</label><input type="radio" id="man" name="gender" value="남" required></span>
                             <span><label for="woman">여</label><input type="radio" id="woman" name="gender" value="여" required></span>
@@ -171,19 +166,19 @@
                             <span><label for="week_unrelated">추후협의</label><input type="radio" id="week_unrelated" name="week" value="추후협의" required></span>
                         </td>
                         <td>
-                            <span><label for="1less">1개월 미만</label><input type="radio" id="1less" name="period" value="1개월미만" required></span>
-                            <span><label for="3less">3개월 미만</label><input type="radio" id="3less" name="period" value="3개월미만" required></span>
-                            <span><label for="6less">6개월 미만</label><input type="radio" id="6less" name="period" value="6개월미만" required></span>
-                            <span><label for="12less">1년 미만</label><input type="radio" id="12less" name="period" value="1년미만" required></span>
-                            <span><label for="12more">1년 이상</label><input type="radio" id="12more" name="period" value="1년이상" required></span>
+                            <span><label for="1less">1개월 미만</label><input type="radio" id="1less" name="period" value="1개월 미만" required></span>
+                            <span><label for="3less">3개월 미만</label><input type="radio" id="3less" name="period" value="3개월 미만" required></span>
+                            <span><label for="6less">6개월 미만</label><input type="radio" id="6less" name="period" value="6개월 미만" required></span>
+                            <span><label for="12less">1년 미만</label><input type="radio" id="12less" name="period" value="1년 미만" required></span>
+                            <span><label for="12more">1년 이상</label><input type="radio" id="12more" name="period" value="1년 이상" required></span>
                         </td>
                     </tr>
                     <tr>
                         <td>주소</td>
                         <td colspan="5">
                             <div class="form-inline pull-right">
-                                <input type="text" id="roadAddress" class="form-control" style="width: 500px;" name="roadAddress" value="" readonly required>
-                                <input type="button" class="btn btn-default" value="동 검색" onClick="PostCode()"><br/>
+                                <input type="text" id="roadAddress" class="form-control" name="roadAddress" value="" readonly>
+                                <input type="button" class="btn btn-default" value="동 검색" onClick="execDaumPostCode()"><br/>
                             </div>
                         </td>
                     </tr>
