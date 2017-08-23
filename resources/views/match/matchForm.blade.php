@@ -119,20 +119,15 @@
                                 </select>
                             </td>
                         </tr>
+                        <tr>
+                            <td>성별</td>
+                            <td>나이</td>
+                            <td>장애</td>
+                            <td>근무일</td>
+                            <td>근무기간</td>
+                        </tr>
                     @endif
                     <tr>
-                        <td>구분</td>
-                        <td>성별</td>
-                        <td>나이</td>
-                        <td>장애</td>
-                        <td>근무일</td>
-                        <td>근무기간</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span><label for="care">보호사</label><input type="radio" id="care" name="subject" value="보호사" required></span>
-                            <span><label for="recipient">대상자</label><input type="radio" id="recipient" name="subject" value="대상자" required></span>
-                        </td>
                         <td>
                             <span><label for="man">남</label><input type="radio" id="man" name="gender" value="남" required></span>
                             <span><label for="woman">여</label><input type="radio" id="woman" name="gender" value="여" required></span>
@@ -171,11 +166,11 @@
                             <span><label for="week_unrelated">추후협의</label><input type="radio" id="week_unrelated" name="week" value="추후협의" required></span>
                         </td>
                         <td>
-                            <span><label for="1less">1개월 미만</label><input type="radio" id="1less" name="period" value="1개월미만" required></span>
-                            <span><label for="3less">3개월 미만</label><input type="radio" id="3less" name="period" value="3개월미만" required></span>
-                            <span><label for="6less">6개월 미만</label><input type="radio" id="6less" name="period" value="6개월미만" required></span>
-                            <span><label for="12less">1년 미만</label><input type="radio" id="12less" name="period" value="1년미만" required></span>
-                            <span><label for="12more">1년 이상</label><input type="radio" id="12more" name="period" value="1년이상" required></span>
+                            <span><label for="1less">1개월 미만</label><input type="radio" id="1less" name="period" value="1개월 미만" required></span>
+                            <span><label for="3less">3개월 미만</label><input type="radio" id="3less" name="period" value="3개월 미만" required></span>
+                            <span><label for="6less">6개월 미만</label><input type="radio" id="6less" name="period" value="6개월 미만" required></span>
+                            <span><label for="12less">1년 미만</label><input type="radio" id="12less" name="period" value="1년 미만" required></span>
+                            <span><label for="12more">1년 이상</label><input type="radio" id="12more" name="period" value="1년 이상" required></span>
                         </td>
                     </tr>
                     <tr>

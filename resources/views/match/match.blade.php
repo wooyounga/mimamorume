@@ -63,6 +63,19 @@
         }).open();
     }
 </script>
+<script>
+    $(document).ready(function(){
+        $("input[name=subject]").change(function(){
+            if($(':radio[name="subject"]:checked').val()=='보호사'){
+                $('.recipient').css('display','none');
+                $('.care').css('display','');
+            }else{
+                $('.recipient').css('display','');
+                $('.care').css('display','none');
+            }
+        });
+    });
+</script>
 <div id="bgimg">
   <div class="page_title">
     구인구직
@@ -114,7 +127,7 @@
                     <td>구분</td>
                     <td>성별</td>
                     <td>나이</td>
-                    <td>장애</td>
+                    <td><span class="recipient" style="display: none;">장애</span></td>
                     <td>근무일</td>
                     <td>근무기간</td>
                </tr>
@@ -139,16 +152,19 @@
                         <span><input type="checkbox" id="age_unrelated" name="age[]" value="연령무관"><label for="age_unrelated">연령무관</label></span>
                     </td>
                     <td>
-                        <span><input type="checkbox" id="no" name="disability[]" value="장애없음"><label for="no">장애없음</label></span>
-                        <span><input type="checkbox" id="physical" name="disability[]" value="지체장애"><label for="physical">지체장애</label></span>
-                        <span><input type="checkbox" id="sense" name="disability[]" value="시각장애"><label for="sense">시각장애</label></span>
-                        <span><input type="checkbox" id="hearing" name="disability[]" value="청각장애"><label for="hearing">청각장애</label></span>
-                        <span><input type="checkbox" id="speech" name="disability[]" value="언어장애"><label for="speech">언어장애</label></span>
-                        <span><input type="checkbox" id="facial" name="disability[]" value="안면장애"><label for="facial">안면장애</label></span>
-                        <span><input type="checkbox" id="brain" name="disability[]" value="뇌병변장애"><label for="brain">뇌병변장애</label></span>
-                        <span><input type="checkbox" id="mental" name="disability[]" value="지적장애"><label for="mental">지적장애</label></span>
-                        <span><input type="checkbox" id="autism" name="disability[]" value="자폐성장애"><label for="autism">자폐성장애</label></span>
-                        <span><input type="checkbox" id="disability_unrelated" name="disability[]" value="장애무관"><label for="disability_unrelated">장애무관</label></span>
+                        <div class="recipient" style="display: none;">
+                            <span><input type="checkbox" id="no" name="disability[]" value="장애없음"><label for="no">장애없음</label></span>
+                            <span><input type="checkbox" id="physical" name="disability[]" value="지체장애"><label for="physical">지체장애</label></span>
+                            <span><input type="checkbox" id="sense" name="disability[]" value="시각장애"><label for="sense">시각장애</label></span>
+                            <span><input type="checkbox" id="hearing" name="disability[]" value="청각장애"><label for="hearing">청각장애</label></span>
+                            <span><input type="checkbox" id="speech" name="disability[]" value="언어장애"><label for="speech">언어장애</label></span>
+                            <span><input type="checkbox" id="facial" name="disability[]" value="안면장애"><label for="facial">안면장애</label></span>
+                            <span><input type="checkbox" id="brain" name="disability[]" value="뇌병변장애"><label for="brain">뇌병변장애</label></span>
+                            <span><input type="checkbox" id="mental" name="disability[]" value="지적장애"><label for="mental">지적장애</label></span>
+                            <span><input type="checkbox" id="autism" name="disability[]" value="자폐성장애"><label for="autism">자폐성장애</label></span>
+                            <span><input type="checkbox" id="disability_unrelated" name="disability[]" value="장애무관"><label for="disability_unrelated">장애무관</label></span>
+                        </div>
+
                     </td>
                     <td>
                         <span><input type="checkbox" id="mon" name="week[]" value="주 1회"><label for="mon">주 1회</label></span>
@@ -161,11 +177,11 @@
                         <span><input type="checkbox" id="week_unrelated" name="week[]" value="추후협의"><label for="week_unrelated">추후협의</label></span>
                     </td>
                     <td>
-                        <span><input type="checkbox" id="1less" name="period[]" value="1개월미만"><label for="1less">1개월 미만</label></span>
-                        <span><input type="checkbox" id="3less" name="period[]" value="3개월미만"><label for="3less">3개월 미만</label></span>
-                        <span><input type="checkbox" id="6less" name="period[]" value="6개월미만"><label for="6less">6개월 미만</label></span>
-                        <span><input type="checkbox" id="12less" name="period[]" value="1년미만"><label for="12less">1년 미만</label></span>
-                        <span><input type="checkbox" id="12more" name="period[]" value="1년이상"><label for="12more">1년 이상</label></span>
+                        <span><input type="checkbox" id="1less" name="period[]" value="1개월 미만"><label for="1less">1개월 미만</label></span>
+                        <span><input type="checkbox" id="3less" name="period[]" value="3개월 미만"><label for="3less">3개월 미만</label></span>
+                        <span><input type="checkbox" id="6less" name="period[]" value="6개월 미만"><label for="6less">6개월 미만</label></span>
+                        <span><input type="checkbox" id="12less" name="period[]" value="1년 미만"><label for="12less">1년 미만</label></span>
+                        <span><input type="checkbox" id="12more" name="period[]" value="1년 이상"><label for="12more">1년 이상</label></span>
                     </td>
                 </tr>
                 <tr>
