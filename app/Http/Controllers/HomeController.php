@@ -25,28 +25,33 @@ class HomeController extends Controller
     public function index()
     {
         if(Session::get('id')){
+            if(Session::get('user_type') == '관리자'){
+                return redirect('/dashboard');
+            }
+            else{
+                $notice = \DB::table('notice')
+                    ->join('user', 'notice.sender', '=', 'user.id')
+                    ->where('notice.addressee_id', Session::get('id'))
+                    ->orderBy('num', 'desc')->get();
+                $count = \DB::table('notice')
+                    ->where('addressee_id', Session::get('id'))
+                    ->whereNull('notice_check')->count();
+                $user = \DB::table('user')->where('id',Session::get('id'))->get();
 
-            $notice = \DB::table('notice')
-                ->join('user', 'notice.sender', '=', 'user.id')
-                ->where('notice.addressee_id', Session::get('id'))
-                ->orderBy('num', 'desc')->get();
-            $count = \DB::table('notice')
-                ->where('addressee_id', Session::get('id'))
-                ->whereNull('notice_check')->count();
-            $user = \DB::table('user')->where('id',Session::get('id'))->get();
-
-            if($user[0]->user_type == '보호자'){
-                $contract = \DB::table('contract')->where('family_id',Session::get('id'))->get();
-            }else{
-                $contract = \DB::table('contract')->where('sitter_id',Session::get('id'))->get();
+                if($user[0]->user_type == '보호자'){
+                    $contract = \DB::table('contract')->where('family_id',Session::get('id'))->get();
+                }else{
+                    $contract = \DB::table('contract')->where('sitter_id',Session::get('id'))->get();
+                }
             }
 
             if($contract != '[]'){
 //                return view('main.home')->with('notice',$notice);
-		return redirect('/task');
+		            return redirect('/task');
             }else{
                 return redirect('/match')->with('notice',$notice);
             }
+
         }else{
             $alert = '잘못된 접근입니다.';
 

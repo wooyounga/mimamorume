@@ -120,6 +120,7 @@
                 <img src="{{ URL::to('/') }}/images/logo.png" width="140" height="30">
             </a>
             @if (Session::get('id'))
+                @if(Session::get('user_type') != '관리자')
                 <div class="zeta-wrap">
                     <ul class="zeta-menu center-block">
                         <li>
@@ -141,6 +142,8 @@
                         </li>
                     </ul>
                 </div>
+                @endif
+                @if(Session::get('user_type') != '관리자')
                 <div class="notice pull-right">
                     <ul class="nav navbar-nav">
                         <li class="dropdown notibar">
@@ -159,9 +162,6 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li>
                                     <a class="notibar2" href="{{ url('userinfo') }}">내 정보</a>
-                                    @if(Session::get('user_type') == '관리자')
-                                    <a class="notibar2" href="{{ url('dashboard') }}">관리자 페이지</a>
-                                    @endif
                                     <a class="notibar2" href="{{ route('login.destroy') }}">로그아웃</a>
                                 </li>
                             </ul>
@@ -213,6 +213,25 @@
                         </li>
                     </ul>
                 </div>
+                @endif
+                @if(Session::get('user_type') == '관리자')
+                <div class="pull-right links adminm" style="margin: 9px 50px 0 0;">
+                    <a href="{{ url('userinfo') }}" class="buttonss" role="button">MYPAGE</a>&nbsp;&nbsp;
+                    <a href="{{ route('login.destroy') }}" class="buttonss" role="button">LOGOUT</a>
+                </div>
+                <style>
+                  .buttonss{
+                    text-decoration: none;
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: white;
+                    padding-left: 10px;
+                  }
+                  .buttonss:hover{
+                    color: white;
+                  }
+                </style>
+                @endif
             @else
                 <div class="pull-right links" style="margin: 9px 50px 0 0;">
                     <a href="{{URL::to('/')}}" class="buttonss" role="button">LOGIN</a>&nbsp;&nbsp;

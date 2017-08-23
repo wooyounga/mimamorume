@@ -47,12 +47,12 @@
                     {{ csrf_field() }}
                     <br>
                     <div class="form-group{{ $errors->has('id') ? ' has-error' : '' }}">
-                        <span class="st">USERNAME</span>
+                        <span class="st">ID</span>
                         <br>
                         <input id="id" type="id" class="form-control" name="id" value="{{ old('id') }}" required autofocus>
                     </div>
                     <div class="form-group{{ $errors->has('pw') ? ' has-error' : '' }}">
-                        <span class="st">PASSWORD</span>
+                        <span class="st">PW</span>
                         <br>
                         <input id="pw" type="password" class="form-control" name="pw" required>
                     </div>
