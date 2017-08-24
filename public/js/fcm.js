@@ -9,15 +9,14 @@ var message = {
 
     notification: {
         title: pushMessageBody,
-	body: "웹에서 확인해주세요"
+	      body: "웹에서 확인해주세요"
     }
 }
 
 fcm.send(message, function(err, response) {
     if(err) {
-	console.log("error");
+      console.log("falied");
     } else {
-	console.log(pushMessageBody);
-	console.log("succed");
+	    console.log("succeed");
     }
 });

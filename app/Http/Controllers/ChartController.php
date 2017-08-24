@@ -45,7 +45,7 @@ class ChartController extends Controller
 
 	if($data >= 160) {
 	    //run node js push
-	    $message = "�대상자의 심박수에 이상이 있습니다";
+	    $message = "대상자의 심박수에 이상이 있습니다";
 	    system("node ./js/fcm.js ".$message);
 	}
 
@@ -84,4 +84,3 @@ class ChartController extends Controller
     }
 
 }
-
