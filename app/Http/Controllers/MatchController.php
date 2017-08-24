@@ -483,7 +483,7 @@ class MatchController extends Controller
             $alert = '조건 변경 요청이 완료되었습니다.';
 
 	    //send push
-	    system('node ./js/fcm.js'.'매칭이 완료되었습니다');
+	    $this->system('node ./js/fcm.js'.'매칭이 완료되었습니다');
 
             return redirect()->back()->with('alert',$alert)->with('notice', $notice)->with('count',$count);
         }else{
