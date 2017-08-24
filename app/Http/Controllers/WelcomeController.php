@@ -27,7 +27,7 @@ class WelcomeController extends Controller
             ->where('addressee_id', Session::get('id'))
             ->whereNull('notice_check')->count();
 
-        // return redirect('/auth/login');
-        return view('main.welcome')->with('notice',$notice)->with('count', $count);
+        return redirect('/auth/login');
+        // return view('main.welcome')->with('notice',$notice)->with('count', $count);
     }
 }

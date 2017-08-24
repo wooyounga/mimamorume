@@ -246,6 +246,10 @@ class MatchController extends Controller
 
                 $alert = '매칭 신청이 완료되었습니다.';
 
+		//matching push
+                $message = '매칭이 왔습니다';
+		system('node ./js/fcm.js '.$message);
+
                 $this->pushCurl("매칭신청이 왔습니다. 컴퓨터에서 확인해주세요");
             } else {
                 $alert = '이미 매칭 신청이 완료된 상대입니다.';
@@ -482,8 +486,9 @@ class MatchController extends Controller
 
             $alert = '조건 변경 요청이 완료되었습니다.';
 
-	    //send push
-	    $this->system('node ./js/fcm.js'.'매칭이 완료되었습니다');
+	    //matcing succeed push
+	    $message = '매칭이 완료되었습니다';
+	    system('node ./js/fcm.js'.$message);
 
             return redirect()->back()->with('alert',$alert)->with('notice', $notice)->with('count',$count);
         }else{

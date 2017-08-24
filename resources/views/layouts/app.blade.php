@@ -342,8 +342,8 @@
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h4 class="modal-title">매칭 수락</h4>
                                     </div>
-                                    <div style="background-color: black;">
-                                        <div class="col-md-6" id="video_div" style="display: none; width: 100%; height: 80%;">
+                                    <div id="video_div" style="display: none; width: 100%; height: 80%; background-color: black;">
+                                        <div class="col-md-6">
                                             <form class="form-inline">
                                                 <div class="form-group">
                                                     <label class="sr-only" for="createChannelId">화상채팅 번호</label>
@@ -384,8 +384,8 @@
                                             </script>
                                         </div>
 
-                                        <div style="background-color: black">
-                                            <div class="col-md-6" id="video_div2" style="display: none; width: 100%; height: 80%;">
+                                        <div id="video_div2" style="display: none; background-color: black; width: 100%; height: 80%;">
+                                            <div class="col-md-6">
                                                 <form class="form-inline">
                                                     <div class="form-group">
                                                         <label class="sr-only" for="connectChannelId">화상채팅 번호</label>

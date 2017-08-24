@@ -30,7 +30,7 @@ Route::get('/noticeDest/{num}', 'MatchController@noticeDest');
 
 Route::post('/search', 'MatchController@search');
 
-Route::get('/matchNo', 'MatchController@matchNo');
+Route::get('/matchNo/{num}', 'MatchController@matchNo');
 
 Route::get('/push', 'ChartController@pushCurl');
 
