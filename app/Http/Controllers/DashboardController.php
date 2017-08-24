@@ -21,6 +21,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
+      if(Session::get('user_type') == "관리자"){
 	system('node /root/gohtml/mimamo/public/js/fcm.js'.'관리자가 로그인했습니다');
         $family = \DB::table('user')->where('user_type', '보호자')->get();
         $supporter = \DB::table('user')->where('user_type', '보호사')->get();
@@ -36,5 +37,11 @@ class DashboardController extends Controller
 
         return view('dashboard')->with('family', $family)->with('supporter', $supporter)->with('target', $target)->with('contract', $contract)
         ->with('count', $count)->with('notice', $notice);
+      }
+      else{
+        $alert = '잘못된 접근입니다.';
+
+        return redirect('/')->with('alert',$alert);
+      }
     }
 }

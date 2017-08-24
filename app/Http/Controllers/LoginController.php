@@ -17,9 +17,9 @@ class LoginController extends Controller
         if(Session::get('id')){
             $alert = '잘못된 접근입니다.';
 
-            return redirect('/home')->with('alert',$alert);
+            return redirect('/task')->with('alert',$alert);
         }else{
-            return view('user.login');
+            return view('main.welcome');
         }
     }
 
