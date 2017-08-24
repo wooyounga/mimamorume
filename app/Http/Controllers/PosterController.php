@@ -42,7 +42,7 @@ $targetNum = $val->num;
         $snapshot = \DB::table('camera')
         ->join('snapshot', 'camera.num', '=', 'snapshot.camera_num')
         ->where('snapshot.snapshot_type', 'sensing')
-        ->where('camera.target_num', $targetNum)->get();
+        ->where('camera.target_num', $targetNum)->orderBy('snapshot.num', 'desc')->get();
 
 if(count($snapshot) == 0){
 	return view('/poster/create')->with('user', $user)->with('target', $target)->with('notice',$notice)->with('count',$count);
@@ -60,7 +60,7 @@ else{
      */
     public function store(Request $request)
     {
-        
+
         $notice = \DB::table('notice')
         ->join('user', 'notice.sender', '=', 'user.id')
         ->where('notice.addressee_id', Session::get('id'))
