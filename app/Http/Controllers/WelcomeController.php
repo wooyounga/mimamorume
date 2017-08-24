@@ -18,7 +18,15 @@ class WelcomeController extends Controller
      */
     public function index()
     {
+        $notice = \DB::table('notice')
+            ->join('user', 'notice.sender', '=', 'user.id')
+            ->where('notice.addressee_id', Session::get('id'))
+            ->orderBy('num', 'desc')->get();
+        $count = \DB::table('notice')
+            ->where('addressee_id', Session::get('id'))
+            ->whereNull('notice_check')->count();
+
         // return redirect('/auth/login');
-        return view('main.welcome');
+        return view('main.welcome')->with('notice',$notice)->with('count', $count);
     }
 }

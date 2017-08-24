@@ -54,13 +54,17 @@ class LoginController extends Controller
                 ->get();
             Session::set('user_type', $user[0]->user_type);
             Session::set('name', $user[0]->name);
-
+            
             $notice = \DB::table('notice')
                 ->join('user', 'notice.sender', '=', 'user.id')
-                ->where('notice.addressee_id',Session::get('id'))
-                ->get();
+                ->where('notice.addressee_id', Session::get('id'))
+                ->orderBy('num', 'desc')->get();
+            $count = \DB::table('notice')
+                ->where('addressee_id', Session::get('id'))
+                ->whereNull('notice_check')->count();
 
-            return redirect('/home')->with('notice',$notice);
+
+            return redirect('/home')->with('notice',$notice)->with('count', $count);
         }
     }
 
