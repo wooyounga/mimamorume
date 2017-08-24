@@ -28,7 +28,7 @@ class GpsController extends Controller
 	if($gpsDistance >= 150) {
 	    $this->gpsInsert($lat, $lng, $targetNum, 'out');
 	    //push
-	    system('node ./js/fcm.js'.'대상자가 외출했습니다.');
+	    system('node ./js/fcm.js'.'대상자가 외출했습니다');
 	} else {
 	    $this->gpsInsert($lat, $lng, $targetNum, 'in');
     }

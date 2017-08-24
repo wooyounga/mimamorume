@@ -21,7 +21,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-	system('node /root/gohtml/mimamo/public/js/fcm.js'.'관리자가 로그인했습니다');
         $family = \DB::table('user')->where('user_type', '보호자')->get();
         $supporter = \DB::table('user')->where('user_type', '보호사')->get();
         $target = \DB::table('target')->get();

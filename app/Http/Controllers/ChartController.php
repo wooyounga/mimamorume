@@ -45,7 +45,8 @@ class ChartController extends Controller
 
 	if($data >= 160) {
 	    //run node js push
-	    $this->system('node ./js/fcm.js'.'대상자의 심박수가 위험수치보다 높습니다');
+	    $message = "�대상자의 심박수에 이상이 있습니다";
+	    system("node ./js/fcm.js ".$message);
 	}
 
         \DB::table('vital_data')->insert(
