@@ -42,6 +42,12 @@ class ChartController extends Controller
     public function getBluetoothValue(Request $request) {
         $data = $request->input('pulse');
         $targetNum = $request->input('targetNum');
+
+	if($data >= 160) {
+	    //run node js push
+	    $this->system('node ./js/fcm.js'.'대상자의 심박수가 위험수치보다 높습니다');
+	}
+
         \DB::table('vital_data')->insert(
             [
                 'num' => null,
@@ -51,10 +57,6 @@ class ChartController extends Controller
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]
         );
-
-        if($data > 160) {
-            system('node ./js/fcm.js'.'대상자의 심박수가 위험수치보다 높습니다');
-        }
     }
 
 
@@ -62,56 +64,23 @@ class ChartController extends Controller
     {
         $callback = $request->input('callback');
         $pulseData = \DB::table('vital_data')
+	    ->where('vital_data.target_num', 1)
             ->get();
         $dataArray = array();
 
         $i = 0;
-//        $before = 0;
-//        $valueSum = 0;
-//        $count = 1;
+	$valueSum = 0;
         foreach ($pulseData as $data) {
-            //평균 알고리즘
-//            if($i == 0 and $before != (int)date("s", strtotime($data->created_at))) {
-//                $valueSum += $data->value;
-//            } else if($before != (int)date("s", strtotime($data->created_at)) || $i == count($pulseData) - 1) {
-//                if($i == count($pulseData) - 1) {
-//                    $count++;
-//                    $valueSum += $data->value;
-//                }
-//                $dataArray[$i]['date'] = date("d-i:s", strtotime($data->created_at));
-//                $dataArray[$i]['close'] = (int)($valueSum / $count);
-//                $valueSum = $data->value;
-//                $count = 1;
-//            } else {
-//                $valueSum += $data->value;
-//                $count++;
-//            }
-//            $before = (int)date("s", strtotime($data->created_at));
+            //avg
+	    $valueSum += $data->value;
             $dataArray[$i]['date'] = date("d-i:s", strtotime($data->created_at));
-            $dataArray[$i]['close'] = $data->value;
+            $dataArray[$i]['vital'] = $data->value;
             $i++;
         }
+        $avg = $valueSum / $i;
+
         return $callback . "(" . json_encode($dataArray) . " ) ";
     }
-
-
-//    public function index(Request $request) {
-//        if(Session::get('id')){
-//            $notice = \DB::table('notice')
-//                ->join('user', 'notice.sender', '=', 'user.id')
-//                ->where('notice.addressee_id',Session::get('id'))
-//                ->get();
-//
-//
-//            $pulseData = $request->input('sensorVal');
-//
-//            return view('monitor.chart')->with('pulseData', $pulseData)->with('notice',$notice);
-//        }else{
-//            $alert = '잘못된 접근입니다.'
-//            return redirect('/')->with('alert',$alert);
-//        }
-//    }
-
 
 }
 

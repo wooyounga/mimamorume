@@ -25,7 +25,6 @@ class SnapShotController extends Controller
     public function index()
     {
         if(Session::get('id')){
-            $this->searchImage();
             $notice = \DB::table('notice')
                 ->join('user', 'notice.sender', '=', 'user.id')
                 ->where('notice.addressee_id', Session::get('id'))
@@ -70,7 +69,6 @@ class SnapShotController extends Controller
     }
 
     public function snapShotTarget($num){
-        $this->searchImage();
         if(Session::get('id')){
             $notice = \DB::table('notice')
                 ->join('user', 'notice.sender', '=', 'user.id')
@@ -155,6 +153,7 @@ class SnapShotController extends Controller
                     'camera_num' => $cameraNum,
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ]);
+		return "url connect";
             } catch (QueryException $e) {
                 continue;
             }

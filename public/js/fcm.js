@@ -4,19 +4,19 @@ var fcm = new FCM(serverKey);
 var pushMessageBody = process.argv[1];
 
 var message = {
-    to: 'fEZMdm8vUz0:APA91bFEwEeP9qyOAp0wZt-fPvMs_z3gD7hwMZHXx8E8xC5S5Bz_ew47y_B8ekuTMBFBgbS6lw1wQhOTCPVX1am4-sd_JJ_9dLCPiwVJV326yd1gd6CYU7K_5w5q4cwFZcIHs5jUJ7BR',
+    to: 'fHp8uiyij-s:APA91bElRwHb9YHIzzf8pcBLI93ReRTLihyLh6oDGI0nzoRBUcfMdIGxdUl6Fc4T22tUvK-p5keQmB6YLTLWNX5N7NNovuXSOh8YxxwdO1X5CJQdh4EbTraNUUwgM3k1_By6FQwXQczv',
     collapse_key: 'com.example.bon.project_7',
 
     notification: {
-        title: '미마모루메';
+        title: 'mimamo',
         body: pushMessageBody
     }
 }
 
-fcm.send(message)
-    .then(function(response) {
-        console.log("Success send message");
-    })
-    .catch(function(err) {
-        console.log("Occurred error");
-    });
+fcm.send(message, function(err, response) {
+    if(err) {
+	console.log("Occurred error");
+    } else {
+	console.log("Success send message");
+    }
+});
