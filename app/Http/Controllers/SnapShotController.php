@@ -202,7 +202,7 @@ class SnapShotController extends Controller
     }
 
     public function imageSend() {
-        $result = \DB::table('snapshot')->get();
+        $result = \DB::table('snapshot')->orderBy('num', 'desc')->get();
 
         $array = array();
         foreach($result as $value) {
