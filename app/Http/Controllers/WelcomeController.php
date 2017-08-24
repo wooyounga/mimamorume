@@ -18,6 +18,7 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        return redirect('/auth/login');
+        // return redirect('/auth/login');
+        return view('main.welcome');
     }
 }
