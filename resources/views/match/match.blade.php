@@ -122,7 +122,7 @@
                 </ul>
             </div>
         </div>--}}
-        <table class="search table-bordered">
+        <table class="search table">
                <tr>
                     <td>구분</td>
                     <td>성별</td>
