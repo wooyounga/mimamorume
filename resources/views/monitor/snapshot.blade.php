@@ -104,10 +104,28 @@
       }
     </style>
     <div class="body">
+        <div style="margin-top: 30px;">
+            <input onclick="home()" type="button" value="전체보기" class="btn btn-default">
+            <input onclick="filter('time')" type="button" value="시간별" class="btn btn-default">
+            <input onclick="filter('sensing')" type="button" value="센서감지" class="btn btn-default">
+            <input onclick="filter('remote')" type="button" value="원격촬영" class="btn btn-default">
+        </div>
         <div class="wrap">
             <ul class="nav nav-tabs">
                 @if($target != '[]')
                     @foreach($target as $t)
+                    <script>
+                        function filter(filter){
+                            var url = '{{URL::to('/snapShotFilter')}}';
+                            var target = '{{$t->num}}';
+                            location.href=url+'/'+filter+'/'+target;
+                        }
+                        function home(){
+                            var url = '{{URL::to('/snapshot')}}';
+                            var target = '{{$t->num}}';
+                            location.href=url+'/'+target;
+                        }
+                    </script>
                         @if($t->num == $num)
                             <li role="presentation" class="active"><a href="#">{{$t->name}}</a></li>
                         @else

@@ -56,12 +56,12 @@
     </style>
     <div class="body">
         <div style="margin-top: 30px;">
+            <input onclick="home()" type="button" value="전체보기" class="btn btn-default">
             <input onclick="filter(7)" type="button" value="1주일" class="btn btn-default">
             <input onclick="filter(1)" type="button" value="1개월" class="btn btn-default">
             <input onclick="filter(3)" type="button" value="3개월" class="btn btn-default">
             <input onclick="filter(6)" type="button" value="6개월" class="btn btn-default">
             <input onclick="filter(12)" type="button" value="1년" class="btn btn-default">
-            <input onclick="home()" type="button" value="전체보기" class="btn btn-default">
         </div>
         <div class="wrap">
             <ul class="nav nav-tabs">
