@@ -122,8 +122,7 @@
                         }
                         function home(){
                             var url = '{{URL::to('/snapshot')}}';
-                            var target = '{{$t->num}}';
-                            location.href=url+'/'+target;
+                            location.href=url;
                         }
                     </script>
                         @if($t->num == $num)
