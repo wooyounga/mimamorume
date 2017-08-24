@@ -356,7 +356,32 @@
 
                                             <video class="remote-video center-block" id="callerRemoteVideo"></video>
                                             <video class="local-video pull-right" id="callerLocalVideo"></video>
+                                            <script>
+                                                'use strict';
+                                                var createChannelButton = document.querySelector('#createChannel');
+                                                var createChannelId = document.querySelector('#createChannelId');
+                                                var appCaller;
+                                                appCaller = new PlayRTC({
+                                                    projectKey: "60ba608a-e228-4530-8711-fa38004719c1",
+                                                    localMediaTarget: "callerLocalVideo",
+                                                    remoteMediaTarget: "callerRemoteVideo"
+                                                });
+                                                appCaller.on('connectChannel', function(channelId) {
+                                                    createChannelId.value = channelId;
+                                                    $.ajax({
+                                                        url:"{{URL::to('/matchvideo')}}",
+                                                        type:"POST",
+                                                        data:{"video_num":channelId, "notice_num":$("#notice_num").val()},
+                                                        success:function(data){
 
+                                                        }
+                                                    });
+                                                });
+                                                createChannelButton.addEventListener('click', function(e) {
+                                                    e.preventDefault();
+                                                    appCaller.createChannel();
+                                                }, false);
+                                            </script>
                                         </div>
 
                                         <div id="video_div2" style="display: none; background-color: black; width: 100%; height: 80%;">
@@ -373,52 +398,25 @@
 
                                                 <video class="remote-video center-block" id="calleeRemoteVideo"></video>
                                                 <video class="local-video pull-right" id="calleeLocalVideo"></video>
-
+                                                <script>
+                                                    'use strict';
+                                                    var connectChannelId = document.querySelector('#connectChannelId');
+                                                    var connectChannelButton = document.querySelector('#connectChannel');
+                                                    var appCallee;
+                                                    appCallee = new PlayRTC({
+                                                        projectKey: "60ba608a-e228-4530-8711-fa38004719c1",
+                                                        localMediaTarget: "calleeLocalVideo",
+                                                        remoteMediaTarget: "calleeRemoteVideo"
+                                                    });
+                                                    connectChannelButton.addEventListener('click', function(e) {
+                                                        e.preventDefault();
+                                                        var channelId = connectChannelId.value;
+                                                        if (!channelId) { return };
+                                                        appCallee.connectChannel(channelId);
+                                                    }, false);
+                                                </script>
                                             </div>
                                         </div>
-                                        <script>
-                                            'use strict';
-                                            var createChannelButton = document.querySelector('#createChannel');
-                                            var createChannelId = document.querySelector('#createChannelId');
-                                            var appCaller;
-                                            appCaller = new PlayRTC({
-                                                projectKey: "60ba608a-e228-4530-8711-fa38004719c1",
-                                                localMediaTarget: "callerLocalVideo",
-                                                remoteMediaTarget: "callerRemoteVideo"
-                                            });
-                                            appCaller.on('connectChannel', function(channelId) {
-                                                createChannelId.value = channelId;
-                                                $.ajax({
-                                                    url:"{{URL::to('/matchvideo')}}",
-                                                    type:"POST",
-                                                    data:{"video_num":channelId, "notice_num":$("#notice_num").val()},
-                                                    success:function(data){
-
-                                                    }
-                                                });
-                                            });
-                                            createChannelButton.addEventListener('click', function(e) {
-                                                e.preventDefault();
-                                                appCaller.createChannel();
-                                            }, false);
-                                        </script>
-                                        <script>
-                                            'use strict';
-                                            var connectChannelId = document.querySelector('#connectChannelId');
-                                            var connectChannelButton = document.querySelector('#connectChannel');
-                                            var appCallee;
-                                            appCallee = new PlayRTC({
-                                                projectKey: "60ba608a-e228-4530-8711-fa38004719c1",
-                                                localMediaTarget: "calleeLocalVideo",
-                                                remoteMediaTarget: "calleeRemoteVideo"
-                                            });
-                                            connectChannelButton.addEventListener('click', function(e) {
-                                                e.preventDefault();
-                                                var channelId = connectChannelId.value;
-                                                if (!channelId) { return };
-                                                appCallee.connectChannel(channelId);
-                                            }, false);
-                                        </script>
                                     </div>
                                     <div class="modal-body" id="video_form">
                                         <b>※ 매칭신청을 요청한 사용자의 정보입니다.</b><br>
