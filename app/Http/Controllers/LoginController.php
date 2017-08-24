@@ -54,7 +54,7 @@ class LoginController extends Controller
                 ->get();
             Session::set('user_type', $user[0]->user_type);
             Session::set('name', $user[0]->name);
-            
+
             $notice = \DB::table('notice')
                 ->join('user', 'notice.sender', '=', 'user.id')
                 ->where('notice.addressee_id', Session::get('id'))
