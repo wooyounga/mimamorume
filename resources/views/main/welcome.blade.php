@@ -101,15 +101,6 @@
 
     </script>
 
-    @if (session('alert'))
-        <script>
-            var msg = '{{Session::get('alert')}}';
-            var exist = '{{Session::has('alert')}}';
-            if(exist){
-                alert(msg);
-            }
-        </script>
-    @endif
     <div style="width: 100%; height: 100%; position: relative;">
 
         <div id="film_roll" style="width: 100%;  height: 100%; position: absolute">
