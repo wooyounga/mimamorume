@@ -323,10 +323,9 @@ class MatchController extends Controller
                 ->where('user.user_type','보호자')
                 ->where('matching_post.content', 'like', '%'.$search.'%')
                 ->where('matching_post.roadAddress', 'like', '%'.$address_log.'%')
-                ->where(function ($query) use ($gander,$g) {
+                ->where(function ($query) use ($gander) {
                     for ($i = 0; $i < count($gander); $i++)
-                        $g = $gander[$i];
-                        $query->orWhere('matching_post.gender', $g);
+                        $query->orWhere('matching_post.gender', $gander[$i]);
                 })
                 ->where(function ($query) use ($disability) {
                     for ($i = 0; $i < count($disability); $i++)
@@ -349,7 +348,7 @@ class MatchController extends Controller
             $search_log = \DB::table('matching_post')
                 ->join('user', 'matching_post.user_id', '=', 'user.id')
                 ->where('user.user_type','보호사')
-                ->where('matching_post.content', 'like', '%' . $search . '%')
+                ->where('matching_post.content', 'like', '%'.$search.'%')
                 ->where('matching_post.roadAddress', 'like', '%' . $address_log . '%')
                 ->where(function ($query) use ($gander,$g) {
                     for ($i = 0; $i < count($gander); $i++)
