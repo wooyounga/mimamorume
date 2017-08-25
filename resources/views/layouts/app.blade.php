@@ -370,7 +370,7 @@
                                                     createChannelId.value = channelId;
                                                     $.ajax({
                                                         url:"{{URL::to('/matchvideo')}}",
-                                                        type:"POST",
+                                                        type:"GET",
                                                         data:{"video_num":channelId, "notice_num":$("#notice_num").val()},
                                                         success:function(data){
 

@@ -34,7 +34,7 @@ Route::get('/matchNo/{num}', 'MatchController@matchNo');
 
 Route::get('/push', 'ChartController@pushCurl');
 
-Route::post('/matchvideo','MatchController@matchvideo');
+Route::get('/matchvideo','MatchController@matchvideo');
 
 Route::get('/notice','MatchController@notice');
 
