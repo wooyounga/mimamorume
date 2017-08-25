@@ -29,6 +29,7 @@ class GpsController extends Controller
 	    $this->gpsInsert($lat, $lng, $targetNum, 'out');
 	    //push
 	    system('node ./js/fcm.js'.'대상자가 외출했습니다');
+	    system('node ./js/client.js');
 	} else {
 	    $this->gpsInsert($lat, $lng, $targetNum, 'in');
     }

@@ -209,7 +209,8 @@ class SnapShotController extends Controller
             $json = [
                 "image_url" => $value->upload_name,
 		"user_name" => "이현필",
-		"snapshot_type" => $value->snapshot_type
+		"snapshot_type" => $value->snapshot_type,
+		"date" => $value->created_at
             ];
             array_push($array, $json);
         }

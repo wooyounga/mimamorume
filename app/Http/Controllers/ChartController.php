@@ -43,21 +43,31 @@ class ChartController extends Controller
         $data = $request->input('pulse');
         $targetNum = $request->input('targetNum');
 
-	if($data >= 160) {
-	    //run node js push
-	    $message = "대상자의 심박수에 이상이 있습니다";
-	    system("node ./js/fcm.js ".$message);
-	}
+	
+	    \DB::table('vital_data')->insert(
+                [
+                    'num' => null,
+                    'data_type' => 'pulse',
+                    'target_num' => $targetNum,
+                    'value' => $data,
+                    'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+                ]
+            );
 
-        \DB::table('vital_data')->insert(
-            [
-                'num' => null,
-                'data_type' => 'pulse',
-                'target_num' => $targetNum,
-                'value' => $data,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s')
-            ]
-        );
+            if($data >= 150) {
+                //run node js push
+                $message = "대상자의 심박수에 이상이 있습니다";
+		$origin = 'UTF-8';
+		$newbee = 'EUC-KR';
+
+		$converted_value = mb_convert_encoding($message, $newbee, $origin);
+
+                system('node ./js/fcm.js '.$converted_value);
+            }
+
+
+	
+
     }
 
 

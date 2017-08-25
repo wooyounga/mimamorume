@@ -250,7 +250,7 @@ class MatchController extends Controller
                 $message = '매칭이 왔습니다';
 		system('node ./js/fcm.js '.$message);
 
-                $this->pushCurl("매칭신청이 왔습니다. 컴퓨터에서 확인해주세요");
+                //$this->pushCurl("매칭신청이 왔습니다. 컴퓨터에서 확인해주세요");
             } else {
                 $alert = '이미 매칭 신청이 완료된 상대입니다.';
             }

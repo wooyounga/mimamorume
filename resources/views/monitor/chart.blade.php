@@ -71,16 +71,20 @@
         </div>
 
         {{--d3.js graph draw--}}
-        <script>
-                var dateArray = [];
-                var dataArray = [];
-		var ctx = document.getElementById("graphCanvas").getContext("2d");
-
+	<script>
+            var dateArray = [];
+            var dataArray = [];
+            var ctx = document.getElementById("graphCanvas").getContext("2d");
+            function graph() {
                 $.ajax({
-                    url:"http:/"+"/133.130.99.167/mimamo/public/chartData",
+                    url:"http://127.0.0.1/mima/public/chartData",
                     type:"GET",
                     dataType: "jsonp",
                     success: function(data) {
+                        if(dataArray[0] != null && dateArray[0] != null) {
+                            dateArray = [];
+                            dataArray = [];
+                        }
                         data.forEach(function (d) {
                             dateArray.push(d.date);
                             dataArray.push(d.vital);
@@ -91,28 +95,30 @@
                         console.log("code:"+data.status+"\n"+"message:" + data.responseText+"\n"+"error:"+er);
                     }
                 });
+
                 var lineData = {
                     type: 'line',
                     data: {
-                        labels: dateArray,
                         datasets: [{
+                            data: dataArray,
                             label: "심박수",
                             backgroundColor : 'rgba(255, 99, 132, 0.2)',
                             borderColor : 'rgba(255,99,132,1)',
                             borderWidth: 1,
-                            data: dataArray,
-                            fill: false,
-                        }]
+                            fill: false
+                        }],
+                        labels: dateArray
                     }
                 };
 
-                window.onload = function() {
-                    new Chart(ctx, lineData);
+                new Chart(ctx, lineData);
+            }
 
-		    setInterval(function() {
-			window.myLine = new Chart(ctx, lineData);
-		    }, 10000);
-                };
+            graph();
+            timer = setInterval(function() {
+                graph();
+            }, 10000);
+
 
 
         </script>
