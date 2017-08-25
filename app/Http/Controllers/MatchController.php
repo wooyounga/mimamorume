@@ -325,7 +325,7 @@ class MatchController extends Controller
                 ->where('matching_post.roadAddress', 'like', '%'.$address_log.'%')
                 ->where(function ($query) use ($gander,$g) {
                     for ($i = 0; $i < count($gander); $i++)
-                        $g = $gander[$i].'성';
+                        $g = $gander[$i];
                         $query->orWhere('matching_post.gender', $g);
                 })
                 ->where(function ($query) use ($disability) {
