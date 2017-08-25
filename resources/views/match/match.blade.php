@@ -239,7 +239,7 @@
             @endif
             <tr>
                 @if($search == '있음')
-                    <td colspan="5"><a class="btn btn-default pull-right" href="/match">전체보기</a></td>
+                    <td colspan="5"><a class="btn btn-default pull-right" href="{{URL::to('/match')}}">전체보기</a></td>
                 @else
                   <td colspan="5"><a class="btn btn-default pull-right" href="{{route('match.create')}}">등록</a></td>
                 @endif
