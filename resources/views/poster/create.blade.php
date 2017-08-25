@@ -60,11 +60,13 @@
     </td>
   </tr>
   <tr>
-    <td class="content" colspan="2">인상착의 : <input id="clothes" type="text" name="clothes" value="{{ old('clothes') }}" size="50" placeholder="키, 복장 상세, 신체적 특징 등을 기입해주세요." required></td>
+    <!-- <td class="content" colspan="2">인상착의 : <input id="clothes" type="text" name="clothes" value="{{ old('clothes') }}" size="50" placeholder="키, 복장 상세, 신체적 특징 등을 기입해주세요." required></td> -->
+    <td class="content" colspan="2">인상착의 : <input id="clothes" type="text" name="clothes" value="키: 185cm / 복장: 파란색 계열티, 검은 반바지 / 신체적 특징: 배가 나와있다" size="50" required></td>
   </tr>
   <tr>
     <td class="content" colspan="2">
-      <textarea id="other" name="other" rows="10" cols="100" value="{{ old('other') }}" placeholder="실종 당시 상황 및 전달 하실 말씀을 적어주세요." required></textarea>
+      <!-- <textarea id="other" name="other" rows="10" cols="100" value="{{ old('other') }}" placeholder="실종 당시 상황 및 전달 하실 말씀을 적어주세요." required></textarea> -->
+      <textarea id="other" name="other" rows="10" cols="100" value="정보관에 발표 연습을 위해 이동 중 행방불명됨" required></textarea>
     </td>
   </tr>
   <tr>
