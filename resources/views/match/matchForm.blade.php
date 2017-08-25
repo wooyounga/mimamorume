@@ -133,14 +133,14 @@
                             <span><label for="woman">여</label><input type="radio" id="woman" name="gender" value="여" required></span>
                         </td>
                         <td>
-                            <span><label for="10less">10대 미만</label><input type="radio" id="10less" name="age" value="10대 미만" required></span>
+                            <span><label for="10less">10대 미만</label><input type="radio" id="10less" name="age" value="10대미만" required></span>
                             <span><label for="10">10대</label><input type="radio" id="10" name="age" value="10대" required></span>
                             <span><label for="20">20대</label><input type="radio" id="20" name="age" value="20대" required></span>
                             <span><label for="30">30대</label><input type="radio" id="30" name="age" value="30대" required></span>
                             <span><label for="40">40대</label><input type="radio" id="40" name="age" value="40대" required></span>
                             <span><label for="50">50대</label><input type="radio" id="50" name="age" value="50대" required></span>
                             <span><label for="60">60대</label><input type="radio" id="60" name="age" value="60대" required></span>
-                            <span><label for="60more">60대 이상</label><input type="radio" id="60more" name="age" value="60대 이상" required></span>
+                            <span><label for="60more">60대 이상</label><input type="radio" id="60more" name="age" value="60대이상" required></span>
                             <span><label for="age_unrelated">연령무관</label><input type="radio" id="age_unrelated" name="age" value="연령무관" required></span>
                         </td>
                         <td>
@@ -156,21 +156,21 @@
                             <span><label for="disability_unrelated">장애무관</label><input type="radio" id="disability_unrelated" name="disability" value="장애무관" required></span>
                         </td>
                         <td>
-                            <span><label for="mon">주 1회</label><input type="radio" id="mon" name="week" value="주 1회" required></span>
-                            <span><label for="tues">주 2회</label><input type="radio" id="tues" name="week" value="주 2회" required></span>
-                            <span><label for="wed">주 3회</label><input type="radio" id="wed" name="week" value="주 3회" required></span>
-                            <span><label for="thu">주 4회</label><input type="radio" id="thu" name="week" value="주 4회" required></span>
-                            <span><label for="fri">주 5회</label><input type="radio" id="fri" name="week" value="주 5회" required></span>
-                            <span><label for="sat">주 6회</label><input type="radio" id="sat" name="week" value="주 6회" required></span>
-                            <span><label for="sun">주 7회</label><input type="radio" id="sun" name="week" value="주 7회" required></span>
+                            <span><label for="mon">주 1회</label><input type="radio" id="mon" name="week" value="주1회" required></span>
+                            <span><label for="tues">주 2회</label><input type="radio" id="tues" name="week" value="주2회" required></span>
+                            <span><label for="wed">주 3회</label><input type="radio" id="wed" name="week" value="주3회" required></span>
+                            <span><label for="thu">주 4회</label><input type="radio" id="thu" name="week" value="주4회" required></span>
+                            <span><label for="fri">주 5회</label><input type="radio" id="fri" name="week" value="주5회" required></span>
+                            <span><label for="sat">주 6회</label><input type="radio" id="sat" name="week" value="주6회" required></span>
+                            <span><label for="sun">주 7회</label><input type="radio" id="sun" name="week" value="주7회" required></span>
                             <span><label for="week_unrelated">추후협의</label><input type="radio" id="week_unrelated" name="week" value="추후협의" required></span>
                         </td>
                         <td>
-                            <span><label for="1less">1개월 미만</label><input type="radio" id="1less" name="period" value="1개월 미만" required></span>
-                            <span><label for="3less">3개월 미만</label><input type="radio" id="3less" name="period" value="3개월 미만" required></span>
-                            <span><label for="6less">6개월 미만</label><input type="radio" id="6less" name="period" value="6개월 미만" required></span>
-                            <span><label for="12less">1년 미만</label><input type="radio" id="12less" name="period" value="1년 미만" required></span>
-                            <span><label for="12more">1년 이상</label><input type="radio" id="12more" name="period" value="1년 이상" required></span>
+                            <span><label for="1less">1개월 미만</label><input type="radio" id="1less" name="period" value="1개월미만" required></span>
+                            <span><label for="3less">3개월 미만</label><input type="radio" id="3less" name="period" value="3개월미만" required></span>
+                            <span><label for="6less">6개월 미만</label><input type="radio" id="6less" name="period" value="6개월미만" required></span>
+                            <span><label for="12less">1년 미만</label><input type="radio" id="12less" name="period" value="1년미만" required></span>
+                            <span><label for="12more">1년 이상</label><input type="radio" id="12more" name="period" value="1년이상" required></span>
                         </td>
                     </tr>
                     <tr>
