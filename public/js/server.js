@@ -13,8 +13,8 @@ function onRequest(request, response) {
             collapse_key: 'com.example.bon.project_7',
 
             notification: {
-                title: "대상자가 아직 귀가하지 않았습니다",
-                body: "확인부탁드립니다"
+                title: "まだ対象者が帰宅しませんでした",
+                body: "確認お願いします"
             }
         }
 

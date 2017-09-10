@@ -17,7 +17,7 @@ function sidoList(){
       }
     },
     error:function(){
-      $('#address_si').text('오류가 발생했습니다.');
+      $('#address_si').text('エラーが発生しました');
     }
   });
 }
@@ -40,7 +40,7 @@ function gugunList(sido){
       }
     },
     error:function(){
-      $('#address_si').text('오류가 발생했습니다.');
+      $('#address_si').text('エラーが発生しました');
     }
   });
 }
@@ -63,7 +63,7 @@ function dongList(sido, gugun){
       }
     },
     error:function(){
-      $('#address_si').text('오류가 발생했습니다.');
+      $('#address_si').text('エラーが発生しました');
     }
   });
 }

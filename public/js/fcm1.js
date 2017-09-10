@@ -10,7 +10,7 @@ var message = {
 
     notification: {
         title: "mimamorume",
-        body: "대상자가 외출했습니다"
+        body: "対象者が外出しました"
     }
 }
 
@@ -21,4 +21,3 @@ fcm.send(message, function(err, response) {
             console.log("succeed");
     }
 });
-

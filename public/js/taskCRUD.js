@@ -24,17 +24,17 @@ function viewCal(num){
       console.log(data);
 
       var button = '<button onclick=delCal(' +
-      num + ')>' + '일정 지우기'	+ '</button>';
+      num + ')>' + '日程削除'	+ '</button>';
 
       $("#cal_title").html(data['title']);
       $("#cal_start").html(data['start_month'] +
-    "월 " + data['start_day'] + "일 " +
+    "月 " + data['start_day'] + "日 " +
     data['start_hour'] + ":" + data['start_minute'] +
-    "부터");
+    "から");
       $("#cal_end").html(data['end_month'] +
-    "월 " + data['end_day'] + "일 " +
+    "月 " + data['end_day'] + "日 " +
     data['end_hour'] + ":" + data['end_minute'] +
-    "까지");
+    "まで");
       $("#del_cal").attr('onclick', 'delCal(' + num + ')');
     }
   });

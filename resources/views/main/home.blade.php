@@ -153,7 +153,7 @@
         </div>
         <div class="modal-body">
         @php
-          $days = ["日", "月", "火", "水", "木", "金", "土"];
+          $days = ["日", "月", "火", "水", "木", "金", "土"];
         @endphp
         @for($i = 0; $i < 7; $i++)
           <!--버튼 그룹-->
@@ -187,8 +187,8 @@
           @endfor
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick=createCalMonth({{count($targets)}})>완료</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-primary" onclick=createCalMonth({{count($targets)}})>完了</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取り消し</button>
         </div>
       </div>
     </div>
