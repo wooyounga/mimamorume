@@ -15,7 +15,7 @@ class LoginController extends Controller
 
     public function create() {
         if(Session::get('id')){
-            $alert = '잘못된 접근입니다.';
+            $alert = '誤った処理です';
 
             return redirect('/task')->with('alert',$alert);
         }else{
@@ -42,10 +42,10 @@ class LoginController extends Controller
         }
 
         if($check_id != true ){
-            return redirect()->back()->with('alert', '아이디가 맞지 않습니다.');
+            return redirect()->back()->with('alert', 'アカウントが合わないです');
         }
         if($check_pw != true){
-            return redirect()->back()->with('alert', '비밀번호가 맞지 않습니다.');
+            return redirect()->back()->with('alert', 'パスワードが合わないです');
         }
         if($check_id == true && $check_pw == true){
             Session::set('id', $user_id);

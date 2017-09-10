@@ -16,7 +16,7 @@ class CalendarController extends Controller
       $rows = DB::table('calendar')->get();
 
       if(count($rows) == 0){
-        echo json_encode("DB가 비었습니다.");
+        echo json_encode("DBがありません");
       }
       else{
         echo json_encode($rows);

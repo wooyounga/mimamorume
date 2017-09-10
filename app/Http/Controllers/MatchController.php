@@ -31,11 +31,11 @@ class MatchController extends Controller
                 ->where('addressee_id', Session::get('id'))
                 ->whereNull('notice_check')->count();
 
-            $search = '없음';
+            $search = 'なし';
 
             return view('match.match')->with('match', $match)->with('notice', $notice)->with('search', $search)->with('count',$count);
         } else {
-            $alert = '잘못된 접근입니다.';
+            $alert = '誤った処理です';
 
             return redirect('/')->with('alert', $alert);
         }

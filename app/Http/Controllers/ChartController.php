@@ -57,7 +57,7 @@ class ChartController extends Controller
 
         if($data >= 150) {
             //run node js push
-            $message = "심박수 이상";
+            $message = "心拍数異常";
 //	    $origin = 'UTF-8';
 //	    $newbee = 'EUC-KR';
 
@@ -67,7 +67,7 @@ class ChartController extends Controller
         }
 
 
-	
+
 
     }
 

@@ -131,7 +131,7 @@
                     @endforeach
                 @endif
                 <tr>
-                    @if($user[0]->user_type == '保護者' && $target != 'なし')
+                    @if($user[0]->user_type == '介護職員' && $target != 'なし')
                         <td colspan="5"><a class="btn btn-default pull-right" href="{{route('task.create')}}">登録</a></td>
                     @endif
                 </tr>

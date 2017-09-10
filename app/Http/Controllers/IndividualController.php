@@ -27,7 +27,7 @@ class IndividualController extends Controller
                 ->orderBy('num', 'desc')->get();
 
             $user = \DB::table('user')->where('id',Session::get('id'))->get();
-            if($user[0]->user_type == '보호사'){
+            if($user[0]->user_type == '介護職員'){
                 $etc = DB::table('resume')
                     ->join('user', 'resume.sitter_id', '=', 'user.id')
                     ->join('license', function ($join) {
@@ -44,7 +44,7 @@ class IndividualController extends Controller
             }
             return view('individual.individual')->with('user', $user)->with('etc',$etc)->with('notice',$notice)->with('count',$count);
         }else{
-            $alert = '잘못된 접근입니다.';
+            $alert = '誤った処理です';
 
             return redirect('/')->with('alert',$alert);
         }
@@ -61,7 +61,7 @@ class IndividualController extends Controller
             ->whereNull('notice_check')->count();
 
         $user = \DB::table('user')->where('id', 'user1')->get();
-        if($user[0]->user_type == '보호사'){
+        if($user[0]->user_type == '介護職員'){
             $etc = DB::table('resume')
                 ->join('user', 'resume.sitter_id', '=', 'user.id')
                 ->join('license', 'resume.sitter_id', '=', 'license.sitter_id')

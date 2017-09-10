@@ -42,7 +42,7 @@ class TaskController extends Controller
               'targets' => $t_name
             ])->with('count',$count);
         }else{
-            $alert = '잘못된 접근입니다.';
+            $alert = '誤った処理です';
 
             // return redirect('/')->with('alert',$alert);
             return redirect('/');

@@ -86,7 +86,7 @@ class InformationController extends Controller {
               ->whereNull('notice_check')->count();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
-        if($user[0]->user_type == '보호자') {
+        if($user[0]->user_type == '保護者') {
           $target = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('support.family_id', Session::get('id'))->get();
 
           return view('info.add.target.index')->with('target', $target)->with('notice', $notice)->with('count',$count);
@@ -108,7 +108,7 @@ class InformationController extends Controller {
               ->whereNull('notice_check')->count();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
-        if($user[0]->user_type == '보호자') {
+        if($user[0]->user_type == '保護者') {
           $target = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->get();
 
           return view('info.add.target.create')->with('target', $target)->with('notice', $notice);
@@ -130,7 +130,7 @@ class InformationController extends Controller {
           $filename = 'default.jpg';
         }
 
-        if($user[0]->user_type == '보호자') {
+        if($user[0]->user_type == '保護者') {
           \DB::table('target')->insert([
             'num' => $request->input('num'),
             'name' => $request->input('name'),
@@ -195,7 +195,7 @@ class InformationController extends Controller {
               ->whereNull('notice_check')->count();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
-        if($user[0]->user_type == '보호자') {
+        if($user[0]->user_type == '保護者') {
           $target = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('support.family_id', Session::get('id'))->get();
 
           return view('info.add.target.update')->with('target', $target)->with('notice', $notice)->with('count',$count);
@@ -215,7 +215,7 @@ class InformationController extends Controller {
           Image::make($profile_image)->resize(210, 270)->save(public_path('/images/profile/'.$filename));
         }
 
-        if($user[0]->user_type == '보호자') {
+        if($user[0]->user_type == '保護者') {
           $target = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('support.family_id', Session::get('id'))->get();
           $num = $request->num;
 
@@ -249,7 +249,7 @@ class InformationController extends Controller {
       public function add_destroy() {
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
-        if($user[0]->user_type == '보호자') {
+        if($user[0]->user_type == '保護者') {
           \DB::table('support')->delete();
           \DB::table('target')->delete();
         } else {
@@ -281,7 +281,7 @@ class InformationController extends Controller {
               ->whereNull('notice_check')->count();
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
-        if($user[0]->user_type == '보호자') {
+        if($user[0]->user_type == '保護者') {
           $match = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('family_id', Session::get('id'))->get();
 
           return view('info.match.supporter.list')->with('match', $match)->with('notice', $notice)->with('count',$count);
@@ -299,7 +299,7 @@ class InformationController extends Controller {
               ->whereNull('notice_check')->count();
           $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
-          if($user[0]->user_type == '보호자') {
+          if($user[0]->user_type == '保護者') {
             $match = \DB::table('support')->join('target', 'support.target_num', '=', 'target.num')->where('family_id', Session::get('id'))->get();
             $contract = \DB::table('contract')->where('family_id', Session::get('id'))->get();
 

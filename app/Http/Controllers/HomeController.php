@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         if(Session::get('id')){
-            if(Session::get('user_type') == '관리자'){
+            if(Session::get('user_type') == '管理者'){
                 return redirect('/dashboard');
             }
             else{
@@ -38,7 +38,7 @@ class HomeController extends Controller
                     ->whereNull('notice_check')->count();
                 $user = \DB::table('user')->where('id',Session::get('id'))->get();
 
-                if($user[0]->user_type == '보호자'){
+                if($user[0]->user_type == '保護者'){
                     $contract = \DB::table('contract')->where('family_id',Session::get('id'))->get();
                 }else{
                     $contract = \DB::table('contract')->where('sitter_id',Session::get('id'))->get();
@@ -53,7 +53,7 @@ class HomeController extends Controller
             }
 
         }else{
-            $alert = '잘못된 접근입니다.';
+            $alert = '誤った処理です';
 
             return redirect('/')->with('alert',$alert);
         }

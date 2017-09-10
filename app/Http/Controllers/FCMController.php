@@ -30,7 +30,7 @@ class FCMController extends Controller
           $myMessage = $_GET['message'];
         }
         else{
-          $myMessage = "새글이 등록되었습니다.";
+          $myMessage = "新し書き込みが登録されました";
         }
 
         $message = array("message" => $myMessage);

@@ -34,7 +34,7 @@ class MonitoringController extends Controller
 
             return view('monitor.monitoring')->with('notice',$notice)->with('count',$count);
         }else{
-            $alert = '잘못된 접근입니다.';
+            $alert = '誤った処理です.';
 
             return redirect('/')->with('alert',$alert);
         }

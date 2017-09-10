@@ -21,10 +21,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-      if(Session::get('user_type') == "관리자"){
-	system('node /root/gohtml/mimamo/public/js/fcm.js'.'관리자가 로그인했습니다');
-        $family = \DB::table('user')->where('user_type', '보호자')->get();
-        $supporter = \DB::table('user')->where('user_type', '보호사')->get();
+      if(Session::get('user_type') == "管理者"){
+	system('node /root/gohtml/mimamo/public/js/fcm.js'.'管理者がログインしました');
+        $family = \DB::table('user')->where('user_type', '保護者')->get();
+        $supporter = \DB::table('user')->where('user_type', '介護職員')->get();
         $target = \DB::table('target')->get();
         $contract = \DB::table('contract')->get();
         $notice = \DB::table('notice')
@@ -39,7 +39,7 @@ class DashboardController extends Controller
         ->with('count', $count)->with('notice', $notice);
       }
       else{
-        $alert = '잘못된 접근입니다.';
+        $alert = '誤った処理です';
 
         return redirect('/')->with('alert',$alert);
       }

@@ -32,13 +32,13 @@ class LogSpecController extends Controller
 
             $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
 
-            if($user_type[0]->user_type == '보호사'){
+            if($user_type[0]->user_type == '介護職員'){
                 $log_id = \DB::table('care')->where('sitter_id',Session::get('id'))->get();
 
                 if($log_id == '[]'){
                     $log = '[]';
-                    $target_list = '없음';
-                    $activi = '없음';
+                    $target_list = 'なし';
+                    $activi = 'なし';
                 }else{
                     $log = \DB::table('work_log')
                         ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
@@ -54,7 +54,7 @@ class LogSpecController extends Controller
                     $activi = $target_list[0]->num;
                 }
 
-            }else if($user_type[0]->user_type == '보호자'){
+            }else if($user_type[0]->user_type == '介護職員'){
                 $log_id = \DB::table('contract')->where('family_id',Session::get('id'))->get();
                 $user_target = \DB::table('support')
                     ->join('user','support.family_id','=','user.id')
@@ -89,7 +89,7 @@ class LogSpecController extends Controller
 
             return view('task.logSpec')->with('log',$log)->with('user',$user_type)->with('target',$target_list)->with('num',$activi)->with('notice',$notice)->with('count',$count);
         }else{
-            $alert = '잘못된 접근입니다.';
+            $alert = '誤った処理です';
 
             return redirect('/')->with('alert',$alert);
         }
@@ -162,8 +162,8 @@ class LogSpecController extends Controller
 
         if($log_id == '[]'){
             $log = '[]';
-            $target_list = '없음';
-            $activi = '없음';
+            $target_list = 'なし';
+            $activi = 'なし';
         }else{
             $log = \DB::table('work_log')
                 ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
@@ -193,7 +193,7 @@ class LogSpecController extends Controller
         $count = \DB::table('notice')
             ->where('addressee_id', Session::get('id'))
             ->whereNull('notice_check')->count();
-    
+
         $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
 
         $sitter = \DB::table('care')
@@ -208,7 +208,7 @@ class LogSpecController extends Controller
             $stter_id = $sitter[0]->sitter_id;
         }
 
-        if($user_type[0]->user_type == '보호사'){
+        if($user_type[0]->user_type == '介護職員'){
             $target_list = \DB::table('care')
                 ->join('target','care.target_num','=','target.num')
                 ->where('sitter_id',Session::get('id'))
@@ -279,7 +279,7 @@ class LogSpecController extends Controller
             $stter_id = $sitter[0]->sitter_id;
         }
 
-        if($user_type[0]->user_type == '보호사'){
+        if($user_type[0]->user_type == '介護職員'){
             $target_list = \DB::table('care')
                 ->join('target','care.target_num','=','target.num')
                 ->where('sitter_id',Session::get('id'))
@@ -320,7 +320,7 @@ class LogSpecController extends Controller
     public function appIndex(Request $request){
         $user_type = \DB::table('user')->where('id',$request->get('id'))->get();
 
-        if($user_type[0]->user_type == '보호사'){
+        if($user_type[0]->user_type == '介護職員'){
             $log = \DB::table('work_log')
                 ->join('work_content', 'work_log.num', '=', 'work_content.log_num')
                 ->join('target','work_log.target_num','=','target.num')
@@ -333,7 +333,7 @@ class LogSpecController extends Controller
             $log_id = \DB::table('contract')->where('family_id', $request->get('id'))->get();
 
             if ($log_id == '[]') {
-                $log = '없음';
+                $log = 'なし';
             } else {
                 $log = \DB::table('work_log')
                     ->join('work_content', 'work_log.num', '=', 'work_content.log_num')

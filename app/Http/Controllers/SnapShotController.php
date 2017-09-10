@@ -35,7 +35,7 @@ class SnapShotController extends Controller
 
             $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
 
-            if($user_type[0]->user_type == '보호사'){
+            if($user_type[0]->user_type == '介護職員'){
                 $target_list = \DB::table('care')
                     ->join('target','care.target_num','=','target.num')
                     ->where('sitter_id',Session::get('id'))
@@ -62,7 +62,7 @@ class SnapShotController extends Controller
 
             return view('monitor.snapshot')->with('target',$target_list)->with('snapshot',$snapshot)->with('num',$activi)->with('notice',$notice)->with('count',$count);
         }else{
-            $alert = '잘못된 접근입니다.';
+            $alert = '誤った処理です';
 
             return redirect('/')->with('alert',$alert);
         }
@@ -80,7 +80,7 @@ class SnapShotController extends Controller
 
             $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
 
-            if($user_type[0]->user_type == '보호사'){
+            if($user_type[0]->user_type == '介護職員'){
                 $target_list = \DB::table('care')
                     ->join('target','care.target_num','=','target.num')
                     ->where('sitter_id',Session::get('id'))
@@ -103,7 +103,7 @@ class SnapShotController extends Controller
 
             return view('monitor.snapshot')->with('target',$target_list)->with('snapshot',$snapshot)->with('num',$activi)->with('notice',$notice)->with('count',$count);
         }else{
-            $alert = '잘못된 접근입니다.';
+            $alert = '誤った処理です';
 
             return redirect('/')->with('alert',$alert);
         }
@@ -121,7 +121,7 @@ class SnapShotController extends Controller
 
             $user_type = \DB::table('user')->where('id',Session::get('id'))->get();
 
-            if($user_type[0]->user_type == '보호사'){
+            if($user_type[0]->user_type == '介護職員'){
                 $target_list = \DB::table('care')
                     ->join('target','care.target_num','=','target.num')
                     ->where('sitter_id',Session::get('id'))
@@ -143,7 +143,7 @@ class SnapShotController extends Controller
 
             return view('monitor.snapshot')->with('target',$target_list)->with('snapshot',$snapshot)->with('num',$activi)->with('notice',$notice)->with('count',$count);
         }else{
-            $alert = '잘못된 접근입니다.';
+            $alert = '誤った処理です';
 
             return redirect('/')->with('alert',$alert);
         }
@@ -208,7 +208,7 @@ class SnapShotController extends Controller
         foreach($result as $value) {
             $json = [
                 "image_url" => $value->upload_name,
-		"user_name" => "이현필",
+		"user_name" => "イ・ヒョンピル",
 		"snapshot_type" => $value->snapshot_type,
 		"date" => $value->created_at
             ];
