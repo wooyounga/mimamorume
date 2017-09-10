@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    개인정보 수정
+    個人情報修正
 @endsection
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -150,13 +150,13 @@
                     <input id="age" type="text" class="form-control" name="age" value="{{ $user[0]->age }}" required autofocus>
                 </div>
             </div>
-            @if($user[0]->gender == '남')
+            @if($user[0]->gender == '男')
                 <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
                     <label for="gender" class="col-md-4 control-label">性別</label>
 
                     <div class="col-md-6">
-                        <label for="man">男</label><input id="man" type="radio" name="gender" value="남" checked>
-                        <label for="woman">女</label><input id="woman" type="radio" name="gender" value="여">
+                        <label for="man">男</label><input id="man" type="radio" name="gender" value="男" checked>
+                        <label for="woman">女</label><input id="woman" type="radio" name="gender" value="女">
                     </div>
                 </div>
             @else
@@ -164,8 +164,8 @@
                     <label for="gender" class="col-md-4 control-label">性別</label>
 
                     <div class="col-md-6">
-                        <label for="man">男</label><input id="man" type="radio" name="gender" value="남">
-                        <label for="woman">女</label><input id="woman" type="radio" name="gender" value="여" checked>
+                        <label for="man">男</label><input id="man" type="radio" name="gender" value="男">
+                        <label for="woman">女</label><input id="woman" type="radio" name="gender" value="女" checked>
                     </div>
                 </div>
             @endif
@@ -213,7 +213,7 @@
 
                 </div>
             </div>
-            @if($user[0]->user_type=='보호사')
+            @if($user[0]->user_type=='介護職員')
             <div class="care_div">
                 @if($etc[0]->lisence == 'yes')
                     <div class="form-group{{ $errors->has('certified') ? ' has-error' : '' }}">
@@ -343,15 +343,15 @@
                     <label for="disability" class="col-md-4 control-label">障害種類(主)</label>
                     <div class="col-md-6">
                         <select id="disability" class="form-control" name="disability" required autofocus>
-                            <option value="장애없음">無</option>
-                            <option value="지체장애">肢体障害</option>
-                            <option value="시각장애">視覚障害</option>
-                            <option value="청각장애">聴覚障害</option>
-                            <option value="언어장애">言語障害장애</option>
-                            <option value="안면장애">顔面障害</option>
-                            <option value="뇌병변장애">脳血管障害</option>
-                            <option value="지적장애">知的障害</option>
-                            <option value="자폐성장애">自閉症障害</option>
+                            <option value="無">無</option>
+                            <option value="肢体障害">肢体障害</option>
+                            <option value="視覚障害">視覚障害</option>
+                            <option value="聴覚障害">聴覚障害</option>
+                            <option value="言語障害">言語障害</option>
+                            <option value="顔面障害">顔面障害</option>
+                            <option value="脳血管障害">脳血管障害</option>
+                            <option value="知的障害">知的障害</option>
+                            <option value="自閉症障害">自閉症障害</option>
                         </select>
                     </div>
                 </div>
@@ -359,7 +359,7 @@
                     <label for="disability_2" class="col-md-4 control-label">障害種類(副)</label>
 
                     <div class="col-md-6">
-                        <input id="disability_2" type="text" class="form-control" name="disability_2" value="{{ old('disability_2') }}" required autofocus placeholder="없을 경우 없음을 입력해주십시오.">
+                        <input id="disability_2" type="text" class="form-control" name="disability_2" value="{{ old('disability_2') }}" required autofocus placeholder="ない場合は「なし」を入力してください">
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('special ') ? ' has-error' : '' }}">
@@ -373,7 +373,7 @@
             @endif
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
-                    @if($user[0]->user_type == '보호사')
+                    @if($user[0]->user_type == '介護職員')
                         <a class="btn btn-primary certified_btn">
                             資格追加
                         </a>

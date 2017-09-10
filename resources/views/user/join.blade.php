@@ -71,8 +71,8 @@
 
                           <div class="col-md-6">
                               <select id="user_type" class="form-control" name="user_type">
-                                <option value="보호자">保護者</option>
-                                <option value="보호사">介護士</option>
+                                <option value="保護者">保護者</option>
+                                <option value="介護職員">介護職員</option>
                               </select>
                           </div>
                       </div>

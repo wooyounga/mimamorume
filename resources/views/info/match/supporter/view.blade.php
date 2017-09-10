@@ -113,7 +113,7 @@
 
                     <div class="col-md-6">
                       @if ($match[0]->disability_sub == null)
-                        없음
+                        なし
                       @else
                         {{ $match[0]->disability_sub }}
                       @endif
@@ -125,7 +125,7 @@
 
                     <div class="col-md-6">
                       @if ($match[0]->comment == null)
-                        없음
+                        なし
                       @else
                         {{ $match[0]->comment }}
                       @endif

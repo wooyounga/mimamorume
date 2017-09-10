@@ -19,5 +19,14 @@ class MedicineScheduleTableSeeder extends Seeder
             'end_date' => '2017/06/20',
             'time' => '2017/06/20 3:00'
         ]);
+
+        DB::table('medicine_schedule')->insert([
+            'num' => null,
+            'log_num' => 3,
+            'medicine_name' => '頭痛薬',
+            'start_date' => '2017/08/11',
+            'end_date' => '2017/08/20',
+            'time' => '2017/08/20 1:00'
+        ]);
     }
 }

@@ -65,7 +65,7 @@
         </div>
         <div class="wrap">
             <ul class="nav nav-tabs">
-                @if($target !== '없음')
+                @if($target !== 'なし')
                     @foreach($target as $t)
                         <script>
                             function filter(filter){
@@ -131,7 +131,7 @@
                     @endforeach
                 @endif
                 <tr>
-                    @if($user[0]->user_type == '보호사' && $target != '없음')
+                    @if($user[0]->user_type == '保護者' && $target != 'なし')
                         <td colspan="5"><a class="btn btn-default pull-right" href="{{route('task.create')}}">登録</a></td>
                     @endif
                 </tr>

@@ -173,15 +173,15 @@
 
                     <div class="col-md-6">
                       <select id="disability_main" class="form-control" name="disability_main" value="{{ $target[0]->disability_main }}">
-                          <option value="장애없음">無</option>
-                          <option value="지체장애">肢体障害</option>
-                          <option value="시각장애">視覚障害</option>
-                          <option value="청각장애">聴覚障害</option>
-                          <option value="언어장애">言語障害</option>
-                          <option value="안면장애">顔面障害</option>
-                          <option value="뇌병변장애">脳血管障害</option>
-                          <option value="지적장애">知的障害</option>
-                          <option value="자폐성장애">自閉症障害</option>
+                          <option value="無">無</option>
+                          <option value="肢体障害">肢体障害</option>
+                          <option value="視覚障害">視覚障害</option>
+                          <option value="聴覚障害">聴覚障害</option>
+                          <option value="言語障害">言語障害</option>
+                          <option value="顔面障害">顔面障害</option>
+                          <option value="脳血管障害">脳血管障害</option>
+                          <option value="知的障害">知的障害</option>
+                          <option value="自閉症障害">自閉症障害</option>
                       </select>
                     </div>
                 </div>

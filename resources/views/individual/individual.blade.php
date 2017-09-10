@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    개인정보
+    個人情報
 @endsection
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -49,7 +49,7 @@
                 {{$user[0]->cellphone}}
             </div>
             <br>
-            @if($user[0]->user_type == '보호사')
+            @if($user[0]->user_type == '介護職員')
                 <div class="individual">
                     <h3>資格</h3>
                     @foreach($etc as $e)

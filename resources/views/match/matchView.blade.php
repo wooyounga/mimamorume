@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    구인구직
+    求人
 @endsection
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -21,7 +21,7 @@
         }
 
         function matchConfirm(url){
-            if(confirm("정말로 매칭신청하겠습니까?")){
+            if(confirm("本当に申請しますか？")){
                 var target = $('#target_num').val();
                 if(target == null){
                     target = '없음';
@@ -31,7 +31,7 @@
             }
         }
         function destConfirm(url){
-            if(confirm("정말로 삭제하겠습니까?")){
+            if(confirm("本当に消しますか？?")){
                 location.href=url;
             }
         }

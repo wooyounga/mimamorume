@@ -53,7 +53,7 @@ function createCalMonth(targetNum){
 // 인자 : 몇 월, 무슨 요일(한글)
 function getTargetDays(targetMonth, targetDayKor){
 
-  var daysKor = ["일", "월", "화", "수", "목", "금", "토"];
+  var daysKor = ["日", "月", "火", "水", "木", "金", "土"];
 
   // 무슨 요일인지를 한글로 인자로 받으면
   // 숫자로 변환하여 Date객체와 계산이 가능하게 만듦

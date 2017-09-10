@@ -57,7 +57,7 @@
                           <label for="age" class="col-md-4 control-label">年齢</label>
 
                           <div class="col-md-6">
-                              {{ $user[0]->age.'세' }}
+                              {{ $user[0]->age.'歳' }}
                           </div>
                       </div>
 

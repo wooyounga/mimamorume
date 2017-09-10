@@ -71,7 +71,7 @@
       <td class="content" colspan="2">氏名 : {{ $target[0]->name }}</td>
     </tr>
     <tr>
-      <td class="content" colspan="2">年齢 : {{ $target[0]->age }}세</td>
+      <td class="content" colspan="2">年齢 : {{ $target[0]->age }}歳</td>
     </tr>
     <tr>
       <td class="content" colspan="2">性別 : {{ $target[0]->gender }}</td>

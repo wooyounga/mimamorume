@@ -7,10 +7,10 @@
 @section('content')
 <div id="bgimg">
   <div class="page_title">
-    관리자 페이지
+    管理者ページ
   </div>
   <br>
-  <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/dashboard')}}">관리자 페이지</a>
+  <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/dashboard')}}">管理者ページ</a>
 </div>
 <style>
   #bgimg{
@@ -41,17 +41,17 @@
       <div class="col-md-12">
           <div class="box box-default">
             <div class="box-header with-border">
-              <h3 class="box-title">공지사항</h3>
+              <h3 class="box-title">お知らせ</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table>
                 <tr>
-                  <th>번호</th>
-                  <th>제목</th>
-                  <th>작성자</th>
-                  <th>날짜</th>
-                  <th>조회 수</th>
+                  <th>番号</th>
+                  <th>タイトル</th>
+                  <th>作成者</th>
+                  <th>日付</th>
+                  <th>クリック数</th>
                 </tr>
                 <tr>
                   <td></td>
@@ -75,13 +75,13 @@
           <div class="inner">
             <h3>{{ count($family) }}</h3>
 
-            <p>보호자</p>
+            <p>保護者</p>
           </div>
           <div class="icon">
             <img src="images/family.png" alt="family" style="width: 70px;">
           </div>
           {{-- <a href="#" class="family-info small-box-footer">
-            상세 정보</i>
+            詳細情報</i>
           </a> --}}
         </div>
       </div>
@@ -92,13 +92,13 @@
           <div class="inner">
             <h3>{{ count($supporter) }}</h3>
 
-            <p>보호사</p>
+            <p>介護職員</p>
           </div>
           <div class="icon">
             <img src="images/supporter.png" alt="supporter" style="width: 80px;">
           </div>
           {{-- <a href="#" class="supporter-info small-box-footer">
-            상세 정보</i>
+            詳細情報</i>
           </a> --}}
         </div>
       </div>
@@ -109,13 +109,13 @@
           <div class="inner">
             <h3>{{ count($target) }}</h3>
 
-            <p>보호 대상</p>
+            <p>保護対象</p>
           </div>
           <div class="icon">
             <img src="images/target.png" alt="target" style="width: 80px;">
           </div>
           {{-- <a href="#" class="target-info small-box-footer">
-            상세 정보</i>
+            詳細情報</i>
           </a> --}}
         </div>
       </div>
@@ -126,13 +126,13 @@
           <div class="inner">
             <h3>{{ count($contract) }}</h3>
 
-            <p>계약 정보</p>
+            <p>契約情報</p>
           </div>
           <div class="icon">
             <img src="images/hands.png" alt="hands" style="width: 80px;">
           </div>
           {{-- <a href="#" class="contract-info small-box-footer">
-            상세 정보</i>
+            詳細情報</i>
           </a> --}}
         </div>
       </div>
@@ -143,22 +143,22 @@
       <div class="col-md-12">
           <div class="box box-blue open-box">
             <div class="box-header with-border">
-              <h3 class="box-title">보호자 상세 정보</h3>
+              <h3 class="box-title">保護者詳細情報</h3>
 
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table class="col-lg-12" style="text-align: center">
                 <tr>
-                  <th style="text-align: center">아이디</th>
-                  <th style="text-align: center">이름</th>
-                  <th style="text-align: center">나이</th>
-                  <th style="text-align: center">성별</th>
-                  <th style="text-align: center">이메일</th>
-                  <th style="text-align: center">집 전화번호</th>
-                  <th style="text-align: center">휴대 전화번호</th>
-                  <th style="text-align: center">주소</th>
-                  <th style="text-align: center">보호 대상</th>
+                  <th style="text-align: center">アカウント</th>
+                  <th style="text-align: center">名前</th>
+                  <th style="text-align: center">年齢</th>
+                  <th style="text-align: center">性別</th>
+                  <th style="text-align: center">イーメール</th>
+                  <th style="text-align: center">電話番号</th>
+                  <th style="text-align: center">携帯番号</th>
+                  <th style="text-align: center">アドレス</th>
+                  <th style="text-align: center">保護対象</th>
                 </tr>
                 @foreach($family as $f)
                 <tr>
@@ -170,7 +170,7 @@
                   <td>{{ $f->telephone }}</td>
                   <td>{{ $f->cellphone }}</td>
                   <td>{{ $f->main_address }} {{ $f->rest_address }}</td>
-                  <td>1. 김성용</td>
+                  <td>1. キム・ソンヨン</td>
                 </tr>
                 @endforeach
               </table>
@@ -185,22 +185,22 @@
       <div class="col-md-12">
           <div class="box box-green open-box">
             <div class="box-header with-border">
-              <h3 class="box-title">보호사 상세 정보</h3>
+              <h3 class="box-title">介護職員詳細情報</h3>
 
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table class="col-lg-12" style="text-align: center">
                 <tr>
-                  <th style="text-align: center">아이디</th>
-                  <th style="text-align: center">이름</th>
-                  <th style="text-align: center">나이</th>
-                  <th style="text-align: center">성별</th>
-                  <th style="text-align: center">이메일</th>
-                  <th style="text-align: center">집 전화번호</th>
-                  <th style="text-align: center">휴대 전화번호</th>
-                  <th style="text-align: center">주소</th>
-                  <th style="text-align: center">자격증</th>
+                  <th style="text-align: center">アカウント</th>
+                  <th style="text-align: center">名前</th>
+                  <th style="text-align: center">年齢</th>
+                  <th style="text-align: center">性別</th>
+                  <th style="text-align: center">イーメール</th>
+                  <th style="text-align: center">電話番号</th>
+                  <th style="text-align: center">携帯番号</th>
+                  <th style="text-align: center">アドレス</th>
+                  <th style="text-align: center">資格</th>
                 </tr>
                 @foreach($supporter as $s)
                 <tr>
@@ -212,7 +212,7 @@
                   <td>{{ $s->telephone }}</td>
                   <td>{{ $s->cellphone }}</td>
                   <td>{{ $s->main_address }} {{ $s->rest_address }}</td>
-                  <td>장애인활동보조인 위수증</td>
+                  <td>障害者活動補助人衛戍症</td>
                 </tr>
                 @endforeach
               </table>
@@ -227,22 +227,22 @@
       <div class="col-md-12">
           <div class="box box-yellow open-box">
             <div class="box-header with-border">
-              <h3 class="box-title">대상자 상세 정보</h3>
+              <h3 class="box-title">対象者詳細情報</h3>
 
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table class="col-lg-12" style="text-align: center">
                 <tr>
-                  <th style="text-align: center">대상 번호</th>
-                  <th style="text-align: center">이름</th>
-                  <th style="text-align: center">나이</th>
-                  <th style="text-align: center">성별</th>
-                  <th style="text-align: center">집 전화번호</th>
-                  <th style="text-align: center">휴대 전화번호</th>
-                  <th style="text-align: center">주소</th>
-                  <th style="text-align: center">장애 종류</th>
-                  <th style="text-align: center">특이사항</th>
+                  <th style="text-align: center">対象番号</th>
+                  <th style="text-align: center">名前</th>
+                  <th style="text-align: center">年齢</th>
+                  <th style="text-align: center">性別</th>
+                  <th style="text-align: center">電話番号</th>
+                  <th style="text-align: center">携帯番号</th>
+                  <th style="text-align: center">アドレス</th>
+                  <th style="text-align: center">障害種類</th>
+                  <th style="text-align: center">特異事項</th>
                 </tr>
                 @foreach($target as $t)
                 <tr>
@@ -269,18 +269,18 @@
       <div class="col-md-12">
           <div class="box box-red open-box">
             <div class="box-header with-border">
-              <h3 class="box-title">계약 상세 정보</h3>
+              <h3 class="box-title">契約詳細情報</h3>
 
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table class="col-lg-12" style="text-align: center">
                 <tr>
-                  <th style="text-align: center">보호자 아이디</th>
-                  <th style="text-align: center">보호사 아이디</th>
-                  <th style="text-align: center">계약 기간</th>
-                  <th style="text-align: center">계약 시작</th>
-                  <th style="text-align: center">계약 종료</th>
+                  <th style="text-align: center">保護者アカウント</th>
+                  <th style="text-align: center">介護職員アカウント</th>
+                  <th style="text-align: center">契約期間</th>
+                  <th style="text-align: center">契約開始日</th>
+                  <th style="text-align: center">契約終了日</th>
                 </tr>
                 <tr>
                   <td>{{ $contract[0]->family_id }}</td>
@@ -304,7 +304,7 @@
           <div class="box-header with-border">
             <i class="fa fa-bar-chart-o"></i>
 
-            <h3 class="box-title">보호자 접속 현황</h3>
+            <h3 class="box-title">保護者接続現況</h3>
           </div>
           <div class="box-body">
             <div id="interactive" style="height: 300px; padding: 0px; position: relative;">
@@ -341,7 +341,7 @@
             <div class="box-header with-border">
               <i class="fa fa-bar-chart-o"></i>
 
-              <h3 class="box-title">보호사 접속 현황</h3>
+              <h3 class="box-title">介護職員接続現況</h3>
             </div>
             <div class="box-body">
               <div id="interactive" style="height: 300px; padding: 0px; position: relative;">

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    구인구직
+    求人
 @endsection
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>

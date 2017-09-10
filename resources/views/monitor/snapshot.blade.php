@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    스냅샷 열람
+    スナップショット撮影記録
 @endsection
 
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
