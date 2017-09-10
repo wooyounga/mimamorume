@@ -14,9 +14,9 @@ class LicenseTableSeeder extends Seeder
         DB::table('license')->insert([
             'license_num' => '1501073',
             'sitter_id' => 'user1',
-            'license_kind' => '요양보호사',
-            'license_grade' => '1급',
-            'institution' => '대한한국 보건복지부'
+            'license_kind' => '介護職人',
+            'license_grade' => '1級',
+            'institution' => '厚生労働省'
         ]);
     }
 }

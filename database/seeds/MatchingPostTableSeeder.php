@@ -11,11 +11,11 @@ class MatchingPostTableSeeder extends Seeder
      */
     public function run()
     {
-        $title = ["대상자 구합니다", "일하고 싶습니다", "자격증 있습니다", "경력 30년", "가족처럼 대합니다"];
+        $title = ["介護が必要な方を探します", "働きたいです", "資格あります", "介護経歴30年です", "家族のように対します"];
 
-        $age = ["20대", "50대", "40대", "30대", "60대 이상"];
+        $age = ["20代", "50代", "40代", "30代", "60代以上"];
 
-        $disability = ["자폐성장애", "지체장애", "청각장애", "안면장애", "언어장애"];
+        $disability = ["自閉性障害", "肢体障害", "聴覚障害", "顔面障害", "言語障害"];
 
         for($i = 0; $i < 5; $i++){
           DB::table('matching_post')->insert([
@@ -23,22 +23,22 @@ class MatchingPostTableSeeder extends Seeder
              "user_id" => "user1",
              "target_num" => null,
              "title" => $title[$i],
-             "content" => "월급 100 이상 근무시간 30분 이하",
-             "roadAddress" => "대구 북구 복현동",
-             'gender' => "남성",
+             "content" => "月給100以上、勤務時間1時間以内",
+             "roadAddress" => "東京都",
+             'gender' => "男性",
              'age' => $age[$i],
              'disability'=> $disability[$i],
-             'work_day' => "주 5회",
-             'work_period' => "3개월 미만",
+             'work_day' => "週5回",
+             'work_period' => "3ヶ月未満",
              'view' => "0",
           ]);
         }
 
-        $title = ["보호사 구합니다", "우리 가족이 활동하고 싶어 합니다", "장애인 관련 자격증 있으신 분", "경력 3년 이상", "가족 같은 분 구합니다"];
+        $title = ["親切な方を願います", "母親が体が良くないです", "視覚を持っている方を探しています", "介護経歴のずいぶんある方を願います", "家族みたいに優しい人を探しています"];
 
-        $age = ["20대", "50대", "40대", "30대", "60대 이상"];
+        $age = ["20代", "50代", "40代", "30代", "60代以上"];
 
-        $disability = ["자폐성장애", "지체장애", "청각장애", "안면장애", "언어장애"];
+        $disability = ["自閉性障害", "肢体障害", "聴覚障害", "顔面障害", "言語障害"];
 
         for($i = 0; $i < 5; $i++){
           DB::table('matching_post')->insert([
@@ -46,13 +46,13 @@ class MatchingPostTableSeeder extends Seeder
              "user_id" => "user2",
              "target_num" => "1",
              "title" => $title[$i],
-             "content" => "월급 100 이상 근무시간 30분 이하",
-             "roadAddress" => "대구 북구 복현동",
-             'gender' => "여성",
+             "content" => "月給100以上、勤務時間1時間以内",
+             "roadAddress" => "東京都",
+             'gender' => "女性",
              'age' => $age[$i],
              'disability' => $disability[$i],
-             'work_day' => "주 5회",
-             'work_period' => "3개월 미만",
+             'work_day' => "週5回",
+             'work_period' => "3ヶ月未満",
              'view' => "0",
           ]);
         }

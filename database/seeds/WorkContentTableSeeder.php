@@ -14,15 +14,15 @@ class WorkContentTableSeeder extends Seeder
         DB::table('work_content')->insert([
             'num'=>null,
             'log_num'=>'1',
-            'content_type'=>'가사',
-            'content'=>'오늘ㄹ도 열시미 놀앗따 ~끝~',
+            'content_type'=>'介護',
+            'content'=>'咳が少し出るぐらい',
         ]);
-        
+
         DB::table('work_content')->insert([
             'num'=>null,
-            'log_num'=>'3',
-            'content_type'=>'가사',
-            'content'=>'빌런놀이를 해따~~`',
+            'log_num'=>'2',
+            'content_type'=>'介護',
+            'content'=>'特に問題なし',
         ]);
     }
 }

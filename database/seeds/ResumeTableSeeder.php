@@ -14,8 +14,8 @@ class ResumeTableSeeder extends Seeder
         DB::table('resume')->insert([
             'sitter_id' => 'user1',
             'license' => 'yes',
-            'center' => '영진전문대학',
-            'career' => '3년',
+            'center' => '永進介護施設',
+            'career' => '3年',
             'profile_image' => 'Woo.jpg',
         ]);
     }

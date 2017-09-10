@@ -14,7 +14,7 @@ class ContractTableSeeder extends Seeder
       DB::table('contract')->insert([
           'family_id' => 'user2',
           'sitter_id' => 'user1',
-          'work_week' => '주 1회',
+          'work_week' => '週1回',
           'work_start' => '2017-06-23',
           'work_end' => '2017-06-30',
           'work_start_time' => '9:00',
