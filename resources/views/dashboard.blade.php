@@ -297,7 +297,7 @@
         </div>
     </div>
 
-    <div class="graph">
+    {{-- <div class="graph">
       <div class="col-xs-6">
         <!-- interactive chart -->
         <div class="box box-solid box-primary">
@@ -371,7 +371,7 @@
           <!-- /.box -->
 
         </div>
-    </div>
+    </div> --}}
 
   </div>
 </div>

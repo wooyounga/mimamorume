@@ -115,7 +115,7 @@ class InformationController extends Controller {
         } else {
           $resume_count = \DB::table('resume')->get();
 
-          return view('info.add.supporter.create')->with('resume', $resume_count)->with('notice', $notice);
+          return view('info.add.supporter.create')->with('resume', $resume_count)->with('notice', $notice)->with('count',$count);
         }
       }
 
