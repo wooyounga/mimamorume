@@ -15,30 +15,40 @@ class GpsController extends Controller
     public function getUserGps(Request $request) {
         $lat = $request->input('lat');
         $lng = $request->input('lng');
-	
+        $targetPhone = $request->input('phone');
 
-//	$targetNum = $target[0]['num'];
-//	$targetAddressLat = $target[0]['latitude'];
-//	$targetAddressLon = $target[0]['longitude'];
-	
-	$this->gpsInsert($lat, $lng);
+	$target = \DB::table('target')
+	    ->where('cellphone', $targetPhone)
+	    ->get();
 
-//	$gpsDistance = $this->calculateDistance($lat, $lng, $targetAddressLat, $targetAddressLon);
-//	if($gpsDistance >= 150) {
+	$targetNum = $target[0]['num'];
+	$targetAddressLat = $target[0]['latitude'];
+	$targetAddressLon = $target[0]['longitude'];
+	
+	\DB::table('gps_data')->insert([
+	    'num' => null,
+	    'latitude' => $lat,
+	    'longitude' => $lng,
+	    'target_num' => 1,
+	    'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+	]);
+
+	$gpsDistance = $this->calculateDistance($lat, $lng, $targetAddressLat, $targetAddressLon);
+	if($gpsDistance >= 150) {
 	   //push
-//	    $message = "외출";
-//	    system('node ./js/fcm.js'.$message);
-//	    system('node ./js/client.js');
-//	}
+	    //$message = "외출";
+	    //system('node ./js/fcm.js'.$message);
+	    //system('node ./js/client.js');
+	}
     }
 
     //gps data insert in Database
-    private function gpsInsert($lat, $lng) {
+    private function gpsInsert($lat, $lng, $targetNum) {
  	\DB::table('gps_data')->insert([
 	    'num' => null,
 	    'latitude' => $lat,
 	    'longitude' => $lng,
-	    'target_num' => 3,
+	    'target_num' => $targetNum,
 	    'created_at' => Carbon::now()->format('Y-m-d H:i:s')
 	]);
     }

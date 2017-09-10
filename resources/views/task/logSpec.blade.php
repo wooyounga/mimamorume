@@ -23,10 +23,10 @@
     @endif
     <div id="bgimg">
       <div class="page_title">
-        업무일지
+        業務日誌
       </div>
       <br>
-      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/task')}}">근무</a> > <a href="{{URL::to('/logSpec')}}"><b>업무일지</b></a>
+      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/task')}}">勤務</a> > <a href="{{URL::to('/logSpec')}}"><b>業務日誌</b></a>
     </div>
     <style>
       #bgimg{
@@ -56,12 +56,12 @@
     </style>
     <div class="body">
         <div style="margin-top: 30px;">
-            <input onclick="home()" type="button" value="전체보기" class="btn btn-default">
-            <input onclick="filter(7)" type="button" value="1주일" class="btn btn-default">
-            <input onclick="filter(1)" type="button" value="1개월" class="btn btn-default">
-            <input onclick="filter(3)" type="button" value="3개월" class="btn btn-default">
-            <input onclick="filter(6)" type="button" value="6개월" class="btn btn-default">
-            <input onclick="filter(12)" type="button" value="1년" class="btn btn-default">
+            <input onclick="home()" type="button" value="全体" class="btn btn-default">
+            <input onclick="filter(7)" type="button" value="１週間" class="btn btn-default">
+            <input onclick="filter(1)" type="button" value="1ヶ月" class="btn btn-default">
+            <input onclick="filter(3)" type="button" value="3ヶ月" class="btn btn-default">
+            <input onclick="filter(6)" type="button" value="6ヶ月" class="btn btn-default">
+            <input onclick="filter(12)" type="button" value="1年" class="btn btn-default">
         </div>
         <div class="wrap">
             <ul class="nav nav-tabs">
@@ -103,14 +103,14 @@
                 }
               </style>
                 <tr id="table_head">
-                    <td>번호</td>
-                    <td>내용</td>
-                    <td>작성자</td>
-                    <td>근무날짜</td>
+                    <td>ナンバー</td>
+                    <td>内容</td>
+                    <td>作成者</td>
+                    <td>勤務日付</td>
                 </tr>
                 @if($log == '[]')
                     <tr>
-                        <td colspan="4" style="text-align: center; padding: 50px;">등록된 업무일지가 없습니다.</td>
+                        <td colspan="4" style="text-align: center; padding: 50px;">登録された業務日誌がありません。</td>
                     </tr>
                 @else
                     @foreach($log as $l)
@@ -132,7 +132,7 @@
                 @endif
                 <tr>
                     @if($user[0]->user_type == '보호사' && $target != '없음')
-                        <td colspan="5"><a class="btn btn-default pull-right" href="{{route('task.create')}}">등록</a></td>
+                        <td colspan="5"><a class="btn btn-default pull-right" href="{{route('task.create')}}">登録</a></td>
                     @endif
                 </tr>
                 <tr class="text-center">

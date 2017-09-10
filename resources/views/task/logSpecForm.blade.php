@@ -35,10 +35,10 @@
     @endif
     <div id="bgimg">
       <div class="page_title">
-        업무일지
+        業務日誌
       </div>
       <br>
-      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a onclick="formConfirm('{{URL::to('/task')}}')">근무</a> > <a onclick="formConfirm('{{URL::to('/logSpec')}}')"><b>업무일지</b></a>
+      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a onclick="formConfirm('{{URL::to('/task')}}')">勤務</a> > <a onclick="formConfirm('{{URL::to('/logSpec')}}')"><b>業務日誌</b></a>
     </div>
     <style>
       #bgimg{
@@ -72,7 +72,7 @@
                 {{csrf_field()}}
                 <table class="table">
                     <tr>
-                        <td>대상자명</td>
+                        <td>対象の氏名</td>
                         <td>
                             <select class="form-control" name="target_name">
                                 @foreach($target as $t)
@@ -82,7 +82,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>근무 일자</td>
+                        <td>勤務日付</td>
                         <td>
                             <input type="text" class="form-control" name="date" value="">
                             <script type="text/javascript">
@@ -93,26 +93,26 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>업무 유형</td>
+                        <td>業務類型</td>
                         <td>
                             <select class="form-control" name="content_type">
-                                <option>가사</option>
-                                <option>돌봄</option>
-                                <option>기타</option>
+                                <option>家事</option>
+                                <option>介護</option>
+                                <option>その他</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
-                        <td>약 이름</td>
+                        <td＞薬名</td>
                         <td>
                             <input type="text" class="form-control" name="medicine_name" required>
                         </td>
                     </tr>
                     <tr>
-                        <td>약 복용</td>
+                        <td>服薬</td>
                         <td>
                             <div class="form-group form-inline">
-                                <label for="start">약복용 시간 및 시작날짜</label>
+                                <label for="start">服薬時間や開始日付</label>
                                 <input type="text" id="start" name="dateStart" value="" class="form-control" style="margin: 0 20px" required>
                                 <script type="text/javascript">
                                     $(function(){
@@ -121,7 +121,7 @@
                                         });
                                     });
                                 </script>
-                                <label for="end">약복용 시간 및 완료날짜</label>
+                                <label for="end">服薬時間や完了日付</label>
                                 <input type="text" id="end" name="dateEnd" value="" class="form-control" style="margin: 0 20px" required>
                                 <script type="text/javascript">
                                     $(function(){
@@ -141,7 +141,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <button type="submit" class="btn btn-default pull-right" style="margin-top:10px;">작성</button>
+                            <button type="submit" class="btn btn-default pull-right" style="margin-top:10px;">作成</button>
                         </td>
                     </tr>
                 </table>

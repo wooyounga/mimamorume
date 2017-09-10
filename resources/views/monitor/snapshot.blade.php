@@ -72,10 +72,10 @@
     @endif
     <div id="bgimg">
       <div class="page_title">
-        스냅샷 촬영기록
+        スナップショット撮影記録
       </div>
       <br>
-      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/monitoring')}}">모니터링</a> > <a href="{{URL::to('/snapshot')}}"><b>스냅샷</b></a>
+      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/monitoring')}}">モニタリング</a> > <a href="{{URL::to('/snapshot')}}"><b>スナップショット</b></a>
     </div>
     <style>
       #bgimg{
@@ -105,10 +105,10 @@
     </style>
     <div class="body">
         <div style="margin-top: 30px;">
-            <input onclick="home()" type="button" value="전체보기" class="btn btn-default">
-            <input onclick="filter('time')" type="button" value="시간별" class="btn btn-default">
-            <input onclick="filter('sensing')" type="button" value="센서감지" class="btn btn-default">
-            <input onclick="filter('remote')" type="button" value="원격촬영" class="btn btn-default">
+            <input onclick="home()" type="button" value="全体" class="btn btn-default">
+            <input onclick="filter('time')" type="button" value="時間" class="btn btn-default">
+            <input onclick="filter('sensing')" type="button" value="センサー" class="btn btn-default">
+            <input onclick="filter('remote')" type="button" value="遠隔撮影" class="btn btn-default">
         </div>
         <div class="wrap">
             <ul class="nav nav-tabs">
@@ -138,7 +138,7 @@
             <div class="modal_cont">
                 <div class="thumbnail_list">
                     @if($snapshot == '[]')
-                        <div><h3>최근에 찍힌 스냅샷이 존재하지 않습니다</h3></div>
+                        <div><h3>スナップショットがありません</h3></div>
                     @else
                           @foreach($snapshot as $s)
                             <span style="display:inline-block; width:280px; height:200px; text-align:center">

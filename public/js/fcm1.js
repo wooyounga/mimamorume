@@ -10,7 +10,7 @@ var message = {
 
     notification: {
         title: "mimamorume",
-	body: pushMessageBody
+        body: "대상자가 외출했습니다"
     }
 }
 
@@ -18,6 +18,7 @@ fcm.send(message, function(err, response) {
     if(err) {
       console.log("falied");
     } else {
-	    console.log("succeed");
+            console.log("succeed");
     }
 });
+

@@ -133,7 +133,7 @@ Route::resource('calendar', 'CalendarController');
 Route::resource('fcm', 'FCMController');
 
 //gps
-Route::post('gps', 'GpsController@getUserGps');
+Route::get('gps', 'GpsController@getUserGps');
 
 Route::get('/video', function () {
     // default => return view('welcome');

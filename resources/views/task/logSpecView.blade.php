@@ -22,10 +22,10 @@
     @endif
     <div id="bgimg">
       <div class="page_title">
-        업무일지
+        業務日誌
       </div>
       <br>
-      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/task')}}">근무</a> > <a href="{{URL::to('/logSpec')}}"><b>업무일지</b></a>
+      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/task')}}">勤務</a> > <a href="{{URL::to('/logSpec')}}"><b>業務日誌</b></a>
     </div>
     <style>
       #bgimg{
@@ -57,31 +57,31 @@
         <div class="wrap">
             <table class="table table-striped" style="text-align: left;">
                 <tr>
-                    <td>대상자명</td>
+                    <td>対象の氏名</td>
                     <td>{{$target[0]->name}}</td>
                 </tr>
                 <tr>
-                    <td>근무일자</td>
+                    <td>勤務日付</td>
                     <td>{{$log[0]->work_date}}</td>
                 </tr>
                 <tr>
-                    <td>작성시간</td>
+                    <td>作成時間</td>
                     <td>{{$log[0]->created_at}}</td>
                 </tr>
                 <tr>
-                    <td>업무유형</td>
+                    <td>業務類型</td>
                     <td>{{$log[0]->content_type}}</td>
                 </tr>
                 <tr>
-                    <td>복용약 명</td>
+                    <td>薬名</td>
                     <td>{{$log[0]->medicine_name}}</td>
                 </tr>
                 <tr>
-                    <td>약 복용 일정</td>
-                    <td>{{$log[0]->start_date}}부터 {{$log[0]->end_date}}까지 매일{{$log[0]->time}}</td>
+                    <td>服薬日程</td>
+                    <td>{{$log[0]->start_date}}から {{$log[0]->end_date}}まで毎日{{$log[0]->time}}</td>
                 </tr>
                 <tr>
-                    <td>내용</td>
+                    <td>内容</td>
                     <td>{{$log[0]->content}}</td>
                 </tr>
             </table>

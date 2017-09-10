@@ -33,10 +33,10 @@
     @endif
     <div id="bgimg">
       <div class="page_title">
-        심박수 그래프
+        心拍数グラフ
       </div>
       <br>
-      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/monitoring')}}">모니터링</a> > <a href="{{URL::to('/chart')}}"><b>통계</b></a>
+      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/monitoring')}}">モニタリング</a> > <a href="{{URL::to('/chart')}}"><b>心拍</b></a>
     </div>
     <style>
       #bgimg{
@@ -77,7 +77,7 @@
             var ctx = document.getElementById("graphCanvas").getContext("2d");
             function graph() {
                 $.ajax({
-                    url:"http://127.0.0.1/mima/public/chartData",
+                    url:"http://133.130.99.167/mimamo/public/chartData",
                     type:"GET",
                     dataType: "jsonp",
                     success: function(data) {
@@ -101,7 +101,7 @@
                     data: {
                         datasets: [{
                             data: dataArray,
-                            label: "심박수",
+                            label: "心拍数",
                             backgroundColor : 'rgba(255, 99, 132, 0.2)',
                             borderColor : 'rgba(255,99,132,1)',
                             borderWidth: 1,
