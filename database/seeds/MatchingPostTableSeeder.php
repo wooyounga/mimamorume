@@ -25,11 +25,11 @@ class MatchingPostTableSeeder extends Seeder
              "title" => $title[$i],
              "content" => "月給100以上、勤務時間1時間以内",
              "roadAddress" => "東京都",
-             'gender' => "男性",
+             'gender' => "男",
              'age' => $age[$i],
              'disability'=> $disability[$i],
              'work_day' => "週5回",
-             'work_period' => "3ヶ月未満",
+             'work_period' => "3ヵ月未満",
              'view' => "0",
           ]);
         }
@@ -48,11 +48,11 @@ class MatchingPostTableSeeder extends Seeder
              "title" => $title[$i],
              "content" => "月給100以上、勤務時間1時間以内",
              "roadAddress" => "東京都",
-             'gender' => "女性",
+             'gender' => "女",
              'age' => $age[$i],
              'disability' => $disability[$i],
              'work_day' => "週5回",
-             'work_period' => "3ヶ月未満",
+             'work_period' => "3ヵ月未満",
              'view' => "0",
           ]);
         }

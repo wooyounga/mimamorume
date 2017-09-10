@@ -14,7 +14,7 @@ class LicenseTableSeeder extends Seeder
         DB::table('license')->insert([
             'license_num' => '1501073',
             'sitter_id' => 'user1',
-            'license_kind' => '介護職人',
+            'license_kind' => '介護職員',
             'license_grade' => '1級',
             'institution' => '厚生労働省'
         ]);
