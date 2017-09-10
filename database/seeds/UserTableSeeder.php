@@ -28,11 +28,11 @@ class UserTableSeeder extends Seeder
 
         DB::table('user')->insert([
             'id' => 'user1',
-            'user_type' => '보호사',
+            'user_type' => '介護職員',
             'pw' => bcrypt('secret'),
             'name' => '우영아',
             'age' => '22',
-            'gender' => '여성',
+            'gender' => '女',
             'email' => 'wooyoung-a@naver.com',
             'telephone' => '0700000000',
             'cellphone' => '01077135539',
@@ -43,11 +43,11 @@ class UserTableSeeder extends Seeder
 
         DB::table('user')->insert([
             'id' => 'user2',
-            'user_type' => '보호자',
+            'user_type' => '保護者',
             'pw' => bcrypt('secret'),
             'name' => '김태인',
             'age' => '27',
-            'gender' => '남성',
+            'gender' => '男',
             'email' => 'kimtaein@naver.com',
             'telephone' => '07000000000',
             'cellphone' => '01096887750',
@@ -58,11 +58,11 @@ class UserTableSeeder extends Seeder
 
         DB::table('user')->insert([
             'id' => 'user3',
-            'user_type' => '보호자',
+            'user_type' => '保護者',
             'pw' => bcrypt('secret'),
             'name' => '김성용',
             'age' => '26',
-            'gender' => '남성',
+            'gender' => '男',
             'email' => 'krk3553@naver.com',
             'telephone' => '08011595344',
             'cellphone' => '01041161574',

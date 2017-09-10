@@ -63,7 +63,7 @@
                 $('ul:first',this).hide();
             });
             $('#video_connect').click(function(){
-                if(confirm("화상채팅 연결 시 현재 변경한 조건은 반영되지 않습니다.")){
+                if(confirm("画像チャット連結すると、今変更した条件は繁栄されません。")){
                     $('#video_form').css('display','none');
                     $('#video_div').css('display','');
                     $('#video_btn').css('display','none');
@@ -75,7 +75,7 @@
             $('#'+num).modal('show');
         };
         function matchYesConfirm(url){
-            if(confirm("정말로 수락하겠습니까?")){
+            if(confirm("本当に承諾しますか？")){
                 //var log = $(num).val();
                 location.href=url;
             }
@@ -90,7 +90,7 @@
             location.href=url;
         }
         function matchNoConfirm(url){
-            if(confirm("거절하시면 알림이 사라집니다. 정말로 거절하겠습니까?")){
+            if(confirm("拒絶するとお知らせがなくなります。本当に拒絶しますか？")){
                 location.href=url;
             }
         }
@@ -116,7 +116,7 @@
       }
       </style>
         <div class="nav">
-            @if(Session::get('user_type') == '관리자')
+            @if(Session::get('user_type') == '管理者')
             <a class="logo pull-left" href="{{ url('/dashboard') }}">
             @else
             <a class="logo pull-left" href="{{ url('/task') }}">
@@ -124,7 +124,7 @@
                 <img src="{{ URL::to('/') }}/images/logo.png" width="140" height="30">
             </a>
             @if (Session::get('id'))
-                @if(Session::get('user_type') != '관리자')
+                @if(Session::get('user_type') != '管理者')
                 <div class="zeta-wrap">
                     <ul class="zeta-menu center-block">
                         <li>
@@ -147,7 +147,7 @@
                     </ul>
                 </div>
                 @endif
-                @if(Session::get('user_type') != '관리자')
+                @if(Session::get('user_type') != '管理者')
                 <div class="notice pull-right">
                     <ul class="nav navbar-nav">
                         <li class="dropdown notibar">
@@ -165,8 +165,8 @@
                             </style>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a class="notibar2" href="{{ url('userinfo') }}">내 정보</a>
-                                    <a class="notibar2" href="{{ route('login.destroy') }}">로그아웃</a>
+                                    <a class="notibar2" href="{{ url('userinfo') }}">MYPAGE</a>
+                                    <a class="notibar2" href="{{ route('login.destroy') }}">LOGOUT</a>
                                 </li>
                             </ul>
                         </li>
@@ -184,24 +184,24 @@
                             <ul class="dropdown-menu" role="menu" style="width: 400px; text-align: center;">
                                 <hr>
                                 @if($notice == '[]')
-                                    <p class="notibar2">새로운 알림이 없습니다</p>
+                                    <p class="notibar2">新しいお知らせがありません。</p>
                                     <hr>
                                 @else
                                     <?php $i = 1; ?>
                                     @foreach($notice as $n)
-                                        @if($n->notice_kind == '매칭')
+                                        @if($n->notice_kind == 'マッチング')
                                             <a onclick=showModal('modal{{$n->num}}') class="notice"><?php echo $i; ?> : {{$n->notice_title}}</a>
                                             <a href="{{URL::to('/noticeDest',[$n->num])}}" class="close" style="margin: 0 5px;">X</a>
                                             <hr>
-                                        @elseif($n->notice_kind == '수정')
+                                        @elseif($n->notice_kind == '修正')
                                             <a onclick=showModal('modal{{$n->num}}') class="notice"><?php echo $i; ?> : {{$n->notice_title}}</a>
                                             <a href="{{URL::to('/noticeDest',[$n->num])}}" class="close" style="margin: 0 5px;">X</a>
                                             <hr>
-                                        @elseif($n->notice_kind == '화상채팅')
+                                        @elseif($n->notice_kind == '画像チャット')
                                             <a onclick=video(),showModal('modal{{$n->num}}') class="notice"><?php echo $i; ?> : {{$n->notice_title}}</a>
                                             <a href="{{URL::to('/noticeDest',[$n->num])}}" class="close" style="margin: 0 5px;">X</a>
                                             <hr>
-                                        @elseif($n->notice_kind == '수락')
+                                        @elseif($n->notice_kind == '承諾')
                                             <?php echo $i; ?> : {{$n->notice_title}}
                                             <a href="{{URL::to('/noticeDest',[$n->num])}}" class="close" style="margin: 0 5px;">X</a>
                                             <hr>
@@ -218,7 +218,7 @@
                     </ul>
                 </div>
                 @endif
-                @if(Session::get('user_type') == '관리자')
+                @if(Session::get('user_type') == '管理者')
                 <div class="pull-right links adminm" style="margin: 9px 50px 0 0;">
                     <a href="{{ url('userinfo') }}" class="buttonss" role="button">MYPAGE</a>&nbsp;&nbsp;
                     <a href="{{ route('login.destroy') }}" class="buttonss" role="button">LOGOUT</a>
@@ -265,13 +265,13 @@
                     $(function(){
                         $(':radio[name=week_check{{$n->num}}]').on('change',function(){
                             var weekInput = '<select class="form-control" id="work_week_input{{$n->num}}" name="work_week_input{{$n->num}}" style="margin-top:10px;">';
-                            weekInput+='<option value="주1회">주 1회</option>';
-                            weekInput+='<option value="주2회">주 2회</option>';
-                            weekInput+='<option value="주3회">주 3회</option>';
-                            weekInput+='<option value="주4회">주 4회</option>';
-                            weekInput+='<option value="주5회">주 5회</option>';
-                            weekInput+='<option value="주6회">주 6회</option>';
-                            weekInput+='<option value="주7회">주 7회</option>';
+                            weekInput+='<option value="週1回">週1回</option>';
+                            weekInput+='<option value="週2回">週2回</option>';
+                            weekInput+='<option value="週3回">週3回</option>';
+                            weekInput+='<option value="週4回">週4回</option>';
+                            weekInput+='<option value="週5回">週5回</option>';
+                            weekInput+='<option value="週6回">週6回</option>';
+                            weekInput+='<option value="週7回">週7回</option>';
                             weekInput+='</select>';
                             if($("input:radio[name='week_check{{$n->num}}']:checked").val() == 'yes'){
                                 $('.week{{$n->num}}').append(weekInput);
@@ -340,17 +340,17 @@
                                 <div class="modal-content" style="width: 750px;">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">매칭 수락</h4>
+                                        <h4 class="modal-title">マッチング承諾</h4>
                                     </div>
                                     <div style="background-color: black;">
                                         <div class="col-md-6" id="video_div" style="display: none; width: 100%; height: 80%;">
                                             <form class="form-inline">
                                                 <div class="form-group">
-                                                    <label class="sr-only" for="createChannelId">화상채팅 번호</label>
+                                                    <label class="sr-only" for="createChannelId">画像チャット番号</label>
                                                     <input class="form-control" type="text" id="createChannelId" placeholder="Create and connect the channel." value="" readonly>
                                                 </div>
                                                 <button class="btn btn-default" id="createChannel">
-                                                    <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> 화상채팅연결
+                                                    <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> 画像チャット連結
                                                 </button>
                                             </form>
 
@@ -388,11 +388,11 @@
                                             <div class="col-md-6" id="video_div2" style="display: none; width: 100%; height: 80%;">
                                                 <form class="form-inline">
                                                     <div class="form-group">
-                                                        <label class="sr-only" for="connectChannelId">화상채팅 번호</label>
+                                                        <label class="sr-only" for="connectChannelId">画像チャット番号</label>
                                                         <input class="form-control" type="text" id="connectChannelId" placeholder="Enter the channel id." value="{{$n->notice_content}}" readonly>
                                                     </div>
                                                     <button class="btn btn-default" id="connectChannel">
-                                                        <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> 화상채팅 연결
+                                                        <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> 画像チャット連結
                                                     </button>
                                                 </form>
 
@@ -419,28 +419,28 @@
                                         </div>
                                     </div>
                                     <div class="modal-body" id="video_form">
-                                        <b>※ 매칭신청을 요청한 사용자의 정보입니다.</b><br>
-                                        <br><label>이름</label> {{$n->name}}
-                                        <br><label>유형</label> {{$n->user_type}}
-                                        <br><label>나이</label> {{$n->age}}
-                                        <br><label>성별</label> {{$n->gender}}
-                                        <br><label>연락처</label> {{$n->cellphone}}
-                                        <br><label>연락처2</label> {{$n->telephone}}
+                                        <b>※ マッチング申し込みをした相手の情報です。</b><br>
+                                        <br><label>名前</label> {{$n->name}}
+                                        <br><label>区分</label> {{$n->user_type}}
+                                        <br><label>年齢</label> {{$n->age}}
+                                        <br><label>性別</label> {{$n->gender}}
+                                        <br><label>連絡先</label> {{$n->cellphone}}
+                                        <br><label>連絡先2</label> {{$n->telephone}}
                                         <br><br>
-                                        <b>※상대가 제시한 조건입니다.</b><br>
-                                        <br><div style="width: 65%; float: left; margin-left: 10px;"><label>근무일</label>
+                                        <b>※相手が欲しがっている条件です。</b><br>
+                                        <br><div style="width: 65%; float: left; margin-left: 10px;"><label>勤務日</label>
                                             <input readonly class="form-control" name="work_week_day{{$n->num}}" value="{{$n->work_week}}">
                                         </div><br>
                                         <div class="week{{$n->num}}" style="margin-top: 10px;">
-                                            <label for="week_check_yes" style="margin-left: 10px;">변경</label><input type="radio" name="week_check{{$n->num}}" id="week_check_yes{{$n->num}}" value="yes">
-                                            <label for="week_check_no">변경안함</label><input type="radio" name="week_check{{$n->num}}" id="week_check_no{{$n->num}}" value="no" checked>
+                                            <label for="week_check_yes" style="margin-left: 10px;">変更</label><input type="radio" name="week_check{{$n->num}}" id="week_check_yes{{$n->num}}" value="yes">
+                                            <label for="week_check_no">このまま</label><input type="radio" name="week_check{{$n->num}}" id="week_check_no{{$n->num}}" value="no" checked>
                                         </div>
-                                        <br><div style="width: 65%; float: left; margin-left: 10px;"><label>근무 시작 날짜</label>
+                                        <br><div style="width: 65%; float: left; margin-left: 10px;"><label>勤務の初めの日</label>
                                             <input readonly class="form-control" name="work_start_day{{$n->num}}" value="{{$n->work_start}}">
                                         </div><br>
                                         <div style="margin-top: 10px;">
-                                            <label for="work_start_yes{{$n->num}}" style="margin-left: 10px;">변경</label><input type="radio" name="work_start{{$n->num}}" id="work_start_yes{{$n->num}}" value="yes">
-                                            <label for="work_start_no{{$n->num}}">변경안함</label><input type="radio" name="work_start{{$n->num}}" id="work_start_no{{$n->num}}" value="no" checked>
+                                            <label for="work_start_yes{{$n->num}}" style="margin-left: 10px;">変更</label><input type="radio" name="work_start{{$n->num}}" id="work_start_yes{{$n->num}}" value="yes">
+                                            <label for="work_start_no{{$n->num}}">このまま</label><input type="radio" name="work_start{{$n->num}}" id="work_start_no{{$n->num}}" value="no" checked>
                                         </div>
                                         <div id="start{{$n->num}}" style="display: none; margin-top: 10px">
                                             <input class="form-control" type="text" name="start_work{{$n->num}}" value="">
@@ -452,12 +452,12 @@
                                                 });
                                             </script>
                                         </div>
-                                        <br><div style="width: 65%; float: left; margin-left: 10px;"><label>근무 종료 날짜</label>
+                                        <br><div style="width: 65%; float: left; margin-left: 10px;"><label>勤務の終りの日</label>
                                             <input readonly class="form-control" name="work_end_day{{$n->num}}" value="{{$n->work_end}}">
                                         </div><br>
                                         <div style="margin-top: 10px;">
-                                            <label for="work_end_yes{{$n->num}}" style="margin-left: 10px;">변경</label><input type="radio" name="work_end{{$n->num}}" id="work_end_yes{{$n->num}}" value="yes">
-                                            <label for="work_end_no{{$n->num}}">변경안함</label><input type="radio" name="work_end{{$n->num}}" id="work_end_no{{$n->num}}" value="no" checked>
+                                            <label for="work_end_yes{{$n->num}}" style="margin-left: 10px;">変更</label><input type="radio" name="work_end{{$n->num}}" id="work_end_yes{{$n->num}}" value="yes">
+                                            <label for="work_end_no{{$n->num}}">このまま</label><input type="radio" name="work_end{{$n->num}}" id="work_end_no{{$n->num}}" value="no" checked>
                                         </div>
                                         <div id="end{{$n->num}}" style="display: none; margin-top: 10px">
                                             <input class="form-control" type="text" name="end_work{{$n->num}}" value="">
@@ -469,39 +469,39 @@
                                                 });
                                             </script>
                                         </div>
-                                        <br><div style="width: 65%; float: left; margin-left: 10px;"><label>근무 시작 시간</label>
+                                        <br><div style="width: 65%; float: left; margin-left: 10px;"><label>勤務の初めの時間</label>
                                             <input readonly class="form-control" name="start_time{{$n->num}}" value="{{$n->work_start_time}}">
                                         </div><br>
                                         <div class="start_time{{$n->num}}" style="margin-top: 10px;">
-                                            <label for="work_start_time_yes{{$n->num}}" style="margin-left: 10px;">변경</label><input type="radio" name="work_start_time{{$n->num}}" id="work_start_time_yes{{$n->num}}" value="yes">
-                                            <label for="work_start_time_no{{$n->num}}">변경안함</label><input type="radio" name="work_start_time{{$n->num}}" id="work_start_time_no{{$n->num}}" value="no" checked>
+                                            <label for="work_start_time_yes{{$n->num}}" style="margin-left: 10px;">変更</label><input type="radio" name="work_start_time{{$n->num}}" id="work_start_time_yes{{$n->num}}" value="yes">
+                                            <label for="work_start_time_no{{$n->num}}">このまま</label><input type="radio" name="work_start_time{{$n->num}}" id="work_start_time_no{{$n->num}}" value="no" checked>
                                         </div>
-                                        <br><div style="width: 65%; float: left; margin-left: 10px;"><label>근무 종료 시간</label>
+                                        <br><div style="width: 65%; float: left; margin-left: 10px;"><label>勤務の終わりの時間</label>
                                             <input readonly class="form-control" name="end_time{{$n->num}}" value="{{$n->work_end_time}}">
                                         </div><br>
                                         <div class="end_time{{$n->num}}" style="margin-top: 10px;">
-                                            <label for="work_end_time_yes{{$n->num}}" style="margin-left: 10px;">변경</label><input type="radio" name="work_end_time{{$n->num}}" id="work_end_time_yes{{$n->num}}" value="yes">
-                                            <label for="work_end_time_no{{$n->num}}">변경안함</label><input type="radio" name="work_end_time{{$n->num}}" id="work_end_time_no{{$n->num}}" value="no" checked>
-                                        </div>
+                                            <label for="work_end_time_yes{{$n->num}}" style="margin-left: 10px;">変更</label><input type="radio" name="work_end_time{{$n->num}}" id="work_end_time_yes{{$n->num}}" value="yes">
+                                            <label for="work_end_time_no{{$n->num}}">このまま</label><input type="radio" name="work_end_time{{$n->num}}" id="work_end_time_no{{$n->num}}" value="no" checked>
+                                        </div><br>
                                         <div style="margin-left: 25px;">
-                                            <label>상대가 남긴 말</label>
+                                            <label>相手が残した話</label>
                                             <p>{{$n->notice_content}}</p>
                                         </div><br>
-                                        <label for="content{{$n->num}}"style="margin-left: 25px;">전하고 싶은 말</label>
+                                        <label for="content{{$n->num}}"style="margin-left: 25px;">相手に伝えたい話</label>
                                         <textarea class="form-control" id="content{{$n->num}}" name="content{{$n->num}}" rows="5" style="width: 90%; margin-left: 30px;"></textarea>
                                         <br>
                                     </div>
                                     <div class="modal-footer">
                                         @if($n->notice_check != 'true')
                                             <div id="video_btn">
-                                                <button type="submit" class="btn btn-primary" name="btn" value="modify">조건 변경 요청</button>
-                                                <span class="btn btn-primary" id="video_connect">화상채팅 연결</span>
-                                                <button type="submit" class="btn btn-primary" name="btn" value="yes">수락</button>
-                                                <a onclick="matchNoConfirm('{{URL::to('/matchNo',[$n->num])}}')" class="btn btn-danger">거절</a>
+                                                <button type="submit" class="btn btn-primary" name="btn" value="modify">条件変更の要請</button>
+                                                <span class="btn btn-primary" id="video_connect">画像チャット連結</span>
+                                                <button type="submit" class="btn btn-primary" name="btn" value="yes">承諾</button>
+                                                <a onclick="matchNoConfirm('{{URL::to('/matchNo',[$n->num])}}')" class="btn btn-danger">拒絶</a>
                                             </div>
                                             <div id="video_btn2" style="display: none;">
-                                                <button type="submit" class="btn btn-primary" name="btn" value="yes">수락</button>
-                                                <a onclick="matchNoConfirm('{{URL::to('/matchNo',[$n->num])}}')" class="btn btn-danger">거절</a>
+                                                <button type="submit" class="btn btn-primary" name="btn" value="yes">承諾</button>
+                                                <a onclick="matchNoConfirm('{{URL::to('/matchNo',[$n->num])}}')" class="btn btn-danger">拒絶</a>
                                             </div>
                                         @endif
                                     </div>

@@ -53,7 +53,7 @@ class MatchController extends Controller
 
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
-        if ($user[0]->user_type == '보호자') {
+        if ($user[0]->user_type == '保護者') {
             $user_target = \DB::table('support')
                 ->join('user', 'support.family_id', '=', 'user.id')
                 ->join('target', 'support.target_num', '=', 'target.num')
@@ -79,7 +79,7 @@ class MatchController extends Controller
                 ->where('num', $notice_num)
                 ->get();
 
-        $title = Session::get('id').'님께서 화상채팅을 신청하셨습니다.';
+        $title = Session::get('id').'様から画像チャットの申し込みが届きました。';
 
         \DB::table('notice')->insert([
             'num' => null,
@@ -92,7 +92,7 @@ class MatchController extends Controller
             'work_start_time' => '',
             'work_end_time' => '',
             'notice_title' => $title,
-            'notice_kind' => '화상채팅',
+            'notice_kind' => '画像チャット',
             'notice_content' => $video_num,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -168,12 +168,12 @@ class MatchController extends Controller
 
         $user = \DB::table('user')->where('id', Session::get('id'))->get();
 
-        if ($user[0]->user_type == '보호자') {
+        if ($user[0]->user_type == '保護者') {
             $target = \DB::table('support')
                 ->join('target', 'support.target_num', '=', 'target.num')
                 ->where('support.family_id', Session::get('id'))->get();
         } else {
-            $target = '없음';
+            $target = 'なし';
         }
 
         return view('match.matchView')->with('match', $match)->with('target', $target)->with('notice', $notice)->with('count',$count);
@@ -198,7 +198,7 @@ class MatchController extends Controller
         $notice_log = \DB::table('notice')
             ->where('sender', Session::get('id'))
             ->where('addressee_id', $user_id)
-            ->where('notice_kind', '매칭')
+            ->where('notice_kind', 'マッチング')
             ->get();
         /*   $notice_sender = \DB::table('contract')->where('family_id', $user_id)->where('sitter_id', Session::get('id'))->get();
            $notice_addressee = \DB::table('contract')->where('family_id', Session::get('id'))->where('sitter_id', $user_id)->get();*/
@@ -220,12 +220,12 @@ class MatchController extends Controller
         }
 
    //     if ($user[0]->user_type == '보호사') {
-            $title = '매칭신청이 왔습니다. 발신자 : ' . Session::get('id');
+            $title = 'マッチング申し込みが届きました。発信者 : ' . Session::get('id');
      //   } else {
        //     $title = '매칭신청이 왔습니다. 발신자 : ' . Session::get('id');
         //}
         if ($user[0]->user_type == $my_type[0]->user_type) {
-            $alert = '상대와 같은 유형은 매칭신청 할 수 없습니다.';
+            $alert = 'マッチングする対象ではありません。';
         } else {
             if ($notice_log == '[]' && $notice_check == 0) {
                 \DB::table('notice')->insert([
@@ -239,20 +239,20 @@ class MatchController extends Controller
                     'work_start_time' => $request->get('work_start_time'),
                     'work_end_time' => $request->get('work_end_time'),
                     'notice_title' => $title,
-                    'notice_kind' => '매칭',
+                    'notice_kind' => 'マッチング',
                     'notice_content' => $request->get('content'),
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ]);
 
-                $alert = '매칭 신청이 완료되었습니다.';
+                $alert = 'マッチング申し込みが完了されました。';
 
 		//matching push
-                $message = '매칭이 왔습니다';
+                $message = 'マッチング申し込みが届きました。';
 		system('node ./js/fcm.js '.$message);
 
                 //$this->pushCurl("매칭신청이 왔습니다. 컴퓨터에서 확인해주세요");
             } else {
-                $alert = '이미 매칭 신청이 완료된 상대입니다.';
+                $alert = 'もうマッチング申し込みが完了された対象です。';
             }
         }
         return redirect()->back()->with('alert', $alert)->with('notice', $notice)->with('count',$count);
@@ -270,7 +270,7 @@ class MatchController extends Controller
 
         \DB::table('notice')->where('num', $num)->delete();
 
-        $alert = '거절이 완료되었습니다';
+        $alert = '拒絶が完了されました。';
 
         return redirect()->back()->with('alert', $alert)->with('notice', $notice)->with('count',$count);
     }
@@ -308,7 +308,6 @@ class MatchController extends Controller
         $period = $request->get('period');
         $address = $request->get('roadAddress');
         $search = $request->get('searchInput');
-        $g = '';
         $address_search = explode(' ', $address);
 
         if ($address_search == '') {
@@ -317,10 +316,10 @@ class MatchController extends Controller
             $address_log = null;
         }
 
-        if($subject == '대상자'){
+        if($subject == '対象者'){
             $search_log = \DB::table('matching_post')
                 ->join('user', 'matching_post.user_id', '=', 'user.id')
-                ->where('user.user_type','보호자')
+                ->where('user.user_type','保護者')
                 ->where('matching_post.content', 'like', '%'.$search.'%')
                 ->where('matching_post.roadAddress', 'like', '%'.$address_log.'%')
                 ->where(function ($query) use ($gander) {
@@ -347,17 +346,16 @@ class MatchController extends Controller
         }else{
             $search_log = \DB::table('matching_post')
                 ->join('user', 'matching_post.user_id', '=', 'user.id')
-                ->where('user.user_type','보호사')
+                ->where('user.user_type','保護者')
                 ->where('matching_post.content', 'like', '%'.$search.'%')
                 ->where('matching_post.roadAddress', 'like', '%' . $address_log . '%')
-                ->where(function ($query) use ($gander,$g) {
+                ->where(function ($query) use ($gander) {
                     for ($i = 0; $i < count($gander); $i++)
-                        $g = $gander[$i].'성';
-                        $query->orWhere('user.gender', $g);
+                        $query->orWhere('user.gender', $gander[$i]);
                 })
                 ->where(function ($query) use ($age) {
                     for ($i = 0; $i < count($age); $i++)
-                        $age = explode('대',$age[$i])[0];
+                        $age = explode('代',$age[$i])[0];
                         $query->orWhereBetween('user.age', [$age,$age+9]);
                 })
                 ->where(function ($query) use ($week) {
@@ -371,7 +369,7 @@ class MatchController extends Controller
                 ->get();
         }
 
-        $search_btn = '있음';
+        $search_btn = 'ある';
 
         return view('match.match')->with('notice', $notice)->with('match', $search_log)->with('search', $search_btn)->with('count',$count);
     }
@@ -387,7 +385,7 @@ class MatchController extends Controller
             ->whereNull('notice_check')->count();
 
         \DB::table('matching_post')->where('num', $num)->delete();
-        $alert = '게시글이 삭제되었습니다.';
+        $alert = '削除されました。';
 
         return redirect('/match')->with('notice', $notice)->with('alert', $alert)->with('count',$count);
     }
@@ -395,7 +393,7 @@ class MatchController extends Controller
     public function appMatching(Request $request){
         $user = \DB::table('user')->where('id',$request->get('id'))->get();
 
-        if($user[0]->user_type == '보호사'){
+        if($user[0]->user_type == '介護職員'){
             $contract  = \DB::table('contract')
                 ->join('user','contract.sitter_id','=','user.id')
                 ->where('sitter_id',$request->get('id'))
@@ -434,7 +432,7 @@ class MatchController extends Controller
                 'notice_check' => 'true',
             ]);
 
-            $title = '조건 변경요청이 들어왔습니다. 발신자 : '.Session::get('id');
+            $title = '条件変更要請が届きました。発信者 : '.Session::get('id');
 
             if($request->get('work_week_input'.$num)){
                 $week_input = $request->get('work_week_input'.$num);
@@ -478,15 +476,15 @@ class MatchController extends Controller
                 'work_start_time' => $start_time_input,
                 'work_end_time' => $end_time_input,
                 'notice_title' => $title,
-                'notice_kind' => '수정',
+                'notice_kind' => '修正',
                 'notice_content' => $content,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ]);
 
-            $alert = '조건 변경 요청이 완료되었습니다.';
+            $alert = '条件変更の要請が完了されました。';
 
 	    //matcing succeed push
-	    $message = '매칭이 완료되었습니다';
+	    $message = '契約が完了されました。';
 	    system('node ./js/fcm.js'.$message);
 
             return redirect()->back()->with('alert',$alert)->with('notice', $notice)->with('count',$count);
@@ -536,14 +534,14 @@ class MatchController extends Controller
                     ->where('num', $num)
                     ->join('user', 'notice.sender', '=', 'user.id')
                     ->get();
-                $title = '매칭신청을 수락하셨습니다. 발신자 : ' . Session::get('id');
+                $title = '契約できました。発信者 : ' . Session::get('id');
 
                 $notice_num = \DB::table('notice')
                     ->join('user', 'notice.sender', '=', 'user.id')
                     ->where('notice.num', $num)
                     ->get();
 
-                if ($user[0]->user_type == '보호사') {
+                if ($user[0]->user_type == '介護職員') {
                     \DB::table('contract')->insert([
                         'family_id' => $sender[0]->id,
                         'sitter_id' => Session::get('id'),
@@ -587,20 +585,20 @@ class MatchController extends Controller
                     'work_end'=>$request->get('work_end_day'.$num),
                     'work_start_time'=>$request->get('start_time'.$num),
                     'work_end_time'=>$request->get('end_time'.$num),
-                    'notice_kind' => '수락',
+                    'notice_kind' => '承諾',
                     'notice_title' => $title,
                     'notice_content' => null,
                     'notice_check' => 'true',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ]);
 
-                $alert = '매칭이 성공적으로 이루어졌습니다.';
+                $alert = '契約が完了されました。';
 
                 \DB::table('notice')->where('num', $num)->delete();
 
                 return redirect('/home')->with('alert', $alert)->with('notice', $notice)->with('count',$count);
             }else{
-                $alert = '조건 수정시 매칭수락이 불가능 합니다.';
+                $alert = '条件変更したら承諾できません。';
 
                 return redirect()->back()->with('alert', $alert)->with('notice', $notice)->with('count',$count);
             }

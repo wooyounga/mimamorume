@@ -38,10 +38,10 @@
     </script>
     <div id="bgimg">
       <div class="page_title">
-        구인구직
+        求人
       </div>
       <br>
-      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/match')}}">매칭</a> > <a href="{{URL::to('/match')}}"><b>구인</b></a>
+      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/match')}}">マッチング</a> > <a href="{{URL::to('/match')}}"><b>求人</b></a>
     </div>
     <style>
       #bgimg{
@@ -77,14 +77,14 @@
             </script>
         @endif
         <br>
-            <h4 style="color: #428bca;">※글쓴이가 원하는 조건 입니다.</h4>
+            <h4 style="color: #428bca;">※相手が欲しがっている条件です。</h4>
             <table class="table">
                 <tr>
-                    <td>성별</td>
-                    <td>나이</td>
-                    <td>대상장애</td>
-                    <td>근무일</td>
-                    <td>근무기간</td>
+                    <td>性別</td>
+                    <td>年齢</td>
+                    <td>対象障害</td>
+                    <td>勤務日</td>
+                    <td>勤務期間</td>
                 </tr>
                 <tr>
                     <td>{{$match[0]->gender}}</td>
@@ -94,23 +94,23 @@
                     <td>{{$match[0]->work_period}}</td>
                 </tr>
                 <tr>
-                    <td colspan="1">주소</td>
+                    <td colspan="1">住所</td>
                     <td colspan="5">{{$match[0]->roadAddress}}</td>
                 </tr>
             </table>
         <table class="table" style="margin-top: 50px;">
             <tr>
-                <th>제목</th>
+                <th>タイトル</th>
                 <td>{{$match[0]->title}}</td>
-                <td><a class="btn btn-default pull-right" onclick="matchModal()">매칭신청</a></td>
+                <td><a class="btn btn-default pull-right" onclick="matchModal()">マッチング申し込み</a></td>
             </tr>
             <tr>
-                <th>내용</th>
+                <th>内容</th>
                 <td colspan="2">
                     {{$match[0]->content}}<br>
-                    <a class="btn btn-default pull-right" href="{{URL::to('/match')}}">목록</a>
+                    <a class="btn btn-default pull-right" href="{{URL::to('/match')}}">リスト</a>
                     @if($match[0]->user_id == Session::get('id'))
-                        <a class="btn btn-default pull-right" style="margin: 0 10px;" onclick="destConfirm('{{URL::to('/destroy',[$match[0]->num])}}')">삭제</a>
+                        <a class="btn btn-default pull-right" style="margin: 0 10px;" onclick="destConfirm('{{URL::to('/destroy',[$match[0]->num])}}')">削除</a>
                     @endif
 
                 </td>
@@ -125,11 +125,11 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">매칭 신청</h4>
+                        <h4 class="modal-title">マッチング申し込み</h4>
                     </div>
                     <div class="modal-body">
-                        @if($target != '없음')
-                            <label for="target_num" style=" margin-left: 13px;">대상자명</label>
+                        @if($target != 'なし')
+                            <label for="target_num" style=" margin-left: 13px;">対象の名前</label>
                             <select class="form-control" id="target_num" name="target_num" style="width: 98%; margin-left: 13px;">
                                 @foreach($target as $t)
                                     <option value="{{$t->num}}">{{$t->name}}</option>
@@ -138,7 +138,7 @@
                         @endif
                         <br>
                         <div style="margin-left: 15px;">
-                            <b>※계약 시작 날을 선택해주세요</b><br>
+                            <b>※欲しがっている契約の始めの日を選んでください。</b><br>
                             <div>
                                 <input class="form-control" type="text" name="work_start" value="">
                                 <script type="text/javascript">
@@ -151,7 +151,7 @@
                             </div>
                         </div><br>
                         <div style="margin-left: 15px;">
-                            <b>※계약 마지막 날을 선택해주세요</b><br>
+                            <b>※欲しがっている契約の終りの日を選んでください。</b><br>
                             <div>
                                 <input class="form-control" type="text" name="work_end" value="">
                                 <script type="text/javascript">
@@ -163,17 +163,17 @@
                                 </script>
                             </div>
                         </div><br>
-                        <label for="work_week"style="margin-left: 15px;">근무일</label>
+                        <label for="work_week"style="margin-left: 15px;">勤務日</label>
                         <select class="form-control" id="work_week" name="work_week" style="width: 97%; margin-left: 15px;">
-                            <option value="주1회">주 1회</option>
-                            <option value="주2회">주 2회</option>
-                            <option value="주3회">주 3회</option>
-                            <option value="주4회">주 4회</option>
-                            <option value="주5회">주 5회</option>
-                            <option value="주6회">주 6회</option>
-                            <option value="주7회">주 7회</option>
+                            <option value="週1回">週1回</option>
+                            <option value="週2回">週2回</option>
+                            <option value="週3回">週3回</option>
+                            <option value="週4回">週4回</option>
+                            <option value="週5回">週5回</option>
+                            <option value="週6回">週6回</option>
+                            <option value="週7回">週7回</option>
                         </select><br>
-                        <label for="work_start_time"style="margin-left: 15px;">근무시작 시간</label>
+                        <label for="work_start_time"style="margin-left: 15px;">勤務が始まる時間</label>
                         <select class="form-control" id="work_start_time" name="work_start_time" style="width: 97%; margin-left: 15px;">
                             <script>
                                 for(var i = 0; i <= 24; i++){
@@ -182,7 +182,7 @@
                             </script>
                         </select>
                         <br>
-                        <label for="work_end_time"style="margin-left: 15px;">근무끝나는 시간</label>
+                        <label for="work_end_time"style="margin-left: 15px;">勤務が終わる時間</label>
                         <select class="form-control" id="work_end_time" name="work_end_time" style="width: 97%; margin-left: 15px;">
                             <script>
                                 for(var i = 0; i <= 24; i++){
@@ -190,11 +190,11 @@
                                 }
                             </script>
                         </select><br>
-                        <label for="content"style="margin-left: 15px;">전하고 싶은 말</label>
+                        <label for="content"style="margin-left: 15px;">相手に伝えたい子話</label>
                         <textarea class="form-control" id="content" name="content" rows="4" style="width: 97%; margin-left: 15px;"></textarea>
                     </div><br>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">매칭신청</button>
+                        <button type="submit" class="btn btn-primary">マッチング申し込み</button>
                         {{--onclick="matchConfirm('{{URL::to('/matching',[$match[0]->num])}}')"--}}
                     </div>
                 </div>
