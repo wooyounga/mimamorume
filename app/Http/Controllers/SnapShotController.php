@@ -41,7 +41,7 @@ class SnapShotController extends Controller
                     ->where('sitter_id',Session::get('id'))
                     ->get();
                 if($target_list == '[]'){
-                    $activi = '없음';
+                    $activi = 'なし';
                 }else{
                     $activi = $target_list[0]->num;
                 }

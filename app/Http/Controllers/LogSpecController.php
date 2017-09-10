@@ -54,7 +54,7 @@ class LogSpecController extends Controller
                     $activi = $target_list[0]->num;
                 }
 
-            }else if($user_type[0]->user_type == '介護職員'){
+            }else if($user_type[0]->user_type == '保護者'){
                 $log_id = \DB::table('contract')->where('family_id',Session::get('id'))->get();
                 $user_target = \DB::table('support')
                     ->join('user','support.family_id','=','user.id')
