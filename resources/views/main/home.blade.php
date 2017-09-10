@@ -98,10 +98,10 @@
     <script type='text/javascript' src='{{URL::to('/')}}/js/fullcalendar.js'></script>
     <div id="bgimg">
       <div class="page_title">
-        근무일정
+        勤務日程
       </div>
       <br>
-      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/task')}}">근무</a> > <a href="{{URL::to('/task')}}"><b>근무일정</b></a>
+      <a href="{{URL::to('/home')}}"><img src="{{URL::to('/')}}/images/home.png" style="position:relative; top:-3px; width:20px; height:20px;"></a> > <a href="{{URL::to('/task')}}">勤務</a> > <a href="{{URL::to('/task')}}"><b>勤務日程</b></a>
     </div>
     <style>
       #bgimg{
@@ -130,15 +130,15 @@
   <div class="open_modal">
     <!-- Open Add Task Month Modal Button -->
     <button type="button" class="btn btn-default btn-md" data-toggle="modal" onclick="openModal()">
-      일정 추가 (월단위)
+      日程追加(月)
     </button>
       <!-- Open Add Task Modal Button -->
     <button type="button" class="btn btn-default btn-md" data-toggle="modal" onclick="openModal2()">
-      일정 추가
+      日程追加
     </button>
       <!-- Open Delete All Task Button -->
     <button type="button" class="btn btn-default btn-md" data-toggle="modal" onclick="openModal3()">
-      모든 일정 삭제
+      日程削除(全)
     </button>
   </div>
   <br><br>
@@ -149,11 +149,11 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">일정 추가하기 (월단위)</h4>
+          <h4 class="modal-title" id="myModalLabel">日程追加(月)</h4>
         </div>
         <div class="modal-body">
         @php
-          $days = ["일", "월", "화", "수", "목", "금", "토"];
+          $days = ["日", "月", "火", "水", "木", "金", "土"];
         @endphp
         @for($i = 0; $i < 7; $i++)
           <!--버튼 그룹-->
@@ -200,19 +200,19 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">일정 추가하기</h4>
+          <h4 class="modal-title" id="myModalLabel">日程追加</h4>
         </div>
         <div class="modal-body">
-          <h4>일정 이름</h4>
+          <h4>日程名</h4>
           <input type="text" name="title" value=""><br><br>
-          <h4>시작일</h4>
+          <h4>開始日</h4>
           <input type="text" name="start" value="">
           <script type="text/javascript">
               $(function(){
                   $('*[name=start]').appendDtpicker();
               });
           </script><br><br>
-          <h4>종료일</h4>
+          <h4>終了日</h4>
           <input type="text" name="end" value="">
           <script type="text/javascript">
               $(function(){
@@ -221,8 +221,8 @@
           </script><br><br>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick=createCal()>완료</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-primary" onclick=createCal()>完了</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取り消し</button>
         </div>
       </div>
     </div>
@@ -234,14 +234,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">모든 일정 삭제하기</h4>
+          <h4 class="modal-title" id="myModalLabel">全ての日程削除</h4>
         </div>
         <div class="modal-body">
-          <p>정말 삭제하시겠습니까?</p>
+          <p>本当に削除しますか？</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick=delAllCal()>확인</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-primary" onclick=delAllCal()>確認</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取り消し</button>
         </div>
       </div>
     </div>
@@ -257,18 +257,18 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">일정 상세보기</h4>
+          <h4 class="modal-title" id="myModalLabel">日程の詳細を見る</h4>
         </div>
         <div class="modal-body">
           <div id="cal_title"></div><br>
           <div id="cal_start"></div><br>
           <div id="cal_end"></div><br>
           <br>
-          <button id="del_cal">일정 지우기</button>
+          <button id="del_cal">日程削除</button>
         </div>
         <div class="modal-footer">
-          <!-- <button type="button" class="btn btn-primary">확인</button> -->
-          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">취소</button> -->
+          <!-- <button type="button" class="btn btn-primary">確認</button> -->
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">取り消し</button> -->
         </div>
       </div>
     </div>

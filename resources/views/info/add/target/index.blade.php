@@ -47,18 +47,18 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
           <div class="panel-group">
-            <a href="{{ url('userinfo') }}" class="btn btn-default" role="button">회원 정보</a>
-            <a href="{{ url('addinfo') }}" class="btn btn-default" role="button">추가 정보</a>
-            <a href="{{ url('matchinfo') }}" class="btn btn-default" role="button">계약 정보</a>
+            <a href="{{ url('userinfo') }}" class="btn btn-default" role="button">会員情報</a>
+            <a href="{{ url('addinfo') }}" class="btn btn-default" role="button">追加情報</a>
+            <a href="{{ url('matchinfo') }}" class="btn btn-default" role="button">契約情報</a>
           </div>
 
           <div class="panel panel-default">
-            <div class="panel-heading">대상자 정보</div>
+            <div class="panel-heading">対象者情報</div>
 
             <div class="panel-body">
               @if ($target == '[]')
-                대상이 없습니다. 대상을 추가하지 않으면 저희 서비스를 이용하실 수 없습니다. <br>
-                추가 버튼을 눌러서 대상자 추가를 진행 해주시기 바랍니다. <br>
+                対象者がいないです。対象者を追加しないとこちらのサービスはご利用できません。 <br>
+                追加ボタンを押して、対象者を追加してください。 <br>
               @else
 
                 @foreach($target as $t)
@@ -72,7 +72,7 @@
               @endif
               <div class="form-group">
                   <div class="col-md-6 col-md-offset-4">
-                    <a href="{{ url('addinfo/create') }}" class="btn btn-primary" role="button">추가</a>
+                    <a href="{{ url('addinfo/create') }}" class="btn btn-primary" role="button">追加</a>
                   </div>
               </div>
             </div>

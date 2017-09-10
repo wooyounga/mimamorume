@@ -34,18 +34,18 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel-group">
-                    <a href="{{ url('userinfo') }}" class="btn btn-default" role="button">회원 정보</a>
-                    <a href="{{ url('addinfo') }}" class="btn btn-default" role="button">추가 정보</a>
-                    <a href="{{ url('matchinfo') }}" class="btn btn-default" role="button">계약 정보</a>
+                    <a href="{{ url('userinfo') }}" class="btn btn-default" role="button">会員情報</a>
+                    <a href="{{ url('addinfo') }}" class="btn btn-default" role="button">追加情報</a>
+                    <a href="{{ url('matchinfo') }}" class="btn btn-default" role="button">契約情報</a>
                 </div>
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">대상자 정보</div>
+                    <div class="panel-heading">対象者情報</div>
 
                     <div class="panel-body">
                         <form class="form-horizontal" role="form">
                             <div class="form-group{{ $errors->has('num') ? ' has-error' : '' }}">
-                                <label for="num" class="col-md-4 control-label">대상자 아이디</label>
+                                <label for="num" class="col-md-4 control-label">対象者アカウント</label>
 
                                 <div class="col-md-6">
                                     {{ $target[0]->num }}
@@ -53,7 +53,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">대상자 사진</label>
+                                <label class="col-md-4 control-label">対象者の写真</label>
 
                                 <div class="col-md-6">
                                     <img src="{{URL::to('/')}}/images/profile/{{ $target[0]->profile_image }}" style="margin-bottom: 20px; width:70px; height: 90px;">
@@ -61,7 +61,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">이름</label>
+                                <label for="name" class="col-md-4 control-label">氏名</label>
 
                                 <div class="col-md-6">
                                     {{ $target[0]->name }}
@@ -69,7 +69,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('age') ? ' has-error' : '' }}">
-                                <label for="age" class="col-md-4 control-label">나이</label>
+                                <label for="age" class="col-md-4 control-label">年齢</label>
 
                                 <div class="col-md-6">
                                     {{ $target[0]->age }}
@@ -77,7 +77,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-                                <label for="gender" class="col-md-4 control-label">성별</label>
+                                <label for="gender" class="col-md-4 control-label">性別</label>
 
                                 <div class="col-md-6">
                                     {{ $target[0]->gender }}
@@ -85,7 +85,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('telephone') ? ' has-error' : '' }}">
-                                <label for="telephone" class="col-md-4 control-label">집 전화번호</label>
+                                <label for="telephone" class="col-md-4 control-label">電話番号</label>
 
                                 <div class="col-md-6">
                                     {{ $target[0]->telephone }}
@@ -93,7 +93,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('cellphone') ? ' has-error' : '' }}">
-                                <label for="cellphone" class="col-md-4 control-label">휴대 전화번호</label>
+                                <label for="cellphone" class="col-md-4 control-label">携帯番号</label>
 
                                 <div class="col-md-6">
                                     {{ $target[0]->cellphone }}
@@ -101,7 +101,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('zip_code') ? ' has-error' : '' }}">
-                                <label for="zip_code" class="col-md-4 control-label">우편번호</label>
+                                <label for="zip_code" class="col-md-4 control-label">郵便番号</label>
 
                                 <div class="col-md-6">
                                     {{ $target[0]->zip_code }}
@@ -109,7 +109,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('main_address') ? ' has-error' : '' }}">
-                                <label for="main_address" class="col-md-4 control-label">주소</label>
+                                <label for="main_address" class="col-md-4 control-label">アドレス</label>
 
                                 <div class="col-md-6">
                                     {{ $target[0]->main_address }}
@@ -117,7 +117,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('rest_address') ? ' has-error' : '' }}">
-                                <label for="rest_address" class="col-md-4 control-label">나머지 주소</label>
+                                <label for="rest_address" class="col-md-4 control-label">残りのアドレス</label>
 
                                 <div class="col-md-6">
                                     {{ $target[0]->rest_address }}
@@ -125,7 +125,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('disability_main') ? ' has-error' : '' }}">
-                                <label for="disability_main" class="col-md-4 control-label">장애 종류(주)</label>
+                                <label for="disability_main" class="col-md-4 control-label">障害種類(主)</label>
 
                                 <div class="col-md-6">
                                     {{ $target[0]->disability_main }}
@@ -133,11 +133,11 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('disability_sub') ? ' has-error' : '' }}">
-                                <label for="disability_sub" class="col-md-4 control-label">장애 종류(부)</label>
+                                <label for="disability_sub" class="col-md-4 control-label">障害種類(副)</label>
 
                                 <div class="col-md-6">
                                     @if ($target[0]->disability_sub == null)
-                                        없음
+                                        無
                                     @else
                                         {{ $target[0]->disability_sub }}
                                     @endif
@@ -145,11 +145,11 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
-                                <label for="comment" class="col-md-4 control-label">특이사항</label>
+                                <label for="comment" class="col-md-4 control-label">特異事項</label>
 
                                 <div class="col-md-6">
                                     @if ($target[0]->comment == null)
-                                        없음
+                                        無
                                     @else
                                         {{ $target[0]->comment }}
                                     @endif
@@ -162,9 +162,9 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <a href="{{ url('addinfo/modify') }}" class="btn btn-primary" role="button">수정</a>
-                                    <a href="{{ url('addinfo/destroy') }}" class="btn btn-primary" role="button">삭제</a>
-                                    <a href="{{ url('poster/create') }}" class="btn btn-primary" role="button">실종 전단지 작성</a>
+                                    <a href="{{ url('addinfo/modify') }}" class="btn btn-primary" role="button">修正</a>
+                                    <a href="{{ url('addinfo/destroy') }}" class="btn btn-primary" role="button">削除</a>
+                                    <a href="{{ url('poster/create') }}" class="btn btn-primary" role="button">行方不明ポスター作製</a>
                                 </div>
                             </div>
                         </form>

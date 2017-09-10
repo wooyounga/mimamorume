@@ -103,7 +103,7 @@
                 }
               </style>
                 <tr id="table_head">
-                    <td>ナンバー</td>
+                    <td>番号</td>
                     <td>内容</td>
                     <td>作成者</td>
                     <td>勤務日付</td>

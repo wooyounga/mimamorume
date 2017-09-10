@@ -73,20 +73,20 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
           <div class="panel-group">
-            <a href="{{ url('userinfo') }}" class="btn btn-default" role="button">회원 정보</a>
-            <a href="{{ url('addinfo') }}" class="btn btn-default" role="button">추가 정보</a>
-            <a href="{{ url('matchinfo') }}" class="btn btn-default" role="button">계약 정보</a>
+            <a href="{{ url('userinfo') }}" class="btn btn-default" role="button">会員情報</a>
+            <a href="{{ url('addinfo') }}" class="btn btn-default" role="button">追加情報</a>
+            <a href="{{ url('matchinfo') }}" class="btn btn-default" role="button">契約情報</a>
           </div>
 
           <div class="panel panel-default">
-            <div class="panel-heading">대상자 정보</div>
+            <div class="panel-heading">対象者情報</div>
 
             <div class="panel-body">
               <form class="form-horizontal" role="form" action="{{ url('addinfo/store') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('num') ? ' has-error' : '' }}">
-                    <label for="num" class="col-md-4 control-label">대상자 아이디</label>
+                    <label for="num" class="col-md-4 control-label">対象者アカウント</label>
 
                     @if (count($target) == 0)
                       <div class="col-md-6">
@@ -100,7 +100,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
-                    <label class="col-md-4 control-label">대상자 사진</label>
+                    <label class="col-md-4 control-label">対象者写真</label>
 
                     <div class="col-md-6">
                       <input id="profile_image" type="file" name="profile_image">
@@ -108,7 +108,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                    <label for="name" class="col-md-4 control-label">이름</label>
+                    <label for="name" class="col-md-4 control-label">氏名</label>
 
                     <div class="col-md-6">
                       <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -116,7 +116,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('age') ? ' has-error' : '' }}">
-                    <label for="age" class="col-md-4 control-label">나이</label>
+                    <label for="age" class="col-md-4 control-label">年齢</label>
 
                     <div class="col-md-6">
                       <input id="age" type="text" class="form-control" name="age" value="{{ old('age') }}" required>
@@ -124,16 +124,16 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-                    <label for="gender" class="col-md-4 control-label">성별</label>
+                    <label for="gender" class="col-md-4 control-label">性別</label>
 
                     <div class="col-md-6">
-                      <label for="man">남성</label><input id="man" type="radio" name="gender" value="남성">
-                      <label for="woman">여성</label><input id="woman" type="radio" name="gender" value="여성">
+                      <label for="man">男</label><input id="man" type="radio" name="gender" value="남성">
+                      <label for="woman">女</label><input id="woman" type="radio" name="gender" value="여성">
                     </div>
                 </div>
 
                 <div class="form-group{{ $errors->has('telephone') ? ' has-error' : '' }}">
-                    <label for="telephone" class="col-md-4 control-label">집 전화번호</label>
+                    <label for="telephone" class="col-md-4 control-label">電話番号</label>
 
                     <div class="col-md-6">
                       <input id="telephone" type="text" class="form-control" name="telephone" value="{{ old('telephone') }}">
@@ -141,7 +141,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('cellphone') ? ' has-error' : '' }}">
-                    <label for="cellphone" class="col-md-4 control-label">휴대 전화번호</label>
+                    <label for="cellphone" class="col-md-4 control-label">携帯番号</label>
 
                     <div class="col-md-6">
                       <input id="cellphone" type="text" class="form-control" name="cellphone" value="{{ old('cellphone') }}" required>
@@ -149,16 +149,16 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('zip_code') ? ' has-error' : '' }}">
-                    <label for="zip_code" class="col-md-4 control-label">우편번호</label>
+                    <label for="zip_code" class="col-md-4 control-label">郵便番号</label>
 
                     <div class="col-md-6">
                         <input id="zip_code" type="text" class="form-control" name="zip_code" style="width: 130px; float: left;" readonly>
-                        &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-default" value="우편번호 찾기" onClick="execDaumPostCode()">
+                        &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-default" value="郵便番号検索" onClick="execDaumPostCode()">
                     </div>
                 </div>
 
                 <div class="form-group{{ $errors->has('main_address') ? ' has-error' : '' }}">
-                    <label for="main_address" class="col-md-4 control-label">주소</label>
+                    <label for="main_address" class="col-md-4 control-label">アドレス</label>
 
                     <div class="col-md-6">
                         <input id="main_address" type="text" class="form-control" name="main_address" readonly>
@@ -166,7 +166,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('rest_address') ? ' has-error' : '' }}">
-                    <label for="rest_address" class="col-md-4 control-label">나머지 주소</label>
+                    <label for="rest_address" class="col-md-4 control-label">残りのアドレス</label>
 
                     <div class="col-md-6">
                         <input id="rest_address" type="text" class="form-control" name="rest_address" value="{{ old('rest_address') }}">
@@ -174,25 +174,25 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('disability_main') ? ' has-error' : '' }}">
-                    <label for="disability_main" class="col-md-4 control-label">장애 종류(주)</label>
+                    <label for="disability_main" class="col-md-4 control-label">障害種類(主)</label>
 
                     <div class="col-md-6">
                       <select id="disability_main" class="form-control" name="disability_main">
-                          <option value="장애없음">장애없음</option>
-                          <option value="지체장애">지체장애</option>
-                          <option value="시각장애">시각장애</option>
-                          <option value="청각장애">청각장애</option>
-                          <option value="언어장애">언어장애</option>
-                          <option value="안면장애">안면장애</option>
-                          <option value="뇌병변장애">뇌병변장애</option>
-                          <option value="지적장애">지적장애</option>
-                          <option value="자폐성장애">자폐성장애</option>
+                          <option value="장애없음">無</option>
+                          <option value="지체장애">肢体障害</option>
+                          <option value="시각장애">視覚障害</option>
+                          <option value="청각장애">聴覚障害</option>
+                          <option value="언어장애">言語障害</option>
+                          <option value="안면장애">顔面障害</option>
+                          <option value="뇌병변장애">脳血管障害</option>
+                          <option value="지적장애">知的障害</option>
+                          <option value="자폐성장애">自閉症障害</option>
                       </select>
                     </div>
                 </div>
 
                 <div class="form-group{{ $errors->has('disability_sub') ? ' has-error' : '' }}">
-                    <label for="disability_sub" class="col-md-4 control-label">장애 종류(부)</label>
+                    <label for="disability_sub" class="col-md-4 control-label">障害種類(副)</label>
 
                     <div class="col-md-6">
                       <input id="disability_sub" type="text" class="form-control" name="disability_sub" value="{{ old('disability_sub') }}">
@@ -200,7 +200,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
-                    <label for="comment" class="col-md-4 control-label">특이사항</label>
+                    <label for="comment" class="col-md-4 control-label">特異事項</label>
 
                     <div class="col-md-6">
                         <input id="comment" type="text" class="form-control" name="comment" value="{{ old('comment') }}">
@@ -213,9 +213,9 @@
 
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
-                        <button type="submit" class="btn btn-primary">등록</button>
-                        <button type="reset" class="btn btn-primary">취소</button>
-                        <a href="{{ url('/addinfo') }}" class="btn btn-primary" role="button">목록</a>
+                        <button type="submit" class="btn btn-primary">登録</button>
+                        <button type="reset" class="btn btn-primary">取り消し</button>
+                        <a href="{{ url('/addinfo') }}" class="btn btn-primary" role="button">リスト</a>
                     </div>
                 </div>
               </form>

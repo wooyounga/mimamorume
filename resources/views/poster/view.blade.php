@@ -53,11 +53,11 @@
 <div id="poster_body" style="background-color:white;">
   <table id="table">
     <tr>
-      <td class="title" colspan="2">실종자를 찾습니다</td>
+      <td class="title" colspan="2">さがしています</td>
     </tr>
     <tr>
-      <td class="sub_title">실종 인물 사진</td>
-      <td class="sub_title">실종 전 사진</td>
+      <td class="sub_title">行方不明の人の写真</td>
+      <td class="sub_title">行方不明の直前の写真</td>
     </tr>
     <tr>
       <td class="photo"><img src="{{URL::to('/')}}/images/profile/{{ $target[0]->profile_image }}" style="width:300px;"></td>
@@ -68,21 +68,21 @@
 @endif
     </tr>
     <tr>
-      <td class="content" colspan="2">이름 : {{ $target[0]->name }}</td>
+      <td class="content" colspan="2">氏名 : {{ $target[0]->name }}</td>
     </tr>
     <tr>
-      <td class="content" colspan="2">나이 : {{ $target[0]->age }}세</td>
+      <td class="content" colspan="2">年齢 : {{ $target[0]->age }}세</td>
     </tr>
     <tr>
-      <td class="content" colspan="2">성별 : {{ $target[0]->gender }}</td>
+      <td class="content" colspan="2">性別 : {{ $target[0]->gender }}</td>
     </tr>
     <tr>
       <td class="content" colspan="2">
-        특이사항 : {{ $target[0]->disability_main }}{{ ',' . $target[0]->disability_sub }}{{ ',' . $target[0]->comment }}
+        特異事項 : {{ $target[0]->disability_main }}{{ ',' . $target[0]->disability_sub }}{{ ',' . $target[0]->comment }}
       </td>
     </tr>
     <tr>
-      <td class="content" colspan="2">인상착의 : {{ $poster[0]->clothes }}</td>
+      <td class="content" colspan="2">印象着衣 : {{ $poster[0]->clothes }}</td>
     </tr>
     <tr>
       <td class="content" colspan="2">
@@ -90,7 +90,7 @@
       </td>
     </tr>
     <tr>
-      <td class="foot" colspan="2">위 사람을 찾으신 분은 <span style="color:yellow;">{{ $user[0]->cellphone }}</span> 혹은 경찰서 <span style="color:yellow;">112</span>로 연락주시기 바랍니다.</td>
+      <td class="foot" colspan="2">上の人を見つけた方や見た覚えがある方は<span style="color:yellow;">{{ $user[0]->cellphone }}</span>や警察<span style="color:yellow;">110</span>にご連絡ください。</td>
     </tr>
   </table>
 </div>
@@ -98,8 +98,8 @@
 <img id="poster_image" />
 
 <div class="panel-body">
-  <button class="btn btn-primary btn-lg" type="button" id="save_poster">저장</button>
-  <button class="btn btn-primary btn-lg" type="button" id="print_poster">인쇄</button>
+  <button class="btn btn-primary btn-lg" type="button" id="save_poster">セーブ</button>
+  <button class="btn btn-primary btn-lg" type="button" id="print_poster">プリント</button>
 </div>
 
       </div>
@@ -109,7 +109,7 @@
 
 <!--
 <div class="SNS_Share_Top hidden-xs">
-  <button id="pdn" type="button" name="button">인쇄</button>
+  <button id="pdn" type="button" name="button">プリント</button>
 
   <a href="#" onclick="javascript:window.open('https://twitter.com/intent/tweet?text='
  +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog',

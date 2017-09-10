@@ -73,20 +73,20 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
           <div class="panel-group">
-            <a href="{{ url('userinfo') }}" class="btn btn-default" role="button">회원 정보</a>
-            <a href="{{ url('addinfo') }}" class="btn btn-default" role="button">추가 정보</a>
-            <a href="{{ url('matchinfo') }}" class="btn btn-default" role="button">계약 정보</a>
+            <a href="{{ url('userinfo') }}" class="btn btn-default" role="button">会員情報</a>
+            <a href="{{ url('addinfo') }}" class="btn btn-default" role="button">追加情報</a>
+            <a href="{{ url('matchinfo') }}" class="btn btn-default" role="button">契約情報</a>
           </div>
 
           <div class="panel panel-default">
-              <div class="panel-heading">회원 정보</div>
+              <div class="panel-heading">会員情報</div>
 
               <div class="panel-body">
                 <form class="form-horizontal" role="form" action="{{ url('userinfo/update') }}" method="post">
                   {{ csrf_field() }}
 
                   <div class="form-group{{ $errors->has('user_type') ? ' has-error' : '' }}">
-                      <label for="user_type" class="col-md-4 control-label">회원구분</label>
+                      <label for="user_type" class="col-md-4 control-label">会員類型</label>
 
                       <div class="col-md-6">
                           {{ $user[0]->user_type }}
@@ -94,7 +94,7 @@
                   </div>
 
                   <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                      <label for="name" class="col-md-4 control-label">이름</label>
+                      <label for="name" class="col-md-4 control-label">氏名</label>
 
                       <div class="col-md-6">
                           <input id="name" type="text" class="form-control" name="name" value="{{ $user[0]->name }}" required autofocus>
@@ -102,7 +102,7 @@
                   </div>
 
                   <div class="form-group{{ $errors->has('id') ? ' has-error' : '' }}">
-                      <label for="id" class="col-md-4 control-label">아이디</label>
+                      <label for="id" class="col-md-4 control-label">アカウント名</label>
 
                       <div class="col-md-6">
                           {{ $user[0]->id }}
@@ -110,7 +110,7 @@
                   </div>
 
                   <div class="form-group{{ $errors->has('pw') ? ' has-error' : '' }}">
-                      <label for="pw" class="col-md-4 control-label">비밀번호</label>
+                      <label for="pw" class="col-md-4 control-label">パスワード</label>
 
                       <div class="col-md-6">
                           <input id="pw" type="password" class="form-control" name="pw" required>
@@ -118,7 +118,7 @@
                   </div>
 
                   <div class="form-group">
-                      <label for="pw-confirm" class="col-md-4 control-label">비밀번호 확인</label>
+                      <label for="pw-confirm" class="col-md-4 control-label">パスワード確認</label>
 
                       <div class="col-md-6">
                           <input id="pw-confirm" type="password" class="form-control" name="pw_confirmation" required>
@@ -126,15 +126,15 @@
                   </div>
 
                   <div class="form-group{{ $errors->has('age') ? ' has-error' : '' }}">
-                      <label for="age" class="col-md-4 control-label">나이</label>
+                      <label for="age" class="col-md-4 control-label">年齢</label>
 
                       <div class="col-md-6">
-                          {{ $user[0]->age.'세' }}
+                          {{ $user[0]->age.'才' }}
                       </div>
                   </div>
 
                   <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-                      <label for="gender" class="col-md-4 control-label">성별</label>
+                      <label for="gender" class="col-md-4 control-label">性別</label>
 
                       <div class="col-md-6">
                           {{ $user[0]->gender }}
@@ -142,7 +142,7 @@
                   </div>
 
                   <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                      <label for="email" class="col-md-4 control-label">이메일</label>
+                      <label for="email" class="col-md-4 control-label">イメール</label>
 
                       <div class="col-md-6">
                           <input id="email" type="email" class="form-control" name="email" value="{{ $user[0]->email }}" required>
@@ -150,7 +150,7 @@
                   </div>
 
                   <div class="form-group{{ $errors->has('telephone') ? ' has-error' : '' }}">
-                      <label for="telephone" class="col-md-4 control-label">집전화번호</label>
+                      <label for="telephone" class="col-md-4 control-label">電話番号</label>
 
                       <div class="col-md-6">
                           <input id="telephone" type="text" class="form-control" name="telephone" value="{{ $user[0]->telephone }}">
@@ -158,7 +158,7 @@
                   </div>
 
                   <div class="form-group{{ $errors->has('cellphone') ? ' has-error' : '' }}">
-                      <label for="cellphone" class="col-md-4 control-label">휴대전화번호</label>
+                      <label for="cellphone" class="col-md-4 control-label">携帯番号</label>
 
                       <div class="col-md-6">
                           <input id="cellphone" type="text" class="form-control" name="cellphone" value="{{ $user[0]->cellphone }}" required>
@@ -166,16 +166,16 @@
                   </div>
 
                   <div class="form-group{{ $errors->has('zip_code') ? ' has-error' : '' }}">
-                      <label for="zip_code" class="col-md-4 control-label">우편번호</label>
+                      <label for="zip_code" class="col-md-4 control-label">郵便番号</label>
 
                       <div class="col-md-6">
                           <input id="zip_code" type="text" class="form-control" name="zip_code" value="{{ $user[0]->zip_code }}" style="width: 130px; float: left;" readonly>
-                          &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-default" value="우편번호 찾기" onClick="execDaumPostCode()">
+                          &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-default" value="郵便番号検索" onClick="execDaumPostCode()">
                       </div>
                   </div>
 
                   <div class="form-group{{ $errors->has('main_address') ? ' has-error' : '' }}">
-                      <label for="main_address" class="col-md-4 control-label">주소</label>
+                      <label for="main_address" class="col-md-4 control-label">アドレス</label>
 
                       <div class="col-md-6">
                           <input id="main_address" type="text" class="form-control" name="main_address" value="{{ $user[0]->main_address }}" readonly>
@@ -183,7 +183,7 @@
                   </div>
 
                   <div class="form-group{{ $errors->has('rest_address') ? ' has-error' : '' }}">
-                      <label for="rest_address" class="col-md-4 control-label">나머지 주소</label>
+                      <label for="rest_address" class="col-md-4 control-label">残りのアドレス</label>
 
                       <div class="col-md-6">
                           <input id="rest_address" type="text" class="form-control" name="rest_address" value="{{ $user[0]->rest_address }}">
@@ -192,8 +192,8 @@
 
                   <div class="form-group">
                       <div class="col-md-6 col-md-offset-4">
-                          <button type="submit" class="btn btn-primary">수정</button>
-                          <a href="{{ url('/userinfo') }}" class="btn btn-primary" role="button">취소</a>
+                          <button type="submit" class="btn btn-primary">修正</button>
+                          <a href="{{ url('/userinfo') }}" class="btn btn-primary" role="button">取り消し</a>
                       </div>
                   </div>
                 </form>

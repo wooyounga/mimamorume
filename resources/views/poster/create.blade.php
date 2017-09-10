@@ -25,11 +25,11 @@
 <div id="poster_body">
   <table id="table">
   <tr>
-    <td class="title" colspan="2">실종자를 찾습니다</td>
+    <td class="title" colspan="2">探しています</td>
   </tr>
   <tr>
-    <td class="sub_title">실종 인물 사진</td>
-    <td class="sub_title">실종 전 사진</td>
+    <td class="sub_title">行方不明の人の写真</td>
+    <td class="sub_title">行方不明の直前の写真</td>
   </tr>
   <tr>
     <td class="photo"><img src="{{URL::to('/')}}/images/profile/{{ $target[0]->profile_image }}" style="width:300px;"></td>
@@ -46,37 +46,37 @@
 @endif
   </tr>
   <tr>
-    <td class="content" colspan="2">이름 : {{ $target[0]->name }}</td>
+    <td class="content" colspan="2">氏名 : {{ $target[0]->name }}</td>
   </tr>
   <tr>
-    <td class="content" colspan="2">나이 : {{ $target[0]->age }}세</td>
+    <td class="content" colspan="2">年齢 : {{ $target[0]->age }}세</td>
   </tr>
   <tr>
-    <td class="content" colspan="2">성별 : {{ $target[0]->gender }}</td>
-  </tr>
-  <tr>
-    <td class="content" colspan="2">
-      특이사항 : {{ $target[0]->disability_main }}{{ ',' . $target[0]->disability_sub }}{{ ',' . $target[0]->comment }}
-    </td>
-  </tr>
-  <tr>
-    <!-- <td class="content" colspan="2">인상착의 : <input id="clothes" type="text" name="clothes" value="{{ old('clothes') }}" size="50" placeholder="키, 복장 상세, 신체적 특징 등을 기입해주세요." required></td> -->
-    <td class="content" colspan="2">인상착의 : <input id="clothes" type="text" name="clothes" value="키: 185cm / 복장: 파란색 계열티, 검은 반바지 / 신체적 특징: 배가 나와있다" size="50" required></td>
+    <td class="content" colspan="2">性別 : {{ $target[0]->gender }}</td>
   </tr>
   <tr>
     <td class="content" colspan="2">
-      <!-- <textarea id="other" name="other" rows="10" cols="100" value="{{ old('other') }}" placeholder="실종 당시 상황 및 전달 하실 말씀을 적어주세요." required></textarea> -->
-      <textarea id="other" name="other" rows="10" cols="100" value="정보관에 발표 연습을 위해 이동 중 행방불명됨" required></textarea>
+      特異事項 : {{ $target[0]->disability_main }}{{ ',' . $target[0]->disability_sub }}{{ ',' . $target[0]->comment }}
     </td>
   </tr>
   <tr>
-    <td class="foot" colspan="2">위 사람을 찾으신 분은 <span style="color:yellow;">{{ $user[0]->cellphone }}</span> 혹은 경찰서 <span style="color:yellow;">112</span>로 연락주시기 바랍니다.</td>
+    <!-- <td class="content" colspan="2">印象着衣 : <input id="clothes" type="text" name="clothes" value="{{ old('clothes') }}" size="50" placeholder="키, 복장 상세, 신체적 특징 등을 기입해주세요." required></td> -->
+    <td class="content" colspan="2">印象着衣 : <input id="clothes" type="text" name="clothes" value="身長: 185cm / 服装: 青い系列のティーシャツ, 黒い半ズボン / 身体的な特徴: 腹が出ている" size="50" required></td>
+  </tr>
+  <tr>
+    <td class="content" colspan="2">
+      <!-- <textarea id="other" name="other" rows="10" cols="100" value="{{ old('other') }}" placeholder="行方不明の状況や伝えたいことをお書きしてください." required></textarea> -->
+      <textarea id="other" name="other" rows="10" cols="100" value="発表練習のために、情報館への移動中行方不明になる" required></textarea>
+    </td>
+  </tr>
+  <tr>
+    <td class="foot" colspan="2">上の人を見つけた方や見た覚えがある方は<span style="color:yellow;">{{ $user[0]->cellphone }}</span>や警察<span style="color:yellow;">110</span>にご連絡ください。</td>
   </tr>
   </table>
 </div>
 
 <div class="panel-body">
-  <button type="submit" class="btn btn-primary btn-lg">등록</button>
+  <button type="submit" class="btn btn-primary btn-lg">登録</button>
 </div>
         </form>
       </div>

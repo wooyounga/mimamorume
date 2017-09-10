@@ -18,20 +18,20 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
           <div class="panel-group">
-            <a href="{{ url('userinfo') }}" class="btn btn-default" role="button">회원 정보</a>
-            <a href="{{ url('addinfo') }}" class="btn btn-default" role="button">추가 정보</a>
-            <a href="{{ url('matchinfo') }}" class="btn btn-default" role="button">계약 정보</a>
+            <a href="{{ url('userinfo') }}" class="btn btn-default" role="button">会員情報</a>
+            <a href="{{ url('addinfo') }}" class="btn btn-default" role="button">追加情報</a>
+            <a href="{{ url('matchinfo') }}" class="btn btn-default" role="button">契約情報</a>
           </div>
 
             <div class="panel panel-default">
-              <div class="panel-heading">보호사 정보</div>
+              <div class="panel-heading">介護士情報</div>
 
               <div class="panel-body">
                 <form class="form-horizontal" role="form" action="{{ url('addinfo/update') }}" method="post" enctype="multipart/form-data">
                   {{ csrf_field() }}
 
                     <div class="form-group{{ $errors->has('profile_image') ? ' has-error' : '' }}">
-                        <label class="col-md-4 control-label">프로필 사진</label>
+                        <label class="col-md-4 control-label">プロフィール写真</label>
 
                         <div class="col-md-6">
                           <img src="{{URL::to('/')}}/images/profile/{{ $resume[0]->profile_image }}" style="margin-bottom: 20px; width:70px; height: 90px;">
@@ -40,7 +40,7 @@
                     </div>
 
                   <div class="form-group{{ $errors->has('center') ? ' has-error' : '' }}">
-                      <label for="center" class="col-md-4 control-label">소속</label>
+                      <label for="center" class="col-md-4 control-label">所属</label>
 
                       <div class="col-md-6">
                         <input id="center" type="text" class="form-control" name="center" value="{{ $resume[0]->center }}" required autofocus>
@@ -48,7 +48,7 @@
                   </div>
 
                   <div class="form-group{{ $errors->has('career') ? ' has-error' : '' }}">
-                      <label for="career" class="col-md-4 control-label">경력</label>
+                      <label for="career" class="col-md-4 control-label">経歴</label>
 
                       <div class="col-md-6">
                         <input id="career" type="text" class="form-control" name="career" value="{{ $resume[0]->career }}" required>
@@ -56,23 +56,23 @@
                   </div>
 
                   <div class="form-group{{ $errors->has('license') ? ' has-error' : '' }}">
-                      <label for="license" class="col-md-4 control-label">자격증 유무</label>
+                      <label for="license" class="col-md-4 control-label">資格有無</label>
 
                       <div class="col-md-6">
                         @if($resume[0]->license == 'yes')
-                          <label for="yes">있음</label><input id="yes" type="radio" name="license" value="yes" checked>
-                          <label for="yes">없음</label><input id="yes" type="radio" name="license" value="no">
+                          <label for="yes">有</label><input id="yes" type="radio" name="license" value="yes" checked>
+                          <label for="yes">無</label><input id="yes" type="radio" name="license" value="no">
                         @else
-                          <label for="yes">있음</label><input id="yes" type="radio" name="license" value="yes">
-                          <label for="yes">없음</label><input id="yes" type="radio" name="license" value="no" checked>
+                          <label for="yes">有</label><input id="yes" type="radio" name="license" value="yes">
+                          <label for="yes">無</label><input id="yes" type="radio" name="license" value="no" checked>
                         @endif
                       </div>
                   </div>
 
                   <div class="form-group">
                       <div class="col-md-6 col-md-offset-4">
-                        <button type="submit" class="btn btn-primary">수정</button>
-                        <a href="{{ url('/addinfo') }}" class="btn btn-primary" role="button">취소</a>
+                        <button type="submit" class="btn btn-primary">修正</button>
+                        <a href="{{ url('/addinfo') }}" class="btn btn-primary" role="button">取り消し</a>
                       </div>
                   </div>
                 </form>

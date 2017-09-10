@@ -30,20 +30,20 @@
             <h3>{{$user[0]->name}}({{$user[0]->user_type}})</h3>
             <a href="{{route('individual.create',$user[0]->id)}}">
                 <button class="btn btn-default">
-                    수정
+                    修正
                 </button>
             </a>
         </div>
         <div class="resume">
             <div class="individual">
-                <h3>주소</h3>
+                <h3>アドレス</h3>
                 {{$user[0]->main_address}}
                 <br>
                 {{$user[0]->rest_address}}
             </div>
             <br>
             <div class="individual">
-                <h3>연락처</h3>
+                <h3>連絡先</h3>
                 {{$user[0]->telephone}}
                 <br>
                 {{$user[0]->cellphone}}
@@ -51,14 +51,14 @@
             <br>
             @if($user[0]->user_type == '보호사')
                 <div class="individual">
-                    <h3>자격증</h3>
+                    <h3>資格</h3>
                     @foreach($etc as $e)
                         {{$e->license_kind}}
                         {{$e->license_grade}}
                         <br>
                     @endforeach
                     <br>
-                    <h3>발급처</h3>
+                    <h3>発給先</h3>
                     @foreach($etc as $e)
                         {{$e->institution}}
                         <br>
@@ -66,16 +66,16 @@
                 </div>
                 <br>
                 <div class="individual">
-                    <h3>소속</h3>
+                    <h3>所属</h3>
                     {{$etc[0]->center}}
                 </div>
             @else
                 @foreach($etc as $e)
                     <div class="individual">
-                        <h3>대상자 정보</h3>
-                        <br><label>이름 : </label>{{$e->name}}
-                        <br><label>나이 : </label>{{$e->age}}
-                        <br><label>성별 : </label>{{$e->gender}}
+                        <h3>対象の情報</h3>
+                        <br><label>氏名 : </label>{{$e->name}}
+                        <br><label>年齢 : </label>{{$e->age}}
+                        <br><label>性別 : </label>{{$e->gender}}
                     </div>
                     <div class="individual">
 

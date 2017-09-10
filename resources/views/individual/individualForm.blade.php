@@ -88,13 +88,13 @@
                 ceri = '<div>';
                 ceri+= '<span class="close" style="right: 15%; position: absolute;">X</span>';
                 ceri+= '<div class="form-group">';
-                ceri+= '<label for="certified_<?= $cer_no?>" class="col-md-4 control-label">자격증명</label>';
+                ceri+= '<label for="certified_<?= $cer_no?>" class="col-md-4 control-label">資格名</label>';
                 ceri+= '<div class="col-md-6">';
                 ceri+= '<input id="certified" type="text" class="form-control" name="certified_<?= $cer_no?>" value="" required autofocus>';
                 ceri+= '</div>';
                 ceri+= '</div>';
                 ceri+= '<div class="form-group">';
-                ceri+= '<label for="certified_no_<?= $cer_no?>" class="col-md-4 control-label">자격증 등급</label>';
+                ceri+= '<label for="certified_no_<?= $cer_no?>" class="col-md-4 control-label">資格級</label>';
                 ceri+= '<div class="col-md-6">';
                 ceri+= '<input id="certified_no_<?= $cer_no?>" type="text" class="form-control" name="certified_no_<?= $cer_no?>" value="" required autofocus>';
                 ceri+= '</div>';
@@ -115,14 +115,14 @@
         <form class="form-horizontal" name="form-horizontal" role="form" method="POST" action="{{ route('individual.update',[$user[0]->id]) }}">
             {{ csrf_field() }}
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                <label for="name" class="col-md-4 control-label">이름</label>
+                <label for="name" class="col-md-4 control-label">氏名</label>
 
                 <div class="col-md-6">
                     <input id="name" type="text" class="form-control" name="name" value="{{ $user[0]->name }}" required autofocus>
                 </div>
             </div>
             <div class="form-group{{ $errors->has('id') ? ' has-error' : '' }}">
-                <label for="id" class="col-md-4 control-label">아이디</label>
+                <label for="id" class="col-md-4 control-label">アカウント名</label>
 
                 <div class="col-md-6">
                     <input id="id" type="text" class="form-control" name="id" value="{{ $user[0]->id }}" readonly>
@@ -130,21 +130,21 @@
             </div>
 
             <div class="form-group{{ $errors->has('pw') ? ' has-error' : '' }}">
-                <label for="pw" class="col-md-4 control-label">비밀번호</label>
+                <label for="pw" class="col-md-4 control-label">パスワード</label>
 
                 <div class="col-md-6">
                     <input id="pw" type="password" class="form-control" name="pw" required>
                 </div>
             </div>
             <div class="form-group">
-                <label for="pw-confirm" class="col-md-4 control-label">비밀번호 확인</label>
+                <label for="pw-confirm" class="col-md-4 control-label">パスワード確認</label>
 
                 <div class="col-md-6">
                     <input id="pw-confirm" type="password" class="form-control" name="pw_confirmation" required>
                 </div>
             </div>
             <div class="form-group{{ $errors->has('age') ? ' has-error' : '' }}">
-                <label for="age" class="col-md-4 control-label">나이</label>
+                <label for="age" class="col-md-4 control-label">年齢</label>
 
                 <div class="col-md-6">
                     <input id="age" type="text" class="form-control" name="age" value="{{ $user[0]->age }}" required autofocus>
@@ -152,53 +152,53 @@
             </div>
             @if($user[0]->gender == '남')
                 <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-                    <label for="gender" class="col-md-4 control-label">성별</label>
+                    <label for="gender" class="col-md-4 control-label">性別</label>
 
                     <div class="col-md-6">
-                        <label for="man">남</label><input id="man" type="radio" name="gender" value="남" checked>
-                        <label for="woman">여</label><input id="woman" type="radio" name="gender" value="여">
+                        <label for="man">男</label><input id="man" type="radio" name="gender" value="남" checked>
+                        <label for="woman">女</label><input id="woman" type="radio" name="gender" value="여">
                     </div>
                 </div>
             @else
                 <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-                    <label for="gender" class="col-md-4 control-label">성별</label>
+                    <label for="gender" class="col-md-4 control-label">性別</label>
 
                     <div class="col-md-6">
-                        <label for="man">남</label><input id="man" type="radio" name="gender" value="남">
-                        <label for="woman">여</label><input id="woman" type="radio" name="gender" value="여" checked>
+                        <label for="man">男</label><input id="man" type="radio" name="gender" value="남">
+                        <label for="woman">女</label><input id="woman" type="radio" name="gender" value="여" checked>
                     </div>
                 </div>
             @endif
             <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-                <label for="phone" class="col-md-4 control-label">전화번호</label>
+                <label for="phone" class="col-md-4 control-label">電話番号</label>
 
                 <div class="col-md-6">
                     <input id="phone" type="text" class="form-control" name="phone" value="{{ $user[0]->telephone }}" required autofocus>
                 </div>
             </div>
             <div class="form-group{{ $errors->has('cellphone') ? ' has-error' : '' }}">
-                <label for="cellphone" class="col-md-4 control-label">휴대폰번호</label>
+                <label for="cellphone" class="col-md-4 control-label">携帯番号</label>
 
                 <div class="col-md-6">
                     <input id="cellphone" type="text" class="form-control" name="cellphone" value="{{ $user[0]->cellphone }}" required autofocus>
                 </div>
             </div>
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                <label for="email" class="col-md-4 control-label">이메일</label>
+                <label for="email" class="col-md-4 control-label">イメール</label>
 
                 <div class="col-md-6">
                     <input id="email" type="email" class="form-control" name="email" value="{{ $user[0]->email }}" required>
                 </div>
             </div>
             <div class="form-group{{ $errors->has('postCode') ? ' has-error' : '' }}">
-                <label for="postCode" class="col-md-4 control-label">우편번호</label>
+                <label for="postCode" class="col-md-4 control-label">郵便番号</label>
                 <div class="col-md-6">
                     <input id="postCode" type="text" class="form-control" value="{{$user[0]->zip_code}}" style="width: 130px; float: left;" name="postCode" readonly>
                     &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-default" value="우편번호 찾기" onClick="execDaumPostCode()"><br/>
                 </div>
             </div>
             <div class="form-group{{ $errors->has('roadAddress') ? ' has-error' : '' }}">
-                <label for="roadAddress" class="col-md-4 control-label">주소</label>
+                <label for="roadAddress" class="col-md-4 control-label">アドレス</label>
 
                 <div class="col-md-6">
                     <input type="text" id="roadAddress" class="form-control" name="roadAddress" value="{{$user[0]->main_address}}" readonly>
@@ -206,7 +206,7 @@
                 </div>
             </div>
             <div class="form-group{{ $errors->has('detailAddress') ? ' has-error' : '' }}">
-                <label for="detailAddress" class="col-md-4 control-label">나머지 주소</label>
+                <label for="detailAddress" class="col-md-4 control-label">残りのアドレス</label>
 
                 <div class="col-md-6">
                     <input id="detailAddress" type="text" class="form-control" name="adr" value="{{ $user[0]->rest_address }}" required autofocus>
@@ -217,14 +217,14 @@
             <div class="care_div">
                 @if($etc[0]->lisence == 'yes')
                     <div class="form-group{{ $errors->has('certified') ? ' has-error' : '' }}">
-                        <label for="certified_yes" class="col-md-4 control-label">자격증 여부</label>
+                        <label for="certified_yes" class="col-md-4 control-label">資格有無</label>
                         <div class="col-md-6">
-                            <label for="certified_yes">있음</label><input id="certified_yes" type="radio" class="certified_check" name="certified_check" value="yes" checked>
-                            <label for="certified_no">없음</label><input id="certified_no" type="radio" class="certified_check" name="certified_check" value="no" >
+                            <label for="certified_yes">有</label><input id="certified_yes" type="radio" class="certified_check" name="certified_check" value="yes" checked>
+                            <label for="certified_no">無</label><input id="certified_no" type="radio" class="certified_check" name="certified_check" value="no" >
                         </div>
                     </div>
                     <div class="form-group{{ $errors->has('belong') ? ' has-error' : '' }}">
-                        <label for="belong" class="col-md-4 control-label">소속</label>
+                        <label for="belong" class="col-md-4 control-label">所属</label>
                         <div class="col-md-6">
                             <input id="belong" type="text" class="form-control" name="belong" value="{{ $etc[0]->center }}" required autofocus>
                         </div>
@@ -232,13 +232,13 @@
                     <div class="cer">
                         @foreach($etc as $e)
                             <div class="form-group">
-                                <label for="certified_<?= $cer_no?>" class="col-md-4 control-label">자격증명</label>
+                                <label for="certified_<?= $cer_no?>" class="col-md-4 control-label">資格名</label>
                                 <div class="col-md-6">
                                     <input id="certified" type="text" class="form-control" name="certified_no_<?= $cer_no?>" value="{{$e->license_kind}}" required autofocus>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="certified_no_<?= $cer_no?>" class="col-md-4 control-label">자격증 등급</label>
+                                <label for="certified_no_<?= $cer_no?>" class="col-md-4 control-label">資格級</label>
                                 <div class="col-md-6">
                                     <input id="certified_no_<?= $cer_no?>" type="text" class="form-control" name="certified_no_<?= $cer_no?>" value="{{$e->license_grade}}" required autofocus>
                                 </div>
@@ -248,14 +248,14 @@
                     </div>
                 @else
                     <div class="form-group{{ $erSrors->has('certified') ? ' has-error' : '' }}">
-                        <label for="certified_yes" class="col-md-4 control-label">자격증 여부</label>
+                        <label for="certified_yes" class="col-md-4 control-label">資格有無</label>
                         <div class="col-md-6">
-                            <label for="certified_yes">있음</label><input id="certified_yes" type="radio" class="certified_check" name="certified_check" value="yes">
-                            <label for="certified_no">없음</label><input id="certified_no" type="radio" class="certified_check" name="certified_check" value="no" checked>
+                            <label for="certified_yes">有</label><input id="certified_yes" type="radio" class="certified_check" name="certified_check" value="yes">
+                            <label for="certified_no">無</label><input id="certified_no" type="radio" class="certified_check" name="certified_check" value="no" checked>
                         </div>
                     </div>
                     <div class="form-group{{ $errors->has('belong') ? ' has-error' : '' }}">
-                        <label for="belong" class="col-md-4 control-label">소속</label>
+                        <label for="belong" class="col-md-4 control-label">所属</label>
                         <div class="col-md-6">
                             <input id="belong" type="text" class="form-control" name="belong" value="{{ $etc[0]->center }}" required autofocus>
                         </div>
@@ -266,38 +266,38 @@
             @else
             <div class="nok_div">
                 <br/><hr/><br/>
-                <h4 style="text-align: center;">대상자 정보</h4><br/>
+                <h4 style="text-align: center;">対象の情報</h4><br/>
                 <div class="form-group{{ $errors->has('no') ? ' has-error' : '' }}">
-                    <label for="target_no" class="col-md-4 control-label">고유넘버</label>
+                    <label for="target_no" class="col-md-4 control-label">固有ナンバー</label>
 
                     <div class="col-md-6">
                         <input id="target_no" type="text" class="form-control" name="target_no" value="{{ old('target_no') }}" required autofocus readonly>
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('target_name') ? ' has-error' : '' }}">
-                    <label for="target_name" class="col-md-4 control-label">이름</label>
+                    <label for="target_name" class="col-md-4 control-label">氏名</label>
 
                     <div class="col-md-6">
                         <input id="target_name" type="text" class="form-control" name="target_name" value="{{ old('target_name') }}" required autofocus>
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('target_age') ? ' has-error' : '' }}">
-                    <label for="target_age" class="col-md-4 control-label">나이</label>
+                    <label for="target_age" class="col-md-4 control-label">年齢</label>
 
                     <div class="col-md-6">
                         <input id="target_age" type="text" class="form-control" name="target_age" value="{{ old('target_age') }}" required>
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('target_gender') ? ' has-error' : '' }}">
-                    <label for="target_gender" class="col-md-4 control-label">성별</label>
+                    <label for="target_gender" class="col-md-4 control-label">性別</label>
 
                     <div class="col-md-6">
-                        <label for="target_man">남</label><input id="target_man" type="radio" name="target_gender" required autofocus>
-                        <label for="target_woman">여</label><input id="target_woman" type="radio" name="target_gender" required autofocus>
+                        <label for="target_man">男</label><input id="target_man" type="radio" name="target_gender" required autofocus>
+                        <label for="target_woman">女</label><input id="target_woman" type="radio" name="target_gender" required autofocus>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label">프로필 사진</label>
+                    <label class="col-md-4 control-label">プロフィール写真</label>
 
                     <div class="col-md-6">
                         <img src="" style="margin-bottom: 20px; width:100px; height: 130px;" class="img-thumbnail" onerror="javascript:this.src=''">
@@ -305,27 +305,27 @@
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('target_phone') ? ' has-error' : '' }}">
-                    <label for="target_phone" class="col-md-4 control-label">전화번호</label>
+                    <label for="target_phone" class="col-md-4 control-label">電話番号</label>
 
                     <div class="col-md-6">
                         <input id="target_phone" type="text" class="form-control" name="target_phone" value="{{ old('target_phone') }}" required autofocus>
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('target_cellphone') ? ' has-error' : '' }}">
-                    <label for="cellphone" class="col-md-4 control-label">휴대폰번호</label>
+                    <label for="cellphone" class="col-md-4 control-label">携帯番号</label>
 
                     <div class="col-md-6">
                         <input id="target_cellphone" type="text" class="form-control" name="target_cellphone" value="{{ old('target_cellphone') }}" required autofocus>
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('target_epost') ? ' has-error' : '' }}">
-                    <label for="target_epost" class="col-md-4 control-label">우편번호</label>
+                    <label for="target_epost" class="col-md-4 control-label">郵便番号</label>
                     <div class="col-md-6">
                         <input id="target_epost" type="text" class="form-control" name="target_zip" readonly>
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('target_address') ? ' has-error' : '' }}">
-                    <label for="target_address" class="col-md-4 control-label">주소</label>
+                    <label for="target_address" class="col-md-4 control-label">アドレス</label>
 
                     <div class="col-md-6">
                         <input type="text" id="target_address" class="XenoFindZip form-control" name="target_ad" placeholder="엔터를 누르면 검색됩니다." data-z="target_zip" data-a="target_ad" data-r="target_adr">
@@ -333,37 +333,37 @@
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('target_restAddress') ? ' has-error' : '' }}">
-                    <label for="target_restAddress" class="col-md-4 control-label">나머지 주소</label>
+                    <label for="target_restAddress" class="col-md-4 control-label">残りのアドレス</label>
 
                     <div class="col-md-6">
                         <input id="target_restAddress" type="text" class="form-control" name="target_adr" value="{{ old('target_restAddress') }}" required autofocus>
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('disability') ? ' has-error' : '' }}">
-                    <label for="disability" class="col-md-4 control-label">장애 종류(주)</label>
+                    <label for="disability" class="col-md-4 control-label">障害種類(主)</label>
                     <div class="col-md-6">
                         <select id="disability" class="form-control" name="disability" required autofocus>
-                            <option value="장애없음">장애없음</option>
-                            <option value="지체장애">지체장애</option>
-                            <option value="시각장애">시각장애</option>
-                            <option value="청각장애">청각장애</option>
-                            <option value="언어장애">언어장애</option>
-                            <option value="안면장애">안면장애</option>
-                            <option value="뇌병변장애">뇌병변장애</option>
-                            <option value="지적장애">지적장애</option>
-                            <option value="자폐성장애">자폐성장애</option>
+                            <option value="장애없음">無</option>
+                            <option value="지체장애">肢体障害</option>
+                            <option value="시각장애">視覚障害</option>
+                            <option value="청각장애">聴覚障害</option>
+                            <option value="언어장애">言語障害장애</option>
+                            <option value="안면장애">顔面障害</option>
+                            <option value="뇌병변장애">脳血管障害</option>
+                            <option value="지적장애">知的障害</option>
+                            <option value="자폐성장애">自閉症障害</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('disability_2') ? ' has-error' : '' }}">
-                    <label for="disability_2" class="col-md-4 control-label">장애 종류(부)</label>
+                    <label for="disability_2" class="col-md-4 control-label">障害種類(副)</label>
 
                     <div class="col-md-6">
                         <input id="disability_2" type="text" class="form-control" name="disability_2" value="{{ old('disability_2') }}" required autofocus placeholder="없을 경우 없음을 입력해주십시오.">
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('special ') ? ' has-error' : '' }}">
-                    <label for="special " class="col-md-4 control-label">특이사항</label>
+                    <label for="special " class="col-md-4 control-label">特異事項</label>
 
                     <div class="col-md-6">
                         <input id="special " type="text" class="form-control" name="special " value="{{ old('special ') }}" required autofocus>
@@ -375,11 +375,11 @@
                 <div class="col-md-6 col-md-offset-4">
                     @if($user[0]->user_type == '보호사')
                         <a class="btn btn-primary certified_btn">
-                            자격증 추가
+                            資格追加
                         </a>
                     @endif
                     <button type="submit" class="btn btn-primary">
-                        수정
+                        修正
                     </button>
                 </div>
             </div>

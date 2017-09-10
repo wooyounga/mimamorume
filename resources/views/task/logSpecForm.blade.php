@@ -18,7 +18,7 @@
 <link type="text/css" href="{{URL::to('/')}}/css/jquery.simple-dtpicker.css" rel="stylesheet" />
 <script>
     function formConfirm(url){
-        if(confirm("지금 나가시면 작성 중인 내용은 전부 삭제 됩니다. 정말로 나가시겠습니까?")){
+        if(confirm("今ページを移動したら、作成中のすべては削除されます。本当に移動しますか？")){
             location.href=url;
         }
     }
@@ -134,7 +134,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>내용</td>
+                        <td>内容</td>
                         <td>
                             <textarea class="form-control" name="content" id="content" rows="10" required></textarea>
                         </td>

@@ -47,17 +47,17 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
           <div class="panel-group">
-            <a href="{{ url('userinfo') }}" class="btn btn-default" role="button">회원 정보</a>
-            <a href="{{ url('addinfo') }}" class="btn btn-default" role="button">추가 정보</a>
-            <a href="{{ url('matchinfo') }}" class="btn btn-default" role="button">계약 정보</a>
+            <a href="{{ url('userinfo') }}" class="btn btn-default" role="button">会員情報</a>
+            <a href="{{ url('addinfo') }}" class="btn btn-default" role="button">追加情報</a>
+            <a href="{{ url('matchinfo') }}" class="btn btn-default" role="button">契約情報</a>
           </div>
 
           <div class="panel panel-default">
-            <div class="panel-heading">구인구직 정보</div>
+            <div class="panel-heading">求人情報</div>
 
             <div class="panel-body">
               @if ($match == '[]')
-                대상자를 담당하고 있는 보호사가 없습니다.
+                対象者を介護している介護士がいないです。
               @else
 
                 @foreach($match as $m)
