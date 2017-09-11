@@ -103,7 +103,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td＞薬名</td>
+                        <td>薬名</td>
                         <td>
                             <input type="text" class="form-control" name="medicine_name" required>
                         </td>
