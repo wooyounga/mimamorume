@@ -66,7 +66,7 @@
 <script>
     $(document).ready(function(){
         $("input[name=subject]").change(function(){
-            if($(':radio[name="subject"]:checked').val()==''){
+            if($(':radio[name="subject"]:checked').val()=='介護職員'){
                 $('.recipient').css('display','none');
                 $('.care').css('display','');
             }else{
@@ -141,14 +141,13 @@
                         <span><input type="checkbox" id="woman" name="gander[]" value="女"><label for="woman">女</label></span>
                     </td>
                     <td>
-                        <span><input type="checkbox" id="10less" name="age[]" value="10代未満"><label for="10less">10代未満</label></span>
                         <span><input type="checkbox" id="10" name="age[]" value="10代"><label for="10">10代</label></span>
                         <span><input type="checkbox" id="20" name="age[]" value="20代"><label for="20">20代</label></span>
                         <span><input type="checkbox" id="30" name="age[]" value="30代"><label for="30">30代</label></span>
                         <span><input type="checkbox" id="40" name="age[]" value="40代"><label for="40">40代</label></span>
                         <span><input type="checkbox" id="50" name="age[]" value="50代"><label for="50">50代</label></span>
                         <span><input type="checkbox" id="60" name="age[]" value="60代"><label for="60">60代</label></span>
-                        <span><input type="checkbox" id="60more" name="age[]" value="60代以上"><label for="60more">60代以上</label></span>
+                        <span><input type="checkbox" id="70more" name="age[]" value="70代以上"><label for="70more">70代以上</label></span>
                     </td>
                     <td>
                         <div class="recipient" style="display: none;">

@@ -133,14 +133,13 @@
                             <span><label for="woman">女</label><input type="radio" id="woman" name="gender" value="女" required></span>
                         </td>
                         <td>
-                            <span><label for="10less">10代未満</label><input type="radio" id="10less" name="age" value="10代未満" required></span>
                             <span><label for="10">10代</label><input type="radio" id="10" name="age" value="10代" required></span>
                             <span><label for="20">20代</label><input type="radio" id="20" name="age" value="20代" required></span>
                             <span><label for="30">30代</label><input type="radio" id="30" name="age" value="30代" required></span>
                             <span><label for="40">40代</label><input type="radio" id="40" name="age" value="40代" required></span>
                             <span><label for="50">50代</label><input type="radio" id="50" name="age" value="50代" required></span>
                             <span><label for="60">60代</label><input type="radio" id="60" name="age" value="60代" required></span>
-                            <span><label for="60more">60代以上</label><input type="radio" id="60more" name="age" value="60代以上" required></span>
+                            <span><label for="60more">70代以上</label><input type="radio" id="70more" name="age" value="70代以上" required></span>
                         </td>
                         <td>
                             <span><label for="no">障害なし</label><input type="radio" id="no" name="disability" value="障害なし" required></span>

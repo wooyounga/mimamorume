@@ -346,7 +346,7 @@ class MatchController extends Controller
         }else{
             $search_log = \DB::table('matching_post')
                 ->join('user', 'matching_post.user_id', '=', 'user.id')
-                ->where('user.user_type','保護者')
+                ->where('user.user_type','介護職員')
                 ->where('matching_post.content', 'like', '%'.$search.'%')
                 ->where('matching_post.roadAddress', 'like', '%' . $address_log . '%')
                 ->where(function ($query) use ($gander) {
@@ -354,9 +354,18 @@ class MatchController extends Controller
                         $query->orWhere('user.gender', $gander[$i]);
                 })
                 ->where(function ($query) use ($age) {
-                    for ($i = 0; $i < count($age); $i++)
-                        $age = explode('代',$age[$i])[0];
-                        $query->orWhereBetween('user.age', [$age,$age+9]);
+                      if($age == '70代以上'){
+                        for ($i = 0; $i < count($age); $i++){
+                            $age = explode('代',$age[$i])[0];
+                            $query->orWhereBetween('user.age', [$age,999]);
+                        }
+                      }
+                      else{
+                        for ($i = 0; $i < count($age); $i++){
+                            $age = explode('代',$age[$i])[0];
+                            $query->orWhereBetween('user.age', [$age,$age+9]);
+                        }
+                      }
                 })
                 ->where(function ($query) use ($week) {
                     for ($i = 0; $i < count($week); $i++)
