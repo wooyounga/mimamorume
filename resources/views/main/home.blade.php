@@ -12,10 +12,9 @@
     </script>
 @endif
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<!-- 제이쿼리 -->{{--
-<script type='text/javascript' src='{{URL::to('/')}}/js/jquery-1.12.4.min.js'></script>--}}
+<script type='text/javascript' src='{{URL::to('/')}}/js/jquery-1.12.4.min.js'></script>
+<script type='text/javascript' src='{{URL::to('/')}}/js/jquery-migrate-1.4.1.min.js'></script>
+<!-- 제이쿼리 -->
 <script type='text/javascript' src='{{URL::to('/')}}/js/jquery-ui.min.js'></script>
 
 <!-- 부트스트랩 -->

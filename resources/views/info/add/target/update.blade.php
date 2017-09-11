@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type='text/javascript' src='{{URL::to('/')}}/js/jquery-1.12.4.min.js'></script>
+<script type='text/javascript' src='{{URL::to('/')}}/js/jquery-migrate-1.4.1.min.js'></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -12,10 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="//code.jquery.com/jquery.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<!-- jquery 가 필요합니다. -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.min.js"></script>
+<script type='text/javascript' src='{{URL::to('/')}}/js/jquery-2.2.4.min.js'></script>
 
 <!-- 우편번호 찾기 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>

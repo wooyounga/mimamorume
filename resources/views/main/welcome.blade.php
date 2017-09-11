@@ -105,16 +105,16 @@
 
         <div id="film_roll" style="width: 100%;  height: 100%; position: absolute">
             <div>
-                <img src="{{ URL::to('/') }}/images/main/main_image_01.png" class="image_size">
+                <img src="{{ URL::to('/') }}/images/main/main_image_01.jpg" class="image_size">
             </div>
             <div>
-                <img src="{{ URL::to('/') }}/images/main/main_image_02.png" class="image_size">
+                <img src="{{ URL::to('/') }}/images/main/main_image_02.jpg" class="image_size">
             </div>
             <div>
-                <img src="{{ URL::to('/') }}/images/main/main_image_03.png" class="image_size">
+                <img src="{{ URL::to('/') }}/images/main/main_image_03.jpg" class="image_size">
             </div>
             <div>
-                <img src="{{ URL::to('/') }}/images/main/main_image_04.png" class="image_size">
+                <img src="{{ URL::to('/') }}/images/main/main_image_04.jpg" class="image_size">
             </div>
         </div>
 
@@ -127,8 +127,8 @@
     </div>
     <div class="main_service" id="service_01">
         <div class="top"><a href="#film_roll"><img src="{{ URL::to('/') }}/images/main/main_top_image.png" class="main_top"></a></div>
-        <div id="main_service_01"><img src="{{ URL::to('/') }}/images/main/main_service_01.png" class="main_service_image"></div>
-        <div id="main_service_02"><img src="{{ URL::to('/') }}/images/main/main_service_02.png" class="main_service_image"></div>
-        <div id="main_service_03"><img src="{{ URL::to('/') }}/images/main/main_service_03.png" class="main_service_image"></div>
+        <div id="main_service_01"><img src="{{ URL::to('/') }}/images/main/main_service_01.jpg" class="main_service_image"></div>
+        <div id="main_service_02"><img src="{{ URL::to('/') }}/images/main/main_service_02.jpg" class="main_service_image"></div>
+        <div id="main_service_03"><img src="{{ URL::to('/') }}/images/main/main_service_03.jpg" class="main_service_image"></div>
     </div>
 @endsection

@@ -1,10 +1,9 @@
 @extends('layouts.app')
 
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type='text/javascript' src='{{URL::to('/')}}/js/jquery-2.2.4.min.js'></script>
 <!-- jquery 가 필요합니다. -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.min.js"></script>
-
+<script type='text/javascript' src='{{URL::to('/')}}/js/jquery-1.12.4.min.js'></script>
+<script type='text/javascript' src='{{URL::to('/')}}/js/jquery-migrate-1.4.1.min.js'></script>
 <!-- 우편번호 찾기 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 

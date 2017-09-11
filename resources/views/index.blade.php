@@ -4,7 +4,7 @@
 <head>
     <title>PlayRTC Tutorial</title>
     <meta charset="utf-8">
-    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script type='text/javascript' src='{{URL::to('/')}}/js/jquery-1.12.4.min.js'></script>
     <script type='text/javascript' src='{{URL::to('/')}}/js/playrtc.js'></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <style>

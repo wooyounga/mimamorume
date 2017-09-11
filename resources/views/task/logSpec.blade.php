@@ -1,6 +1,6 @@
 @extends('layouts.app')
-<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type='text/javascript' src='{{URL::to('/')}}/js/jquery-1.12.4.min.js'></script>
+<script type='text/javascript' src='{{URL::to('/')}}/js/jquery-migrate-1.4.1.min.js'></script>
 <link rel="stylesheet" href="{{URL::to('/')}}/css/task_app.css">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">

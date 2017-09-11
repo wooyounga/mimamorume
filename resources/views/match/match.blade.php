@@ -2,8 +2,8 @@
 @section('title')
     求人
 @endsection
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type='text/javascript' src='{{URL::to('/')}}/js/jquery-1.12.4.min.js'></script>
+<script type='text/javascript' src='{{URL::to('/')}}/js/jquery-migrate-1.4.1.min.js'></script>
 <link rel="stylesheet" href="{{URL::to('/')}}/css/match.css">
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
