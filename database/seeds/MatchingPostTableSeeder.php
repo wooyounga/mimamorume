@@ -11,6 +11,21 @@ class MatchingPostTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('matching_post')->insert([
+           "num" => null,
+           "user_id" => "user2",
+           "target_num" => 1,
+           "title" => "Help Me!",
+           "content" => "急に私の介護職員が引退して助けてくれる人が必要です。お願いします。",
+           "roadAddress" => "東京都",
+           'gender' => "男",
+           'age' => "65",
+           'disability'=> "障害なし",
+           'work_day' => "週3回",
+           'work_period' => "3ヵ月未満",
+           'view' => "0",
+        ]);
+
         $title = ["介護が必要な方を探します", "働きたいです", "資格あります", "介護経歴30年です", "家族のように対します"];
 
         $age = ["20代", "50代", "40代", "30代", "70代以上"];

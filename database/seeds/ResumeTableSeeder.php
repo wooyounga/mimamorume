@@ -16,7 +16,7 @@ class ResumeTableSeeder extends Seeder
             'license' => 'yes',
             'center' => '永進介護施設',
             'career' => '3年',
-            'profile_image' => 'Woo.jpg',
+            'profile_image' => 'Yi.jpg',
         ]);
     }
 }

@@ -17,13 +17,8 @@ class SupportTableSeeder extends Seeder
         ]);
 
         \DB::table('support')->insert([
-          'family_id' => 'user3',
+          'family_id' => 'user2',
           'target_num' => '2',
-        ]);
-
-        \DB::table('support')->insert([
-          'family_id' => 'user3',
-          'target_num' => '3',
         ]);
     }
 }

@@ -12,7 +12,7 @@ class LicenseTableSeeder extends Seeder
     public function run()
     {
         DB::table('license')->insert([
-            'license_num' => '1501073',
+            'license_num' => '1501242',
             'sitter_id' => 'user1',
             'license_kind' => '介護職員',
             'license_grade' => '1級',
