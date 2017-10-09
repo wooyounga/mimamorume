@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type='text/javascript' src='{{URL::to('/')}}/js/playrtc.js'></script>
+    <script src="http://www.playrtc.com/sdk/js/playrtc.min.js"></script>
+    <script src="http://www.playrtc.com/sdk/js/playrtc.js"></script>
     <script type='text/javascript' src='{{URL::to('/')}}/js/jquery-1.12.4.min.js'></script>
     <script type='text/javascript' src='{{URL::to('/')}}/js/jquery-migrate-1.4.1.min.js'></script>
     <!-- 부트스트랩 -->
