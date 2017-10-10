@@ -115,9 +115,14 @@
                 @if($target != '[]')
                     @foreach($target as $t)
                     <script>
+                        var num = '{{$num}}';
                         function filter(filter){
                             var url = '{{URL::to('/snapShotFilter')}}';
-                            var target = '{{$t->num}}';
+                            if(num != 'なし'){
+                                var target = num;
+                            }else{
+                                var target = '{{$target[0]->num}}';
+                            }
                             location.href=url+'/'+filter+'/'+target;
                         }
                         function home(){
