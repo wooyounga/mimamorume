@@ -133,13 +133,13 @@
                 @else
                     <li role="presentation" class="active"><a href="#">Home</a></li>
                 @endif
-            </ul><br>
+            </ul>
             <div style="margin-top: 30px;">
                 <input onclick="home()" type="button" value="全体" class="btn btn-default">
                 <input onclick="filter('time')" type="button" value="時間" class="btn btn-default">
                 <input onclick="filter('sensing')" type="button" value="センサー" class="btn btn-default">
                 <input onclick="filter('remote')" type="button" value="遠隔撮影" class="btn btn-default">
-            </div>
+            </div><br>
             <div class="modal_cont">
                 <div class="thumbnail_list">
                     @if($snapshot == '[]')
